@@ -481,3 +481,13 @@ Run 20261118-203927 (Resume nach 429-Pause, Weg B Visual HTML):
   Brandfarben (Petrol/Rot/Weiss)" - Rest: Kleinigkeiten (Icon-Konsistenz)
 - Status: WEG A + B + C ALLE E2E-BEWIESEN. Projekt rund (Rest: Loesch-Erlaubnis
   _web-falsch-kopie, optional Icon-Konsistenz-Feinschliff)
+
+## NACHTRAG: Feinschliff (Kays Freigabe)
+- _web-falsch-kopie-18nov-2026 auf gemivo GELoescht (mit Kays Erlaubnis)
+- HTML_SYSTEM-Prompt: ICON-KONSISTENZ-Regel (alle Icons gleicher Stil/Farbe,
+  Petrol; Rot nur als Spaetzenakzent) + Farbdisziplin - gilt fuer alle
+  kuenftigen Weg-B-Runs
+- Gezielte Reparatur Folie 1+2 im Weg-B-Run: Reparaturlauf + mechanische
+  Farb-Korrektur; Verifikation: #F8E8E8 = 0 Vorkommen, glm-sicht bestaetigt
+  "Boxen gleichen hellgrauen Ton", Icons einheitlich Petrol, "GEIL: klare
+  Struktur ... sofort verstaendlich"

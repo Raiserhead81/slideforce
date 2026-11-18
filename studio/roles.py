@@ -272,7 +272,11 @@ Harte Anforderungen:
   keine data-URIs), alles CSS inline im <style>-Block
 - Typo-Hierarchie (Kicker klein/Sperrbuchstaben, Titel gross, klare Karten),
   grosszuegiger Weissraum, Zahlen exakt uebernehmen, NICHTS abschneiden
-- dezente SVG-Infografik inline erlaubt (gleiche Farbwelt)"""
+- dezente SVG-Infografik inline erlaubt (gleiche Farbwelt)
+- ICON-KONSISTENZ: wenn Icons genutzt werden, dann ALLE im selben Stil
+  (gleiche Strichstaerke, gleiche Groesse) und ALLE in EINER Farbe
+  (Petrol); Rot bleibt ausschliesslich dem einzelnen Spaetzenakzent
+- Farbdisziplin: ein Farbsystem, keine Mischung beliebig bunter Boxen"""
 
 _HTML_SCHEMA = """Gib AUSSCHLIESSLICH dieses JSON aus:
 {"html":"<!doctype html> ... komplette Folien-Seite ... "}
