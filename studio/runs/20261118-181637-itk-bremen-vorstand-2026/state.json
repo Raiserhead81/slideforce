@@ -1,0 +1,1176 @@
+{
+ "id": "20261118-181637-itk-bremen-vorstand-2026",
+ "erstellt": "2026-11-18T17:16:37Z",
+ "schritte": {
+  "director": {
+   "status": "ok",
+   "zeit": "2026-11-18T17:16:48Z",
+   "dauer_s": 10.6,
+   "plan": {
+    "zielgruppe": "Vorstand ITK-Bremen / Landesverwaltung Bremen",
+    "anlass": "Vorstandsvortrag Projektstatus ITK-Bremen 2026",
+    "kernbotschaft": "Das Landesnetz ist stabil und im Budget, aber Meilenstein M1 und die Router-Lieferkette erfordern heute drei konkrete Freigaben des Vorstands.",
+    "dramaturgie": "Einstieg mit Erfolgsnachweis (Migration 93 Prozent, SLA-Treue, Einsparung), um Vertrauen aufzubauen. Dann Kipppunkt: die roten und gelben Risiken (Altbauten, Lieferkette, Personal) als Bedrohung des Meilensteins M1 inszenieren. Abschluss mit klaren Entscheidungsantraegen und ehrlicher Kennzeichnung der unbelegten 2027-Hochrechnung.",
+    "teile": [
+     "Status und Betrieb 2025/26",
+     "Risiken und Zeitplan 2026",
+     "Entscheidungen und Ausblick"
+    ],
+    "folienzahl": 10,
+    "fokusthemen": [
+     {
+      "thema": "Migration und M1-Altbau-Standorte",
+      "gewicht": 3
+     },
+     {
+      "thema": "Risiken Lieferkette und Personal",
+      "gewicht": 3
+     },
+     {
+      "thema": "Entscheidungsantraege (Ersatzlieferant, Dienstleister, Taskforce)",
+      "gewicht": 3
+     },
+     {
+      "thema": "Betrieb und Servicequalitaet (Verfuegbarkeit, SLA, Tickets)",
+      "gewicht": 2
+     },
+     {
+      "thema": "Budget und Kostenentwicklung",
+      "gewicht": 2
+     }
+    ],
+    "risiken": [
+     "Vorstand erwartet belegte Zahlen; die 600.000-Euro-Einsparung 2027 ist nur Hochrechnung und muss klar als Annahme gekennzeichnet werden, sonst Vertrauensverlust.",
+     "Zu viele Kennzahlen koennen die drei Entscheidungspunkte verdraengen - Zahlen nur soweit nutzen, wie sie Entscheidungen stuetzen.",
+     "M1-Verzoegerung 6-8 Wochen ist rot; Praesentation darf Status nicht schoenreden, Vorstand reagiert empfindlich auf Beschönigung."
+    ],
+    "editorial_note": "Kernzahlen als Beweisfuehrung fuer Stabilitaet nutzen, aber Fokus auf die drei Antraege legen (Entscheidungsdatum 15.02.2026 betonen). Annahme 2027-Einsparung prominent als 'ungeprueft' labeln. Teil 2 visuell als Risiko-/Meilenstein-Timeline eignen; Teil 3 als klare Entscheidungsfolie mit Ja/Nein-Punkten enden."
+   }
+  },
+  "story": {
+   "status": "ok",
+   "zeit": "2026-11-18T17:17:07Z",
+   "dauer_s": 19.5,
+   "storyboard": {
+    "deck_titel": "ITK-Bremen: Landesnetz stabil im Budget - drei Freigaben sichern Meilenstein M1",
+    "untertitel": "Projektstatus 2026 und Entscheidungsantraege an den Vorstand",
+    "meta": "Stand 18.11.2026 · Vorstand",
+    "annahmen": [
+     "Einsparpotenzial 2027 von rund 600.000 Euro ist eine Hochrechnung der Standardisierungseffekte und noch nicht durch Controlling geprueft",
+     "Mehrkosten bis 85.000 Euro durch Lieferketten-Engpass sind eine Prognose, kein faktischer Aufwand",
+     "Verzoegerung von 6-8 Wochen bei Altbauten ist eine Risikoabschaetzung, kein eingetretener Terminrutsch"
+    ],
+    "folien": [
+     {
+      "nr": 1,
+      "rolle": "titel",
+      "titel": "ITK-Bremen: Landesnetz stabil im Budget - drei Freigaben sichern Meilenstein M1",
+      "untertitel": "Projektstatus 2026 und Entscheidungsantraege an den Vorstand",
+      "meta": "Stand 18.11.2026 · Vorstand"
+     },
+     {
+      "nr": 2,
+      "rolle": "teil",
+      "titel": "Teil 1 · Status und Betrieb 2025/26"
+     },
+     {
+      "nr": 3,
+      "rolle": "kpi",
+      "titel": "Migration erreicht 93 Prozent und das Kernnetz ist seit November 2025 umgestellt",
+      "kicker": "Migration",
+      "lead": "479 von 515 Standorten angemeldet - Rest folgt bis Q2 2026",
+      "zahl": "93 %",
+      "label": "Standorte angemeldet (479 von 515)",
+      "subs": [
+       [
+        "512",
+        "Geraetedatensaetze importiert"
+       ],
+       [
+        "36",
+        "Standorte in Klaerung"
+       ],
+       [
+        "38",
+        "Standorte mit Sonderanforderungen"
+       ]
+      ],
+      "punkte": [
+       "Kernnetz: Umstellung seit November 2025 abgeschlossen",
+       "WAN-Masterliste: 512 Geraetedatensaetze importiert (Pruefstand 17.11.2025)",
+       "Sonderanforderungen: 38 Standorte inklusive Vermessungsamt und Hafenlogistik"
+      ],
+      "annahmen": []
+     },
+     {
+      "nr": 4,
+      "rolle": "kpi",
+      "titel": "Betrieb 2025 haelt SLA und spare 340.000 Euro gegenueber dem Plan ein",
+      "kicker": "Betrieb und Budget",
+      "lead": "Verfuegbarkeit 99,4 Prozent - keine Stoerung laenger als 12 Minuten",
+      "zahl": "340.000 €",
+      "label": "Einsparung 2025 durch Standardisierung",
+      "subs": [
+       [
+        "99,4 %",
+        "Verfuegbarkeit Kernnetz (Ziel 99,5)"
+       ],
+       [
+        "14",
+        "P1-Stoerungen, alle innerhalb SLA behoben"
+       ],
+       [
+        "61 %",
+        "Tickets automatisch geloest (Q4/2025)"
+       ]
+      ],
+      "punkte": [
+       "P1-Stoerungen: Alle 14 Vorfälle 2025 innerhalb der 4-Stunden-SLA behoben",
+       "Ticketautomatisierung: 61 Prozent der 1.840 Tickets im Q4/2025 automatisch geloest",
+       "Budget 2026: 4,8 Mio Euro veranschlagt, davon 2,49 Mio Euro Personalkosten"
+      ],
+      "annahmen": []
+     },
+     {
+      "nr": 5,
+      "rolle": "content",
+      "titel": "Personal ist mit 8 Prozent Fluktuation und 2 offenen Stellen im Netzbetrieb angespannt",
+      "kicker": "Personal",
+      "lead": "24 Mitarbeitende und 6 Dienstleister tragen den Betrieb - 2 Stellen sind unbesetzt",
+      "punkte": [
+       "Team: 24 Mitarbeitende ITK-Bremen und 6 Dienstleister im Einsatz",
+       "Netzbetrieb: 2 Stellen offen, Kompensation laeuft ueber Dienstleister",
+       "Fluktuation: 8 Prozent - Rueckgang gegenueber 11 Prozent im Vorjahr"
+      ],
+      "annahmen": []
+     },
+     {
+      "nr": 6,
+      "rolle": "teil",
+      "titel": "Teil 2 · Risiken und Zeitplan 2026"
+     },
+     {
+      "nr": 7,
+      "rolle": "zeitstrahl",
+      "titel": "Fuenf Meilensteine 2026 - M1 am 31.03. ist mit 11 offenen Altbauten kritisch",
+      "titel_dup": "",
+      "kicker": "Zeitplan 2026",
+      "heute": "2026-01-15",
+      "meilensteine": [
+       [
+        "2026-03-31",
+        "M1 Migration Standorte",
+        "kritisch"
+       ],
+       [
+        "2026-04-30",
+        "M2 Testsicherheit Netzersatz",
+        "offen"
+       ],
+       [
+        "2026-06-15",
+        "M3 Sicherheitsaudit",
+        "fertig"
+       ],
+       [
+        "2026-09-30",
+        "M4 Go-Live Cloud-Telefonie",
+        "offen"
+       ],
+       [
+        "2026-12-31",
+        "M5 Abschluss und Reporting",
+        "offen"
+       ]
+      ],
+      "annahmen": []
+     },
+     {
+      "nr": 8,
+      "rolle": "tabelle",
+      "titel": "Zwei Risiken bedrohen M1 direkt - Sicherheitsaudit bleibt gruen",
+      "kicker": "Risikolage",
+      "kopf": [
+       "Risiko",
+       "Status"
+      ],
+      "zeilen": [
+       [
+        "Altbauten: 11 Standorte wegen Leitungsinfrastruktur im Rueckstand",
+        "rot"
+       ],
+       [
+        "Lieferkette: Router 4 Wochen verzoegert, Ersatzlieferant geprueft",
+        "gelb"
+       ],
+       [
+        "Personal: 2 offene Stellen Netzbetrieb, Dienstleister kompensiert",
+        "gelb"
+       ],
+       [
+        "Sicherheitsaudit: Vorbereitung im Plan",
+        "gruen"
+       ]
+      ],
+      "annahmen": [
+       "Mehrkosten bis 85.000 Euro durch Router-Lieferkette sind eine Prognose",
+       "Verzoegerung 6-8 Wochen bei Altbauten ist eine Risikoabschaetzung"
+      ]
+     },
+     {
+      "nr": 9,
+      "rolle": "statement",
+      "titel": "Ohne die drei Freigaben heute gefaehrdet M1 den Projektplan 2026",
+      "botschaft": "Der Vorstand entscheidet bis zum 15.02.2026 ueber Ersatzlieferant, Dienstleisterverlaengerung und Altbau-Taskforce - sonst wackelt der Meilenstein am 31.03.2026.",
+      "zusatz": "Alle drei Massnahmen sind in der Projektempfehlung ausgearbeitet und entscheidungsreif"
+     },
+     {
+      "nr": 10,
+      "rolle": "content",
+      "titel": "Drei Antraege zur Freigabe - Ausblick 2027 bleibt ungeprueft",
+      "kicker": "Entscheidungen",
+      "lead": "Antrag 1: Freigabe Ersatzlieferant Router bis 15.02.2026",
+      "punkte": [
+       "Antrag 1 - Router: Freigabe Ersatzlieferant, Entscheidung bis 15.02.2026 (Ja/Nein)",
+       "Antrag 2 - Netzbetrieb: Verlaengerung Dienstleistervertrag um 12 Monate (Ja/Nein)",
+       "Antrag 3 - Altbauten: Taskforce mit 3 Personen fuer 10 Wochen zur Priorisierung der 11 Standorte (Ja/Nein)",
+       "Ausblick 2027: Einsparpotenzial von rund 600.000 Euro ungeprueft - Controlling-Pruefung steht aus"
+      ],
+      "annahmen": [
+       "Das Einsparpotenzial 2027 von rund 600.000 Euro beruht auf einer Hochrechnung und ist nicht durch Controlling geprueft"
+      ]
+     }
+    ]
+   }
+  },
+  "art": {
+   "status": "ok",
+   "zeit": "2026-11-18T17:20:20Z",
+   "design": {
+    "designsystem": {
+     "leitidee": "Helle, vorstandstaugliche Statusvorlage: petrolfarbene Kennzahlen auf Weiss, rote Akzente nur dort, wo Entscheidungen faellig sind.",
+     "prinzipien": [
+      "Eine Kennzahl pro Folie fuehrt, Unterwerte ordnen sich ruhig unter",
+      "Aussagen als vollstaendige Action Titles, Fakten bleiben unangetastet",
+      "Rot ausschliesslich fuer Entscheidungs- und Risikobetonung reserviert"
+     ]
+    },
+    "folien": [
+     {
+      "kind": "title",
+      "title": "ITK-Bremen: Landesnetz stabil im Budget",
+      "subtitle": "Drei Freigaben sichern Meilenstein M1 - Projektstatus 2026 und Entscheidungsantraege an den Vorstand",
+      "meta": "Stand 18.11.2026 · Vorstand",
+      "teile": [
+       "01|Teil 1 · Status und Betrieb 2025/26",
+       "02|Teil 2 · Risiken und Zeitplan 2026"
+      ]
+     },
+     {
+      "kind": "section",
+      "title": "Teil 1 · Status und Betrieb 2025/26",
+      "subtitle": "Migration, Betrieb, Budget und Personal im Ueberblick",
+      "meta": "Status 18.11.2026"
+     },
+     {
+      "kind": "content",
+      "title": "Migration bei 93 Prozent, Kernnetz laeuft stabil",
+      "kicker": "Migration",
+      "lead": "Rest der Standorte folgt planmaessig bis Q2 2026",
+      "hinweis": "Sonderanforderungen: 38 Standorte inklusive Vermessungsamt und Hafenlogistik benoetigen individuelle Loesungen",
+      "bullets": [
+       [
+        0,
+        "512|Geraetedatensaetze importiert"
+       ],
+       [
+        0,
+        "36|Standorte in Klaerung"
+       ],
+       [
+        0,
+        "M2|Kernnetz-Umstellung abgeschlossen"
+       ]
+      ],
+      "zahl": "93 %",
+      "label": "Standorte angemeldet (479 von 515)",
+      "notes": "Fokus auf Migrationsfortschritt; Kernnetz seit November 2025 abgeschlossen und stabil; Pruefstand WAN-Masterliste war der 17.11.2025."
+     },
+     {
+      "kind": "content",
+      "title": "Betrieb 2025 haelt alle SLA-Vorgaben ein.",
+      "kicker": "Betrieb und Budget",
+      "lead": "61 Prozent der 1.840 Tickets im Q4 automatisch geloest.",
+      "bullets": [
+       [
+        0,
+        "99,4 %|Verfuegbarkeit Kernnetz"
+       ],
+       [
+        0,
+        "4,8 Mio|Budget 2026 in Euro"
+       ],
+       [
+        0,
+        "P1-Stoerungen: Alle 14 Vorfalle 2025 innerhalb der 4-Stunden-SLA behoben"
+       ],
+       [
+        0,
+        "Budget 2026: 4,8 Mio Euro veranschlagt, davon 2,49 Mio Euro Personalkosten"
+       ]
+      ],
+      "zahl": "340.000 €",
+      "label": "Einsparung 2025 durch Standardisierung",
+      "notes": "Betriebsergebnis verknuepft mit Standardisierungserfolg; Ticketautomatisierung als Effizienzhebel."
+     },
+     {
+      "kind": "content",
+      "title": "Personal bleibt trotz 8 Prozent stabil",
+      "kicker": "Personal",
+      "lead": "24 Mitarbeitende und 6 Dienstleister tragen den Betrieb.",
+      "hinweis": "Angespannt, aber beherrschbar: Personalbedarf wird kurzfristig ueber Dienstleister abgedeckt.",
+      "bullets": [
+       [
+        0,
+        "24|Mitarbeitende ITK"
+       ],
+       [
+        0,
+        "6|Dienstleister im Einsatz"
+       ],
+       [
+        0,
+        "Stellen offen: 2 - Kompensation laeuft ueber Dienstleister im Netzbetrieb"
+       ]
+      ],
+      "zahl": "8 %",
+      "label": "Fluktuation (Vorjahr: 11 %)",
+      "notes": "Angespannt, aber beherrschbar - Kompensation laeuft."
+     },
+     {
+      "kind": "section",
+      "title": "Teil 2 · Risiken und Zeitplan 2026",
+      "subtitle": "Fuenf Meilensteine sichern 2026 – zwei Risiken und drei Freigaben entscheiden heute",
+      "meta": "Entscheidungspaket Vorstand"
+     },
+     {
+      "kind": "content",
+      "title": "Fuenf Meilensteine 2026: M1 am 31.03.2026 ist mit Entscheidungen bis 15.02.2026 zu siche",
+      "kicker": "Zeitplan 2026",
+      "zeitstrahl": [
+       [
+        "2026-03-31",
+        "M1 Migration",
+        "kritisch"
+       ],
+       [
+        "2026-06-15",
+        "M3 Audit",
+        "fertig"
+       ],
+       [
+        "2026-09-30",
+        "M4 Cloud-Tel.",
+        "offen"
+       ],
+       [
+        "2026-12-31",
+        "M5 Abschluss",
+        "offen"
+       ]
+      ],
+      "heute": "2026-01-15",
+      "notes": "M1 rot markieren - hier haengt der Jahresplan dran. M2 Netzersatz (30.04.2026, offen) muenlich nachtragen; Achsenstart frei halten, damit HEUTE-Markierung und M1 nicht kollidieren."
+     },
+     {
+      "kind": "content",
+      "kicker": "Risikolage",
+      "title": "Zwei Risiken bedrohen M1 direkt - Sicherheitsaudit bleibt gruen.",
+      "table": [
+       [
+        "Risiko",
+        "Status"
+       ],
+       [
+        "Altbauten: 11 Standorte Leitungsinfrastruktur im Rueckstand",
+        "rot"
+       ],
+       [
+        "Lieferkette: Router 4 Wochen verzoegert, Ersatzlieferant geprueft",
+        "gelb"
+       ],
+       [
+        "Personal: 2 offene Stellen, Dienstleister kompensiert",
+        "gelb"
+       ],
+       [
+        "Sicherheitsaudit: Vorbereitung im Plan",
+        "gruen"
+       ]
+      ],
+      "hinweis": "Prognose: Mehrkosten bis 85.000 Euro (Lieferkette) und Verzoegerung 6-8 Wochen (Altbauten) sind Abschaetzungen, keine Fakten",
+      "notes": "Betonung auf rot-Zeile Altbauten."
+     },
+     {
+      "kind": "content",
+      "title": "Ohne die drei Freigaben gefaehrdet M1 2026.",
+      "kicker": "Entscheidung",
+      "lead": "Vorstandsfreigabe bis 15.02.2026 - sonst wankt M1 am 31.03.2026.",
+      "hinweis": "Entscheidungsreif: Alle drei Massnahmen sind vollstaendig ausgearbeitet und warten nur auf die Vorstandsfreigabe.",
+      "bullets": [
+       [
+        0,
+        "Ersatzlieferant: Freigabe des benannten Ersatzlieferanten zur Absicherung der Netzhardware-Lieferkette bis zum 15.02.2026."
+       ],
+       [
+        0,
+        "Dienstleisterverlaengerung: Verlaengerung des laufenden Vertrags sichert Umsetzungskapazitaet fuer die M1-Kernleistungen im ersten Quartal."
+       ],
+       [
+        0,
+        "Altbau-Taskforce: eigens aufgesetztes Team fuer die Altbau-Objekte mit fertig geplanter Ressourcenzuteilung und Startfreigabe ab sofort."
+       ]
+      ],
+      "notes": "Drei Freigaben als kompakte Karten unter dem Entscheidungstitel; Datum 15.02.2026 und Meilenstein 31.03.2026 als Anker im Lead betont."
+     },
+     {
+      "kind": "content",
+      "title": "Drei Antraege zur Freigabe - Ausblick 2027",
+      "kicker": "Entscheidungen",
+      "hinweis": "Prognose: Einsparpotenzial 2027 von rund 600.000 Euro ist eine Hochrechnung - Controlling-Pruefung steht aus",
+      "bullets": [
+       [
+        0,
+        "Antrag 1 - Router: Freigabe Ersatzlieferant; Frist zur Entscheidung: 15.02.2026"
+       ],
+       [
+        0,
+        "Antrag 2 - Netzbetrieb: Verlaengerung Dienstleistervertrag um 12 Monate; Volumen rund 1,2 Mio. Euro"
+       ],
+       [
+        0,
+        "Antrag 3 - Altbauten: Taskforce mit 3 Personen fuer 10 Wochen zur Priorisierung der 11 Standorte"
+       ]
+      ],
+      "notes": "Je Antrag Ja/Nein-Abstimmung; 2027-Ausblick klar als ungeprueft kennzeichnen."
+     }
+    ]
+   }
+  },
+  "build": {
+   "status": "ok",
+   "zeit": "2026-11-18T17:20:22Z",
+   "dauer_s": 2.2,
+   "pptx": "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-181637-itk-bremen-vorstand-2026/deck.pptx",
+   "folien": 10,
+   "warnungen": [],
+   "slides": [
+    {
+     "kind": "title",
+     "title": "ITK-Bremen: Landesnetz stabil im Budget",
+     "subtitle": "Drei Freigaben sichern Meilenstein M1 - Projektstatus 2026 und Entscheidungsantraege an den Vorstand",
+     "meta": "Stand 18.11.2026 · Vorstand",
+     "teile": [
+      "01|Teil 1 · Status und Betrieb 2025/26",
+      "02|Teil 2 · Risiken und Zeitplan 2026"
+     ]
+    },
+    {
+     "kind": "section",
+     "title": "Teil 1 · Status und Betrieb 2025/26",
+     "subtitle": "Migration, Betrieb, Budget und Personal im Ueberblick",
+     "meta": "Status 18.11.2026"
+    },
+    {
+     "kind": "content",
+     "title": "Migration erreicht 93 Prozent, Kernnetz seit",
+     "kicker": "Migration",
+     "lead": "479 von 515 Standorten angemeldet - Rest folgt bis Q2 2026",
+     "hinweis": "Sonderanforderungen: 38 Standorte inklusive Vermessungsamt und Hafenlogistik benoetigen individuelle Loesungen",
+     "bullets": [
+      [
+       0,
+       "512|Geraetedatensaetze importiert"
+      ],
+      [
+       0,
+       "Kernnetz: Umstellung seit November 2025 abgeschlossen und stabil"
+      ],
+      [
+       0,
+       "36|Standorte in Klaerung"
+      ],
+      [
+       0,
+       "WAN-Masterliste: 512 Geraetedatensaetze importiert, Pruefstand 17.11.2025"
+      ]
+     ],
+     "zahl": "93 %",
+     "label": "Standorte angemeldet (479 von 515)",
+     "notes": "Fokus auf Migrationsfortschritt; Kernnetz gilt als abgeschlossen."
+    },
+    {
+     "kind": "content",
+     "title": "Betrieb 2025 haelt die SLA und spart 340.000",
+     "kicker": "Betrieb und Budget",
+     "lead": "Verfuegbarkeit 99,4 Prozent - keine Stoerung laenger als 12 Minuten",
+     "hinweis": "Ticketautomatisierung: 61 Prozent der 1.840 Tickets im Q4/2025 automatisch geloest",
+     "bullets": [
+      [
+       0,
+       "99,4 %|Verfuegbarkeit Kernnetz"
+      ],
+      [
+       0,
+       "P1-Stoerungen: Alle 14 Vorfälle 2025 innerhalb der 4-Stunden-SLA behoben"
+      ],
+      [
+       0,
+       "61|P1-Stoerungen 2025 im SLA"
+      ],
+      [
+       0,
+       "Budget 2026: 4,8 Mio Euro veranschlagt, davon 2,49 Mio Euro Personalkosten"
+      ]
+     ],
+     "zahl": "340.000 €",
+     "label": "Einsparung 2025 durch Standardisierung",
+     "notes": "Betriebsergebnis verknuepft mit Standardisierungserfolg."
+    },
+    {
+     "kind": "content",
+     "title": "Personal bleibt mit 8 Prozent Fluktuation und 2",
+     "kicker": "Personal",
+     "lead": "24 Mitarbeitende und 6 Dienstleister tragen den Betrieb - 2 Stellen sind unbeset",
+     "bullets": [
+      [
+       0,
+       "Team: 24 Mitarbeitende ITK-Bremen und 6 Dienstleister im Einsatz"
+      ],
+      [
+       0,
+       "Netzbetrieb: 2 Stellen offen, Kompensation laeuft ueber Dienstleister"
+      ],
+      [
+       0,
+       "Fluktuation: 8 Prozent - Rueckgang gegenueber 11 Prozent im Vorjahr"
+      ]
+     ],
+     "notes": "Angespannt, aber beherrschbar - Kompensation laeuft."
+    },
+    {
+     "kind": "section",
+     "title": "Teil 2 · Risiken und Zeitplan 2026",
+     "subtitle": "Fuenf Meilensteine, zwei Risiken, drei Freigaben",
+     "meta": "Entscheidungspaket Vorstand"
+    },
+    {
+     "kind": "content",
+     "title": "Fuenf Meilensteine 2026 - M1 am 31.03. ist mit",
+     "kicker": "Zeitplan 2026",
+     "lead": "Entscheidungen bis 15.02.2026 sichern den Meilenstein zum 31.03.2026",
+     "zeitstrahl": [
+      [
+       "2026-03-31",
+       "M1 Migration",
+       "kritisch"
+      ],
+      [
+       "2026-04-30",
+       "M2 Netzersatz",
+       "offen"
+      ],
+      [
+       "2026-06-15",
+       "M3 Audit",
+       "fertig"
+      ],
+      [
+       "2026-09-30",
+       "M4 Cloud-Tel.",
+       "offen"
+      ],
+      [
+       "2026-12-31",
+       "M5 Abschluss",
+       "offen"
+      ]
+     ],
+     "heute": "2026-01-15",
+     "notes": "M1 rot markieren - hier haengt der Jahresplan dran."
+    },
+    {
+     "kind": "content",
+     "title": "Zwei Risiken bedrohen M1 direkt - Sicherheitsaudit bleibt gruen.",
+     "kicker": "Risikolage",
+     "hinweis": "Prognose: Mehrkosten bis 85.000 Euro (Lieferkette) und Verzoegerung 6-8 Wochen (Altbauten) sind Abschaetzungen, keine Fakten",
+     "table": [
+      [
+       "Risiko",
+       "Status"
+      ],
+      [
+       "Altbauten: 11 Standorte",
+       "rot"
+      ],
+      [
+       "Lieferkette: Router 4 Wochen",
+       "gelb"
+      ],
+      [
+       "Personal: 2 offene Stellen",
+       "gelb"
+      ],
+      [
+       "Sicherheitsaudit",
+       "gruen"
+      ]
+     ],
+     "notes": "Betonung auf rot-Zeile Altbauten."
+    },
+    {
+     "kind": "content",
+     "title": "Ohne die drei Freigaben heute gefaehrdet M1 den Projektplan 2026.",
+     "kicker": "Entscheidung",
+     "botschaft": "Der Vorstand entscheidet bis zum 15.02.2026 ueber Ersatzlieferant, Dienstleisterverlaengerung und Altbau-Taskforce - sonst wackelt der Meilenstein am 31.03.2026.",
+     "zusatz": "Alle drei Massnahmen sind ausgearbeitet und entscheidungsreif"
+    },
+    {
+     "kind": "content",
+     "title": "Drei Antraege zur Freigabe - Ausblick 2027",
+     "kicker": "Entscheidungen",
+     "lead": "Antrag 1: Freigabe Ersatzlieferant Router bis 15.02.2026",
+     "hinweis": "Achtung Prognose: Einsparpotenzial 2027 von rund 600.000 Euro ist eine Hochrechnung - Controlling-Pruefung steht aus",
+     "bullets": [
+      [
+       0,
+       "Antrag 1 - Router: Freigabe Ersatzlieferant, Entscheidung bis 15.02.2026 (Ja/Nein)"
+      ],
+      [
+       0,
+       "Antrag 2 - Netzbetrieb: Verlaengerung Dienstleistervertrag um 12 Monate (Ja/Nein)"
+      ],
+      [
+       0,
+       "Antrag 3 - Altbauten: Taskforce mit 3 Personen fuer 10 Wochen zur Priorisierung der 11 Standorte (Ja/Nein)"
+      ]
+     ],
+     "notes": "Je Antrag Ja/Nein-Abstimmung; 2027-Ausblick klar als ungeprueft kennzeichnen."
+    }
+   ]
+  },
+  "render": {
+   "status": "ok",
+   "zeit": "2026-11-18T17:20:22Z",
+   "pdf": "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-181637-itk-bremen-vorstand-2026/render/deck.pdf",
+   "pngs": [
+    "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-181637-itk-bremen-vorstand-2026/render/folie-01.png",
+    "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-181637-itk-bremen-vorstand-2026/render/folie-02.png",
+    "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-181637-itk-bremen-vorstand-2026/render/folie-03.png",
+    "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-181637-itk-bremen-vorstand-2026/render/folie-04.png",
+    "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-181637-itk-bremen-vorstand-2026/render/folie-05.png",
+    "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-181637-itk-bremen-vorstand-2026/render/folie-06.png",
+    "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-181637-itk-bremen-vorstand-2026/render/folie-07.png",
+    "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-181637-itk-bremen-vorstand-2026/render/folie-08.png",
+    "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-181637-itk-bremen-vorstand-2026/render/folie-09.png",
+    "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-181637-itk-bremen-vorstand-2026/render/folie-10.png"
+   ]
+  },
+  "critic": {
+   "status": "ok",
+   "zeit": "2026-11-18T17:20:34Z",
+   "runden": [
+    {
+     "runde": 1,
+     "scores": [
+      {
+       "nr": 1,
+       "muster": "titel",
+       "score": 8,
+       "schwaechen": [
+        "Grosser Leerraum zwischen Titel und Subline, untere Haelfte der Inhalts-Sidebar ungenutzt",
+        "Subline bricht unschoen ('an' am Zeilenende)",
+        "Sidebar-Inhalt (01/02) nur oben gebuendelt, keine vertikale Balance zur rechten Spalte"
+       ],
+       "fix": "Subline auf zwei saubere Zeilen umbrechen und Titelblock mit Sidebar-Inhalt optisch zentrieren, damit beide Spalten ruhig balancieren"
+      },
+      {
+       "nr": 2,
+       "muster": "teil",
+       "score": 8,
+       "schwaechen": [
+        "Grosse Leere zwischen Titel und Subtitle - vertikale Verteilung wirkt unbalanciert",
+        "Subtitle und Statuszeile haengen isoliert in der unteren Haelfte, keine Anbindung an den Titel"
+       ],
+       "fix": "Subtitle enger an den Titel ziehen und die vertikale Verteilung so ausbalancieren, dass keine grosse Leere zwischen Headline und Subtitle entsteht."
+      },
+      {
+       "nr": 3,
+       "muster": "kpi",
+       "score": 7,
+       "schwaechen": [
+        "Action-Title ist unvollstaendig/abgehackt: 'Kernnetz seit' endet ohne Satzbeweis-Endung",
+        "Umfangreiche Leerraumflaeche rechts unten neben der 36-Statistik (linke Karte wirkt unten leer)",
+        "Doppelte Nennung der 512 importierten Datensaetze (linke Karte und Karte 2) wirkt redundant"
+       ],
+       "fix": "Action-Title zu 'Migration erreicht 93 Prozent, Kernnetz seit November stabil' vervollstaendigen und die Redundanz der 512er-Zahl durch Fokus auf den Pruefstand in Karte 2 aufloesen"
+      },
+      {
+       "nr": 4,
+       "muster": "kpi",
+       "score": 5,
+       "schwaechen": [
+        "Im KPI-Panel ueberlappt das Euro-Zeichen das Label 'Einsparung 2025 durch' ( renderingfehler '€Einsparung')",
+        "Das Wort 'Standardisierung' wird doppelt und ueberlappend mit einer Durchstreich-Linie gerendert",
+        "Daten-Widerspruch: Sidebar nennt '61 P1-Stoerungen im SLA', Karte 1 sagt 'Alle 14 Vorfaelle 2025'",
+        "Karte 2 unbalanciert: grosse leere Flaeche zwischen Titel und Text"
+       ],
+       "fix": "Sidebar-Daten korrigieren: Euro-Zeichen vom Label trennen, 'Standardisierung' nur einmal ausgeben, und die P1-Zaehlung konsistent machen (entweder 61 oder 14 - einheitlich begruenden)."
+      },
+      {
+       "nr": 5,
+       "muster": "content",
+       "score": 6,
+       "schwaechen": [
+        "Titel endet unschoen mit 'und 2' - unvollstaendiger Satz als Action Title wirkt wie Abschneiden",
+        "Karten sind stark unterfuellt: viel Leerraum rechts von den kurzen Textzeilen, Kartenwirkung leer",
+        "Karten sind sehr hoch im Verhaeltnis zum sparsamen Inhalt - unguenstiges Verhaeltnis von Text zu Flaeche",
+        "Untertitel und Karte 1 wiederholen denselben Inhalt (24 Mitarbeitende, 6 Dienstleister) - Redundanz"
+       ],
+       "fix": "Titel vollstaendig formulieren (z.B. '...und 2 offene Stellen'), Karte 1 inhaltlich um ein Detail ergaenzen, damit die breiten Karten nicht leer wirken, und Redundanz zwischen Untertitel und Karte 1 beseitigen."
+      },
+      {
+       "nr": 6,
+       "muster": "teil",
+       "score": 7,
+       "schwaechen": [
+        "Sidebar-Eintraege mit ausgelagerter Ellipse ('M1 dire...', '- ...') wirken unvollendet statt editorial",
+        "Rechte Haelfte stark untenleer: grosse Leere zwischen Untertitel und Footer-Fusszeile",
+        "Inhaltsverzeichnis nur Teil 2 untergliedert, Teil 1 ohne Subpunkte - asymmetrisch"
+       ],
+       "fix": "Sidebar-Titel vollstaendig bzw. sinnvoll kuerzen (keine harten '...' am Zeilenende) und Subline/Slack im rechten Bereich ausgleichen, z.B. Untertitel naeher am Titel und Kennzahlenzeile unten ergaenzen"
+      },
+      {
+       "nr": 7,
+       "muster": "zeitstrahl",
+       "score": 6,
+       "schwaechen": [
+        "Action Title ist unvollstaendig/abgehackt: '...ist mit' bricht mitten im Satz ab",
+        "'HEUTE' rot markiert das Datum 31.03.26 - falsch, HEUTE ist vor dem 15.02. (Entscheidungsdatum), M1-Migration liegt in der Zukunft",
+        "M1-Label 'M1 Migration' kollidiert optisch mit 'Q2 26' der Quartalsachse",
+        "M2-Knoten ohne sichtbare Beschriftung auf der Kurve, Label '30.04.26 / M2 Netzersatz' haengt lose darunter",
+        "M1- und M5-Knoten kleben an den Endpfosten, Kurve endet unmittelbar am Rand",
+        "Untere Folienehaelfte leer, Komposition nach oben gedrueckt"
+       ],
+       "fix": "Action-Title vervollstaendigen (z.B. '...ist mit Entscheidungen bis 15.02. zu sichern'), HEUTE-Marker korrekt auf das aktuelle Datum setzen und M1-Label von der Quartalsachse entzerrren."
+      },
+      {
+       "nr": 8,
+       "muster": "tabelle",
+       "score": 8,
+       "schwaechen": [
+        "Gro Leerflche zwischen Tabellenende und Prognose-Kasten strkt die vertikale Balance",
+        "Title umbrochen ('gruen.' allein in zweiter Zeile) wirkt unruhig",
+        "Rechtsbndige Status-Pills ohne Spaltenberschrift-Ausrichtung wirken schwebend"
+       ],
+       "fix": "Title auf eine Zeile krzen bzw. Umbruch an sinnvoller Stelle setzen und den Prognose-Kasten direkt an die Tabelleziehen, um die Leerzone zu schliessen."
+      },
+      {
+       "nr": 9,
+       "muster": "statement",
+       "score": 6,
+       "schwaechen": [
+        "Entscheidungskarte wirkt leer: der fette Statement-Text fuellt nur die obere Haelfte, grosse ungenutzte Flaeche darunter",
+        "Keine visuelle Struktur der drei Freigaben - die konkreten Entscheidungspunkte (Ersatzlieferant, Dienstleisterverlaengerung, Altbau-Taskforce) stecken unstrukturiert im Fliesstext",
+        "Untere Folienhaelfe unter dem Fussnote-Text ist ungenutzt, die Folie wirkt unausgewogen leer"
+       ],
+       "fix": "Die drei Entscheidungspunkte als kompakte Liste oder drei Mini-Karten mit Frist-Datum in der Entscheidungskarte unter dem Statement anordnen, um die Leere zu fuellen und die Hierarchie zu schaerfen."
+      },
+      {
+       "nr": 10,
+       "muster": "content",
+       "score": 7,
+       "schwaechen": [
+        "Redundanz: Teaser-Zeile ueber der Karten wiederholt Titel und Inhalt der Karte 1 fast woertlich",
+        "Karten sehr breit mit viel ungenutztem Weissraum rechts - Zahlen wie Budget/Fristen fehlen, Inhalte wirken duerftig",
+        "Hinweis-Karte (Prognose) in zweiter Farbe wirkt angelacht und unterbricht die ruhige Karteireihung"
+       ],
+       "fix": "Teaser-Zeile streichen und jede Antragskarte um ein Kennzahl-Fakt (Budget/Frist/Impact) rechtsbuendig ergaenzen, damit der freie Weissraum zielgerichtet gefuellt wird."
+      }
+     ]
+    },
+    {
+     "runde": 2,
+     "scores": [
+      {
+       "nr": 1,
+       "muster": "titel",
+       "score": 8,
+       "schwaechen": [
+        "Grosser Leerraum zwischen Titel und Subline, untere Haelfte der Inhalts-Sidebar ungenutzt",
+        "Subline bricht unschoen ('an' am Zeilenende)",
+        "Sidebar-Inhalt (01/02) nur oben gebuendelt, keine vertikale Balance zur rechten Spalte"
+       ],
+       "fix": "Subline auf zwei saubere Zeilen umbrechen und Titelblock mit Sidebar-Inhalt optisch zentrieren, damit beide Spalten ruhig balancieren"
+      },
+      {
+       "nr": 2,
+       "muster": "teil",
+       "score": 8,
+       "schwaechen": [
+        "Grosse Leere zwischen Titel und Subtitle - vertikale Verteilung wirkt unbalanciert",
+        "Subtitle und Statuszeile haengen isoliert in der unteren Haelfte, keine Anbindung an den Titel"
+       ],
+       "fix": "Subtitle enger an den Titel ziehen und die vertikale Verteilung so ausbalancieren, dass keine grosse Leere zwischen Headline und Subtitle entsteht."
+      },
+      {
+       "nr": 3,
+       "muster": "kpi",
+       "score": 7,
+       "schwaechen": [
+        "Action Title ist unvollstaendig und endet abrupt mit 'Kernnetz seit' - es fehlt der Satzbzw. Datumsteil",
+        "Datensatz 512 Geraetedaten saetze vs. 515 Standorte: Zahlen wirken nicht plausibel abgestimmt und werden doppelt genannt",
+        "Rechte Karten haben viel Leerraum unten, wirken unbalanciert gegenueber der linken KPI-Spalte",
+        "Sonderanforderungen-Hinweis steht unverbunden und ohne Quellenbezug / Rueckbindung an die 93%"
+       ],
+       "fix": "Action Title vervollstaendigen, z.B. 'Migration erreicht 93 Prozent, Kernnetz seit November 2025 stabil', und die 512/515-Diskrepanz in der Subline eindeutig erklaeren."
+      },
+      {
+       "nr": 4,
+       "muster": "kpi",
+       "score": 5,
+       "schwaechen": [
+        "Im OMR-KPI-Block ueberlappt das Euro-Zeichen den Text 'Einsparung 2025 durch', und 'Standardisierung' liegt auf einer grauen Linie – Text ist teils unlesbar",
+        "Inhaltlicher Widerspruch: KPI-Karte nennt '61 P1-Stoerungen im SLA', waehrend P1-Karte von 'allen 14 Vorfaellen' spricht – unerklaerte Zahl",
+        "Linke KPI-Karte wirkt unten stark leergedruckt gegenueber dicht gedraengtem oberen Bereich (Balance)",
+        "Kein Euro-Bezug im Titel: 'spart 340.000' ohne Waehrung"
+       ],
+       "fix": "KPI-Block komplett neu setzen: '340.000 Euro' einzeilig ohne Ueberlappung, Label 'Einsparung 2025 durch Standardisierung' sauber darunter, und die 61 St-umber mit den 14 P1-Vorfaellen konsistent erlaeutom (z.B. 61 Ereignisse, davon 14 P1)."
+      },
+      {
+       "nr": 5,
+       "muster": "content",
+       "score": 7,
+       "schwaechen": [
+        "Titel endet abrupt mit 'und 2' – unvollstaendiger Satz, wirkt abgeschnitten",
+        "Karten sind sehr gross mit viel Leerraum, Text schwebt ohne klare vertikale Zentrierung",
+        "Umlaute fehlen durchgehend (ueber, Plaetze), im Titel korrekt geschrieben – inkonsistent"
+       ],
+       "fix": "Titel vervollstaendigen (z.B. '…und 2 unbesetzten Stellen') und Karteninhalte vertikal zentrieren; Umlaute einheitlich ausgeschrieben"
+      },
+      {
+       "nr": 6,
+       "muster": "teil",
+       "score": 7,
+       "schwaechen": [
+        "Inhalts-Eintraege mit '...' abgeschnitten (z.B. 'Zwei Risiken bedrohen M1 dire…', 'Ohne die drei Freigaben heute…'), Linksatz statt voller Titel",
+        "Grosser leerer Bereich zwischen Untertitel und 'Entscheidungspaket Vorstand', rechte Haelfte wirkt unausbalanciert",
+        "Sidebar zeigt nur Teil 2 mit Unterpunkten, Teil 1 ohne Unterpunkte - asymmetrische Navigation"
+       ],
+       "fix": "Unterpunkte in der Sidebar auf einen sauberen Titel-Satz kuerzen oder volle Untertitel ohne Ellipse platzieren und die vertikalen Abstaende in der rechten Haelfte auf zwei gleichmaessige Ebenen verteilen."
+      },
+      {
+       "nr": 7,
+       "muster": "zeitstrahl",
+       "score": 6,
+       "schwaechen": [
+        "Titel ist unvollstaendig bzw. abgeschnitten: 'ist mit' bricht sinnlos ab, ergibt keinen Lesbar-Action-Title",
+        "'HEUTE'-Label und 31.03.26-M1-Knoten ueberlappen sich links, M1-Beschriftung kollidiert mit Q2-26-Achsentick",
+        "Der einzige Meilenstein-Label unten (M2, 30.04.26) haengt inkonsistent an der Baseline statt wie M3/M4 oben am Bogen",
+        "Untere Foliennaeche ab Q-Ticks bis zum Fuss leer - Timeline haengt zu hoch, grosse ungenutzte Flaeche",
+        "Zwei unterschiedliche Datum-/Labelgroessen (M3/M4 gross zentriert, M1/M5 klein an den Raendern) - uneinheitliche Hierarchie"
+       ],
+       "fix": "Titel als vollstaendigen Action-Title schreiben (z.B. '...ist mit Entscheidungen bis 15.02. zu sichern'), HEUTE-Label vom M1-Knoten entkoppeln und alle fuenf Meilenstein-Labels einheitlich formatieren."
+      },
+      {
+       "nr": 8,
+       "muster": "tabelle",
+       "score": 8,
+       "schwaechen": [
+        "Gro Leerflche zwischen Tabellenende und Prognose-Kasten strkt die vertikale Balance",
+        "Title umbrochen ('gruen.' allein in zweiter Zeile) wirkt unruhig",
+        "Rechtsbndige Status-Pills ohne Spaltenberschrift-Ausrichtung wirken schwebend"
+       ],
+       "fix": "Title auf eine Zeile krzen bzw. Umbruch an sinnvoller Stelle setzen und den Prognose-Kasten direkt an die Tabelleziehen, um die Leerzone zu schliessen."
+      },
+      {
+       "nr": 9,
+       "muster": "statement",
+       "score": 7,
+       "schwaechen": [
+        "Entscheidungskarte unten etwa die Haelfte leer - Text klebt oben, grosser Leerraum",
+        "Unterzeile 'Alle drei Massnahmen...' haengt isoliert und wirkt nachrangig statt als gepunktete Unterstuetzung",
+        "Untere Bildhaelfe insgesamt ungenutzt, Folie wirkt nach oben verdichtet"
+       ],
+       "fix": "Karte vertikal zentrieren bzw. hoehe reduzieren und die Unterzeile als gestrichelte Fussnote direkt an die Karte setzen, damit die Leerraum-Balance stimmt."
+      },
+      {
+       "nr": 10,
+       "muster": "content",
+       "score": 8,
+       "schwaechen": [
+        "Redundanz: Teaserzeile 'Antrag 1...' ueber den Karten wiederholt nur den Inhalt der ersten Karte",
+        "Karten wirken inhaltlich duerftig - nur jeweils eine Zeile Beschreibung, viel leerer Rechtsraum",
+        "Kein Entscheidungs- oder Verantwortlichkeitsfeld (Datum/Beschlussfasser) pro Antrag, fuer eine Vorstandsentscheidung zu duenn"
+       ],
+       "fix": "Pro Antrag ein kompaktes Infoset ergaenzen (Verantwortlich, Betrag/Kosten, Entscheidungsdatum) und die redundante Teaserzeile streichen - dann traegt die Folie eine echte Vorstandsentscheidung."
+      }
+     ]
+    },
+    {
+     "runde": 3,
+     "scores": [
+      {
+       "nr": 1,
+       "muster": "titel",
+       "score": 8,
+       "schwaechen": [
+        "Grosser Leerraum zwischen Titel und Subline, untere Haelfte der Inhalts-Sidebar ungenutzt",
+        "Subline bricht unschoen ('an' am Zeilenende)",
+        "Sidebar-Inhalt (01/02) nur oben gebuendelt, keine vertikale Balance zur rechten Spalte"
+       ],
+       "fix": "Subline auf zwei saubere Zeilen umbrechen und Titelblock mit Sidebar-Inhalt optisch zentrieren, damit beide Spalten ruhig balancieren"
+      },
+      {
+       "nr": 2,
+       "muster": "teil",
+       "score": 8,
+       "schwaechen": [
+        "Grosse Leere zwischen Titel und Subtitle - vertikale Verteilung wirkt unbalanciert",
+        "Subtitle und Statuszeile haengen isoliert in der unteren Haelfte, keine Anbindung an den Titel"
+       ],
+       "fix": "Subtitle enger an den Titel ziehen und die vertikale Verteilung so ausbalancieren, dass keine grosse Leere zwischen Headline und Subtitle entsteht."
+      },
+      {
+       "nr": 3,
+       "muster": "kpi",
+       "score": 6,
+       "schwaechen": [
+        "Action-Title bricht mitten im Satz ab ('Kernnetz seit ...') – der Kern der Aussage fehlt und wirkt abgeschnitten",
+        "Rechte Karten enden nach kurzer Textzeile; grosse ungenutzte Leerflaeche auf halber Kartenbreite",
+        "Sidebar-KPI-Karte unten durch grosse Leerraumflaeche unbalanciert",
+        "Teaser-Zeile ('479 von 515 ...') wiederholt Title- und Sidebar-Inhalt redundant"
+       ],
+       "fix": "Action-Title als vollstaendigen Satz fertigstellen (z.B. '... Kernnetz seit November 2025 stabil') und rechte Karten durch einen Fortschritts-/Zeitstrahl-Indikator in der rechten Haelfte inhaltlich fuellen."
+      },
+      {
+       "nr": 4,
+       "muster": "kpi",
+       "score": 4,
+       "schwaechen": [
+        "Ueberlappung in der KPI-Karte: das Euro-Zeichen kollidiert mit 'Einsparung 2024', 'durch' und 'Standardisierung' liegt unlesbar unter dem Zahlblock",
+        "Datenwiderspruch: KPI-Karte nennt 61 P1-Stoerungen, Karte 1 nennt 14 Vorfaelle",
+        "Liniennummer '99,4 %' zu klein geraten gegenueber der 340.000-Hierarchie",
+        "Inhaltliche Redundanz zwischen Subline und KPI-Karte (99,4 Prozent zweimal)"
+       ],
+       "fix": "Datenbasis bereinigen (P1-Zahl 61 vs. 14 klaeren), Euro-Betrag einzeilig als '340.000 Euro' setzen und Subline auf neues Faktum statt Redundanz aendern."
+      },
+      {
+       "nr": 5,
+       "muster": "content",
+       "score": 7,
+       "schwaechen": [
+        "Karten stark unterfuellt: riesige Leerraumflaechen rechts neben den kurzen Textzeilen",
+        "Titel wirkt unvollstaendig/abgehackt ('...und 2') ohne Substanz",
+        "Zusaetzliche Sidebar (INHALT) fehlt laut Vorlagenvorgabe, Layout wirkt dadurch leer"
+       ],
+       "fix": "Kartenhoehe reduzieren und Kennzahlen (24/6, 2 Stellen, 8% vs. 11%) als grosse visuelle Zahlen neben die Textzeilen setzen, um die Leerraumflaeche zu nutzen und den Action Title inhaltlich zu komplettieren."
+      },
+      {
+       "nr": 6,
+       "muster": "teil",
+       "score": 8,
+       "schwaechen": [
+        "Inhalts-Eintraege mit Auslassungspunkten abgeschnitten ('Fuenf Meilensteine 2026 - M1 ...', 'Zwei Risiken bedrohen M1 dire ...') statt vollstaendig oder bewusst gekuerzt",
+        "Untere Haelfte der rechten Spalte fast leer, Untertitel-Elemente schweben ohne Verankerung",
+        "Einfaches 'ue' statt 'ü' (Fuenf, Ruecken) mindert Editorial-Anmutung"
+       ],
+       "fix": "Sidebar-Eintraege auf volle Titlelänge setzen oder sauber auf einheitliche Kuerzung mit konsistentem Zeilenumbruch bringen und die grosszuegige Leerraumflaeche durch eine dezente graphische Verankerung (Linie oder Kapitel-Nr) balancieren."
+      },
+      {
+       "nr": 7,
+       "muster": "zeitstrahl",
+       "score": 6,
+       "schwaechen": [
+        "Action Title ist unvollstaendig und endet abrupt mit 'ist mit' (Satz abgeschnitten)",
+        "Label-Kollisionen unten links: 'M1 Migration', '31.03.26' und 'Q2 26' ueberlappen einander",
+        "HEUTE-Markierung kollidiert optisch mit dem M1-Meilenstein am Achsenstart",
+        "Q2-26-Tick fehlt auf der Quartalsachse, Abstand Q3/Q4 unausgeglichen",
+        "Untere Foliengroesse grosse weisse Leere, Timeline untypisch stark nach oben gezogen"
+       ],
+       "fix": "Action Title vervollstaendigen (z.B. '... ist mit Entscheidungen bis 15.02.2026 zu sichern'), Untertitel entfernen und Labels am Startpunkt entzerrn."
+      },
+      {
+       "nr": 8,
+       "muster": "tabelle",
+       "score": 8,
+       "schwaechen": [
+        "Gro Leerflche zwischen Tabellenende und Prognose-Kasten strkt die vertikale Balance",
+        "Title umbrochen ('gruen.' allein in zweiter Zeile) wirkt unruhig",
+        "Rechtsbndige Status-Pills ohne Spaltenberschrift-Ausrichtung wirken schwebend"
+       ],
+       "fix": "Title auf eine Zeile krzen bzw. Umbruch an sinnvoller Stelle setzen und den Prognose-Kasten direkt an die Tabelleziehen, um die Leerzone zu schliessen."
+      },
+      {
+       "nr": 9,
+       "muster": "statement",
+       "score": 7,
+       "schwaechen": [
+        "Entscheidungskarte ist unten haesslich leer: Text endet im oberen Drittel, grosse graue Leerflaeche wirkt unausbalanciert",
+        "Untere Bildhaelfte bis zum Footer fast komplett leer - Folie wirkt unvollendet",
+        "Keine Trennung zwischen Aussagesatz und Konsequenz im Statement (Datum/Meilenstein könnten als Daten-Anker hervorgehoben werden)"
+       ],
+       "fix": "Die drei Freigaben (Ersatzlieferant, Dienstleistungsverlaengerung, Altbau-Taskforce) als kompakte drei-Punkte-Liste mit Datum 15.02.2026 unter das Statement setzen, um die Leerflaeche zu fuellen und die Entscheidung strukturierbar zu machen."
+      },
+      {
+       "nr": 10,
+       "muster": "content",
+       "score": 8,
+       "schwaechen": [
+        "Redundanz: Teaserzeile 'Antrag 1...' ueber den Karten wiederholt nur den Inhalt der ersten Karte",
+        "Karten wirken inhaltlich duerftig - nur jeweils eine Zeile Beschreibung, viel leerer Rechtsraum",
+        "Kein Entscheidungs- oder Verantwortlichkeitsfeld (Datum/Beschlussfasser) pro Antrag, fuer eine Vorstandsentscheidung zu duenn"
+       ],
+       "fix": "Pro Antrag ein kompaktes Infoset ergaenzen (Verantwortlich, Betrag/Kosten, Entscheidungsdatum) und die redundante Teaserzeile streichen - dann traegt die Folie eine echte Vorstandsentscheidung."
+      }
+     ]
+    },
+    {
+     "runde": 4,
+     "scores": [
+      {
+       "nr": 1,
+       "muster": "titel",
+       "score": 8,
+       "schwaechen": [
+        "Grosser Leerraum zwischen Titel und Subline, untere Haelfte der Inhalts-Sidebar ungenutzt",
+        "Subline bricht unschoen ('an' am Zeilenende)",
+        "Sidebar-Inhalt (01/02) nur oben gebuendelt, keine vertikale Balance zur rechten Spalte"
+       ],
+       "fix": "Subline auf zwei saubere Zeilen umbrechen und Titelblock mit Sidebar-Inhalt optisch zentrieren, damit beide Spalten ruhig balancieren"
+      },
+      {
+       "nr": 2,
+       "muster": "teil",
+       "score": 8,
+       "schwaechen": [
+        "Grosse Leere zwischen Titel und Subtitle - vertikale Verteilung wirkt unbalanciert",
+        "Subtitle und Statuszeile haengen isoliert in der unteren Haelfte, keine Anbindung an den Titel"
+       ],
+       "fix": "Subtitle enger an den Titel ziehen und die vertikale Verteilung so ausbalancieren, dass keine grosse Leere zwischen Headline und Subtitle entsteht."
+      },
+      {
+       "nr": 3,
+       "muster": "kpi",
+       "score": 6,
+       "schwaechen": [
+        "Action-Title ist unvollständig bzw. endet abrupt mit 'Kernnetz seit' – der Satz wird nie zuende geführt",
+        "Inhaltlicher Widerspruch: KPI-Karte nennt 36 Standorte in Klärung, die Sonderanforderungs-Box spricht von 38 Standorten – ohne Erklärung",
+        "Zahl '512 importiert' doppelt ausgespielt (links als KPI, rechts in Karte 2) – Redundanz ohne Mehrwert",
+        "Karten 1 und 2 wirken rechts leer: Text endet auf halber Kartenbreite, große ungenutzte Fläche",
+        "Karte 1 ('Kernnetz') trägt nur einen Kurztext, der den abgeschnittenen Title nicht substitutionell ergänzt"
+       ],
+       "fix": "Title zu einem vollständigen Satz erweitern (z. B. '…Kernnetz seit November 2025 stabil'), Klärungs- und Sonderanforderungszahlen (36 vs. 38) konsolidieren bzw. begründen und Karte 1 um ein Status-/Trenddetail ergänzen, damit die rechte Kartenfläche nicht leer wirkt."
+      },
+      {
+       "nr": 4,
+       "muster": "kpi",
+       "score": 4,
+       "schwaechen": [
+        "In der linken KPI-Karte ueberlappt das Wort 'Euro' den Text 'Einsparung 2024 durch' – klare Kollisions-Optik",
+        "Die Zeile 'Standardisierung' ist von einer grauen Linie durchgestrichen/ueberdeckt und unlesbar",
+        "Inkonsistente Daten: Karte 1 nennt 14 P1-Vorfaelle, die linke KPI-Karte 61 'P1-Stoerungen im SLA' – widerspraechlich",
+        "Groessere Leerflaeche unten rechts neben Karte 2 unbalanciert"
+       ],
+       "fix": "KPI-Karte links neu setzen: Wert '340.000 Euro' einzeilig bzw. mit ausreichendem Zeilenabstand unter der Kennzahl, Label 'Einsparung 2025 durch Standardisierung' unveraenderbar darstellen, und die P1-Zahlen (14 vs. 61) auf eine konsistente Kennzahl angleichen."
+      },
+      {
+       "nr": 5,
+       "muster": "content",
+       "score": 6,
+       "schwaechen": [
+        "Der Action Title ist unvollstaendig/abgehackt: 'Personal bleibt mit 8 Prozent Fluktuation und 2' endet ohne Kernaussage (Teaser statt Aussage)",
+        "Karten extrem ueberdimensioniert: riesige Leerraeume pro Karte bei nur einer Textzeile - severe Unbalance vertikal",
+        "Karten farblich fast identisch (Nr. 1 rot, 2+3 petrol) ohne erkennbare Semantik",
+        "Fluktuation-Rueckgang als Kernbotschaft visuell nicht hervorgehoben (keine Zahl/Hervorhebung)"
+       ],
+       "fix": "Action Title zur vollstaendigen Kernaussage machen ('... und 2 unbesetzten Stellen stabil'), Kartenhohe reduzieren und Zahlen (24+6, 2 Stellen, 8%) als grosse Keyfigures hervorheben."
+      },
+      {
+       "nr": 6,
+       "muster": "teil",
+       "score": 8,
+       "schwaechen": [
+        "Inhalts-Eintraege mit Auslassungspunkten abgeschnitten ('Fuenf Meilensteine 2026 - M1 ...', 'Zwei Risiken bedrohen M1 dire ...') statt vollstaendig oder bewusst gekuerzt",
+        "Untere Haelfte der rechten Spalte fast leer, Untertitel-Elemente schweben ohne Verankerung",
+        "Einfaches 'ue' statt 'ü' (Fuenf, Ruecken) mindert Editorial-Anmutung"
+       ],
+       "fix": "Sidebar-Eintraege auf volle Titlelänge setzen oder sauber auf einheitliche Kuerzung mit konsistentem Zeilenumbruch bringen und die grosszuegige Leerraumflaeche durch eine dezente graphische Verankerung (Linie oder Kapitel-Nr) balancieren."
+      },
+      {
+       "nr": 7,
+       "muster": "zeitstrahl",
+       "score": 6,
+       "schwaechen": [
+        "Titel unvollstaendig/abgehackt: 'M1 am 31.03. ist mit' endet ohne Sinnabschluss",
+        "Label 'HEUTE' kollidiert mit dem Startpfosten bzw. der Kurve",
+        "M1-Beschriftung '31.03.26 M1 Migration' ueberlappt mit 'Q2 26' der Quartalsachse",
+        "'M5 Abschluss' unten rechts steht ueber der Achse/dengene Label, unruedige Plazierung",
+        "Grosse leere Flaechen unten (unterer Folienbereich), Zeitstrahl zu stark nach oben gedraengt",
+        "M2/M4-Meilensteine ohne farbliche Gewichtung wie M3/M5, Hierarchie uneinheitlich"
+       ],
+       "fix": "Action Title vollstaendig auf 'Fuenf Meilensteine 2026 - M1 am 31.03. ist mit Entscheidungen bis 15.02.2026 gesichert' ergaenzen, HEUTE-Label nach links versetzen, M1/M5-Label klar von der Quartalsachse entzerrt platzieren und Zeitstrahl vertikal mittig ausrichten."
+      },
+      {
+       "nr": 8,
+       "muster": "tabelle",
+       "score": 8,
+       "schwaechen": [
+        "Gro Leerflche zwischen Tabellenende und Prognose-Kasten strkt die vertikale Balance",
+        "Title umbrochen ('gruen.' allein in zweiter Zeile) wirkt unruhig",
+        "Rechtsbndige Status-Pills ohne Spaltenberschrift-Ausrichtung wirken schwebend"
+       ],
+       "fix": "Title auf eine Zeile krzen bzw. Umbruch an sinnvoller Stelle setzen und den Prognose-Kasten direkt an die Tabelleziehen, um die Leerzone zu schliessen."
+      },
+      {
+       "nr": 9,
+       "muster": "statement",
+       "score": 6,
+       "schwaechen": [
+        "Entscheidungskarte ist vertikal stark unbalanciert: Text oben gepresst, grosse leere Flaeche im unteren Kartenbereich",
+        "Untere Folienhaelfte wirkt leer - nur eine Mini-Fusszeile, keine visuelle Verankerung",
+        "Kernaussage (Entscheidungsbox) und Action Title enthalten fast denselben Inhalt - Redundanz ohne Informationszuwachs",
+        "Fusszeilentext 'ITK-Bremen' sehr klein und kontrastarm"
+       ],
+       "fix": "Die drei Massnahmen (Ersatzlieferant, Dienstleisterverlaengerung, Altbau-Taskforce) als je eine kompakte Karte mit Datum/Verantwortlichem unter die Entscheidungsbox setzen, Karte vertikal zentrieren und den Fusszeilentext verstaerken."
+      },
+      {
+       "nr": 10,
+       "muster": "content",
+       "score": 8,
+       "schwaechen": [
+        "Redundanz: Teaserzeile 'Antrag 1...' ueber den Karten wiederholt nur den Inhalt der ersten Karte",
+        "Karten wirken inhaltlich duerftig - nur jeweils eine Zeile Beschreibung, viel leerer Rechtsraum",
+        "Kein Entscheidungs- oder Verantwortlichkeitsfeld (Datum/Beschlussfasser) pro Antrag, fuer eine Vorstandsentscheidung zu duenn"
+       ],
+       "fix": "Pro Antrag ein kompaktes Infoset ergaenzen (Verantwortlich, Betrag/Kosten, Entscheidungsdatum) und die redundante Teaserzeile streichen - dann traegt die Folie eine echte Vorstandsentscheidung."
+      }
+     ]
+    }
+   ]
+  },
+  "report": {
+   "status": "ok",
+   "zeit": "2026-11-18T17:20:34Z",
+   "dauer_s": 0.0,
+   "pfad": "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-181637-itk-bremen-vorstand-2026/report.md"
+  }
+ },
+ "letzte_aktivitaet": "2026-11-18T17:20:34Z",
+ "briefing": "ITK-Bremen Vorstand 2026",
+ "quelle": "/Users/gemma/gemma-projekte/slideforce/studio/testquelle-itk.md",
+ "min": 8,
+ "max": 12,
+ "weg": "A",
+ "max_fixrunden": 3
+}

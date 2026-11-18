@@ -1,0 +1,769 @@
+{
+ "id": "20261118-185050-itk-bremen-vorstand-2026",
+ "erstellt": "2026-11-18T17:50:50Z",
+ "schritte": {
+  "director": {
+   "status": "ok",
+   "zeit": "2026-11-18T17:51:02Z",
+   "dauer_s": 11.5,
+   "plan": {
+    "zielgruppe": "Vorstand ITK-Bremen (Entscheidungsgremiium, kennzahlenorientiert, wenig Zeit)",
+    "anlass": "Vorstandssitzung / Statusbericht ITK-Bremen 2026",
+    "kernbotschaft": "ITK-Bremen ist operativ auf Kurs, braucht aber drei Freigaben - insbesondere zur Altbau-Taskforce und zum Ersatzlieferanten -, um den kritischen Meilenstein M1 zu halten.",
+    "dramaturgie": "Einstieg mit solider Ausgangslage und starken Betriebserfolgen (93 Prozent Anmeldung, SLA erfuellt), um Vertrauen aufzubauen. Wende bei den roten und gelben Risiken (Altbau-Standorte, Lieferkette, Personal), die den M1-Termin gefaehrden. Aufloesung durch drei konkrete Freigabe-Empfehlungen mit klarem Entscheidungstermin, bevor der Vorstand den Raum verlaesst.",
+    "teile": [
+     "Status und Betriebserfolg",
+     "Risiken und Meilensteine 2026",
+     "Entscheidungen und Freigaben"
+    ],
+    "folienzahl": 10,
+    "fokusthemen": [
+     {
+      "thema": "Risiken Altbau-Standorte und Lieferkette inkl. Freigabe-Entscheidungen",
+      "gewicht": 3
+     },
+     {
+      "thema": "Meilensteintimeline 2026 mit kritischem M1",
+      "gewicht": 3
+     },
+     {
+      "thema": "Betriebs- und Migrationsstatus (KPIs: Verfuegbarkeit, SLA, Tickets)",
+      "gewicht": 2
+     },
+     {
+      "thema": "Budget 2026 und Einsparungen",
+      "gewicht": 2
+     },
+     {
+      "thema": "Personal- und Dienstleistersituation",
+      "gewicht": 1
+     }
+    ],
+    "risiken": [
+     "Unbelegte Einsparannahme 2027 (600.000 Euro, nicht Controlling-geprueft) muss klar als Annahme gekennzeichnet werden - Glaubwuerdigkeitsrisiko beim Vorstand.",
+     "Verfuegbarkeit 99,4 Prozent liegt unter dem Zielwert 99,5 Prozent - proaktiv einordnen, nicht vertuschen.",
+     "Zu viele Detail-KPIs koennen die Entscheidungsvorlage verwässern; Fokus auf Freigaben halten."
+    ],
+    "editorial_note": "Dramaturgie als Entscheidungsvorlage fuehren: Erfolg - Bedrohung - Entscheidung. Die drei Freigabe-Empfehlungen mit Termin 15.02.2026 muessen auf der Schlussfolie visuell dominant sein. Die 600.000-Euro-Annahme ausschliesslich als Hochrechnung/ungeprueft labeln. KPI-Folien auf je 3-4 Kernzahlen beschraenken; Detailtabelle (WAN-Masterliste, Ticketvolumen) als Anhang fuer Q&A reservieren."
+   }
+  },
+  "story": {
+   "status": "ok",
+   "zeit": "2026-11-18T17:51:22Z",
+   "dauer_s": 20.2,
+   "storyboard": {
+    "deck_titel": "ITK-Bremen: Auf Kurs - drei Freigaben sichern den Meilenstein M1",
+    "untertitel": "Statusbericht 2026 · Erfolg, Risiken und Entscheidungsvorlage für den Vorstand",
+    "meta": "Stand 18.11.2026 · Vorstand ITK-Bremen",
+    "annahmen": [
+     "Einsparpotenzial 2027 von rund 600.000 Euro ist eine Hochrechnung der Standardisierungseffekte und durch das Controlling noch nicht geprüft",
+     "Restliche Standorte (nach 479 angemeldeten und 36 in Klärung) bis Q2 2026 ist ein Planwert ohne Einzelnachweis je Standort",
+     "Mehrkosten bis 85.000 Euro durch Lieferkettenengpass sind eine Schätzung („möglich“), kein faktischer Betrag",
+     "Verzögerung von 6-8 Wochen bei Altbau-Standorten ist eine Risikoeinschätzung, kein eingetretener Terminverzug"
+    ],
+    "folien": [
+     {
+      "nr": 1,
+      "rolle": "titel",
+      "titel": "ITK-Bremen: Auf Kurs - drei Freigaben sichern den Meilenstein M1",
+      "untertitel": "Statusbericht 2026 · Erfolg, Risiken und Entscheidungsvorlage für den Vorstand",
+      "meta": "Stand 18.11.2026 · Vorstand ITK-Bremen"
+     },
+     {
+      "nr": 2,
+      "rolle": "teil",
+      "titel": "Status und Betriebserfolg"
+     },
+     {
+      "nr": 3,
+      "rolle": "kpi",
+      "titel": "93 Prozent der Standorte sind angemeldet und der Betrieb hält den SLA vollständig ein",
+      "kicker": "AUSGANGSLAGE",
+      "lead": "ITK-Bremen trägt seit 2025 die operative Verantwortung für das Landesnetz - mit stabilen Betriebsergebnissen.",
+      "zahl": "93 %",
+      "label": "Standorte angemeldet (479 von 515)",
+      "subs": [
+       [
+        "99,4 %",
+        "Verfügbarkeit Kernnetz"
+       ],
+       [
+        "61 %",
+        "Tickets automatisch gelöst (Q4/2025)"
+       ],
+       [
+        "14 / 14",
+        "P1-Störungen innerhalb SLA"
+       ]
+      ],
+      "punkte": [
+       "Anmeldung: 479 von 515 Standorten gemeldet, 36 in Klärung, Rest bis Q2 2026 geplant",
+       "Kernnetz: Umstellung seit November 2025 abgeschlossen, kein Ausfall über 12 Minuten",
+       "Betrieb: Alle 14 P1-Störungen 2025 innerhalb des 4-Stunden-SLA behoben",
+       "Datenbasis: WAN-Masterliste mit 512 Gerätedatensätzen am 17.11.2025 geprüft"
+      ],
+      "annahmen": [
+       "Angabe „kein Ausfall über 12 Minuten“ bezieht sich laut Quelle auf das Kernnetz 2025; ein Bezug auf 99,5-Prozent-Zielerreichung ab 2026 ist nicht belegt"
+      ]
+     },
+     {
+      "nr": 4,
+      "rolle": "content",
+      "titel": "Budget 2026 hält mit 340.000 Euro Einsparung und sinkender Fluktuation",
+      "kicker": "KOSTEN & PERSONAL",
+      "lead": "Kosten und Personal entwickeln sich stabil - Engpässe liegen beim Personalbedarf im Netzbetrieb, nicht im Budget.",
+      "punkte": [
+       "Budget 2026: 4,8 Mio Euro veranschlagt, davon 2,49 Mio Euro Personalkosten",
+       "Einsparung: 340.000 Euro gegenüber Plan 2025 durch Standardisierung erzielt",
+       "Personal: 24 Mitarbeitende plus 6 Dienstleister, Fluktuation von 11 auf 8 Prozent gesunken",
+       "Netzbetrieb: 2 Stellen offen, Kompensation läuft über Dienstleister (Risiko gelb)",
+       "Sonderfälle: 38 Standorte mit Sonderanforderungen wie Vermessungsamt und Hafenlogistik"
+      ],
+      "annahmen": []
+     },
+     {
+      "nr": 5,
+      "rolle": "teil",
+      "titel": "Risiken und Meilensteine 2026"
+     },
+     {
+      "nr": 6,
+      "rolle": "content",
+      "titel": "Zwei gelbe und ein rotes Risiko gefährden den kritischen Meilenstein M1 am 31.03.2026",
+      "kicker": "RISIKOLAGE",
+      "lead": "Die Altbau-Standorte sind das einzige rote Risiko und bedrohen direkt den M1-Termin.",
+      "punkte": [
+       "Altbau-Standorte (rot): 11 Standorte wegen Leitungsinfrastruktur im Rückstand, Verzögerung von 6-8 Wochen droht",
+       "Lieferkette (gelb): Router-Lieferungen 4 Wochen verzögert, Ersatzlieferant wird geprüft, Mehrkosten bis 85.000 Euro möglich",
+       "Personal (gelb): 2 offene Stellen im Netzbetrieb, Kompensation über Dienstleister",
+       "Sicherheitsaudit (grün): Vorbereitung im Plan"
+      ],
+      "annahmen": [
+       "Mehrkosten bis 85.000 Euro sind eine Schätzung („möglich“), kein festgestellter Betrag",
+       "Die 6-8 Wochen Verzögerung sind eine Risikoprognose, kein eingetretener Verzug"
+      ]
+     },
+     {
+      "nr": 7,
+      "rolle": "zeitstrahl",
+      "titel": "M1 am 31.03.2026 ist der einzige kritische Meilenstein im 2026er-Fahrplan",
+      "kicker": "MILENSTEINE 2026",
+      "heute": "2026-01-15",
+      "meilensteine": [
+       [
+        "2026-03-31",
+        "M1 Migration Standorte",
+        "kritisch"
+       ],
+       [
+        "2026-04-30",
+        "M2 Tests Netzersatz",
+        "offen"
+       ],
+       [
+        "2026-06-15",
+        "M3 Sicherheitsaudit",
+        "fertig"
+       ],
+       [
+        "2026-09-30",
+        "M4 Cloud-Telefonie",
+        "offen"
+       ],
+       [
+        "2026-12-31",
+        "M5 Projektabschluss",
+        "offen"
+       ]
+      ]
+     },
+     {
+      "nr": 8,
+      "rolle": "tabelle",
+      "titel": "Risikobewertung zeigt Handlungsbedarf nur bei Altbau und Lieferkette",
+      "kicker": "RISIKOMATRIX",
+      "kopf": [
+       "Risiko",
+       "Status"
+      ],
+      "zeilen": [
+       [
+        "Altbau-Standorte - 11 Standorte, M1 gefährdet",
+        "rot"
+       ],
+       [
+        "Lieferkette Router - Ersatzlieferant prüfen",
+        "gelb"
+       ],
+       [
+        "Personalsuche Netzbetrieb - 2 Stellen offen",
+        "gelb"
+       ],
+       [
+        "Sicherheitsaudit - Vorbereitung im Plan",
+        "gruen"
+       ]
+      ]
+     },
+     {
+      "nr": 9,
+      "rolle": "teil",
+      "titel": "Entscheidungen und Freigaben"
+     },
+     {
+      "nr": 10,
+      "rolle": "statement",
+      "titel": "Drei Freigaben bis 15.02.2026 halten den Meilenstein M1",
+      "botschaft": "Wir empfehlen die Freigabe des Ersatzlieferanten für Router bis zum 15.02.2026, die Verlängerung des Dienstleistervertrags um 12 Monate und eine Taskforce für die 11 Altbau-Standorte (3 Personen, 10 Wochen).",
+      "zusatz": "Mit diesen drei Entscheidungen bleibt der kritische Meilenstein M1 am 31.03.2026 erreichbar; ohne sie drohen 6-8 Wochen Verzug."
+     }
+    ]
+   }
+  },
+  "art": {
+   "status": "ok",
+   "zeit": "2026-11-18T17:52:45Z",
+   "design": {
+    "designsystem": {
+     "leitidee": "Helle, ruhige Vorstandsvorlage in Petrol und Weiss - Zahlen sprechen, Rot lenkt den Blick auf die eine kritische Entscheidung.",
+     "prinzipien": [
+      "Grosse petrolfarbene Kennzahlen als visuelle Anker auf weissem Grund",
+      "Rot #9E292B ausschliesslich fuer kritische Aussagen und Entscheidungsmarkierung",
+      "Kurze Kartentitel, substanzielle Aussagen, keine Zahlenredundanz pro Folie",
+      "Arialschnitt mit klarer Hierarchie: Kicker klein grau, Titel dunkelgrau, Lead petrol"
+     ]
+    },
+    "folien": [
+     {
+      "kind": "title",
+      "title": "ITK-Bremen: Auf Kurs - drei Freigaben sichern M1",
+      "subtitle": "Statusbericht 2026 · Erfolg, Risiken und Entscheidungsvorlage für den Vorstand",
+      "meta": "Stand 18.11.2026 · Vorstand ITK-Bremen",
+      "teile": [
+       "01|Status und Betriebserfolg",
+       "02|Risiken und Meilensteine 2026",
+       "03|Entscheidungen und Freigaben"
+      ]
+     },
+     {
+      "kind": "section",
+      "title": "Status und Betriebserfolg",
+      "subtitle": "Betrieb, Budget und Personal auf einem Blick",
+      "meta": "Teil 01"
+     },
+     {
+      "kind": "content",
+      "kicker": "AUSGANGSLAGE",
+      "title": "93 Prozent der Standorte sind angemeldet und der Betrieb haelt den SLA ein.",
+      "lead": "ITK-Bremen traegt seit 2025 die operative Verantwortung fuer das Landesnetz.",
+      "zahl": "93 %",
+      "label": "Standorte angemeldet",
+      "bullets": [
+       [
+        0,
+        "99,4 %|Verfuegbarkeit Kernnetz"
+       ],
+       [
+        0,
+        "61 %|Tickets automatisch geloest"
+       ],
+       [
+        0,
+        "14 / 14|P1-Stoerungen in SLA"
+       ],
+       [
+        0,
+        "Anmeldung: 479 von 515 Standorten gemeldet, 36 in Klaerung, Rest bis Q2 2026 geplant"
+       ],
+       [
+        0,
+        "Kernnetz: Umstellung seit November 2025 abgeschlossen, kein Ausfall ueber 12 Minuten"
+       ],
+       [
+        0,
+        "Datenbasis: WAN-Masterliste mit 512 Geraetedatensaetzen am 17.11.2025 geprueft"
+       ]
+      ],
+      "hinweis": "Annahme: Kein Ausfall ueber 12 Minuten bezieht sich auf das Kernnetz 2025; ein Bezug auf 99,5 Prozent Zielerreichung ab 2026 ist nicht belegt.",
+      "notes": "Fokus auf stabile Betriebsführung; Werte der KPI-Karte nicht in Punkt-Karten wiederholen."
+     },
+     {
+      "kind": "content",
+      "kicker": "KOSTEN & PERSONAL",
+      "title": "Budget 2026 haelt mit 340.000 Euro Einsparung und sinkender Fluktuation.",
+      "lead": "Engpaesse liegen beim Personalbedarf im Netzbetrieb, nicht im Budget.",
+      "bullets": [
+       [
+        0,
+        "Budget 2026: 4,8 Mio Euro veranschlagt, davon 2,49 Mio Euro Personalkosten"
+       ],
+       [
+        0,
+        "Einsparung: 340.000 Euro gegenueber Plan 2025 durch Standardisierung erzielt"
+       ],
+       [
+        0,
+        "Personal: 24 Mitarbeitende plus 6 Dienstleister, Fluktuation von 11 auf 8 Prozent gesunken"
+       ],
+       [
+        0,
+        "Netzbetrieb: 2 Stellen offen, Kompensation laeuft ueber Dienstleister - Risiko gelb"
+       ],
+       [
+        0,
+        "Sonderfaelle: 38 Standorte mit Sonderanforderungen wie Vermessungsamt und Hafenlogistik"
+       ]
+      ],
+      "notes": "Budget stabil betonen; gelbes Personalrisiko nur anreissen, Folie 6 vertieft."
+     },
+     {
+      "kind": "section",
+      "title": "Risiken und Meilensteine 2026",
+      "subtitle": "Kritische Pfade, Fahrplan und Risikomatrix",
+      "meta": "Teil 02"
+     },
+     {
+      "kind": "content",
+      "kicker": "RISIKOLAGE",
+      "title": "Zwei gelbe und ein rotes Risiko gefaehren den Meilenstein M1 am 31.03.2026.",
+      "lead": "Die Altbau-Standorte sind das einzige rote Risiko und bedrohen direkt den M1-Termin.",
+      "bullets": [
+       [
+        0,
+        "Altbau-Standorte: **11 Standorte** wegen Leitungsinfrastruktur im Rueckstand, Verzoegerung von 6-8 Wochen droht"
+       ],
+       [
+        0,
+        "Lieferkette: Router-Lieferungen 4 Wochen verzoegert, Ersatzlieferant wird geprueft, **Mehrkosten bis 85.000 Euro** moeglich"
+       ],
+       [
+        0,
+        "Personal: 2 offene Stellen im Netzbetrieb, Kompensation ueber Dienstleister"
+       ],
+       [
+        0,
+        "Sicherheitsaudit: Vorbereitung im Plan, keine Abweichung vom Zeitplan"
+       ]
+      ],
+      "hinweis": "Annahmen: 85.000 Euro sind eine Schaetzung (moeglich), kein fester Betrag; 6-8 Wochen sind eine Prognose, kein eingetretener Verzug.",
+      "notes": "Rotes Risiko klar markieren; Uebergang zu Massnahmen in Teil 3."
+     },
+     {
+      "kind": "content",
+      "kicker": "MEILENSTEINE 2026",
+      "title": "M1 am 31.03.2026 ist der einzige kritische Meilenstein im Fahrplan.",
+      "heute": "2026-01-15",
+      "zeitstrahl": [
+       [
+        "2026-03-31",
+        "M1 Migration",
+        "kritisch"
+       ],
+       [
+        "2026-04-30",
+        "M2 Netzersatz",
+        "offen"
+       ],
+       [
+        "2026-06-15",
+        "M3 Audit",
+        "fertig"
+       ],
+       [
+        "2026-09-30",
+        "M4 Cloud-Telef.",
+        "offen"
+       ],
+       [
+        "2026-12-31",
+        "M5 Abschluss",
+        "offen"
+       ]
+      ]
+     },
+     {
+      "kind": "content",
+      "kicker": "RISIKOMATRIX",
+      "title": "Risikobewertung zeigt Handlungsbedarf nur bei Altbau und Lieferkette.",
+      "table": [
+       [
+        "Risiko",
+        "Massnahme",
+        "Status"
+       ],
+       [
+        "Altbau-Standorte, 11 Objekte",
+        "Taskforce 10 Wochen",
+        "rot"
+       ],
+       [
+        "Lieferkette Router verzoegert",
+        "Ersatzlieferant pruefen",
+        "gelb"
+       ],
+       [
+        "2 Stellen Netzbetrieb offen",
+        "Dienstleister kompensiert",
+        "gelb"
+       ],
+       [
+        "Sicherheitsaudit 2026",
+        "Vorbereitung im Plan",
+        "gruen"
+       ]
+      ]
+     },
+     {
+      "kind": "section",
+      "title": "Entscheidungen und Freigaben",
+      "subtitle": "Drei Vorlagen fuer den Vorstand",
+      "meta": "Teil 03"
+     },
+     {
+      "kind": "content",
+      "kicker": "ENTSCHEIDUNGSVORLAGE",
+      "title": "Drei Freigaben bis 15.02.2026 halten den Meilenstein M1.",
+      "botschaft": "Freigabe des Ersatzlieferanten, Verlaengerung des Dienstleistervertrags um 12 Monate und eine Taskforce fuer die 11 Altbau-Standorte - jetzt entscheiden.",
+      "zusatz": "Mit diesen drei Entscheidungen bleibt der kritische Meilenstein M1 am 31.03.2026 erreichbar; ohne sie drohen 6-8 Wochen Verzug.",
+      "notes": "Botschaft als Handlungsaufforderung formuliert, Titel nennt nur den Termin - kein Duplikat."
+     }
+    ]
+   }
+  },
+  "build": {
+   "status": "ok",
+   "zeit": "2026-11-18T17:51:45Z",
+   "dauer_s": 0.1,
+   "pptx": "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-185050-itk-bremen-vorstand-2026/deck.pptx",
+   "folien": 10,
+   "warnungen": [],
+   "slides": [
+    {
+     "kind": "title",
+     "title": "ITK-Bremen: Auf Kurs - drei Freigaben sichern M1",
+     "subtitle": "Statusbericht 2026 · Erfolg, Risiken und Entscheidungsvorlage für den Vorstand",
+     "meta": "Stand 18.11.2026 · Vorstand ITK-Bremen",
+     "teile": [
+      "01|Status und Betriebserfolg",
+      "02|Risiken und Meilensteine 2026",
+      "03|Entscheidungen und Freigaben"
+     ]
+    },
+    {
+     "kind": "section",
+     "title": "Status und Betriebserfolg",
+     "subtitle": "Betrieb, Budget und Personal auf einem Blick",
+     "meta": "Teil 01"
+    },
+    {
+     "kind": "content",
+     "title": "93 Prozent der Standorte sind angemeldet und der Betrieb haelt den SLA ein.",
+     "kicker": "AUSGANGSLAGE",
+     "hinweis": "Annahme: Kein Ausfall ueber 12 Minuten bezieht sich auf das Kernnetz 2025; ein Bezug auf 99,5 Prozent Zielerreichung ab 2026 ist nicht belegt.",
+     "bullets": [
+      [
+       0,
+       "99,4 %|Verfuegbarkeit Kernnetz"
+      ],
+      [
+       0,
+       "61 %|Tickets automatisch geloest"
+      ],
+      [
+       0,
+       "P1-Stoerungen in SLA: 14 / 14"
+      ],
+      [
+       0,
+       "Anmeldung: 479 von 515 Standorten gemeldet, 36 in Klaerung, Rest bis Q2 2026 geplant"
+      ],
+      [
+       0,
+       "Kernnetz: Umstellung seit November 2025 abgeschlossen, kein Ausfall ueber 12 Minuten"
+      ],
+      [
+       0,
+       "Datenbasis: WAN-Masterliste mit 512 Geraetedatensaetzen am 17.11.2025 geprueft"
+      ]
+     ],
+     "zahl": "93 %",
+     "label": "Standorte angemeldet",
+     "notes": "Fokus auf stabile Betriebsführung; Werte der KPI-Karte nicht in Punkt-Karten wiederholen."
+    },
+    {
+     "kind": "content",
+     "title": "Budget 2026 haelt mit 340.000 Euro Einsparung und sinkender Fluktuation.",
+     "kicker": "KOSTEN & PERSONAL",
+     "bullets": [
+      [
+       0,
+       "Budget 2026: 4,8 Mio Euro veranschlagt, davon 2,49 Mio Euro Personalkosten"
+      ],
+      [
+       0,
+       "Einsparung: 340.000 Euro gegenueber Plan 2025 durch Standardisierung erzielt"
+      ],
+      [
+       0,
+       "Personal: 24 Mitarbeitende plus 6 Dienstleister, Fluktuation von 11 auf 8 Prozent gesunken"
+      ],
+      [
+       0,
+       "Netzbetrieb: 2 Stellen offen, Kompensation laeuft ueber Dienstleister - Risiko gelb"
+      ],
+      [
+       0,
+       "Sonderfaelle: 38 Standorte mit Sonderanforderungen wie Vermessungsamt und Hafenlogistik"
+      ]
+     ],
+     "notes": "Budget stabil betonen; gelbes Personalrisiko nur anreissen, Folie 6 vertieft."
+    },
+    {
+     "kind": "section",
+     "title": "Risiken und Meilensteine 2026",
+     "subtitle": "Kritische Pfade, Fahrplan und Risikomatrix",
+     "meta": "Teil 02"
+    },
+    {
+     "kind": "content",
+     "title": "Zwei gelbe und ein rotes Risiko gefaehren den Meilenstein M1 am 31.03.2026.",
+     "kicker": "RISIKOLAGE",
+     "hinweis": "Annahmen: 85.000 Euro sind eine Schaetzung (moeglich), kein fester Betrag; 6-8 Wochen sind eine Prognose, kein eingetretener Verzug.",
+     "bullets": [
+      [
+       0,
+       "Altbau-Standorte: **11 Standorte** wegen Leitungsinfrastruktur im Rueckstand, Verzoegerung von 6-8 Wochen droht"
+      ],
+      [
+       0,
+       "Lieferkette: Router-Lieferungen 4 Wochen verzoegert, Ersatzlieferant wird geprueft, **Mehrkosten bis 85.000 Euro** moeglich"
+      ],
+      [
+       0,
+       "Personal: 2 offene Stellen im Netzbetrieb, Kompensation ueber Dienstleister"
+      ],
+      [
+       0,
+       "Sicherheitsaudit: Vorbereitung im Plan, keine Abweichung vom Zeitplan"
+      ]
+     ],
+     "notes": "Rotes Risiko klar markieren; Uebergang zu Massnahmen in Teil 3."
+    },
+    {
+     "kind": "content",
+     "title": "M1 am 31.03.2026 ist der einzige kritische Meilenstein im Fahrplan.",
+     "kicker": "MEILENSTEINE 2026",
+     "zeitstrahl": [
+      [
+       "2026-03-31",
+       "M1 Migration",
+       "kritisch"
+      ],
+      [
+       "2026-04-30",
+       "M2 Netzersatz",
+       "offen"
+      ],
+      [
+       "2026-06-15",
+       "M3 Audit",
+       "fertig"
+      ],
+      [
+       "2026-09-30",
+       "M4 Cloud-Telef",
+       "offen"
+      ],
+      [
+       "2026-12-31",
+       "M5 Abschluss",
+       "offen"
+      ]
+     ],
+     "heute": "2026-01-15"
+    },
+    {
+     "kind": "content",
+     "title": "Risikobewertung zeigt Handlungsbedarf nur bei Altbau und Lieferkette.",
+     "kicker": "RISIKOMATRIX",
+     "table": [
+      [
+       "Risiko",
+       "Massnahme",
+       "Status"
+      ],
+      [
+       "Altbau-Standorte, 11 Objekte",
+       "Taskforce 10 Wochen",
+       "rot"
+      ],
+      [
+       "Lieferkette Router verzoegert",
+       "Ersatzlieferant pruefen",
+       "gelb"
+      ],
+      [
+       "2 Stellen Netzbetrieb offen",
+       "Dienstleister kompensiert",
+       "gelb"
+      ],
+      [
+       "Sicherheitsaudit 2026",
+       "Vorbereitung im Plan",
+       "gruen"
+      ]
+     ]
+    },
+    {
+     "kind": "section",
+     "title": "Entscheidungen und Freigaben",
+     "subtitle": "Drei Vorlagen fuer den Vorstand",
+     "meta": "Teil 03"
+    },
+    {
+     "kind": "content",
+     "title": "Drei Freigaben bis 15.02.2026 halten den Meilenstein M1.",
+     "kicker": "ENTSCHEIDUNGSVORLAGE",
+     "botschaft": "Freigabe des Ersatzlieferanten, Verlaengerung des Dienstleistervertrags um 12 Monate und eine Taskforce fuer die 11 Altbau-Standorte - jetzt entscheiden.",
+     "zusatz": "Mit diesen drei Entscheidungen bleibt der kritische Meilenstein M1 am 31.03.2026 erreichbar; ohne sie drohen 6-8 Wochen Verzug.",
+     "notes": "Botschaft als Handlungsaufforderung formuliert, Titel nennt nur den Termin - kein Duplikat."
+    }
+   ]
+  },
+  "render": {
+   "status": "ok",
+   "zeit": "2026-11-18T17:51:47Z",
+   "dauer_s": 2.2,
+   "pdf": "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-185050-itk-bremen-vorstand-2026/render/deck.pdf",
+   "pngs": [
+    "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-185050-itk-bremen-vorstand-2026/render/folie-01.png",
+    "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-185050-itk-bremen-vorstand-2026/render/folie-02.png",
+    "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-185050-itk-bremen-vorstand-2026/render/folie-03.png",
+    "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-185050-itk-bremen-vorstand-2026/render/folie-04.png",
+    "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-185050-itk-bremen-vorstand-2026/render/folie-05.png",
+    "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-185050-itk-bremen-vorstand-2026/render/folie-06.png",
+    "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-185050-itk-bremen-vorstand-2026/render/folie-07.png",
+    "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-185050-itk-bremen-vorstand-2026/render/folie-08.png",
+    "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-185050-itk-bremen-vorstand-2026/render/folie-09.png",
+    "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-185050-itk-bremen-vorstand-2026/render/folie-10.png"
+   ]
+  },
+  "critic": {
+   "status": "ok",
+   "zeit": "2026-11-18T17:52:07Z",
+   "dauer_s": 19.9,
+   "runden": [
+    {
+     "runde": 1,
+     "scores": [
+      {
+       "nr": 1,
+       "muster": "titel",
+       "score": 0,
+       "schwaechen": [
+        "Critic-Antwort unbrauchbar"
+       ],
+       "fix": ""
+      },
+      {
+       "nr": 2,
+       "muster": "teil",
+       "score": 8,
+       "schwaechen": [
+        "Mittlerer Bereich der Titelseite wirkt durch die grosse Leerraumflaeche zwischen Headline und Subline leicht unausbalanciert",
+        "Subline haengt zusammen mit 'Teil 01' isoliert in der unteren Haelfte ohne visuelle Verankerung",
+        "Sidebar-Truncation der Unterpunkte ('sind…', '340.000 …') verschluckt die Kernaussagen der Agenda"
+       ],
+       "fix": "Subline und 'Teil 01' enger an die Headline-Gruppe ziehen bzw. die vertikale Leere durch eine dezente grafische Verankerung ausgleichen."
+      },
+      {
+       "nr": 3,
+       "muster": "kpi",
+       "score": 0,
+       "schwaechen": [
+        "Critic-Antwort unbrauchbar"
+       ],
+       "fix": ""
+      },
+      {
+       "nr": 4,
+       "muster": "content",
+       "score": 0,
+       "schwaechen": [
+        "Critic-Antwort unbrauchbar"
+       ],
+       "fix": ""
+      },
+      {
+       "nr": 5,
+       "muster": "teil",
+       "score": 0,
+       "schwaechen": [
+        "Critic-Antwort unbrauchbar"
+       ],
+       "fix": ""
+      },
+      {
+       "nr": 6,
+       "muster": "content",
+       "score": 0,
+       "schwaechen": [
+        "Critic-Antwort unbrauchbar"
+       ],
+       "fix": ""
+      },
+      {
+       "nr": 7,
+       "muster": "zeitstrahl",
+       "score": 0,
+       "schwaechen": [
+        "Critic-Antwort unbrauchbar"
+       ],
+       "fix": ""
+      },
+      {
+       "nr": 8,
+       "muster": "tabelle",
+       "score": 0,
+       "schwaechen": [
+        "Critic-Antwort unbrauchbar"
+       ],
+       "fix": ""
+      },
+      {
+       "nr": 9,
+       "muster": "teil",
+       "score": 0,
+       "schwaechen": [
+        "Critic-Antwort unbrauchbar"
+       ],
+       "fix": ""
+      },
+      {
+       "nr": 10,
+       "muster": "statement",
+       "score": 0,
+       "schwaechen": [
+        "Critic-Antwort unbrauchbar"
+       ],
+       "fix": ""
+      }
+     ]
+    }
+   ]
+  },
+  "report": {
+   "status": "ok",
+   "zeit": "2026-11-18T17:52:45Z",
+   "dauer_s": 0.0,
+   "pfad": "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-185050-itk-bremen-vorstand-2026/report.md"
+  }
+ },
+ "letzte_aktivitaet": "2026-11-18T17:52:45Z",
+ "briefing": "ITK-Bremen Vorstand 2026",
+ "quelle": "/Users/gemma/gemma-projekte/slideforce/studio/testquelle-itk.md",
+ "min": 8,
+ "max": 12,
+ "weg": "A",
+ "max_fixrunden": 3
+}

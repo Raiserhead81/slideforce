@@ -526,7 +526,10 @@ def _bruecke(sl, x, y, w, meilensteine, heute=None, farben=None):
     bogen_sh.shadow.inherit = False
 
     # Meilenstein-Punkte AUF dem Bogen + Faehnchen (Datum bold, Label darunter,
-    # bei engen Abstaenden alternierend versetzt, damit Labels nicht kollidieren)
+    # bei engen Abstaenden alternierend versetzt, damit Labels nicht kollidieren;
+    # Rand-Faehnchen bleiben im Deck (Studio-Critic: nichts am Pfosten abschneiden)
+    flaggen = []
+    letzter_fx = -9.9
     for i, (d, label, status) in enumerate(punkte):
         px, py = bogen(tx(d))
         sf = _status_farbe(status) or PYL
@@ -538,11 +541,16 @@ def _bruecke(sl, x, y, w, meilensteine, heute=None, farben=None):
         dot.line.width = Pt(2.25)
         dot.shadow.inherit = False
         dy = 0.14 if i % 2 == 0 else 0.52
-        _text(sl, px - 0.62, py + dy, 1.24, 0.24, _datum_kurz(d), 10, PYL,
+        fx = min(max(px - 0.62, x0 - 0.35), x1 - 1.24 + 0.35)
+        if abs(fx - letzter_fx) < 1.30:            # horizontale Naehe -> ueber Kurve
+            dy = -0.68
+        letzter_fx = fx
+        _text(sl, fx, py + dy, 1.24, 0.24, _datum_kurz(d), 10, PYL,
               bold=True, align=PP_ALIGN.CENTER)
         if label:
-            _text(sl, px - 0.62, py + dy + 0.24, 1.24, 0.42, label, 9, GRAU,
+            _text(sl, fx, py + dy + 0.24, 1.24, 0.42, label, 9, GRAU,
                   align=PP_ALIGN.CENTER)
+        flaggen.append((fx, py + dy))
 
     # HEUTE-Marker: gestrichelte rote Vertikale bis zum Deck + Label
     if heute is None:
@@ -556,7 +564,16 @@ def _bruecke(sl, x, y, w, meilensteine, heute=None, farben=None):
         while cy < deck_y - 0.02:
             _rect(sl, hx - 0.017, cy, 0.034, min(0.14, deck_y - cy), ROT)
             cy += 0.20
-        _text(sl, hx - 0.55, hy - 0.38, 1.1, 0.26, "HEUTE", 9.5, ROT, bold=True,
+        # HEUTE-Label weicht Flaggen aus (Studio-Critic: keine Kollision links)
+        lx = min(max(hx - 0.55, x0 - 0.10), x1 - 1.0)
+        ly = hy - 0.38
+        for _versuch in range(4):
+            kollision = any(abs(lx - fx) < 1.2 and abs(ly - fy) < 0.75
+                            for fx, fy in flaggen)
+            if not kollision:
+                break
+            ly = hy - 0.38 - 0.40 * (_versuch + 1)     # hoeher ueber den Bogen
+        _text(sl, lx, ly, 1.1, 0.26, "HEUTE", 9.5, ROT, bold=True,
               align=PP_ALIGN.CENTER)
 
     # Countdown-Chip (gold, NAVY-Schrift): Tage bis zum letzten Meilenstein
@@ -573,10 +590,13 @@ def _bruecke(sl, x, y, w, meilensteine, heute=None, farben=None):
     while q <= d1:
         if q > d0:
             qx = x0 + tx(q) * (x1 - x0)
-            _rect(sl, qx - 0.02, achse_y - 0.07, 0.04, 0.15, GRAU2)
             ql = f"Q{(q.month - 1) // 3 + 1} {str(q.year)[2:]}"
-            _text(sl, qx - 0.5, achse_y + 0.12, 1.0, 0.24, ql, 9, GRAU,
-                  bold=True, align=PP_ALIGN.CENTER)
+            koll = any(abs(qx - (fx + 0.62)) < 0.95 and fy + 0.70 > achse_y
+                       for fx, fy in flaggen)
+            if not koll:               # Achsenlabel nur ohne Flaggen-Kollision
+                _rect(sl, qx - 0.02, achse_y - 0.07, 0.04, 0.15, GRAU2)
+                _text(sl, qx - 0.5, achse_y + 0.12, 1.0, 0.24, ql, 9, GRAU,
+                      bold=True, align=PP_ALIGN.CENTER)
         q = date(q.year + (q.month + 2) // 12, (q.month + 2) % 12 + 1, 1)
 
 
@@ -793,20 +813,38 @@ def _v_num_quadrat(sl, x, y, nr, farbe, q=0.44):
 
 def _v_kpi_karte(sl, x, y, w, h, big, label, subs):
     """Variante A (Referenz Folie 3 links): F4F5F6-Karte, 40pt petrol Zahl,
-    16pt Label, LINE, darunter Sub-Wertepaare (22pt petrol + 10.5pt grau)."""
+    16pt Label, LINE, darunter Sub-Wertepaare (22pt petrol + 10.5pt grau).
+    Sub-Abstand skaliert mit der Kartenhoehe, damit bei der 3er-KPI-Reihe
+    (h=2.95) nichts aus der Karte laeuft (Studio-Critic-Befund)."""
     _rect(sl, x, y, w, h, V_KARTE)
-    _text(sl, x + 0.30, y + 0.25, w - 0.60, 0.90, str(big or ""), 40,
+    bsize = 40 if len(str(big)) <= 6 else (34 if len(str(big)) <= 8 else 28)
+    _text(sl, x + 0.30, y + 0.25, w - 0.60, 0.90, str(big or ""), bsize,
           V_PETROL, bold=True)
     if label:
-        _text(sl, x + 0.30, y + 1.15, w - 0.60, 0.60, str(label), 16,
-              V_DUNKEL, bold=True)
-    ly = y + 2.00
-    _v_hline(sl, x + 0.30, ly, w - 0.60)
-    sy = ly + 0.20
-    for wert, bez in subs[:3]:
-        _text(sl, x + 0.30, sy, 1.0, 0.50, wert, 22, V_PETROL, bold=True)
-        _text(sl, x + 1.33, sy + 0.04, w - 1.66, 0.90, bez, 10.5, V_GRAU)
-        sy += 1.10
+        lsize = 16 if len(str(label)) <= 24 else 13.5
+        if h >= 3.5:                   # grosse Karte: 3-Zeilen-Label zulassen
+            _text(sl, x + 0.30, y + 1.15, w - 0.60, 0.95, str(label), lsize,
+                  V_DUNKEL, bold=True)
+            ober = y + 1.15 + 0.95
+        else:
+            _text(sl, x + 0.30, y + 1.15, w - 0.60, 0.62, str(label), lsize,
+                  V_DUNKEL, bold=True)
+            ober = y + 1.15 + 0.60
+    else:
+        ober = y + 0.25 + 0.90
+    subs = list(subs or [])[:3]
+    platz = (y + h - 0.15) - (ober + 0.10)
+    if subs and platz >= 0.50 * len(subs):
+        step = min(1.10, max(0.50, platz / len(subs)))
+        ly = min(y + 2.00, y + h - 0.15 - step * len(subs))
+        _v_hline(sl, x + 0.30, ly, w - 0.60)
+        sy = ly + 0.16
+        for wert, bez in subs:
+            wsize = 22 if len(wert) <= 5 else (16 if len(wert) <= 7 else 13.5)
+            _text(sl, x + 0.30, sy + (0.08 if wsize < 22 else 0), 1.22, 0.50,
+                  wert, wsize, V_PETROL, bold=True)
+            _text(sl, x + 1.40, sy + 0.04, w - 1.73, 0.90, bez, 10.5, V_GRAU)
+            sy += step
 
 
 def _v_punkt_karte(sl, x, y, w, h, nr, titel, text):
@@ -824,6 +862,8 @@ def _v_punkt_karte(sl, x, y, w, h, nr, titel, text):
         by, bx = y + 0.58, x + 0.98
     if titel:
         _text(sl, tx, tty, w - (tx - x) - 0.25, 0.35, titel, 14, V_DUNKEL, bold=True)
+    if not titel and h < 2.0:                  # keine Headline -> Text oben, ohne Luft
+        by = y + 0.20
     if text:
         voll_bold = text.startswith("**") and text.rstrip().endswith("**") \
             and text.count("**") == 2
@@ -845,28 +885,46 @@ def _v_bullet_split(t):
     return "", t
 
 
+def _v_zeilen_h(t, chars_pro_zeile):
+    """Geschaetzte Kartenhohe nach Textmenge (gegen leere Riesen-Karten und
+    gegen Text, der aus der Zeilen-Karte laeuft: Titel 0.58 + Zeilen 0.26)."""
+    zeilen = max(1, -(-len(str(t)) // chars_pro_zeile))
+    return min(2.26, max(0.98, zeilen * 0.26 + 0.72))
+
+
 def _v_punkt_raster(sl, items, x, y, unten):
-    """Punkt-Karten: <=3 Zeilen ueber volle Breite, 4-6 im 2-Spalten-Raster."""
+    """Punkt-Karten: <=3 Zeilen ueber volle Breite, 4-6 im 2-Spalten-Raster.
+    Kartenhoehe adaptiv nach Textmenge (Studio-Critic: keine leeren Karten)."""
     n = len(items)
     if not n:
         return
     if n <= 3:
-        ch = min(1.48, (unten - y - 0.16 * (n - 1)) / n)
-        for i, (lvl, t) in enumerate(items):
-            if not lvl:
-                ti, tx = _v_bullet_split(t)
-                _v_punkt_karte(sl, x, y + i * (ch + 0.16), 12.0, ch, i + 1, ti, tx)
+        karten = [(i, *_v_bullet_split(t)) for i, (lvl, t) in enumerate(items) if not lvl]
+        if not karten:
+            return
+        bedarf = max(_v_zeilen_h(tx_, 90) for _, _, tx_ in karten)
+        # Karten bis max 1.48 strecken, wenn sonst Luft unten bliebe
+        # (Studio-Critic: "untere Haelfte leer") - nie ueber Textbedarf+0.5
+        streck = min(1.48, (unten - y - 0.16 * (len(karten) - 1)) / len(karten))
+        hoehe = min(max(bedarf, streck), bedarf + 0.5)
+        for i, ti, tx_ in karten:
+            _v_punkt_karte(sl, x, y + i * (hoehe + 0.16), 12.0, hoehe,
+                           i + 1, ti, tx_)
         return
     cols, rows = 2, (n + 1) // 2
     cw = 5.92
-    ch = min(2.26, (unten - y - 0.15 * (rows - 1)) / rows)
-    for i, (lvl, t) in enumerate(items):
-        if lvl:
-            continue
+    karten = [(i, *_v_bullet_split(t)) for i, (lvl, t) in enumerate(items) if not lvl]
+    if not karten:
+        return
+    bedarf = max(_v_zeilen_h(tx_, 45) for _, _, tx_ in karten)
+    # auch im 2-Spalten-Raster bis Unterkante strecken, wenn Luft bliebe
+    # (Studio-Critic: "Leerraum zwischen Karten und Hinweis")
+    streck = min(2.26, (unten - y - 0.15 * (rows - 1)) / rows)
+    hoehe = min(max(bedarf, streck), bedarf + 0.35)
+    for i, ti, tx_ in karten:
         r_, c_ = divmod(i, 2)
-        ti, tx = _v_bullet_split(t)
-        _v_punkt_karte(sl, x + c_ * (cw + 0.16), y + r_ * (ch + 0.15), cw, ch,
-                       i + 1, ti, tx)
+        _v_punkt_karte(sl, x + c_ * (cw + 0.16), y + r_ * (hoehe + 0.15), cw,
+                       hoehe, i + 1, ti, tx_)
 
 
 def _v_hinweis(sl, s):
@@ -896,12 +954,18 @@ def _v_hinweis(sl, s):
 
 def _v_statement_folie(sl, s, kicker):
     _v_kopf(sl, s, kicker)
-    _rect(sl, 0.67, 2.0, 12.0, 3.0, V_KARTE)
-    _rect(sl, 0.67, 2.0, 0.09, 3.0, ROT)
-    _text(sl, 1.15, 2.35, 11.1, 2.3, str(s.get("botschaft") or ""), 26,
-          V_DUNKEL, bold=True)
+    # Kartenhoehe adaptiv nach Textmenge (Studio-Critic: keine leere Riesenkarte)
+    txt = str(s.get("botschaft") or "")
+    zeilen = max(1, -(-len(txt) // 55))
+    kh = min(3.4, max(1.7, zeilen * 0.52 + 0.95))
+    ky = 1.95 + (3.6 - kh) / 2
+    _rect(sl, 0.67, ky, 12.0, kh, V_KARTE)
+    _rect(sl, 0.67, ky, 0.09, kh, ROT)
+    tb = _text(sl, 1.15, ky + 0.3, 11.1, kh - 0.6, txt, 26,
+               V_DUNKEL, bold=True)
+    tb.text_frame.vertical_anchor = MSO_ANCHOR.MIDDLE   # Balance statt Top-Presste
     if s.get("zusatz"):
-        _text(sl, 0.67, 5.35, 12.0, 0.5, str(s["zusatz"]), 12, V_GRAU)
+        _text(sl, 0.67, ky + kh + 0.30, 12.0, 0.5, str(s["zusatz"]), 12, V_GRAU)
 
 
 def _v_tabellen_folie(sl, s, kicker):
@@ -911,12 +975,18 @@ def _v_tabellen_folie(sl, s, kicker):
         return
     ncols = max(len(r) for r in rows)
     nrows = len(rows)
-    row_h = min(0.62, max(0.40, 5.0 / nrows))
+    verfuegbar = (6.05 if s.get("hinweis") else 6.75) - 1.95
+    # Flaeche bis Footer bzw. bis Hinweis-Band (6.22) verteilen - sonst
+    # ueberlappt die Tabelle den Hinweis-Kasten (Studio-Critic-Befund)
+    row_h = min(0.85, max(0.40, verfuegbar / nrows))
     gf = sl.shapes.add_table(nrows, ncols, Inches(0.67), Inches(1.95),
                              Inches(12.0), Inches(row_h * nrows))
     tbl = gf.table
     tbl.first_row = False
     tbl.horz_banding = False
+    if ncols == 2:                    # Risikomuster: Textspalte breit, Status schmal
+        tbl.columns[0].width = Inches(8.5)
+        tbl.columns[1].width = Inches(3.5)
     for r in range(nrows):
         tbl.rows[r].height = Inches(row_h)
     for r, row in enumerate(rows):
@@ -928,8 +998,12 @@ def _v_tabellen_folie(sl, s, kicker):
             pill = None if r == 0 else _status_farbe(cell.text)
             fill = cell.fill
             fill.solid()
-            fill.fore_color.rgb = V_PETROL if r == 0 else (
-                pill if pill is not None else (V_KARTE if r % 2 else WEISS))
+            if r == 0:
+                fill.fore_color.rgb = V_PETROL
+            elif pill is not None:
+                fill.fore_color.rgb = V_KARTE      # dezent: Pill gengt, keine Vollflaeche
+            else:
+                fill.fore_color.rgb = V_KARTE if r % 2 else WEISS
             for p in cell.text_frame.paragraphs:
                 for run in p.runs:
                     run.font.size = Pt(11.5 if r == 0 else 11)
@@ -959,7 +1033,11 @@ def _v_kpi_folie(sl, s, kicker):
                      get("label") or s.get("title"), subs)
         n = len(karten)
         if n:
-            ch = min(1.48, (unten - 1.95 - 0.16 * (n - 1)) / n)
+            # Zeilen-Karten bis Unterkante strecken, wenn sonst Luft bliebe
+            # (Studio-Critic: "rechte Spalte endet auf halber Hoehe")
+            cap = 1.70 if n >= 2 else 2.40
+            ch = min(cap, (unten - 1.95 - 0.16 * (n - 1)) / n)
+            ch = max(ch, 1.0)
             for i, (lvl, t) in enumerate(karten[:4]):
                 ti, tx = _v_bullet_split(t)
                 _v_punkt_karte(sl, 4.12, 1.95 + i * (ch + 0.16), 8.55, ch,
@@ -982,7 +1060,7 @@ def _v_kpi_folie(sl, s, kicker):
 
 def _v_zeitstrahl_folie(sl, s, kicker):
     _v_kopf(sl, s, kicker)
-    _bruecke(sl, 0.55, 1.9, W - 1.1, s.get("zeitstrahl") or [], s.get("heute"),
+    _bruecke(sl, 0.55, 2.15, W - 1.1, s.get("zeitstrahl") or [], s.get("heute"),
              farben=(V_PETROL, V_DUNKEL, WEISS))
 
 

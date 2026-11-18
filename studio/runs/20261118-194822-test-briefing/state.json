@@ -1,0 +1,21 @@
+{
+ "id": "20261118-194822-test-briefing",
+ "erstellt": "2026-11-18T18:48:22Z",
+ "briefing": "Test Briefing",
+ "quelle": "test.md",
+ "min": 8,
+ "max": 12,
+ "weg": "A",
+ "max_fixrunden": 3,
+ "schritte": {
+  "director": {
+   "status": "ok",
+   "zeit": "2026-11-18T18:48:22Z",
+   "dauer_s": 1.2,
+   "plan": {
+    "folienzahl": 9
+   }
+  }
+ },
+ "letzte_aktivitaet": "2026-11-18T18:48:22Z"
+}

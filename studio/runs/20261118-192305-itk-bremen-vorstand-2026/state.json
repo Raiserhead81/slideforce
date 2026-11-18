@@ -1,0 +1,1377 @@
+{
+ "id": "20261118-192305-itk-bremen-vorstand-2026",
+ "erstellt": "2026-11-18T18:23:05Z",
+ "schritte": {
+  "director": {
+   "status": "ok",
+   "zeit": "2026-11-18T18:23:14Z",
+   "dauer_s": 9.0,
+   "plan": {
+    "zielgruppe": "Vorstand ITK-Bremen (Entscheidungsgremium, 2026)",
+    "anlass": "Vorstandspräsentation ITK-Bremen 2026 – Jahresstatus und Entscheidungen",
+    "kernbotschaft": "Das Landesnetz ist stabil und im Budgetplan, aber drei zeitnahe Entscheidungen (Ersatzlieferant, Dienstleisterverlängerung, Altbau-Taskforce) sind notwendig, um M1 zu halten.",
+    "dramaturgie": "Einstieg mit Erfolgen 2025 (Migration 93 Prozent, Verfügbarkeit, SLA-Treue), um Vertrauen aufzubauen. Wende zu den roten und gelben Risiken (Altbau-Standorte, Lieferkette, Personal), die den Meilenstein M1 gefährden. Auflösung durch drei konkrete Entscheidungsvorlagen mit klaren Deadlines und Ausblick auf 2027.",
+    "teile": [
+     "Status & Erfolge 2025",
+     "Risiken & Meilensteine 2026",
+     "Entscheidungen & Ausblick"
+    ],
+    "folienzahl": 10,
+    "fokusthemen": [
+     {
+      "thema": "Migration Standorte inkl. 11 Altbau-Standorte (M1-Risiko)",
+      "gewicht": 3
+     },
+     {
+      "thema": "Betriebs- und SLA-Performance Kernnetz",
+      "gewicht": 2
+     },
+     {
+      "thema": "Budget 2026 und Einsparungen (inkl. ungeprüfte 600k-Annahme)",
+      "gewicht": 2
+     },
+     {
+      "thema": "Lieferkettenrisiko Router / Ersatzlieferant",
+      "gewicht": 2
+     },
+     {
+      "thema": "Personal Netzbetrieb / Dienstleisterverlängerung",
+      "gewicht": 2
+     },
+     {
+      "thema": "Meilensteinplan 2026 (M1–M5)",
+      "gewicht": 2
+     }
+    ],
+    "risiken": [
+     "600.000-Euro-Einsparpotenzial 2027 ist nicht durch Controlling geprüft – im Deck klar als Annahme kennzeichnen, nicht als Fakt darstellen.",
+     "Altbau-Rückstand (rot) könnte als Managementversagen gelesen werden – proaktiv mit Taskforce-Lösung rahmen.",
+     "Verfügbarkeit 99,4 Prozent liegt unter Zielwert 99,5 – kurz einordnen (kein Ausfall > 12 Min.), nicht verschweigen."
+    ],
+    "editorial_note": "Zahlen exakt aus der Quelle übernehmen, nichts ergänzen. Die 600k-Annahme nur mit ausdrücklichem Annahme-Hinweis zeigen. Entscheidungsvorlagen mit Datum (15.02.2026) prominent auf der Schlussfolie."
+   }
+  },
+  "story": {
+   "status": "ok",
+   "zeit": "2026-11-18T18:23:32Z",
+   "dauer_s": 18.0,
+   "storyboard": {
+    "deck_titel": "ITK-Bremen: Landesnetz stabil im Plan – drei Entscheidungen sichern Meilenstein M1",
+    "untertitel": "Jahresstatus 2025/2026 und Entscheidungsvorlagen an den Vorstand",
+    "meta": "Stand 18.11.2026 · Vorstand",
+    "annahmen": [
+     "Einsparpotenzial 2027 von rund 600.000 Euro ist eine Hochrechnung der Standardisierungseffekte und noch nicht durch Controlling geprüft.",
+     "Verfügbarkeitslücke von 0,1 Prozentpunkten zum Ziel (99,4 vs. 99,5) wird als unkritisch eingestuft – keine explizite Bewertung in der Quelle."
+    ],
+    "folien": [
+     {
+      "nr": 1,
+      "rolle": "titel",
+      "titel": "ITK-Bremen: Landesnetz stabil im Plan – drei Entscheidungen sichern Meilenstein M1",
+      "untertitel": "Jahresstatus 2025/2026 und Entscheidungsvorlagen an den Vorstand",
+      "meta": "Stand 18.11.2026 · Vorstand"
+     },
+     {
+      "nr": 2,
+      "rolle": "teil",
+      "titel": "Status & Erfolge 2025"
+     },
+     {
+      "nr": 3,
+      "rolle": "kpi",
+      "titel": "Migration erreicht 93 Prozent und liegt mit 479 von 515 Standorten im Plan",
+      "kicker": "MIGRATION",
+      "lead": "Kernnetz-Umstellung seit November 2025 abgeschlossen, Restfolge bis Q2 2026",
+      "zahl": "93 %",
+      "label": "der Standorte angemeldet (479 von 515)",
+      "subs": [
+       [
+        "36",
+        "Standorte in Klärung"
+       ],
+       [
+        "512",
+        "Gerätedatensätze WAN-Masterliste (17.11.2025)"
+       ],
+       [
+        "38",
+        "Standorte mit Sonderanforderungen"
+       ]
+      ],
+      "punkte": [
+       "Kernnetz: Umstellung seit November 2025 abgeschlossen",
+       "WAN-Masterliste: 512 Gerätedatensätze importiert und am 17.11.2025 geprüft",
+       "Sonderanforderungen: 38 Standorte inklusive Vermessungsamt und Hafenlogistik in Bearbeitung"
+      ],
+      "annahmen": []
+     },
+     {
+      "nr": 4,
+      "rolle": "content",
+      "titel": "Betrieb hält SLA-Zusagen ein und senkt Ticketaufwand durch Automatisierung",
+      "kicker": "BETRIEB",
+      "lead": "Verfügbarkeit nahe am Zielwert, alle P1-Störungen innerhalb SLA behoben",
+      "punkte": [
+       "Verfügbarkeit: Kernnetz erreicht 99,4 Prozent (Ziel 99,5), kein Ausfall länger als 12 Minuten",
+       "SLA-Treue: 14 P1-Störungen 2025, alle innerhalb 4 Stunden behoben",
+       "Tickets: 1.840 Tickets in Q4/2025, davon 61 Prozent automatisch gelöst",
+       "Budget: 4,8 Mio Euro 2026, davon 2,49 Mio Euro Personalkosten",
+       "Einsparung: 340.000 Euro unter Plan 2025 durch Standardisierung",
+       "Personal: 24 Mitarbeitende, 6 Dienstleister, Fluktuation sinkt auf 8 Prozent (Vorjahr 11)"
+      ],
+      "annahmen": []
+     },
+     {
+      "nr": 5,
+      "rolle": "statement",
+      "titel": "Standardisierung hat 2025 bereits 340.000 Euro eingespart",
+      "botschaft": "Die Standardisierung wirkt: 340.000 Euro Einsparung gegenüber Plan 2025 sind belegt. Für 2027 rechnen wir mit weiteren Effekten – deren Höhe ist noch nicht geprüft.",
+      "zusatz": "Das Einsparpotenzial 2027 von rund 600.000 Euro ist eine Annahme und noch nicht durch Controlling geprüft."
+     },
+     {
+      "nr": 6,
+      "rolle": "teil",
+      "titel": "Risiken & Meilensteine 2026"
+     },
+     {
+      "nr": 7,
+      "rolle": "content",
+      "titel": "Zwei gelbe und ein rotes Risiko gefährden den Meilenstein M1",
+      "kicker": "RISIKEN",
+      "lead": "Altbau-Standorte sind kritisch, Lieferkette und Personal sind gelb",
+      "punkte": [
+       "Altbau-Standorte (rot): 11 Standorte mit Rückstand wegen Leitungsinfrastruktur, Verzögerung 6-8 Wochen droht",
+       "Lieferkette (gelb): Router-Lieferungen 4 Wochen verzögert, Mehrkosten bis 85.000 Euro möglich, Ersatzlieferant geprüft",
+       "Personal (gelb): 2 offene Stellen Netzbetrieb, Kompensation über Dienstleister",
+       "Sicherheitsaudit (grün): Vorbereitung im Plan"
+      ],
+      "annahmen": []
+     },
+     {
+      "nr": 8,
+      "rolle": "tabelle",
+      "titel": "Meilenstein M1 ist kritisch, M3 bis M5 planbar",
+      "kicker": "ZEITPLAN 2026",
+      "kopf": [
+       "Meilenstein",
+       "Status"
+      ],
+      "zeilen": [
+       [
+        "31.03.2026 – M1 Migration Standorte abgeschlossen",
+        "kritisch"
+       ],
+       [
+        "30.04.2026 – M2 Testsicherheit Netzersatzanlagen",
+        "in arbeit"
+       ],
+       [
+        "15.06.2026 – M3 Sicherheitsaudit Landesnetz",
+        "gruen"
+       ],
+       [
+        "30.09.2026 – M4 Go-Live Cloud-Telefonie",
+        "offen"
+       ],
+       [
+        "31.12.2026 – M5 Abschlussprojekt und Reporting",
+        "offen"
+       ]
+      ]
+     },
+     {
+      "nr": 9,
+      "rolle": "teil",
+      "titel": "Entscheidungen & Ausblick"
+     },
+     {
+      "nr": 10,
+      "rolle": "content",
+      "titel": "Drei Entscheidungen bis 15.02.2026 sichern M1 und den Weg nach 2027",
+      "kicker": "ENTSCHEIDUNGSVORLAGEN",
+      "lead": "Der Vorstand wird gebeten, drei Maßnahmen zu den genannten Terminen freizugeben",
+      "punkte": [
+       "Ersatzlieferant Router: Freigabe Entscheidung bis 15.02.2026 – verhindert weitere 4 Wochen Lieferverzug und bis zu 85.000 Euro Mehrkosten",
+       "Dienstleister Netzbetrieb: Verlängerung des Vertrags um 12 Monate – kompensiert 2 offene Stellen",
+       "Altbau-Taskforce: Priorisierung der 11 Standorte mit Taskforce aus 3 Personen über 10 Wochen – hält M1 am 31.03.2026",
+       "Ausblick 2027: Einsparpotenzial von rund 600.000 Euro durch Standardisierung (Annahme, Prüfung durch Controlling ausstehend)"
+      ],
+      "annahmen": [
+       "Das Einsparpotenzial 2027 von rund 600.000 Euro beruht auf Hochrechnung der Standardisierungseffekte und ist nicht final belegt."
+      ]
+     }
+    ]
+   }
+  },
+  "art": {
+   "status": "ok",
+   "zeit": "2026-11-18T18:25:05Z",
+   "design": {
+    "designsystem": {
+     "leitidee": "Helle, praezise Vorstandsvorlage im Dataport-Farbsystem mit petrolfarbenen Kennzahlen als visuelle Anker.",
+     "prinzipien": [
+      "Petrol #39756F als Leitfarbe fuer Zahlen und Leads, Rot #9E292B nur fuer Statements und kritische Marker",
+      "Weisse Grundflaeche mit Karten in #F4F5F6 fuer ruhige, vorstandstaugliche Informationsdichte",
+      "Arial-Strengkeit, grosse Kennzahlen, kurze Kicker in Grau – keine Dekoration ohne Funktion"
+     ]
+    },
+    "folien": [
+     {
+      "kind": "title",
+      "title": "ITK-Bremen: Landesnetz stabil im Plan",
+      "subtitle": "Jahresstatus 2025/2026 und Entscheidungsvorlagen an den Vorstand",
+      "meta": "Stand 18.11.2026 · Vorstand",
+      "teile": [
+       "01|Status & Erfolge 2025",
+       "02|Risiken & Meilensteine 2026",
+       "03|Entscheidungen & Ausblick"
+      ]
+     },
+     {
+      "kind": "section",
+      "title": "Status & Erfolge 2025",
+      "subtitle": "Migration, Betrieb und Budget im Jahresrueckblick",
+      "meta": "Teil 01",
+      "notes": "Ueberblick zum Jahresrueckblick: Migrationsstand, Betrieb und Budget."
+     },
+     {
+      "kind": "content",
+      "title": "93 Prozent erreicht – Migration liegt im Plan",
+      "kicker": "MIGRATION",
+      "lead": "Kernnetz seit November 2025 umgestellt, Restfolge bis Q2 2026",
+      "bullets": [
+       [
+        0,
+        "479|Anschluesse gesamt"
+       ],
+       [
+        0,
+        "36|Anschluesse in Klaerung"
+       ],
+       [
+        0,
+        "38 Sonderanforderungen: Standorte mit individueller Loesung bis Q2 2026"
+       ],
+       [
+        0,
+        "Kernnetz: Umstellung abgeschlossen, Restfolge laeuft bis Q2 2026"
+       ]
+      ],
+      "zahl": "93 %",
+      "label": "der Standorte angemeldet",
+      "notes": "Kernnetz seit November 2025 umgestellt; Restfolge laeuft bis Q2 2026. 38 Standorte mit Sonderanforderungen."
+     },
+     {
+      "kind": "content",
+      "kicker": "BETRIEB",
+      "title": "Betrieb haelt SLA-Zusagen und senkt Tickets",
+      "lead": "Verfuegbarkeit nahe am Zielwert, alle P1-Stoerungen innerhalb SLA behoben",
+      "bullets": [
+       [
+        0,
+        "**Verfuegbarkeit:** Kernnetz erreicht 99,4 Prozent (Ziel 99,5); kein Ausfall dauerte laenger als 12 Minuten"
+       ],
+       [
+        0,
+        "**SLA-Treue:** 14 P1-Stoerungen im Jahr 2025, alle innerhalb von 4 Stunden behoben"
+       ],
+       [
+        0,
+        "**Tickets:** 1.840 Tickets in Q4/2025, davon 61 Prozent automatisch geloest"
+       ],
+       [
+        0,
+        "**Budget:** 4,8 Mio Euro 2026 verfuegbar, davon 2,49 Mio Euro Personalkosten"
+       ],
+       [
+        0,
+        "**Einsparung:** 340.000 Euro unter Plan 2025 durch Standardisierung erzielt"
+       ],
+       [
+        0,
+        "**Personal:** 24 Mitarbeitende und 6 Dienstleister; Fluktuation sinkt auf 8 Prozent nach 11 im Vorjahr"
+       ]
+      ],
+      "notes": "Betrieb stabil; Verfuegbarkeitslücke von 0,1 Punkten zum Ziel gilt als unkritisch."
+     },
+     {
+      "kind": "content",
+      "title": "Standardisierung spart nachweislich unter Plan.",
+      "kicker": "WIRKUNG",
+      "lead": "Belegte Wirkung 2025 – Potenzial 2027 noch ungeprueft.",
+      "hinweis": "Der Wert 2027 ist eine Annahme und noch nicht durch Controlling bestätigt.",
+      "bullets": [
+       [
+        0,
+        "Quartalsabschluesse: Wirkung durch Standardisierung dokumentiert"
+       ],
+       [
+        0,
+        "Potenzial 2027: rund 600.000 Euro als Annahme hinterlegt"
+       ],
+       [
+        0,
+        "Controlling-Pruefung fuer 2027 steht noch aus"
+       ]
+      ],
+      "zahl": "340.000 €",
+      "label": "Einsparung 2025 belegt",
+      "notes": "340.000 Euro sind belegt; die rund 600.000 Euro für 2027 sind eine ungeprüfte Annahme."
+     },
+     {
+      "kind": "section",
+      "title": "Risiken & Meilensteine 2026",
+      "subtitle": "Kritische Wege zum Meilenstein M1 und Jahresfahrplan",
+      "meta": "Teil 02"
+     },
+     {
+      "kind": "content",
+      "title": "Roter Altbau-Rueckstand und zwei gelbe Risiken gefaehrden M1",
+      "kicker": "RISIKEN",
+      "table": [
+       [
+        "Risiko",
+        "Status",
+        "Auswirkung und Massnahme"
+       ],
+       [
+        "Altbau-Standorte",
+        "rot",
+        "11 Standorte im Rueckstand"
+       ],
+       [
+        "Router-Lieferkette",
+        "gelb",
+        "Lieferungen 4 Wochen verzoegert"
+       ],
+       [
+        "Personal Netzbetrieb",
+        "gelb",
+        "2 offene Stellen; Kompensation"
+       ],
+       [
+        "Sicherheitsaudit",
+        "gruen",
+        "Planmaessig im Zeitplan; keine"
+       ]
+      ],
+      "notes": "Fokus auf Altbau-Standorte; Entscheidung zur Router-Lieferkette folgt in Teil 3. Sicherheitsaudit planmaessig - nur auf Nachfrage erwaehnen."
+     },
+     {
+      "kind": "content",
+      "kicker": "ZEITPLAN 2026",
+      "title": "Meilenstein M1 ist kritisch, M3 bis M5 planbar",
+      "table": [
+       [
+        "Termin",
+        "Meilenstein",
+        "Status"
+       ],
+       [
+        "31.03.2026",
+        "M1 Migration Standorte",
+        "kritisch"
+       ],
+       [
+        "30.04.2026",
+        "M2 Testsicherheit Netzersatz",
+        "in arbeit"
+       ],
+       [
+        "15.06.2026",
+        "M3 Sicherheitsaudit Netz",
+        "gruen"
+       ],
+       [
+        "30.09.2026",
+        "M4 Go-Live Cloud-Telefonie",
+        "offen"
+       ],
+       [
+        "31.12.2026",
+        "M5 Abschluss und Reporting",
+        "offen"
+       ]
+      ]
+     },
+     {
+      "kind": "section",
+      "title": "Entscheidungen & Ausblick",
+      "subtitle": "Drei Vorlagen an den Vorstand und Perspektive 2027",
+      "meta": "Teil 03"
+     },
+     {
+      "kind": "content",
+      "kicker": "ENTSCHEIDUNGSVORLAGEN",
+      "title": "Drei Entscheidungen bis 15.02.2026 sichern M1",
+      "lead": "Der Vorstand wird gebeten, drei Massnahmen zu den genannten Terminen freizugeben",
+      "bullets": [
+       [
+        0,
+        "**Ersatzlieferant Router:** Freigabe bis 15.02.2026 – verhindert weitere 4 Wochen Lieferverzug und bis zu 85.000 Euro Mehrkosten"
+       ],
+       [
+        0,
+        "**Dienstleister Netzbetrieb:** Verlaengerung des Vertrags um 12 Monate kompensiert die 2 offenen Stellen im Netzbetrieb"
+       ],
+       [
+        0,
+        "**Altbau-Taskforce:** Priorisierung der 11 Standorte mit Taskforce aus 3 Personen ueber 10 Wochen haelt M1 am 31.03.2026"
+       ],
+       [
+        0,
+        "**Ausblick 2027:** Einsparpotenzial von rund 600.000 Euro durch Standardisierung – Annahme, Controlling-Pruefung ausstehend"
+       ]
+      ],
+      "hinweis": "Annahme: Das Einsparpotenzial 2027 beruht auf Hochrechnung der Standardisierungseffekte und ist nicht final belegt.",
+      "notes": "Alle drei Entscheidungen bis 15.02.2026(); 600.000 Euro als Hochrechnung kennzeichnen."
+     }
+    ]
+   }
+  },
+  "build": {
+   "status": "ok",
+   "zeit": "2026-11-18T18:27:13Z",
+   "pptx": "studio/runs/20261118-192305-itk-bremen-vorstand-2026/deck.pptx",
+   "folien": 10,
+   "warnungen": [],
+   "slides": [
+    {
+     "kind": "title",
+     "title": "ITK-Bremen: Landesnetz stabil im Plan",
+     "subtitle": "Jahresstatus 2025/2026 und Entscheidungsvorlagen an den Vorstand",
+     "meta": "Stand 18.11.2026 · Vorstand",
+     "teile": [
+      "01|Status & Erfolge 2025",
+      "02|Risiken & Meilensteine 2026",
+      "03|Entscheidungen & Ausblick"
+     ]
+    },
+    {
+     "kind": "section",
+     "title": "Status & Erfolge 2025",
+     "subtitle": "Migration, Betrieb und Budget im Jahresrueckblick",
+     "meta": "Teil 01",
+     "notes": "Ueberblick zum Jahresrueckblick: Migrationsstand, Betrieb und Budget."
+    },
+    {
+     "kind": "content",
+     "title": "93 Prozent erreicht – Migration liegt im Plan",
+     "kicker": "MIGRATION",
+     "lead": "Kernnetz seit November 2025 umgestellt, Restfolge bis Q2 2026",
+     "bullets": [
+      [
+       0,
+       "479|Anschluesse gesamt"
+      ],
+      [
+       0,
+       "36|Anschluesse in Klaerung"
+      ],
+      [
+       0,
+       "38 Sonderanforderungen: Standorte mit individueller Loesung bis Q2 2026"
+      ],
+      [
+       0,
+       "Kernnetz: Umstellung abgeschlossen, Restfolge laeuft bis Q2 2026"
+      ]
+     ],
+     "zahl": "93 %",
+     "label": "der Standorte angemeldet",
+     "notes": "Kernnetz seit November 2025 umgestellt; Restfolge laeuft bis Q2 2026. 38 Standorte mit Sonderanforderungen."
+    },
+    {
+     "kind": "content",
+     "title": "Betrieb haelt SLA-Zusagen und senkt Tickets",
+     "kicker": "BETRIEB",
+     "lead": "Verfuegbarkeit nahe am Zielwert, alle P1-Stoerungen innerhalb SLA behoben",
+     "bullets": [
+      [
+       0,
+       "**Verfuegbarkeit:** Kernnetz erreicht 99,4 Prozent (Ziel 99,5); kein Ausfall dauerte laenger als 12 Minuten"
+      ],
+      [
+       0,
+       "**SLA-Treue:** 14 P1-Stoerungen im Jahr 2025, alle innerhalb von 4 Stunden behoben"
+      ],
+      [
+       0,
+       "**Tickets:** 1.840 Tickets in Q4/2025, davon 61 Prozent automatisch geloest"
+      ],
+      [
+       0,
+       "**Budget:** 4,8 Mio Euro 2026 verfuegbar, davon 2,49 Mio Euro Personalkosten"
+      ],
+      [
+       0,
+       "**Einsparung:** 340.000 Euro unter Plan 2025 durch Standardisierung erzielt"
+      ],
+      [
+       0,
+       "**Personal:** 24 Mitarbeitende und 6 Dienstleister; Fluktuation sinkt auf 8 Prozent nach 11 im Vorjahr"
+      ]
+     ],
+     "notes": "Betrieb stabil; Verfuegbarkeitslücke von 0,1 Punkten zum Ziel gilt als unkritisch."
+    },
+    {
+     "kind": "content",
+     "title": "Standardisierung spart nachweislich unter Plan.",
+     "kicker": "WIRKUNG",
+     "lead": "Belegte Wirkung 2025 – Potenzial 2027 noch ungeprueft.",
+     "hinweis": "Der Wert 2027 ist eine Annahme und noch nicht durch Controlling bestätigt.",
+     "bullets": [
+      [
+       0,
+       "Quartalsabschluesse: Wirkung durch Standardisierung dokumentiert"
+      ],
+      [
+       0,
+       "Potenzial 2027: rund 600.000 Euro als Annahme hinterlegt"
+      ],
+      [
+       0,
+       "Controlling-Pruefung fuer 2027 steht noch aus"
+      ]
+     ],
+     "zahl": "340.000 €",
+     "label": "Einsparung 2025 belegt",
+     "notes": "340.000 Euro sind belegt; die rund 600.000 Euro für 2027 sind eine ungeprüfte Annahme."
+    },
+    {
+     "kind": "section",
+     "title": "Risiken & Meilensteine 2026",
+     "subtitle": "Kritische Wege zum Meilenstein M1 und Jahresfahrplan",
+     "meta": "Teil 02"
+    },
+    {
+     "kind": "content",
+     "title": "Roter Altbau-Rueckstand und zwei gelbe Risiken gefaehrden M1",
+     "kicker": "RISIKEN",
+     "table": [
+      [
+       "Risiko",
+       "Status",
+       "Auswirkung und Massnahme"
+      ],
+      [
+       "Altbau-Standorte",
+       "rot",
+       "11 Standorte im Rueckstand"
+      ],
+      [
+       "Router-Lieferkette",
+       "gelb",
+       "Lieferungen 4 Wochen verzoegert"
+      ],
+      [
+       "Personal Netzbetrieb",
+       "gelb",
+       "2 offene Stellen; Kompensation"
+      ],
+      [
+       "Sicherheitsaudit",
+       "gruen",
+       "Planmaessig im Zeitplan; keine"
+      ]
+     ],
+     "notes": "Fokus auf Altbau-Standorte; Entscheidung zur Router-Lieferkette folgt in Teil 3. Sicherheitsaudit planmaessig - nur auf Nachfrage erwaehnen."
+    },
+    {
+     "kind": "content",
+     "title": "Meilenstein M1 ist kritisch, M3 bis M5 planbar",
+     "kicker": "ZEITPLAN 2026",
+     "table": [
+      [
+       "Termin",
+       "Meilenstein",
+       "Status"
+      ],
+      [
+       "31.03.2026",
+       "M1 Migration Standorte",
+       "kritisch"
+      ],
+      [
+       "30.04.2026",
+       "M2 Testsicherheit Netzersatz",
+       "in arbeit"
+      ],
+      [
+       "15.06.2026",
+       "M3 Sicherheitsaudit Netz",
+       "gruen"
+      ],
+      [
+       "30.09.2026",
+       "M4 Go-Live Cloud-Telefonie",
+       "offen"
+      ],
+      [
+       "31.12.2026",
+       "M5 Abschluss und Reporting",
+       "offen"
+      ]
+     ]
+    },
+    {
+     "kind": "section",
+     "title": "Entscheidungen & Ausblick",
+     "subtitle": "Drei Vorlagen an den Vorstand und Perspektive 2027",
+     "meta": "Teil 03"
+    },
+    {
+     "kind": "content",
+     "title": "Drei Entscheidungen bis 15.02.2026 sichern M1",
+     "kicker": "ENTSCHEIDUNGSVORLAGEN",
+     "lead": "Der Vorstand wird gebeten, drei Massnahmen zu den genannten Terminen freizugeben",
+     "hinweis": "Annahme: Das Einsparpotenzial 2027 beruht auf Hochrechnung der Standardisierungseffekte und ist nicht final",
+     "bullets": [
+      [
+       0,
+       "**Ersatzlieferant Router:** Freigabe bis 15.02.2026 – verhindert weitere 4 Wochen Lieferverzug und bis zu 85.000 Euro Mehrkosten"
+      ],
+      [
+       0,
+       "**Dienstleister Netzbetrieb:** Verlaengerung des Vertrags um 12 Monate kompensiert die 2 offenen Stellen im Netzbetrieb"
+      ],
+      [
+       0,
+       "**Altbau-Taskforce:** Priorisierung der 11 Standorte mit Taskforce aus 3 Personen ueber 10 Wochen haelt M1 am 31.03.2026"
+      ],
+      [
+       0,
+       "**Ausblick 2027:** Einsparpotenzial von rund 600.000 Euro durch Standardisierung – Annahme, Controlling-Pruefung ausstehend"
+      ]
+     ],
+     "notes": "Alle drei Entscheidungen bis 15.02.2026(); 600.000 Euro als Hochrechnung kennzeichnen."
+    }
+   ]
+  },
+  "render": {
+   "status": "ok",
+   "zeit": "2026-11-18T18:27:13Z",
+   "pdf": "studio/runs/20261118-192305-itk-bremen-vorstand-2026/render/deck.pdf",
+   "pngs": [
+    "studio/runs/20261118-192305-itk-bremen-vorstand-2026/render/folie-01.png",
+    "studio/runs/20261118-192305-itk-bremen-vorstand-2026/render/folie-02.png",
+    "studio/runs/20261118-192305-itk-bremen-vorstand-2026/render/folie-03.png",
+    "studio/runs/20261118-192305-itk-bremen-vorstand-2026/render/folie-04.png",
+    "studio/runs/20261118-192305-itk-bremen-vorstand-2026/render/folie-05.png",
+    "studio/runs/20261118-192305-itk-bremen-vorstand-2026/render/folie-06.png",
+    "studio/runs/20261118-192305-itk-bremen-vorstand-2026/render/folie-07.png",
+    "studio/runs/20261118-192305-itk-bremen-vorstand-2026/render/folie-08.png",
+    "studio/runs/20261118-192305-itk-bremen-vorstand-2026/render/folie-09.png",
+    "studio/runs/20261118-192305-itk-bremen-vorstand-2026/render/folie-10.png"
+   ]
+  },
+  "critic": {
+   "status": "ok",
+   "zeit": "2026-11-18T18:27:30Z",
+   "dauer_s": 16.9,
+   "runden": [
+    {
+     "runde": 1,
+     "scores": [
+      {
+       "nr": 1,
+       "muster": "titel",
+       "score": 8,
+       "schwaechen": [
+        "Grosser leerer Bereich zwischen Titel und Untertitel, rechte Textspalte wirkt unten sehr leer",
+        "Untertitel-/Footer-Block haengt optisch ohne Verankerung in der Flaeche"
+       ],
+       "fix": "Titelblock, Untertitel und Footer vertikal engen und als eine ruhige Komposition mittig ausrichten."
+      },
+      {
+       "nr": 2,
+       "muster": "teil",
+       "score": 7,
+       "schwaechen": [
+        "Sidebar-Unterpunkte sind mit Auslassungspunkten abgehackt ('Migrati…', 'und…', 'ber…') statt vollstaendig oder bewusst gekuerzt",
+        "Rechte Seite wirkt unten ab Subtitle leer – viel ungenutzter Weisser Raum zwischen Subtitle und 'Teil 01'",
+        "Vertikale Ausrichtung der Sidebar untypisch tief/zentriert statt oben verankert"
+       ],
+       "fix": "Kuerze die Sidebar-Unterpunkte auf konsistente, voll lesbare Kurzformen ohne Auslassungspunkte und ruecke Sidebar-Inhalt bündig nach oben aus."
+      },
+      {
+       "nr": 3,
+       "muster": "kpi",
+       "score": 5,
+       "schwaechen": [
+        "Abgeschnittener Text: 'der Standorte angemeldet (479 vo' bricht mitten im Wort ab",
+        "Linker Karte riesiger Leerraum im unteren Drittel, rechte Haelfte der Folie fast komplett leer",
+        "Textwraps 'Standorte in Klaerung' und 'Geraetedatensaetze WAN-Masterliste' unschoen umgebrochen ('Geraetedatensaetze' nicht style-tauglich)",
+        "Zahl '38' in der Karte wirkt kontextlos ohne Beschreibung/Einheit",
+        "Unklare KPI-Hierarchie: 93%, 36, 512, 38 ohne erkennbare Logik gruppiert"
+       ],
+       "fix": "Zweispaltiges KPI-Layout stabilisieren: Kachel 'der Standorte angemeldet (479 von 512)' auf volle Breite umbrechen, alle vier KPIs (93%, 36, 512, 38 mit Label 'Standorte mit Sonderanforderungen') als gleichgewichtige Kacheln ueber die ganze Folienbreite verteilen, damit keine Leerflaeche bleibt."
+      },
+      {
+       "nr": 4,
+       "muster": "content",
+       "score": 8,
+       "schwaechen": [
+        "Karte 1 nutzt ein rotes Badge, alle anderen petrol - wirkt wie ein Fehler im System, ohne erkennbare Bedeutung",
+        "Karten sind vertikal groessere Flaeche als noetig: zweizeiliger Text schwebt mit viel Leerraum oben/unten, Inhaltsdichte asymmetrisch zur Kartenhoehe",
+        "Zahlenwerte (99,4 Prozent, 1.840 Tickets, 340.000 Euro) stecken im Fliesstext statt als KPI-Hierarchie - keine visuelle Scanbarkeit fuer den Vorstand"
+       ],
+       "fix": "Zahlen als grosse KPI-Werte (z.B. 99,4 % / 1.840 / 340 T€) prominent in den Karten setzen, Text als Zusatzzeile darunter; rotes Badge nur verwenden, wenn Abweichung gemeint ist (99,4 vs. 99,5 Ziel), sonst auf petrol vereinheitlichen"
+      },
+      {
+       "nr": 5,
+       "muster": "statement",
+       "score": 6,
+       "schwaechen": [
+        "Grosse leere Flaechen oben und unten:.Statement-Karte haengt isoliert, die Seite wirkt unbalanciert",
+        "Titel und Statement-Karte sind inhaltlich redundant - beide nennen die 340.000 Euro wortwoerterlich",
+        "Kein CTA-Element der Vorlage (Sidebar/INHALT) erkennbar, Detailsatz zur 600.000-Euro-Annahme haengt unverbunden unter der Karte"
+       ],
+       "fix": "Inhaltlich schaerfen: Nur die Hauptaussage (340.000 belegt vs. 600.000 ungeprueft fuer 2027) auf der Karte belassen und den Redundanz-Text im Titel bzw. Statement straffen, damit Titel und Karte sich ergaenzen statt doppeln."
+      },
+      {
+       "nr": 6,
+       "muster": "teil",
+       "score": 8,
+       "schwaechen": [
+        "Große leere Fläche zwischen Untertitel und Fußzeile wirkt unausgewogen",
+        "Untertitel-Block schwebt ohne Verankerung im mittleren Bildbereich",
+        "Sub-items der Sidebar (07/08) mit abgeschnittenen Ellipsen-Texten wirken unvollständig"
+       ],
+       "fix": "Untertitel-Block näher an den Titel ziehen und freien Raum unten durch kleinere Typo-Hierarchie ausgleichen; Sidebar-Subitems auf kurze, vollständige Formulierungen kürzen, damit nichts mit '...' abgeschnitten wird."
+      },
+      {
+       "nr": 7,
+       "muster": "content",
+       "score": 7,
+       "schwaechen": [
+        "Karten sind stark unterfuellt: grosser Leerraum zwischen Nummern-Badge und Text, der unten haengt",
+        "Ampel-Farblogik nicht sichtbar: Karte 1 ist rot markiert, aber alle Badges wirken austauschbar und die gelben/gruenen Einstufungen nur im Text",
+        "Unterer Folienbereich zwischen Karten und Footer ist ungenutzt, Vertikale Balance leidet"
+       ],
+       "fix": "Badges in Ampelfarben (rot/gelb/gruen) einfärben und Textzeilen vertikal in den Karten zentrieren bzw. Kartenhoehe an den Inhalt anpassen"
+      },
+      {
+       "nr": 8,
+       "muster": "tabelle",
+       "score": 8,
+       "schwaechen": [
+        "Table занимает почти всю ширину, но левая колонка \"Termin\" непропорционально широка по отношению к содержимому",
+        "Статусные бейджи центрированы в колонке, из-за чего визуально \"висят\" без привязки к тексту",
+        "Строка M2 без фонового выделения прерывается до колонки статуса — визуальный разлом таблицы"
+       ],
+       "fix": "Отцентруй статусные бейджи в своей колонке и устрани разрыв фоновой заливки в строке M2, чтобы таблица читалась как единый блок"
+      },
+      {
+       "nr": 9,
+       "muster": "teil",
+       "score": 8,
+       "schwaechen": [
+        "Abgeschnittener Sidebar-Eintrag 'Drei Entscheidungen bis 15.02...' (Auslassungspunkte statt Volltext)",
+        "Grosser leerer Bereich zwischen Titel und Subline - vertikale Balance fehlt",
+        "Subline 'Drei Vorlagen ... Perspektive 2027' unplatzierter Alleingang ohne visuelle Verankerung"
+       ],
+       "fix": "Sidebar-Eintrag in voller Laenge 'Drei Entscheidungen bis 15.02.' ausschreiben und die Subline naeher unter den Titel ruecken, um die Leerraumzone zu schliessen."
+      },
+      {
+       "nr": 10,
+       "muster": "content",
+       "score": 8,
+       "schwaechen": [
+        "Titel lautet 'Drei Entscheidungen', die Folie zeigt jedoch vier Karten – Nummer 4 ist nur ein Ausblick und keine Freigabeentscheidung, was Nummernlogik und Kernaussage bricht",
+        "Karten sind vertikal stark unterfuellt: viel leerer Raum ober- und unterhalb der nur drei Textzeilen, wirkt unausbalanciert",
+        "Karten 1 und 3 heben sich farblich rot/petrol ab, ohne dass die Farblogik erkennbar ist"
+       ],
+       "fix": "Karte 4 als 'Ausblick' klar vom Entscheidungskontext trennen (z.B. optisch abgesetzt oder in die Annahme-Leiste integrieren) und Kartenhoehen straffen, damit keine grossen Leerraumflaechen entstehen"
+      }
+     ]
+    },
+    {
+     "runde": 2,
+     "scores": [
+      {
+       "nr": 1,
+       "muster": "titel",
+       "score": 8,
+       "schwaechen": [
+        "Grosser leerer Bereich zwischen Titel und Untertitel, rechte Textspalte wirkt unten sehr leer",
+        "Untertitel-/Footer-Block haengt optisch ohne Verankerung in der Flaeche"
+       ],
+       "fix": "Titelblock, Untertitel und Footer vertikal engen und als eine ruhige Komposition mittig ausrichten."
+      },
+      {
+       "nr": 2,
+       "muster": "teil",
+       "score": 8,
+       "schwaechen": [
+        "Agenda-Subitems mit abgeschnittenen Ellipsen ('Migrati...', 'und...', 'nachwe...') statt sauber umgebrochenen Kurzbeschreibungen",
+        "Große leere Flaeche unter dem Untertitel laesst rechte Haelfte unbalanciert"
+       ],
+       "fix": "Subitem-Texte in der Agenda auf vollstaendige, nicht abgeschnittene Kurzbeschreibungen kuerzen und Untertitel etwas tiefer dem Titel annaehern, um die Leerflaeche zu reduzieren."
+      },
+      {
+       "nr": 3,
+       "muster": "kpi",
+       "score": 5,
+       "schwaechen": [
+        "Abgeschnittener Text '(479 vo' in der KPI-Karte – klarer Makel",
+        "Rechte Karte 'Sonderanf.' mit Label '1' und Wert '38' ist inhaltlich unleserlich und ragt isoliert in eine grosse Leerraumflaeche",
+        "Rechte Folienhaelfte ist weitgehend leer – massives Unbalance",
+        "Unerklaerte Zahl '38' ohne Beschriftung/Zusammenhang"
+       ],
+       "fix": "KPI-Kartentext vollstaendig ('der Standorte angemeldet (479 von ...)') formulieren, die Karte 'Sonderanf.' mit verstaendlichem Label und erklaerter Zahl 38 versehen und die rechte Leerflaeche mit einer Zusatzkennzahl, Meilenstein-Timeline oder Restfolen-Status fuellen, um die Folie zu balancieren."
+      },
+      {
+       "nr": 4,
+       "muster": "content",
+       "score": 8,
+       "schwaechen": [
+        "Karte 1 nutzt ein rotes Badge, alle anderen petrol - wirkt wie ein Fehler im System, ohne erkennbare Bedeutung",
+        "Karten sind vertikal groessere Flaeche als noetig: zweizeiliger Text schwebt mit viel Leerraum oben/unten, Inhaltsdichte asymmetrisch zur Kartenhoehe",
+        "Zahlenwerte (99,4 Prozent, 1.840 Tickets, 340.000 Euro) stecken im Fliesstext statt als KPI-Hierarchie - keine visuelle Scanbarkeit fuer den Vorstand"
+       ],
+       "fix": "Zahlen als grosse KPI-Werte (z.B. 99,4 % / 1.840 / 340 T€) prominent in den Karten setzen, Text als Zusatzzeile darunter; rotes Badge nur verwenden, wenn Abweichung gemeint ist (99,4 vs. 99,5 Ziel), sonst auf petrol vereinheitlichen"
+      },
+      {
+       "nr": 5,
+       "muster": "statement",
+       "score": 8,
+       "schwaechen": [
+        "Linke KPI-Karte ist im unteren Bereich stark leergelaufen, nur zwei Textzeilen auf grosser Flaeche",
+        "Karte 3 hat keine Ueberschrift, bricht die Hierarchie der Karten 1 und 2",
+        "Hinweis-Banner wiederholtCardContent aus Karte 2 redundant"
+       ],
+       "fix": "KPI-Karte unten mit einer Zusatzkennzahl (z.B. Planabweichung in Prozent) fuellen und Karte 3 eine kurze Kopfzeile wie 'Offen' geben."
+      },
+      {
+       "nr": 6,
+       "muster": "teil",
+       "score": 8,
+       "schwaechen": [
+        "Große leere Fläche zwischen Untertitel und Fußzeile wirkt unausgewogen",
+        "Untertitel-Block schwebt ohne Verankerung im mittleren Bildbereich",
+        "Sub-items der Sidebar (07/08) mit abgeschnittenen Ellipsen-Texten wirken unvollständig"
+       ],
+       "fix": "Untertitel-Block näher an den Titel ziehen und freien Raum unten durch kleinere Typo-Hierarchie ausgleichen; Sidebar-Subitems auf kurze, vollständige Formulierungen kürzen, damit nichts mit '...' abgeschnitten wird."
+      },
+      {
+       "nr": 7,
+       "muster": "content",
+       "score": 6,
+       "schwaechen": [
+        "Titel nennt zwei gelbe und ein rotes Risiko, die Tabelle zeigt jedoch vier Risiken inkl. gruen – Kernaussage und Datenlage widersprechen sich",
+        "Erste Zeile: Text '11 Standorte mit Rueckstand wegen' endet unvollstaendig ('wegen' ohne Ergaenzung)",
+        "Header- und Zeilenbloecke der Tabelle sind nicht bündig ausgerichtet (Status-Spalte ragt unten ueber die Tabelle hinaus, Spaltenbreiten springen)",
+        "Rechte Spaltenhoehe weicht ab, letzte Zeile schliesst nicht mit dem Tabellenkoerper ab"
+       ],
+       "fix": "Daten konsolidieren: Zeile 'Sicherheitsaudit' entfernen oder Titel auf 'Drei gelbe und ein rotes Risiko' anpassen; unvollstaendigen Satz 'wegen ...' vervollstaendigen und alle Zeilenhoehen/Spaltenbloecke bündig abschliessen."
+      },
+      {
+       "nr": 8,
+       "muster": "tabelle",
+       "score": 8,
+       "schwaechen": [
+        "Table занимает почти всю ширину, но левая колонка \"Termin\" непропорционально широка по отношению к содержимому",
+        "Статусные бейджи центрированы в колонке, из-за чего визуально \"висят\" без привязки к тексту",
+        "Строка M2 без фонового выделения прерывается до колонки статуса — визуальный разлом таблицы"
+       ],
+       "fix": "Отцентруй статусные бейджи в своей колонке и устрани разрыв фоновой заливки в строке M2, чтобы таблица читалась как единый блок"
+      },
+      {
+       "nr": 9,
+       "muster": "teil",
+       "score": 8,
+       "schwaechen": [
+        "Abgeschnittener Sidebar-Eintrag 'Drei Entscheidungen bis 15.02...' (Auslassungspunkte statt Volltext)",
+        "Grosser leerer Bereich zwischen Titel und Subline - vertikale Balance fehlt",
+        "Subline 'Drei Vorlagen ... Perspektive 2027' unplatzierter Alleingang ohne visuelle Verankerung"
+       ],
+       "fix": "Sidebar-Eintrag in voller Laenge 'Drei Entscheidungen bis 15.02.' ausschreiben und die Subline naeher unter den Titel ruecken, um die Leerraumzone zu schliessen."
+      },
+      {
+       "nr": 10,
+       "muster": "content",
+       "score": 8,
+       "schwaechen": [
+        "Titel lautet 'Drei Entscheidungen', die Folie zeigt jedoch vier Karten – Nummer 4 ist nur ein Ausblick und keine Freigabeentscheidung, was Nummernlogik und Kernaussage bricht",
+        "Karten sind vertikal stark unterfuellt: viel leerer Raum ober- und unterhalb der nur drei Textzeilen, wirkt unausbalanciert",
+        "Karten 1 und 3 heben sich farblich rot/petrol ab, ohne dass die Farblogik erkennbar ist"
+       ],
+       "fix": "Karte 4 als 'Ausblick' klar vom Entscheidungskontext trennen (z.B. optisch abgesetzt oder in die Annahme-Leiste integrieren) und Kartenhoehen straffen, damit keine grossen Leerraumflaechen entstehen"
+      }
+     ]
+    },
+    {
+     "runde": 3,
+     "scores": [
+      {
+       "nr": 1,
+       "muster": "titel",
+       "score": 8,
+       "schwaechen": [
+        "Grosser leerer Bereich zwischen Titel und Untertitel, rechte Textspalte wirkt unten sehr leer",
+        "Untertitel-/Footer-Block haengt optisch ohne Verankerung in der Flaeche"
+       ],
+       "fix": "Titelblock, Untertitel und Footer vertikal engen und als eine ruhige Komposition mittig ausrichten."
+      },
+      {
+       "nr": 2,
+       "muster": "teil",
+       "score": 8,
+       "schwaechen": [
+        "Agenda-Subitems mit abgeschnittenen Ellipsen ('Migrati...', 'und...', 'nachwe...') statt sauber umgebrochenen Kurzbeschreibungen",
+        "Große leere Flaeche unter dem Untertitel laesst rechte Haelfte unbalanciert"
+       ],
+       "fix": "Subitem-Texte in der Agenda auf vollstaendige, nicht abgeschnittene Kurzbeschreibungen kuerzen und Untertitel etwas tiefer dem Titel annaehern, um die Leerflaeche zu reduzieren."
+      },
+      {
+       "nr": 3,
+       "muster": "kpi",
+       "score": 6,
+       "schwaechen": [
+        "Redundanz: Karte 'Sonderanforderungen' und gelbe Hinweisleiste unten tragen denselben Inhalt (38, Q2 2026)",
+        "Leere rechte Haelfte unter der Sonderanforderungs-Karte – unbalancierte, ungenutzte Flaeche",
+        "Karte 'Sonderanforderungen' wirkt unvollendet: grosse KPI-Flaeche mit nur '38', ueberfluessiges Nummern-Icon '1'",
+        "KPI-Panel links ueberlaedt (93%, 479, 36) waehrend rechts leere Flaeche – Asymmetrie ohne Zweck"
+       ],
+       "fix": "Redundanz aufloesen: gelbe Hinweisleiste entfernen, die Sonderanforderungs-Karte als echten KPI ausbauen ('38' gross als Zahl mit Label 'Sonderanforderungen bis Q2 2026') und rechts eine zweite Karte z.B. mit '36 Anschluesse in Klaerung' ergaenzen, damit die Flaeche balanciert gefuellt ist."
+      },
+      {
+       "nr": 4,
+       "muster": "content",
+       "score": 8,
+       "schwaechen": [
+        "Karte 1 nutzt ein rotes Badge, alle anderen petrol - wirkt wie ein Fehler im System, ohne erkennbare Bedeutung",
+        "Karten sind vertikal groessere Flaeche als noetig: zweizeiliger Text schwebt mit viel Leerraum oben/unten, Inhaltsdichte asymmetrisch zur Kartenhoehe",
+        "Zahlenwerte (99,4 Prozent, 1.840 Tickets, 340.000 Euro) stecken im Fliesstext statt als KPI-Hierarchie - keine visuelle Scanbarkeit fuer den Vorstand"
+       ],
+       "fix": "Zahlen als grosse KPI-Werte (z.B. 99,4 % / 1.840 / 340 T€) prominent in den Karten setzen, Text als Zusatzzeile darunter; rotes Badge nur verwenden, wenn Abweichung gemeint ist (99,4 vs. 99,5 Ziel), sonst auf petrol vereinheitlichen"
+      },
+      {
+       "nr": 5,
+       "muster": "statement",
+       "score": 8,
+       "schwaechen": [
+        "Linke KPI-Karte ist im unteren Bereich stark leergelaufen, nur zwei Textzeilen auf grosser Flaeche",
+        "Karte 3 hat keine Ueberschrift, bricht die Hierarchie der Karten 1 und 2",
+        "Hinweis-Banner wiederholtCardContent aus Karte 2 redundant"
+       ],
+       "fix": "KPI-Karte unten mit einer Zusatzkennzahl (z.B. Planabweichung in Prozent) fuellen und Karte 3 eine kurze Kopfzeile wie 'Offen' geben."
+      },
+      {
+       "nr": 6,
+       "muster": "teil",
+       "score": 8,
+       "schwaechen": [
+        "Große leere Fläche zwischen Untertitel und Fußzeile wirkt unausgewogen",
+        "Untertitel-Block schwebt ohne Verankerung im mittleren Bildbereich",
+        "Sub-items der Sidebar (07/08) mit abgeschnittenen Ellipsen-Texten wirken unvollständig"
+       ],
+       "fix": "Untertitel-Block näher an den Titel ziehen und freien Raum unten durch kleinere Typo-Hierarchie ausgleichen; Sidebar-Subitems auf kurze, vollständige Formulierungen kürzen, damit nichts mit '...' abgeschnitten wird."
+      },
+      {
+       "nr": 7,
+       "muster": "content",
+       "score": 6,
+       "schwaechen": [
+        "Untere Foliennaehr haengt leer: Tabelle endet bei ca. 60% Hoehe, grosser leerer Weissraum bis zum Footer",
+        "Status-Badges als 3D-Pills mit Schlagschatten wirken unruhig und passen nicht zur flachen Dataport-Optik",
+        "Zebra-Striping der Tabellenzeilen bricht in der mittleren Status-Spalte (weisser Block in grauer Zeile)",
+        "Keine Sidebar/Kontextspalte trotz viel freiem Platz - Folie wirkt unbalanciert"
+       ],
+       "fix": "Tabelle vertikal ueber die Folie verteilen (Zeilenhoehe erhoehen oder Massnahmen-Spalte mit Detailtext fuellen), Badges als flache pillige Farbfelder ohne Schatten setzen und Zebra-Streifen durchgehend ueber alle drei Spalten ziehen."
+      },
+      {
+       "nr": 8,
+       "muster": "tabelle",
+       "score": 8,
+       "schwaechen": [
+        "Table занимает почти всю ширину, но левая колонка \"Termin\" непропорционально широка по отношению к содержимому",
+        "Статусные бейджи центрированы в колонке, из-за чего визуально \"висят\" без привязки к тексту",
+        "Строка M2 без фонового выделения прерывается до колонки статуса — визуальный разлом таблицы"
+       ],
+       "fix": "Отцентруй статусные бейджи в своей колонке и устрани разрыв фоновой заливки в строке M2, чтобы таблица читалась как единый блок"
+      },
+      {
+       "nr": 9,
+       "muster": "teil",
+       "score": 8,
+       "schwaechen": [
+        "Abgeschnittener Sidebar-Eintrag 'Drei Entscheidungen bis 15.02...' (Auslassungspunkte statt Volltext)",
+        "Grosser leerer Bereich zwischen Titel und Subline - vertikale Balance fehlt",
+        "Subline 'Drei Vorlagen ... Perspektive 2027' unplatzierter Alleingang ohne visuelle Verankerung"
+       ],
+       "fix": "Sidebar-Eintrag in voller Laenge 'Drei Entscheidungen bis 15.02.' ausschreiben und die Subline naeher unter den Titel ruecken, um die Leerraumzone zu schliessen."
+      },
+      {
+       "nr": 10,
+       "muster": "content",
+       "score": 8,
+       "schwaechen": [
+        "Titel lautet 'Drei Entscheidungen', die Folie zeigt jedoch vier Karten – Nummer 4 ist nur ein Ausblick und keine Freigabeentscheidung, was Nummernlogik und Kernaussage bricht",
+        "Karten sind vertikal stark unterfuellt: viel leerer Raum ober- und unterhalb der nur drei Textzeilen, wirkt unausbalanciert",
+        "Karten 1 und 3 heben sich farblich rot/petrol ab, ohne dass die Farblogik erkennbar ist"
+       ],
+       "fix": "Karte 4 als 'Ausblick' klar vom Entscheidungskontext trennen (z.B. optisch abgesetzt oder in die Annahme-Leiste integrieren) und Kartenhoehen straffen, damit keine grossen Leerraumflaechen entstehen"
+      }
+     ]
+    },
+    {
+     "runde": 4,
+     "scores": [
+      {
+       "nr": 1,
+       "muster": "titel",
+       "score": 8,
+       "schwaechen": [
+        "Grosser leerer Bereich zwischen Titel und Untertitel, rechte Textspalte wirkt unten sehr leer",
+        "Untertitel-/Footer-Block haengt optisch ohne Verankerung in der Flaeche"
+       ],
+       "fix": "Titelblock, Untertitel und Footer vertikal engen und als eine ruhige Komposition mittig ausrichten."
+      },
+      {
+       "nr": 2,
+       "muster": "teil",
+       "score": 8,
+       "schwaechen": [
+        "Agenda-Subitems mit abgeschnittenen Ellipsen ('Migrati...', 'und...', 'nachwe...') statt sauber umgebrochenen Kurzbeschreibungen",
+        "Große leere Flaeche unter dem Untertitel laesst rechte Haelfte unbalanciert"
+       ],
+       "fix": "Subitem-Texte in der Agenda auf vollstaendige, nicht abgeschnittene Kurzbeschreibungen kuerzen und Untertitel etwas tiefer dem Titel annaehern, um die Leerflaeche zu reduzieren."
+      },
+      {
+       "nr": 3,
+       "muster": "kpi",
+       "score": 7,
+       "schwaechen": [
+        "Rechte Spalte endet auf halber Hoehe, darunter grosse leere Flaechen (Unbalance gegenueber durchlaufender linker KPI-Karte)",
+        "Groesser passend: 479 gesamt vs. 93% angemeldet vs. 36 in Klaerung rechnen nicht konsequent auf (479*0,93=445, ungeklaerte Differenz fehlt)",
+        "Karten-Beschriftungen innerhalb der nummerierten Karten linksbuendig versetzt, Icon-Position wirkt nicht zentriert zur Textzeile"
+       ],
+       "fix": "Datenbasis konsolidieren: KPI-Zahlen so aufbereiten, dass 93%, 479 und 36 miteinander konsistent sind (z.B. angemeldete Anschluesse vs. Restmenge ausweisen) und die rechte Kartenhoehe an die linke KPI-Karte angleichen, um die Leerraumflaeche unten rechts zu schliessen."
+      },
+      {
+       "nr": 4,
+       "muster": "content",
+       "score": 8,
+       "schwaechen": [
+        "Karte 1 nutzt ein rotes Badge, alle anderen petrol - wirkt wie ein Fehler im System, ohne erkennbare Bedeutung",
+        "Karten sind vertikal groessere Flaeche als noetig: zweizeiliger Text schwebt mit viel Leerraum oben/unten, Inhaltsdichte asymmetrisch zur Kartenhoehe",
+        "Zahlenwerte (99,4 Prozent, 1.840 Tickets, 340.000 Euro) stecken im Fliesstext statt als KPI-Hierarchie - keine visuelle Scanbarkeit fuer den Vorstand"
+       ],
+       "fix": "Zahlen als grosse KPI-Werte (z.B. 99,4 % / 1.840 / 340 T€) prominent in den Karten setzen, Text als Zusatzzeile darunter; rotes Badge nur verwenden, wenn Abweichung gemeint ist (99,4 vs. 99,5 Ziel), sonst auf petrol vereinheitlichen"
+      },
+      {
+       "nr": 5,
+       "muster": "statement",
+       "score": 8,
+       "schwaechen": [
+        "Linke KPI-Karte ist im unteren Bereich stark leergelaufen, nur zwei Textzeilen auf grosser Flaeche",
+        "Karte 3 hat keine Ueberschrift, bricht die Hierarchie der Karten 1 und 2",
+        "Hinweis-Banner wiederholtCardContent aus Karte 2 redundant"
+       ],
+       "fix": "KPI-Karte unten mit einer Zusatzkennzahl (z.B. Planabweichung in Prozent) fuellen und Karte 3 eine kurze Kopfzeile wie 'Offen' geben."
+      },
+      {
+       "nr": 6,
+       "muster": "teil",
+       "score": 8,
+       "schwaechen": [
+        "Große leere Fläche zwischen Untertitel und Fußzeile wirkt unausgewogen",
+        "Untertitel-Block schwebt ohne Verankerung im mittleren Bildbereich",
+        "Sub-items der Sidebar (07/08) mit abgeschnittenen Ellipsen-Texten wirken unvollständig"
+       ],
+       "fix": "Untertitel-Block näher an den Titel ziehen und freien Raum unten durch kleinere Typo-Hierarchie ausgleichen; Sidebar-Subitems auf kurze, vollständige Formulierungen kürzen, damit nichts mit '...' abgeschnitten wird."
+      },
+      {
+       "nr": 7,
+       "muster": "content",
+       "score": 8,
+       "schwaechen": [
+        "Letzte Zeile 'Sicherheitsaudit' ragt optisch als Einzelzeile unter die letzte vollstaendige Zeile, Zebra-Streifen endet unmittelbar neben der Status-Spalte und wirkt abgeschnitten",
+        "Auswirkung 'Planmaessig im Zeitplan; keine' endet unvollstaendig (keine was?)",
+        "Status-Pills mit Schlagschatten statt flacher Markenoptik"
+       ],
+       "fix": "Spalte 'Auswirkung und Massnahme' inhaltlich vervollstaendigen (z.B. 'keine Massnahme erforderlich') und Zebra-Streifen durchgehend bis zum Tabellenende fuehren."
+      },
+      {
+       "nr": 8,
+       "muster": "tabelle",
+       "score": 8,
+       "schwaechen": [
+        "Table занимает почти всю ширину, но левая колонка \"Termin\" непропорционально широка по отношению к содержимому",
+        "Статусные бейджи центрированы в колонке, из-за чего визуально \"висят\" без привязки к тексту",
+        "Строка M2 без фонового выделения прерывается до колонки статуса — визуальный разлом таблицы"
+       ],
+       "fix": "Отцентруй статусные бейджи в своей колонке и устрани разрыв фоновой заливки в строке M2, чтобы таблица читалась как единый блок"
+      },
+      {
+       "nr": 9,
+       "muster": "teil",
+       "score": 8,
+       "schwaechen": [
+        "Abgeschnittener Sidebar-Eintrag 'Drei Entscheidungen bis 15.02...' (Auslassungspunkte statt Volltext)",
+        "Grosser leerer Bereich zwischen Titel und Subline - vertikale Balance fehlt",
+        "Subline 'Drei Vorlagen ... Perspektive 2027' unplatzierter Alleingang ohne visuelle Verankerung"
+       ],
+       "fix": "Sidebar-Eintrag in voller Laenge 'Drei Entscheidungen bis 15.02.' ausschreiben und die Subline naeher unter den Titel ruecken, um die Leerraumzone zu schliessen."
+      },
+      {
+       "nr": 10,
+       "muster": "content",
+       "score": 8,
+       "schwaechen": [
+        "Titel lautet 'Drei Entscheidungen', die Folie zeigt jedoch vier Karten – Nummer 4 ist nur ein Ausblick und keine Freigabeentscheidung, was Nummernlogik und Kernaussage bricht",
+        "Karten sind vertikal stark unterfuellt: viel leerer Raum ober- und unterhalb der nur drei Textzeilen, wirkt unausbalanciert",
+        "Karten 1 und 3 heben sich farblich rot/petrol ab, ohne dass die Farblogik erkennbar ist"
+       ],
+       "fix": "Karte 4 als 'Ausblick' klar vom Entscheidungskontext trennen (z.B. optisch abgesetzt oder in die Annahme-Leiste integrieren) und Kartenhoehen straffen, damit keine grossen Leerraumflaechen entstehen"
+      }
+     ]
+    },
+    {
+     "runde": 5,
+     "scores": [
+      {
+       "nr": 1,
+       "muster": "titel",
+       "score": 8,
+       "schwaechen": [
+        "Unterer Bereich wirkt durch die grosse Leerflaeche zwischen Untertitel und Datum etwas unbalanciert",
+        "Sidebar-Inhalt endet hoch, rechte Spalte laesst viel Weiraum unter der Schlagzeile"
+       ],
+       "fix": "Untertitel und Datum enger am Titel bzw. an der unteren Kante ausrichten, um die vertikale Leerzone zu schliessen."
+      },
+      {
+       "nr": 2,
+       "muster": "teil",
+       "score": 8,
+       "schwaechen": [
+        "Sidebar-Unterpunkte sind mit Auslassungszeichen abgeschnitten ('Migrati…', 'und…', 'nachwe…') und damit inhaltlich unlesbar",
+        "Rechte Flaeche wirkt durch die grosse Leerflaeche zwischen Titel und Subline etwas unbalanciert"
+       ],
+       "fix": "Kuerze die Sidebar-Untertitel inhaltlich so, dass sie ohne Auslassungszeichen in eine Zeile passen (z.B. '93 Prozent Migration erreicht')."
+      },
+      {
+       "nr": 3,
+       "muster": "kpi",
+       "score": 8,
+       "schwaechen": [
+        "Rechte Karten sind vertikal zu hoch fuer den sparsamen Inhalt, viel leerer Raum am Kartenunterrand",
+        "Nummern-Badges (1/2) schweben unmittelbar zwischen Titel und Text ohne klare Verankerung, wirken like Deko statt Struktur",
+        "Sidebar unten leerer als oben, KPI-Block sitzt optisch zu hoch"
+       ],
+       "fix": "Rechte Kartenhoehe an Inhalt anpassen und Badges links als Listenmarker buendig mit Titel und Text setzen, damit weniger Leerraum entsteht und die Nummern Struktur statt Zierde sind."
+      },
+      {
+       "nr": 4,
+       "muster": "content",
+       "score": 8,
+       "schwaechen": [
+        "Karten wirken durch viel Leerraum rechts der kurzen Texte unausbalanciert",
+        "Nummer 1 als rotes Akzent-Quadrat ohne erkennbare Systematik (keine andere Karte rot)",
+        "Karten sind sehr hoch fuer nur zwei Textzeilen, Layout wirkt leer"
+       ],
+       "fix": "Kartenhoehe reduzieren und Kernaussagen pro Karte durch eine hervorgehobene Kennzahl (z.B. 99,4 Prozent, 14 P1) ergaenzen, um die Leerraumflaechen inhaltlich zu nutzen."
+      },
+      {
+       "nr": 5,
+       "muster": "kpi",
+       "score": 8,
+       "schwaechen": [
+        "KPI-Karte links ist vertikal stark unterfuellt – grosser Leerraum unter 'Einsparung 2025 belegt' gegenueber kompakten rechten Karten",
+        "Karte 3 hat kein fett hervorgehobenes Label wie Karten 1 und 2, Hierarchie bricht",
+        "Subline mit Bindestrich-Typo ('2025 – Potenzial': ungewoehnlich, klingen wie Gedankenstrich-Fehler)"
+       ],
+       "fix": "KPI-Karte links mit Zusatzkontext (z.B. Vergleichswert Plan/Ist oder Trendpfeil) fuellen und Karte 3 ein fetttes Label ('Controlling-Pruefung') geben, damit alle Karten gleiche Struktur haben."
+      },
+      {
+       "nr": 6,
+       "muster": "teil",
+       "score": 8,
+       "schwaechen": [
+        "Sidebar-Unterpunkte sind mit Auslassungspunkten abgeschnitten ('Roter Altbau-Rueckstand und z…', 'Meilenstein M1 ist kritisch, …'), was wie ein Renderfehler wirkt",
+        "Rechte Haelfte wirkt unterhalb des Untertitels bis 'Teil 02' grosszuegig leer, die Vertikalverteilung ist unruhig"
+       ],
+       "fix": "Kuerze die Sidebar-Unterpunkte auf vollstaendig lesbare, aktive Kurzformen (z.B. 'Roter Altbau-Rueckstand', 'Meilenstein M1 kritisch'), statt mit '…' abzuschneiden."
+      },
+      {
+       "nr": 7,
+       "muster": "tabelle",
+       "score": 7,
+       "schwaechen": [
+        "Letzte Tabellenzeile 'Sicherheitsaudit' ist inhaltlich inkonsistent: gruen, aber Aussage endet unvollstaendig mit 'keine' (gemeint wohl 'keine Massnahme noetig')",
+        "Erste Spaltenzellen wirken links unausbalanciert, da die Spalte 'Risiko' sehr breit mit viel Weißraum rechts",
+        "Ungradlinede Trennlinien der Statusspalte enden nicht sauber an den Zeilenrändern"
+       ],
+       "fix": "Text der letzten Zeile vervollständigen zu 'Planmaessig im Zeitplan; keine Massnahme noetig' und Status-Ampel 'gruen' mit einheitlicher Breite wie 'rot'/'gelb' setzen"
+      },
+      {
+       "nr": 8,
+       "muster": "tabelle",
+       "score": 7,
+       "schwaechen": [
+        "Groesse leerer weisser Raum zwischen Titel und Tabelle wirkt unausgewogen",
+        "Status-Badges mit harten Schatten/3D-Effekt statt flacher Markenoptik",
+        "Tabelle startet sehr weit unten, Headline-Botschaft nicht visuell unterstuetzt (M1 nicht hervorgehoben)",
+        "Statusspalte unnoetig breit gegenueber Inhaltsspalten"
+       ],
+       "fix": "Vertikalen Leerraum zwischen Titel und Tabelle reduzieren, Badges ohne Schatten flach setzen und Zeile M1 (kritisch) mit roter Akzentkante hervorheben, damit die Action-Title-Botschaft visuell traegt."
+      },
+      {
+       "nr": 9,
+       "muster": "teil",
+       "score": 8,
+       "schwaechen": [
+        "Sidebar-Eintrag 10 wird mit Auslassungspunkten abgeschnitten ('Drei Entscheidungen bis 15.02...') statt sinnvoll umzubrechen",
+        "Rechte Haelfte wirkt durch die grosse Leerflaeche zwischen Titel und Teaser etwas unbalanciert"
+       ],
+       "fix": "Sidebar-Eintrag in zwei Zeilen umbrechen (z.B. 'Drei Entscheidungen bis 15.02.'), sodass kein Text mit '...' abgeschnitten wird"
+      },
+      {
+       "nr": 10,
+       "muster": "content",
+       "score": 7,
+       "schwaechen": [
+        "Titel nennt drei Entscheidungen, aber die Folie zeigt vier Karten - Karte 4 (Ausblick 2027) ist keine Entscheidungsvorlage und verwirrt",
+        "Karten sind vertikal stark unterfuellt: Textsch占总 Flaeche nur mittig, grosse leere Raeume oben und unten in jeder Karte",
+        "Textbloecke der vier Karten sitzen auf ungleichen Hoehen (Karte 1 vs. Karte 2), was unruhig wirkt",
+        "Karte 4 mit unsicherem Ausblick (Annahme, nicht final) visuell gleichgewichtig wie die drei Freigaben - Hierarchie fehlt"
+       ],
+       "fix": "Karte 4 aus dem Entscheidungsraster nehmen und als einzeiligen Ausblick-Hinweis unter die Annahme-Leiste setzen; dann drei Karten gleichmaessig formatfuellend ausrichten."
+      }
+     ]
+    },
+    {
+     "runde": 6,
+     "scores": [
+      {
+       "nr": 1,
+       "muster": "titel",
+       "score": 8,
+       "schwaechen": [
+        "Grosse Leerezone in der Bildmitte zwischen Titel und Untertitel brecher die vertikale Balance",
+        "Untertitel und Stand-Zeile haengen optisch lose im unteren Drittel ohne Anker zum Titel",
+        "Agenda links wirkt sehr duenn gegenueber der leeren rechten Flaeche"
+       ],
+       "fix": "Untertitel direkt unter den Titel ziehen und die Stand-Zeile als klaren Fuss unterhalb des Textblocks positionieren, damit die rechte Spalte eine geschlossene Titleinheit bildet."
+      },
+      {
+       "nr": 2,
+       "muster": "teil",
+       "score": 7,
+       "schwaechen": [
+        "Kapitel-Eintraege in der Sidebar mit Auslassungspunkten abgeschnitten ('Migrati…', 'nachwe…') - unleserlich",
+        "Rechte Haelfte unter dem Untertitel grossflaechig leer, unterer Bereich nur mit 'Teil 01' gefuellt",
+        "Sidebar-Inhalte fehlen fuer Kapitel 02 und 03 - inkonsistenter Informationsstand"
+       ],
+       "fix": "Teaser-Texte in der Sidebar so kuerzen, dass sie ohne Auslassungspunkte ganz sichtbar sind, und die untere rechte Flaeche z.B. mit Kapitel-Kennzahl (93%, SLA-Quote) ruhig fuellen."
+      },
+      {
+       "nr": 3,
+       "muster": "kpi",
+       "score": 7,
+       "schwaechen": [
+        "Linke KPI-Karte unten stark leergelaufen (grosser weisser Bereich unter '36 Anschluesse in Klaerung'), rechte Karten wirken dagegen kompakt",
+        "Karten 1 und 2 sind ueberhoehenlos banal: viel Innenraum zwischen Titel und Beschreibung, wirkt unausbalanciert",
+        "Kernaussage des Action Title (93%) redundanterweise nochmal als Groszahl links – kein zusätzlicher Informationswert"
+       ],
+       "fix": "Linken Karteninhalt vertikal zentrieren bzw. Kartenhoehe an Inhalt anpassen, damit keine Leerflaeche unten entsteht, und Innenabstaende der Nummernkarten 1/2 verdichten."
+      },
+      {
+       "nr": 4,
+       "muster": "content",
+       "score": 7,
+       "schwaechen": [
+        "Karten wirken horizontal unausbalanciert: Nummern-Blöcke und Text kleben links, rechte Kartenhaelfte ist grosszuegig Leerraum",
+        "Karten mit nur zwei Textzeilen (2, 3, 5) lassen viel leere Flaeche, kein Editorial-Ausgleich",
+        "Nummern-Kacheln unterschiedlich formatiert (1 rot, Rest petrol) ohne erkennbare logische Begruendung"
+       ],
+       "fix": "Karteninhalte vertikal und horizontal zentrieren bzw. Textspalten breiter setzen und die rote Kachel nur bei echtem Warninhalt (z. B. Verfuegbarkeit unter Ziel) einsetzen, sonst durchgehend petrol."
+      },
+      {
+       "nr": 5,
+       "muster": "kpi",
+       "score": 8,
+       "schwaechen": [
+        "Karte 3 hat keine Ueberschrift wie Karten 1 und 2, bricht das Muster",
+        "Unnummerierte Kernbotschaft '340.000 €' wirkt isoliert, Karte 1 zweiseitig unbalanciert mit viel Leerraum unten",
+        "Karte 2 ohne rote Akzentfarbe, Nummern-Farbpalette (1 rot, 2/3 petrol) ohne erkennbare Logik"
+       ],
+       "fix": "Karte 3 mit Kurzueberschrift ergaenzen und Nummernfarblogik vereinheitlichen; ggf. grosse KPI-Karte mit Verhaeltnis 340k vs. 600k (Zielerreichung ~57%) anreichern, um die Leerflaeche zu nutzen."
+      },
+      {
+       "nr": 6,
+       "muster": "teil",
+       "score": 8,
+       "schwaechen": [
+        "Teasertexte in der Sidebar mit '…' abgeschnitten ('Roter Altbau-Rueckstand und z…')",
+        "Grosser leerer Bereich zwischen Untertitel und 'Teil 02', untere Folienebene wirkt unausbalanciert"
+       ],
+       "fix": "Kuerze die Sidebar-Teasertexte so, dass sie ohne Ellipse in eine Zeile passen, und ziehe den Inhaltsblock vertikal etwas nach unten zur Mitte, um die Leere unter dem Untertitel zu reduzieren."
+      },
+      {
+       "nr": 7,
+       "muster": "tabelle",
+       "score": 7,
+       "schwaechen": [
+        "Unklare Meldung im Titel: 'zwei gelbe Risiken', aber die Tabelle zeigt zwei gelbe, einen roten und einen gruenen Status - der gruenes Audit widerspricht der Gefaehrdungslogik",
+        "Unvollstaendiger Text in letzter Zeile: 'keine' bricht mitten im Satz ab (vermutlich 'keine Massnahmen noetig')",
+        "Umlaute als 'ue/ae' statt korrekt ('Rueckstand', 'gefaehrden', 'Planmaessig') - unprofessionell in einer Vorstandsvorlage",
+        "Status-Pills haben einen Schlagschatten, der nicht zur sonst flachen Card-Optik passt",
+        "Leere Spaltenränder untermText: 'Auswirkung und Massnahme' sehr knapp befüllt, Spalte wirkt leer im Verhältnis zur Breite"
+       ],
+       "fix": "Text der letzten Zeile vervollständigen (z.B. 'keine Massnahme erforderlich') und prüfen, ob gruenes Sicherheitsaudit tatsächlich in den Titel ('zwei gelbe Risiken') passt - sonst Titel anpassen oder gruen als 'auf Kurs' kennzeichnen."
+      },
+      {
+       "nr": 8,
+       "muster": "tabelle",
+       "score": 8,
+       "schwaechen": [
+        "Große Leerraumzone zwischen Titel und Tabelle wirkt unausbalanciert",
+        "Status-Badges nicht zentriert, sondern leicht nach rechts versetzt",
+        "Dunkelblaues 'in arbeit'-Badge bricht aus der Farbpalette (Petrol/Grau/Rot) aus"
+       ],
+       "fix": "Badges in der Statusspalte exakt mittig ausrichten und 'in arbeit' in Petrol statt Dunkelblau darstellen."
+      },
+      {
+       "nr": 9,
+       "muster": "teil",
+       "score": 7,
+       "schwaechen": [
+        "Sidebar-Eintrag 10 mit abgebrochenem Text ('Drei Entscheidungen bis 15.02...') statt vollstaendigem Titel",
+        "Sehr grosse leere Flaeche zwischen Titel und Subline, vertikale Balance fehlt",
+        "Subline 'Drei Vorlagen an den Vorstand und Perspektive 2027' unvollstaendig formuliert gegenueber Action-Title-Niveau"
+       ],
+       "fix": "Sidebar-Eintrag 10 in voller Laenge anzeigen bzw. kurzer fassen ('Drei Entscheidungen bis 15.02.') und Subline ans oberere Drittel ruecken, um die Leere zu reduzieren."
+      },
+      {
+       "nr": 10,
+       "muster": "content",
+       "score": 7,
+       "schwaechen": [
+        "Inhaltlicher Bruch: Action-Title verspricht 'Drei Entscheidungen', die Folie zeigt aber vier Karten – Karte 4 ('Ausblick 2027') ist keine Entscheidungsvorlage und gehoert nicht in das 2x2-Entscheidungsraster",
+        "Ungleiche Gewichtung: Karten 1 und 4 haben drei bzw. zwei Textzeilen, Karten 2 und 3 nur zwei – die vertikale Zentrierung wirkt dadurch leicht unausgeglichen",
+        "Nummerierung 1-4 suggeriert vier gleichrangige Beschlusspunkte, verwirrt aber durch den Titel-Sprech ('Drei Entscheidungen')"
+       ],
+       "fix": "Karte 4 (Ausblick 2027) aus dem Entscheidungsraster entfernen und als separaten Hinweis-Block neben oder unter der Annahme-Leiste platzieren, damit Titel und Inhalt wieder uebereinstimmen (drei Karten = drei Entscheidungen)."
+      }
+     ]
+    }
+   ]
+  },
+  "report": {
+   "status": "ok",
+   "zeit": "2026-11-18T18:27:30Z",
+   "dauer_s": 0.0,
+   "pfad": "studio/runs/20261118-192305-itk-bremen-vorstand-2026/report.md"
+  }
+ },
+ "letzte_aktivitaet": "2026-11-18T18:27:30Z",
+ "briefing": "ITK-Bremen Vorstand 2026",
+ "quelle": "/Users/gemma/gemma-projekte/slideforce/studio/testquelle-itk.md",
+ "min": 8,
+ "max": 12,
+ "weg": "A",
+ "max_fixrunden": 3
+}

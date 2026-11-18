@@ -293,3 +293,38 @@ d) Flask test_client: vorpptx maxfolien=5 -> X-Deck-Folien=5; b28pptx
    aipptx min=6/max=10 -> X-Deck-Folien=7, X-AI-Folien=7 (7/7 KI designt).
 
 Regression: test_smoke.py + test_vorlage.py gruen (ohne Grenzen alles wie bisher).
+
+---
+
+# NACHWEIS 4: Studio Etappe 1 Haertung (429-Behandlung, RunState-Rekonstruktion)
+
+Datum: 18.11.2026 · Projektordner: studio/ (Mini: ~/gemma-projekte/slideforce)
+
+## Befund aus dem echten Run 20261118-192954 (10 Folien, ITK-Bremen)
+- Alle 7 Schritte "ok", aber finale Critic-Scores: 8 8 5 8 8 5 7 7 0 0
+- Folien 9/10 score 0 = GLM HTTP 429 (Z.ai-Kontingent/Stundenlimit,
+  nachweislich reproduziert: Health-Check 3x 429 mit 25/45/60s Backoff)
+- Alle 6 art_repair-Calls None (ebenfalls 429) -> Fix-Schleife brach ab,
+  Run endete als "ok" mit 0-Scores (FEHLVERHALTEN, jetzt behoben)
+
+## Fixes
+- studio/glm.py: _post wirft nach 3x 429 RuntimeError ( statt stummes None );
+  Backoff bei 429 30/45/60s
+- studio/pipeline.py: _kritik_parallel reicht RuntimeError("...429...") weiter
+  (Run bricht sauber ab, resume-bar mit cli --resume) statt 0-Scores;
+  Parallelitaet critic 4->2, repair 3->2 Worker
+- studio/state.py: RunState rekonstruiert (create/open/save/schritt/
+  set_schritt/fertig/artefakt, Slug-Run-ID wie 20261118-192954-itk-...)
+
+## Tests
+- studio/test_state.py: 4 passed (Rundlauf, open-missing, Fehler-Schritt,
+  429-throw mit monkeypatch) - `pytest studio/test_state.py -q` = 4 passed
+- Alle Module importieren: cli/pipeline/roles/render/webop/glm/state OK
+- PPTX aus Run 192954: unzip OK · 10 PNGs gerendert · report.md vorhanden
+
+## NACHTRAG 18.11. (Gate-Findings umgesetzt)
+- studio/state.py: path-Property ergaenzt (tests/test_studio_state.py erwartet es)
+- studio/test_state.py: 429-Test entkoppelt von unversionierter ai-config.json
+  (feste Beispiel-URL statt glm.config())
+- Testlauf BEIDE Dateien: `.venv/bin/pytest tests/test_studio_state.py
+  studio/test_state.py -q` = 9 passed (stark-Tests + meine)

@@ -1,0 +1,1343 @@
+{
+ "id": "20261118-180448-itk-bremen-vorstand-2026",
+ "erstellt": "2026-11-18T17:04:48Z",
+ "schritte": {
+  "director": {
+   "status": "ok",
+   "zeit": "2026-11-18T17:05:02Z",
+   "dauer_s": 13.8,
+   "plan": {
+    "zielgruppe": "Vorstand ITK-Bremen (Entscheidungsgremi-um des Landesnetz-Betriebs)",
+    "anlass": "Vorstandssitzung ITK-Bremen 2026 (Jahresbericht und Entscheidungen Q1)",
+    "kernbotschaft": "Das Landesnetz ist stabil und im Budget, aber drei Entscheidungen muessen jetzt getroffen werden, damit Migration und Betrieb 2026 planmaessig abgeschlossen werden.",
+    "dramaturgie": "Einstieg mit Stolz und Fakten: operative Uebernahme 2025 gemeistert, Kernnetz bei 99,4 Prozent Verfuegbarkeit und 340.000 Euro Einsparung. Dann der Dreh: hinter der stabilen Oberflaeche drohen ein rotes Risiko (11 Altbau-Standorte) und zwei gelbe Risiken (Lieferkette, Personal), die den Zeitplan M1 gefaehrden. Ausklang mit klaren Handlungsaufforderungen: drei konkrete Entscheidungen fuer den Vorstand, davon zwei mit Deadline.",
+    "teile": [
+     "Status 2025: Migration und Betrieb",
+     "Risiken und Kosten 2026",
+     "Entscheidungen des Vorstands"
+    ],
+    "folienzahl": 10,
+    "fokusthemen": [
+     {
+      "thema": "Risiken Zeitplan M1 (Altbau-Standorte, Lieferkette, Personal)",
+      "gewicht": 3
+     },
+     {
+      "thema": "Vorstandsentscheidungen (Ersatzlieferant, Dienstleister, Taskforce)",
+      "gewicht": 3
+     },
+     {
+      "thema": "Betriebsleistung und Verfuegbarkeit (SLA, Tickets)",
+      "gewicht": 2
+     },
+     {
+      "thema": "Budget und Einsparungen (inkl. unpruefter 600k-Hochrechnung)",
+      "gewicht": 2
+     },
+     {
+      "thema": "Migrationsfortschritt Standorte (479/515, Sonderanforderungen)",
+      "gewicht": 2
+     },
+     {
+      "thema": "Meilensteinplan 2026 (M1-M5)",
+      "gewicht": 2
+     }
+    ],
+    "risiken": [
+     "Die 600.000-Euro-Einsparprognose 2027 ist nicht Controlling-geprueft und darf nicht als gesicherte Zahl kommuniziert werden.",
+     "Rotes Risiko Altbau-Standorte koennte als Eskalation verstanden werden - sachlich als beherrschbar mit Taskforce rahmen, ohne zu beschönigen.",
+     "Entscheidungsfrist Ersatzlieferant (15.02.2026) ist kurz - Terminlogik auf der Folie klar machen, sonst wirkt die Empfehlung ueberstürzt.",
+     "Nicht zu viele Kennzahlen auf Betriebsfolien - Vorstand braucht Ampel-Status, nicht Ticketdetailtiefe."
+    ],
+    "editorial_note": "Story Architect: Folie 1 Titel, 2 Standortmigration (Fortschritt + Altbau-Risiko rot markieren), 3 Betrieb (SLA/Tickets), 4 Budget/Kosten inkl. Lieferketten-Mehrkosten, 5 Meilensteinplan M1-M5, 6 Risiken als Ampeluebersicht, 7 Personal, 8 Einsparpotenzial 2027 mit klarer Kennzeichnung 'nicht geprueft', 9-10 Entscheidungsvorlagen mit Deadlines. Art Director: Ampelmetapher konsistent nutzen, Kennzahlen gross und wenige pro Folie, 99,4 vs. 99,5 Prozent zielgruppenadäquat als 'fast im Ziel' visualisieren."
+   }
+  },
+  "story": {
+   "status": "ok",
+   "zeit": "2026-11-18T17:05:58Z",
+   "dauer_s": 56.1,
+   "storyboard": {
+    "deck_titel": "ITK-Bremen: Landesnetz 2026 stabil im Plan - drei Entscheidungen sichern den Abschluss",
+    "untertitel": "Jahresbericht und Entscheidungsvorlagen Q1 2026",
+    "meta": "Stand 18.11.2026 · Vorstand",
+    "annahmen": [
+     "Einsparpotenzial 2027 von rund 600.000 Euro ist eine Hochrechnung der Standardisierungseffekte und noch nicht durch Controlling geprueft",
+     "Bewertung der Verfuegbarkeit 99,4 Prozent als 'fast im Ziel' ist eine redaktionelle Einordnung",
+     "Zuordnung der Risiken zu M1-Gefaehrdung folgt der Dramaturgie des Briefings, nicht explizit aus der Quelle"
+    ],
+    "folien": [
+     {
+      "nr": 1,
+      "rolle": "titel",
+      "titel": "ITK-Bremen: Landesnetz 2026 stabil im Plan - drei Entscheidungen sichern den Abschluss",
+      "untertitel": "Jahresbericht und Entscheidungsvorlagen Q1 2026",
+      "meta": "Stand 18.11.2026 · Vorstand ITK-Bremen"
+     },
+     {
+      "nr": 2,
+      "rolle": "teil",
+      "titel": "Status 2025: Migration und Betrieb"
+     },
+     {
+      "nr": 3,
+      "rolle": "kpi",
+      "titel": "Migration erreicht 93 Prozent - 11 Altbau-Standorte bremsen den Abschluss",
+      "kicker": "STANDORTMIGRATION",
+      "lead": "479 von 515 Standorten angemeldet, Kernnetz-Umstellung seit November 2025 abgeschlossen",
+      "zahl": "93 %",
+      "label": "Standorte angemeldet (479 von 515)",
+      "subs": [
+       [
+        "36",
+        "Standorte in Klaerung"
+       ],
+       [
+        "Q2 2026",
+        "Rest folgt bis"
+       ]
+      ],
+      "punkte": [
+       "WAN-Masterliste: 512 Geraetedatensaetze importiert, Stand 17.11.2025 geprueft",
+       "Sonderanforderungen: 38 Standorte benoetigen Einzelbetreuung wie Vermessungsamt und Hafenlogistik",
+       "Altbau-Risiko (rot): 11 Standorte wegen Leitungsinfrastruktur im Rueckstand"
+      ],
+      "annahmen": [
+       "Darstellung der Altbauten als rot markiertes Hauptrisiko folgt dem Briefing"
+      ]
+     },
+     {
+      "nr": 4,
+      "rolle": "content",
+      "titel": "Betrieb ueberzeugt: SLA vollstaendig eingehalten und 61 Prozent der Tickets automatisch geloest",
+      "kicker": "BETRIEB 2025",
+      "lead": "Verfuegbarkeit Kernnetz bei 99,4 Prozent - knapp unter dem Ziel von 99,5 Prozent",
+      "punkte": [
+       "Verfuegbarkeit: Kernnetz 99,4 Prozent, kein Ausfall laenger als 12 Minuten",
+       "P1-Stoerungen: alle 14 Vorfälle 2025 innerhalb der SLA von 4 Stunden behoben",
+       "Tickets Q4/2025: 1.840 Tickets, davon 61 Prozent automatisch geloest",
+       "Personal im Betrieb: 24 Mitarbeitende ITK-Bremen plus 6 Dienstleister im Einsatz"
+      ],
+      "annahmen": [
+       "Interpretation von 99,4 vs. 99,5 Prozent als 'fast im Ziel' ist redaktionelle Einordnung"
+      ]
+     },
+     {
+      "nr": 5,
+      "rolle": "kpi",
+      "titel": "Budget 2026 bleibt im Rahmen - 340.000 Euro Einsparung stehen 85.000 Euro Lieferketten-Mehrkosten gegenueber",
+      "kicker": "BUDGET UND KOSTEN",
+      "lead": "Budget 2026 von 4,8 Mio Euro, davon 2,49 Mio Euro Personalkosten",
+      "zahl": "340.000 €",
+      "label": "Einsparung gegenueber Plan 2025 durch Standardisierung",
+      "subs": [
+       [
+        "4,8 Mio €",
+        "Budget 2026"
+       ],
+       [
+        "2,49 Mio €",
+        "Personalkosten"
+       ],
+       [
+        "bis 85.000 €",
+        "moegliche Router-Mehrkosten"
+       ]
+      ],
+      "punkte": [
+       "Einsparung: 340.000 Euro gegenueber Plan 2025 durch Standardisierung erzielt",
+       "Lieferkette (gelb): Router-Lieferungen 4 Wochen verzoegert, Mehrkosten bis 85.000 Euro moeglich",
+       "Ersatzlieferant: wird geprueft, Entscheidung dem Vorstand vorgelegt"
+      ],
+      "annahmen": []
+     },
+     {
+      "nr": 6,
+      "rolle": "zeitstrahl",
+      "titel": "Meilensteinplan haelt 2026 - M1 am 31.03.2026 entscheidet ueber den Gesamtzeitplan",
+      "kicker": "ZEITPLAN 2026",
+      "heute": "2026-01-15",
+      "meilensteine": [
+       [
+        "2026-03-31",
+        "M1 Migration Standorte",
+        "kritisch"
+       ],
+       [
+        "2026-04-30",
+        "M2 Testsicherheit Netzersatz",
+        "offen"
+       ],
+       [
+        "2026-06-15",
+        "M3 Sicherheitsaudit",
+        "fertig"
+       ],
+       [
+        "2026-09-30",
+        "M4 Go-Live Cloud-Telefonie",
+        "offen"
+       ],
+       [
+        "2026-12-31",
+        "M5 Abschlussprojekt",
+        "offen"
+       ]
+      ],
+      "annahmen": [
+       "Heutiges Datum als Sitzungsannahme gesetzt"
+      ]
+     },
+     {
+      "nr": 7,
+      "rolle": "tabelle",
+      "titel": "Risikoampel zeigt ein rotes und zwei gelbe Felder - alle drei sind entscheidungsrelevant",
+      "kicker": "RISIKEN 2026",
+      "kopf": [
+       "Risiko",
+       "Status"
+      ],
+      "zeilen": [
+       [
+        "Altbau-Standorte: Verzoegerung 6-8 Wochen droht bei 11 Standorten",
+        "rot"
+       ],
+       [
+        "Lieferkette: Router 4 Wochen verzoegert, Ersatzlieferant geprueft",
+        "gelb"
+       ],
+       [
+        "Personalsuche Netzbetrieb: 2 Stellen offen, Dienstleister kompensiert",
+        "gelb"
+       ],
+       [
+        "Sicherheitsaudit: Vorbereitung im Plan",
+        "gruen"
+       ]
+      ],
+      "annahmen": []
+     },
+     {
+      "nr": 8,
+      "rolle": "content",
+      "titel": "Personal bleibt stabil: Fluktuation sinkt auf 8 Prozent, aber 2 Stellen im Netzbetrieb sind unbesetzt",
+      "kicker": "PERSONAL",
+      "lead": "24 Mitarbeitende und 6 Dienstleister tragen den Netzbetrieb - Kompensation laesst sich nicht dauerhaft halten",
+      "punkte": [
+       "Fluktuation: 8 Prozent, deutlich unter Vorjahreswert von 11 Prozent",
+       "Offene Stellen: 2 Stellen im Netzbetrieb unbesetzt",
+       "Kompensation (gelb): Dienstleister deckt die Luecken im Netzbetrieb"
+      ],
+      "": [
+       ""
+      ],
+      "annahmen": [
+       "Bewertung der Kompensation als nicht dauerhaft tragfaehig ist Interpretation"
+      ]
+     },
+     {
+      "nr": 9,
+      "rolle": "content",
+      "titel": "Einsparpotenzial 2027 von rund 600.000 Euro ist vielversprechend, aber noch nicht durch Controlling geprueft",
+      "kicker": "AUSBLICK 2027 - NICHT GEPRUEFT",
+      "lead": "Hochrechnung der Standardisierungseffekte - ausdruecklich als nicht final belegt gekennzeichnet",
+      "punkte": [
+       "Basis: Fortfuehrung der Standardisierungseffekte, die 2025 bereits 340.000 Euro Einsparung erbracht haben",
+       "Stand: rund 600.000 Euro Hochrechnung, Pruefung durch Controlling noch ausstehend",
+       "Konsequenz: keine Budgetzusage fuer 2027 auf Basis dieser Zahl ableiten"
+      ],
+      "annahmen": [
+       "Einsparpotenzial 2027 von rund 600.000 Euro beruht auf Hochrechnung und ist nicht durch Controlling geprueft - darf nicht als Fakt kommuniziert werden"
+      ]
+     },
+     {
+      "nr": 10,
+      "rolle": "statement",
+      "titel": "Drei Entscheidungen jetzt - zwei mit Deadline - sichern Migration und Betrieb 2026",
+      "botschaft": "Der Vorstand sollte Ersatzlieferant, Dienstleisterverlaengerung und Altbau-Taskforce in dieser Sitzung beschliessen.",
+      "zusatz": "1) Freigabe Ersatzlieferant Router bis 15.02.2026 - 2) Verlaengerung Dienstleistervertrag Netzbetrieb um 12 Monate - 3) Taskforce fuer 11 Altbau-Standorte mit 3 Personen und 10 Wochen Laufzeit"
+     }
+    ]
+   }
+  },
+  "art": {
+   "status": "ok",
+   "zeit": "2026-11-18T17:09:26Z",
+   "design": {
+    "designsystem": {
+     "leitidee": "Helle, ruhige Vorstandsvorlage im Dataport-Markenlook: Petrol strukturiert, Rot setzt nur Entscheidungsbetonung, Weiss und Karten schaffen Luft.",
+     "prinzipien": [
+      "Petrol fuer Kennzahlen und Leads, Dunkelgrau fuer Aussagen, Rot sparsam nur fuer Entscheidungs- und Risiko-Betonung",
+      "Action Titles als vollstaendige Aussagen, max 48 Zeichen bei gesetztem lead",
+      "Hinweis-Baender in Gold fuer Kennzeichnung ungepruefter Zahlen und Annahmen"
+     ]
+    },
+    "folien": [
+     {
+      "kind": "title",
+      "title": "ITK-Bremen: Landesnetz 2026 stabil im Plan",
+      "subtitle": "Jahresbericht und Entscheidungsvorlagen Q1 2026 - drei Entscheidungen sichern den Abschluss",
+      "meta": "Stand 18.11.2026 · Vorstand ITK-Bremen",
+      "teile": [
+       "01|Status 2025",
+       "02|Risiken & Entscheidungen"
+      ]
+     },
+     {
+      "kind": "section",
+      "title": "Status 2025: Migration und Betrieb",
+      "subtitle": "479 Standorte migriert, Kernnetz stabil, Budget im Rahmen",
+      "meta": "Teil 01"
+     },
+     {
+      "kind": "content",
+      "title": "93 Prozent migriert - Altbauten bremsen",
+      "subtitle": "None",
+      "meta": "None",
+      "kicker": "STANDORTMIGRATION",
+      "lead": "479 von 515 Standorten angemeldet, Kernnetz umgestellt seit 11.2025",
+      "botschaft": "None",
+      "zusatz": "None",
+      "hinweis": "Risiko: 11 Altbau-Standorte als Hauptrisiko rot markiert",
+      "bullets": [
+       [
+        0,
+        "36|Standorte in Klaerung"
+       ],
+       [
+        0,
+        "Q2 2026|Rest folgt bis"
+       ],
+       [
+        0,
+        "WAN-Masterliste: 512 Geraetedatensaetze importiert (Stand 17.11.2025)"
+       ],
+       [
+        0,
+        "Sonderanforderungen: 38 Standorte benoetigen Einzelbetreuung (u. a. Vermessungsamt, Hafenlogistik)"
+       ],
+       [
+        0,
+        "**Altbau-Risiko:** 11 Standorte wegen Leitungsinfrastruktur im Rueckstand"
+       ]
+      ],
+      "zahl": "93 %",
+      "label": "Standorte angemeldet (479 von 515)",
+      "notes": "Altbauten als rotes Hauptrisiko gemaess Briefing dargestellt."
+     },
+     {
+      "kind": "content",
+      "title": "SLA knapp verfehlt: 99,4 statt 99,5 Prozent",
+      "subtitle": "Verfuegbarkeit Kernnetz unter Zielwert - alle P1-Stoerungen im SLA",
+      "meta": "Betrieb 2025",
+      "kicker": "BETRIEB 2025",
+      "lead": "Verfuegbarkeit Kernnetz 99,4 Prozent - knapp unter dem Ziel von 99,5 Prozent",
+      "botschaft": "None",
+      "zusatz": "None",
+      "hinweis": "Ursache: geplante Wartungsfenster im Q3 nicht vollstaendig als geplant gekennzeichnet",
+      "bullets": [
+       [
+        0,
+        "Ziel 99,5 %|Verfehlung um 0,1 Prozentpunkt"
+       ],
+       [
+        0,
+        "12 Min.|laengster Einzelausfall 2025"
+       ],
+       [
+        0,
+        "P1: 14|alle innerhalb 4 Std. geloest"
+       ]
+      ],
+      "zahl": "99,4 %",
+      "label": "Verfuegbarkeit Kernnetz (Ziel: 99,5 %)",
+      "notes": "99,4 vs. 99,5 Prozent als 'fast im Ziel' ist redaktionelle Einordnung. 1.840 Tickets Q4/2025, 61 Prozent automatisch geloest; 24 Mitarbeitende plus 6 Dienstleister im Betrieb."
+     },
+     {
+      "kind": "content",
+      "title": "Budget 2026 im Rahmen gehalten",
+      "subtitle": "None",
+      "meta": "None",
+      "kicker": "BUDGET UND KOSTEN",
+      "lead": "Budget 2026: 4,8 Mio Euro gesamt, davon 2,49 Mio Euro Personalkosten",
+      "botschaft": "None",
+      "zusatz": "None",
+      "hinweis": "Risiko: Budget nur unter Vorbehalt - Router-Mehrkosten bis 85.000 Euro noch offen",
+      "bullets": [
+       [
+        0,
+        "Budget gesamt: 4,8 Mio Euro, davon 2,49 Mio Euro Personalkosten"
+       ],
+       [
+        0,
+        "Einsparung: 340.000 Euro gegenueber Plan 2025 durch Standardisierung"
+       ],
+       [
+        0,
+        "Risiko Lieferkette: Router-Lieferungen 4 Wochen verzoegert, Mehrkosten bis 85.000 Euro moeglich"
+       ],
+       [
+        0,
+        "Ersatzlieferant: wird geprueft, Entscheidung dem Vorstand vorgelegt"
+       ]
+      ],
+      "notes": "Einsparung 340.000 Euro durch Standardisierung gegenueber Plan 2025."
+     },
+     {
+      "kind": "content",
+      "title": "Meilensteinplan haelt - M1 entscheidet",
+      "subtitle": "None",
+      "meta": "None",
+      "kicker": "ZEITPLAN 2026",
+      "lead": "M1 am 31.03.2026 entscheidet ueber den Gesamtzeitplan 2026",
+      "botschaft": "None",
+      "zusatz": "None",
+      "hinweis": "None",
+      "zeitstrahl": [
+       [
+        "2026-03-31",
+        "M1 Migration",
+        "kritisch"
+       ],
+       [
+        "2026-06-15",
+        "M3 Audit",
+        "fertig"
+       ],
+       [
+        "2026-09-30",
+        "M4 Cloud",
+        "offen"
+       ],
+       [
+        "2026-12-31",
+        "M5 Abschluss",
+        "offen"
+       ]
+      ],
+      "heute": "2026-01-15",
+      "notes": "M2 Netzersatz (30.04.2026, offen) im Sprechnotiz-Kontext erwaehnen; Heutiges Datum als Sitzungsannahme gesetzt."
+     },
+     {
+      "kind": "content",
+      "title": "Drei Risiken entscheidungsrelevant",
+      "subtitle": "None",
+      "meta": "None",
+      "kicker": "RISIKEN 2026",
+      "lead": "Ein rotes und zwei gelbe Felder verweisen auf die Abschlussfolie",
+      "botschaft": "None",
+      "zusatz": "None",
+      "hinweis": "Entscheidung: Alle drei auffaelligen Risiken verweisen auf die Freigaben der Abschlussfolie.",
+      "bullets": [
+       [
+        0,
+        "Altbau-Standorte: Verzoegerung 6-8 Wochen - rot, entscheidungsrelevant"
+       ],
+       [
+        0,
+        "Lieferkette: Router-Verzoegerung 4 Wochen - gelb, kritisch zu beobachten"
+       ],
+       [
+        0,
+        "Personalsuche: 2 Stellen offen - gelb, Massnahmen laufen"
+       ],
+       [
+        0,
+        "Sicherheitsaudit: Vorbereitung on track - gruen, kein Handlungsbedarf"
+       ]
+      ],
+      "notes": "Alle drei Risiko-Positionen verweisen auf die Entscheidungen der Abschlussfolie."
+     },
+     {
+      "kind": "content",
+      "title": "Personal stabil - 2 Stellen unbesetzt",
+      "subtitle": "None",
+      "meta": "None",
+      "kicker": "PERSONAL",
+      "lead": "24 Mitarbeitende und 6 Dienstleister tragen den Netzbetrieb.",
+      "botschaft": "None",
+      "zusatz": "None",
+      "hinweis": "Bewertung der Kompensation als nicht dauerhaft tragfaehig ist Interpretation.",
+      "bullets": [
+       [
+        0,
+        "Fluktuation: **8 Prozent**, deutlich unter Vorjahreswert von 11 Prozent"
+       ],
+       [
+        0,
+        "Offene Stellen: 2 Stellen im Netzbetrieb unbesetzt"
+       ],
+       [
+        0,
+        "Kompensation: Dienstleister deckt die Luecken im Netzbetrieb"
+       ],
+       [
+        0,
+        "Bewertung: Kompensation als **nicht dauerhaft tragfaehig** eingestuft"
+       ]
+      ],
+      "notes": "Bewertung der Kompensation als nicht dauerhaft tragfaehig ist Interpretation."
+     },
+     {
+      "kind": "content",
+      "title": "Potenzial 2027 noch nicht belegt",
+      "subtitle": "None",
+      "meta": "None",
+      "kicker": "AUSBLICK 2027 - NICHT GEPRUEFT",
+      "lead": "Hochrechnung der Standardisierungseffekte - nicht final gekennzeichnet",
+      "botschaft": "None",
+      "zusatz": "None",
+      "hinweis": "Nicht geprueft: 600.000 Euro sind Hochrechnung, kein belegter Wert",
+      "bullets": [
+       [
+        0,
+        "340.000|2025 bereits erbracht"
+       ],
+       [
+        0,
+        "0 %|Controlling-Pruefung erledigt"
+       ],
+       [
+        0,
+        "Basis: Fortfuehrung der Standardisierung 2025"
+       ],
+       [
+        0,
+        "Konsequenz: keine Budgetzusage 2027 auf dieser Zahl"
+       ]
+      ],
+      "zahl": "600.000 €",
+      "label": "Hochrechnung 2027 - nicht belegt",
+      "notes": "Zahl darf nicht als Fakt kommuniziert werden."
+     },
+     {
+      "kind": "content",
+      "title": "Drei Freigaben sichern 2026",
+      "subtitle": "None",
+      "meta": "None",
+      "kicker": "ENTSCHEIDUNGSVORLAGE",
+      "lead": "Alle drei Beschluesse werden in dieser Sitzung gefasst.",
+      "botschaft": "None",
+      "zusatz": "None",
+      "hinweis": "Prioritaet: Ersatzlieferant bis 15.02.2026",
+      "bullets": [
+       [
+        0,
+        "Ersatzlieferant: Freigabe Router-Beschaffung bis 15.02.2026"
+       ],
+       [
+        0,
+        "Dienstleister: Verlaengerung Netzbetrieb um 12 Monate"
+       ],
+       [
+        0,
+        "Altbau: Taskforce fuer 11 Altanlagen mit klarem Mandat"
+       ],
+       [
+        0,
+        "Deadline: Zwei von drei Beschluesse zeitkritisch"
+       ]
+      ],
+      "notes": "Zwei der drei Entscheidungen mit Deadline (Ersatzlieferant bis 15.02.2026)."
+     }
+    ]
+   }
+  },
+  "build": {
+   "status": "ok",
+   "zeit": "2026-11-18T17:09:28Z",
+   "dauer_s": 2.0,
+   "pptx": "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-180448-itk-bremen-vorstand-2026/deck.pptx",
+   "folien": 10,
+   "warnungen": [],
+   "slides": [
+    {
+     "kind": "title",
+     "title": "ITK-Bremen: Landesnetz 2026 stabil im Plan",
+     "subtitle": "Jahresbericht und Entscheidungsvorlagen Q1 2026 - drei Entscheidungen sichern den Abschluss",
+     "meta": "Stand 18.11.2026 · Vorstand ITK-Bremen",
+     "kicker": "None",
+     "lead": "None",
+     "botschaft": "None",
+     "zusatz": "None",
+     "hinweis": "None",
+     "teile": [
+      "01|Status 2025",
+      "02|Risiken & Entscheidungen"
+     ]
+    },
+    {
+     "kind": "section",
+     "title": "Status 2025: Migration und Betrieb",
+     "subtitle": "479 Standorte migriert, Kernnetz stabil, Budget im Rahmen",
+     "meta": "Teil 01",
+     "kicker": "None",
+     "lead": "None",
+     "botschaft": "None",
+     "zusatz": "None",
+     "hinweis": "None"
+    },
+    {
+     "kind": "content",
+     "title": "93 Prozent migriert - Altbauten bremsen",
+     "subtitle": "None",
+     "meta": "None",
+     "kicker": "STANDORTMIGRATION",
+     "lead": "479 von 515 Standorten angemeldet, Kernnetz-Umstellung seit November 2025 abgesc",
+     "botschaft": "None",
+     "zusatz": "None",
+     "hinweis": "Risiko: 11 Altbau-Standorte rot markiert als Hauptrisiko (Briefing-Dramaturgie)",
+     "bullets": [
+      [
+       0,
+       "36|Standorte in Klaerung"
+      ],
+      [
+       0,
+       "Q2 2026|Rest folgt bis"
+      ],
+      [
+       0,
+       "WAN-Masterliste: 512 Geraetedatensaetze importiert, geprueft Stand 17.11.2025"
+      ],
+      [
+       0,
+       "Sonderanforderungen: 38 Standorte benoetigen Einzelbetreuung wie Vermessungsamt und Hafenlogistik"
+      ],
+      [
+       0,
+       "**Altbau-Risiko:** 11 Standorte wegen Leitungsinfrastruktur im Rueckstand"
+      ]
+     ],
+     "zahl": "93 %",
+     "label": "Standorte angemeldet (479 von 515)",
+     "notes": "Altbauten als rotes Hauptrisiko gemaess Briefing dargestellt."
+    },
+    {
+     "kind": "content",
+     "title": "SLA vollstaendig eingehalten",
+     "subtitle": "None",
+     "meta": "None",
+     "kicker": "BETRIEB 2025",
+     "lead": "Verfuegbarkeit Kernnetz bei 99,4 Prozent - knapp unter dem Ziel von 99,5 Prozent",
+     "botschaft": "None",
+     "zusatz": "None",
+     "hinweis": "None",
+     "bullets": [
+      [
+       0,
+       "**Verfuegbarkeit:** Kernnetz 99,4 Prozent, kein Ausfall laenger als 12 Minuten"
+      ],
+      [
+       0,
+       "P1-Stoerungen: alle 14 Vorfuelle 2025 innerhalb der SLA von 4 Stunden behoben"
+      ],
+      [
+       0,
+       "Tickets Q4/2025: 1.840 Tickets, davon **61 Prozent automatisch geloest**"
+      ],
+      [
+       0,
+       "Personal im Betrieb: 24 Mitarbeitende ITK-Bremen plus 6 Dienstleister im Einsatz"
+      ]
+     ],
+     "notes": "99,4 vs. 99,5 Prozent als 'fast im Ziel' ist redaktionelle Einordnung."
+    },
+    {
+     "kind": "content",
+     "title": "Budget 2026 im Rahmen gehalten",
+     "subtitle": "None",
+     "meta": "None",
+     "kicker": "BUDGET UND KOSTEN",
+     "lead": "Budget 2026 von 4,8 Mio Euro, davon 2,49 Mio Euro Personalkosten",
+     "botschaft": "None",
+     "zusatz": "None",
+     "hinweis": "None",
+     "bullets": [
+      [
+       0,
+       "4,8 Mio €|Budget 2026"
+      ],
+      [
+       0,
+       "bis 85.000 €|moegliche Router-Mehrkosten"
+      ],
+      [
+       0,
+       "Lieferkette (gelb): Router-Lieferungen 4 Wochen verzoegert, Mehrkosten bis 85.000 Euro moeglich"
+      ],
+      [
+       0,
+       "Ersatzlieferant: wird geprueft, Entscheidung dem Vorstand vorgelegt"
+      ]
+     ],
+     "zahl": "340.000 €",
+     "label": "Einsparung gegenueber Plan 2025 durch St",
+     "notes": "Einsparung 340.000 Euro durch Standardisierung gegenueber Plan 2025."
+    },
+    {
+     "kind": "content",
+     "title": "Meilensteinplan haelt - M1 entscheidet",
+     "subtitle": "None",
+     "meta": "None",
+     "kicker": "ZEITPLAN 2026",
+     "lead": "M1 am 31.03.2026 entscheidet ueber den Gesamtzeitplan 2026",
+     "botschaft": "None",
+     "zusatz": "None",
+     "hinweis": "None",
+     "zeitstrahl": [
+      [
+       "2026-03-31",
+       "M1 Migration",
+       "kritisch"
+      ],
+      [
+       "2026-04-30",
+       "M2 Netzersatz",
+       "offen"
+      ],
+      [
+       "2026-06-15",
+       "M3 Audit",
+       "fertig"
+      ],
+      [
+       "2026-09-30",
+       "M4 Cloud-Tel.",
+       "offen"
+      ],
+      [
+       "2026-12-31",
+       "M5 Abschluss",
+       "offen"
+      ]
+     ],
+     "heute": "2026-01-15",
+     "notes": "Heutiges Datum als Sitzungsannahme gesetzt."
+    },
+    {
+     "kind": "content",
+     "title": "Ein rotes, zwei gelbe Felder",
+     "subtitle": "None",
+     "meta": "None",
+     "kicker": "RISIKEN 2026",
+     "lead": "Alle drei auffaelligen Risiken sind entscheidungsrelevant",
+     "botschaft": "None",
+     "zusatz": "None",
+     "hinweis": "None",
+     "table": [
+      [
+       "Risiko",
+       "Status"
+      ],
+      [
+       "Altbau-Standorte: 6-8 Woch",
+       "rot"
+      ],
+      [
+       "Lieferkette: Router 4 Woch",
+       "gelb"
+      ],
+      [
+       "Personalsuche: 2 Stellen o",
+       "gelb"
+      ],
+      [
+       "Sicherheitsaudit: Vorberei",
+       "gruen"
+      ]
+     ],
+     "notes": "Alle drei Risiko-Positionen verweisen auf die Entscheidungen der Abschlussfolie."
+    },
+    {
+     "kind": "content",
+     "title": "Personal stabil - 2 Stellen unbesetzt",
+     "subtitle": "None",
+     "meta": "None",
+     "kicker": "PERSONAL",
+     "lead": "24 Mitarbeitende und 6 Dienstleister tragen den Netzbetrieb - Kompensation nicht",
+     "botschaft": "None",
+     "zusatz": "None",
+     "hinweis": "None",
+     "bullets": [
+      [
+       0,
+       "Fluktuation: **8 Prozent**, deutlich unter Vorjahreswert von 11 Prozent"
+      ],
+      [
+       0,
+       "Offene Stellen: 2 Stellen im Netzbetrieb unbesetzt"
+      ],
+      [
+       0,
+       "Kompensation (gelb): Dienstleister deckt die Luecken im Netzbetrieb"
+      ]
+     ],
+     "notes": "Bewertung der Kompensation als nicht dauerhaft tragfaehig ist Interpretation."
+    },
+    {
+     "kind": "content",
+     "title": "Potenzial 2027 noch nicht belegt",
+     "subtitle": "None",
+     "meta": "None",
+     "kicker": "AUSBLICK 2027 - NICHT GEPRUEFT",
+     "lead": "Hochrechnung der Standardisierungseffekte - ausdruecklich als nicht final gekenn",
+     "botschaft": "None",
+     "zusatz": "None",
+     "hinweis": "Nicht geprueft: 600.000 Euro sind Hochrechnung, kein belegter Wert",
+     "bullets": [
+      [
+       0,
+       "Basis: Fortfuehrung der Standardisierung, 2025 bereits 340.000 Euro Einsparung erbracht"
+      ],
+      [
+       0,
+       "Stand: rund 600.000 Euro Hochrechnung, **Controlling-Pruefung noch ausstehend**"
+      ],
+      [
+       0,
+       "Konsequenz: keine Budgetzusage fuer 2027 auf Basis dieser Zahl ableiten"
+      ]
+     ],
+     "notes": "Zahl darf nicht als Fakt kommuniziert werden."
+    },
+    {
+     "kind": "content",
+     "title": "Drei Entscheidungen sichern 2026",
+     "subtitle": "None",
+     "meta": "None",
+     "kicker": "ENTSCHEIDUNGSVORLAGE",
+     "lead": "None",
+     "botschaft": "Der Vorstand sollte Ersatzlieferant, Dienstleisterverlaengerung und Altbau-Taskforce in dieser Sitzung beschliessen.",
+     "zusatz": "1) Freigabe Ersatzlieferant Router bis 15.02.2026 · 2) Verlaengerung Dienstleistervertrag Netzbetrieb um 12 Monate · 3) Taskforce fuer 11 Al",
+     "hinweis": "None",
+     "notes": "Zwei der drei Entscheidungen mit Deadline (Ersatzlieferant bis 15.02.2026)."
+    }
+   ]
+  },
+  "render": {
+   "status": "ok",
+   "zeit": "2026-11-18T17:09:28Z",
+   "pdf": "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-180448-itk-bremen-vorstand-2026/render/deck.pdf",
+   "pngs": [
+    "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-180448-itk-bremen-vorstand-2026/render/folie-01.png",
+    "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-180448-itk-bremen-vorstand-2026/render/folie-02.png",
+    "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-180448-itk-bremen-vorstand-2026/render/folie-03.png",
+    "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-180448-itk-bremen-vorstand-2026/render/folie-04.png",
+    "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-180448-itk-bremen-vorstand-2026/render/folie-05.png",
+    "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-180448-itk-bremen-vorstand-2026/render/folie-06.png",
+    "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-180448-itk-bremen-vorstand-2026/render/folie-07.png",
+    "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-180448-itk-bremen-vorstand-2026/render/folie-08.png",
+    "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-180448-itk-bremen-vorstand-2026/render/folie-09.png",
+    "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-180448-itk-bremen-vorstand-2026/render/folie-10.png"
+   ]
+  },
+  "critic": {
+   "status": "ok",
+   "zeit": "2026-11-18T17:09:40Z",
+   "runden": [
+    {
+     "runde": 1,
+     "scores": [
+      {
+       "nr": 1,
+       "muster": "statement",
+       "score": 8,
+       "schwaechen": [
+        "Titel und Untertitel wählen identische Schriftgroesse-Naehe, Hierarchie des Untertitels zu schwach ausgepraegt",
+        "Untertitel-Zeile beginnt mit Minuszeichen '- drei Entscheidungen...', typografisch unschoen",
+        "Grosser leerer Zwischenraum zwischen Titel und Untertitel unbalanciert"
+       ],
+       "fix": "Untertitel groessenmaessig klar vom Action-Title absetzen und das fuehrende '-' streichen ('Drei Entscheidungen sichern den Abschluss')."
+      },
+      {
+       "nr": 2,
+       "muster": "statement",
+       "score": 8,
+       "schwaechen": [
+        "Mehrere Inhalts-Eintraege mit Ellipsen abgeschnitten ('Altbau...', 'M1 en...', '2 Stellen u...', 'noch nicht bel...', 'sichern 2...') - unvollstaendige ToC-Wirkt unprofessionell",
+        "Typos in der Sidebar ('Meilensteinplan haelst'-Stil: 'haelt' ohne korrektes ae/ue-Bild, 'Budget ... gehalten' ok, aber 'Potenzial 2027' unklar)",
+        "Untere Haelfte der Sidebar leer, vertikale Balance der ToC-Liste irritiert",
+        "Subline-Abstand zur grossen Leerraumflaeche zwischen Titel und Keyline unruhig"
+       ],
+       "fix": "Sidebar-Eintraege vollstaendig in einem Satz formulieren (keine Ellipsen, z.B. '93 Prozent migriert - Altbaufunktion eingestellt') und Liste vertikal in der Sidebar zentrieren."
+      },
+      {
+       "nr": 3,
+       "muster": "statement",
+       "score": 3,
+       "schwaechen": [
+        "Zwei unrenderierte Platzhalter 'None' statt Inhalt – Hauptkarte ist leer und überfastiniert",
+        "Zweizeiler/Untertitel am Wort 'abgesc' abgeschnitten",
+        "Riesige leere Fläche in der Kartenmitte – keine Visualisierung der 36 verbleibenden Altbau-Standorte"
+       ],
+       "fix": "'None'-Platzhalter durch Inhalt ersetzen: Kernzahl (93%) bzw. Fortschritts-/Restmengen-Visual der 36 Altbau-Standorte in die Karte setzen und Untertitelzeile vollständig ausschreiben ('abgeschlossen')."
+      },
+      {
+       "nr": 4,
+       "muster": "statement",
+       "score": 4,
+       "schwaechen": [
+        "Action-Title 'SLA vollstaendig eingehalten' widerspricht dem Inhalt: 99,4 Prozent liegt UNTER dem Ziel von 99,5 Prozent",
+        "Unformatierter Platzhalter 'None' als grosser Card-Titel und in Hinweisbox sichtbar",
+        "Leere grosse Fläche ohne Inhalt im Hauptkartenbereich",
+        "Kicker 'None' ohne Aussage unterhalb der Karte"
+       ],
+       "fix": "Titel auf den tatsächlichen Befund korrigieren (z. B. 'Kernnetz-Verfügbarkeit knapp unter SLA-Ziel') und die None-Platzhalter durch echte Kennzahlen/Status sowie einen konkreten Hinweis ersetzen."
+      },
+      {
+       "nr": 5,
+       "muster": "statement",
+       "score": 3,
+       "schwaechen": [
+        "Platzhalter-Fehler: 'None' erscheint dreimal (Kartentitel, Subzeile, Hinweis) statt echter Inhalte",
+        "Inhaltkarte ist fast komplett leer - riesige ungenutzte Flaeche",
+        "Hinweisbox ohne echten Hinweis ist redundant"
+       ],
+       "fix": "Die None-Platzhalter durch echte Inhalte ersetzen: Kartentitel (z.B. 'Budgetaufteilung 2026'), konkrete Budgetkennzahlen/Grafik in der Karte, Subzeile entfernen oder beschriften und Hinweisbox nur bei vorhandenem Hinweis rendern."
+      },
+      {
+       "nr": 6,
+       "muster": "zeitstrahl",
+       "score": 5,
+       "schwaechen": [
+        "Hinweis-Box zeigt literalen 'None'-Wert - Datenfehler, wirkt kaputt",
+        "HEUTE-Label kollidiert mit linker Balken-Graphik und Label 'M1 Migration'/Q2 26 ueberlappen am linken Rand",
+        "30.04.26-Label sitzt unterhalb der Kurve, Inkonsistenz zu den anderen Daten-Labels oberhalb",
+        "Untere Folienviertel leer/unausbalanciert, Timeline-Spanne fast ohne Inhalt",
+        "'HEUTE' leicht vom Rand abgeschnitten"
+       ],
+       "fix": "Hinweis-Box entweder mit echtem Hinweistext befuellen oder entfernen; alle Daten-Labels einheitlich positionieren und linke Rand-Kollision (HEUTE, M1 Migration, Q2 26) aufloesen."
+      },
+      {
+       "nr": 7,
+       "muster": "tabelle",
+       "score": 5,
+       "schwaechen": [
+        "Abschnittstexte sind abgeschnitten ('6-8 Woch', 'Router 4 Woch', '2 Stellen o', 'Vorberei')",
+        "Vier Tabellenzeilen, aber Titel behauptet 'ein rotes, zwei gelbe' - gruen-Zeile und Viertel-Zeile widersprechen der Aussage",
+        "Hinweisfeld zeigt literal 'None' - Platzhalterfehler",
+        "Statuszeile 'gruen' widerspricht dem Untertitel 'Alle drei auffaelligen Risiken'"
+       ],
+       "fix": "Kurzbeschreibungen vollstaendig ausschreiben (nicht abschneiden), Tabellenzeilen auf die drei genannten Risiken reduzieren und 'None' im Hinweis durch echten Inhalt ersetzen oder Box entfernen"
+      },
+      {
+       "nr": 8,
+       "muster": "statement",
+       "score": 3,
+       "schwaechen": [
+        "Drei unformatierte 'None'-Platzhalter im Inhalt (Karten-Titel, Subtext, Hinweis) statt echter Inhalte",
+        "Inhaltskarte ist fast vollstaendig leer - riesige ungenutzte Flaeche",
+        "Hinweis-Box enthaelt nur 'None', kein echter Hinweistext"
+       ],
+       "fix": "Die None-Platzhalter durch echte Inhalte ersetzen: Karten-Titel z.B. 'Personalstand & offene Stellen', Kennzahlen (24 Mitarbeitende, 6 Dienstleister, 2 unbesetzte Stellen) als KPI-Darstellung in der Karte fuellen und Hinweis-Box entweder mit substantiellem Hinweis befuellen oder vollstaendig entfernen."
+      },
+      {
+       "nr": 9,
+       "muster": "statement",
+       "score": 4,
+       "schwaechen": [
+        "Literal 'None' als Karten-Titel und als Fliesstext unten - ungerenderte Platzhalterdaten statt Inhalt",
+        "Riesige leere Kartenflaeche mit einem einzigen Wort - kein Inhalt, keine Struktur",
+        "Untertitel endet abgebrochen ('...nicht final gekenn')",
+        "Karte weitgehend leer, ungünstiges Größenverhältnis zu Inhalt"
+       ],
+       "fix": "Platzhalter 'None' durch echte Inhalte ersetzen: Karten-Titel (z.B. 'Hochrechnung 2027') plus 2-3 Kennzahlen-/Begruendungspunkte, Untertitel vollständig ausschreiben ('...nicht final gekennzeichnet'), leere Fläche durch kompaktere Karte auflösen."
+      },
+      {
+       "nr": 10,
+       "muster": "statement",
+       "score": 6,
+       "schwaechen": [
+        "Literal 'None' als Kicker- und Hinweis-Text gerendert - unfehlbare Platzhalter-Reste wirken kaputt",
+        "Kernkarte mit grosser leerer Flaeche unter dem Statement - unbalanciert",
+        "Hinweisbox komplett inhaltsleer"
+       ],
+       "fix": "Kicker und Hinweis mit echten Inhalten fuellen (Thema/Quelle bzw. konkreter Hinweis statt None) und Karte hoeher schliessen oder mit Sub-Bullets fuellen."
+      }
+     ]
+    },
+    {
+     "runde": 2,
+     "scores": [
+      {
+       "nr": 1,
+       "muster": "statement",
+       "score": 8,
+       "schwaechen": [
+        "Titel und Untertitel wählen identische Schriftgroesse-Naehe, Hierarchie des Untertitels zu schwach ausgepraegt",
+        "Untertitel-Zeile beginnt mit Minuszeichen '- drei Entscheidungen...', typografisch unschoen",
+        "Grosser leerer Zwischenraum zwischen Titel und Untertitel unbalanciert"
+       ],
+       "fix": "Untertitel groessenmaessig klar vom Action-Title absetzen und das fuehrende '-' streichen ('Drei Entscheidungen sichern den Abschluss')."
+      },
+      {
+       "nr": 2,
+       "muster": "statement",
+       "score": 8,
+       "schwaechen": [
+        "Mehrere Inhalts-Eintraege mit Ellipsen abgeschnitten ('Altbau...', 'M1 en...', '2 Stellen u...', 'noch nicht bel...', 'sichern 2...') - unvollstaendige ToC-Wirkt unprofessionell",
+        "Typos in der Sidebar ('Meilensteinplan haelst'-Stil: 'haelt' ohne korrektes ae/ue-Bild, 'Budget ... gehalten' ok, aber 'Potenzial 2027' unklar)",
+        "Untere Haelfte der Sidebar leer, vertikale Balance der ToC-Liste irritiert",
+        "Subline-Abstand zur grossen Leerraumflaeche zwischen Titel und Keyline unruhig"
+       ],
+       "fix": "Sidebar-Eintraege vollstaendig in einem Satz formulieren (keine Ellipsen, z.B. '93 Prozent migriert - Altbaufunktion eingestellt') und Liste vertikal in der Sidebar zentrieren."
+      },
+      {
+       "nr": 3,
+       "muster": "statement",
+       "score": 3,
+       "schwaechen": [
+        "Zweimal Platzhaltertext 'None' (Karten-Headline und Zeile darunter) statt echter Inhalte",
+        "Subline endet abrupt mit 'abgesc' - abgeschnittener Text",
+        "Hauptkarte ist fast komplett leer, riesige ungenutzte Flaeche ohne visuelle Substanz (z.B. Fortschritts-KPI oder Statusliste)",
+        "Kein Visual/Datum zur Kernnetz-Umstellung, Aussage bleibt unbelegt"
+       ],
+       "fix": "Platzhalter 'None' durch echte Inhalte ersetzen (Karten-Headline z.B. '479/515 Standorte migriert'), Subline vollstaendig ausschreiben und in der Karte Fortschritts-KPI mit 93% sowie Status der 11 Altbau-Standorte abbilden."
+      },
+      {
+       "nr": 4,
+       "muster": "statement",
+       "score": 3,
+       "schwaechen": [
+        "Drei unrendered 'None'-Platzhalter (Kartenheadline, Text unter der Karte, Hinweis) statt echter Inhalte - Kaputtdarstellung",
+        "Riesige leere Karte von ca. 60% Folienhoehe ohne jeden Inhalt",
+        "Inhaltlicher Widerspruch: Action Title behauptet 'SLA vollstaendig eingehalten', Subline sagt 99,4% und damit Ziel verfehlt"
+       ],
+       "fix": "Fehlende Datenwerte einsetzen: Kartenheadline und Hinweis mit echten SLA-Kennzahlen befuellen, 'None'-Platzhalter entfernen und Title an die Subline-Kernaussage (99,4% knapp unter Ziel) angleichen."
+      },
+      {
+       "nr": 5,
+       "muster": "statement",
+       "score": 4,
+       "schwaechen": [
+        "Riesené leere Karte mit Platzhalter-Text 'None' statt Inhalt",
+        "Zweites 'None' als Unterzeile und 'Hinweis: None' – fehlende Daten sichtbar ausgespielt",
+        "Hauptkarte uber 70% der Folie leer, keine Balance"
+       ],
+       "fix": "Fehlende Inhaltsdaten fuellen: Karte mit konkreten Budgetpositionen (Personal-, Sachkosten, Entwicklung) belegen und 'None'-Platzhalter in Titelzeile, Unterzeile und Hinweis durch echte Werte ersetzen bzw. Hinweis entfallen lassen"
+      },
+      {
+       "nr": 6,
+       "muster": "zeitstrahl",
+       "score": 6,
+       "schwaechen": [
+        "Hinweisfeld zeigt 'Hinweis: None' - unrenderter Platzhalterdaten-Fehler",
+        "Label 'M1 Migration' ueberlappt die 'Q2 26' Beschriftung unten links",
+        "'HEUTE'_Label wird vom Balken/dunklen Element teilweise verdeckt",
+        "Kurvenstart faehrt unter das HEUTE-Ende, Startpunkt visuell unsauber"
+       ],
+       "fix": "Platzhalter 'None' im Hinweisfeld entfernen oder durch echten Hinweistext ersetzen und die Labels HEUTE/M1 Migration/Q2 26 ohne Ueberlappung anordnen."
+      },
+      {
+       "nr": 7,
+       "muster": "tabelle",
+       "score": 4,
+       "schwaechen": [
+        "Linkspalte unvollstaendig: '6-8 Woch', '2 Stellen o', 'Vorberei' sind klar abgehackt – Text abgeschnitten",
+        "Kopfzeile sagt 'Ein rotes, zwei gelbe Felder', die Tabelle enthaelt aber VIER Zeilen inkl. gruener Sicherheitsaudit-Zeile – Inhalt widerspricht dem Titel",
+        "Hinweis-Box zeigt literal 'Hinweis: None' – unrenderter Platzhalter, inakzeptabel",
+        "Gruene Zeile ist inhaltlich ueberfluessig, da die Message nur rot/gelb betrifft"
+       ],
+       "fix": "Tabelle auf die drei entscheidungsrelevanten Risiken kuerzen, vollstaendige Texte einsetzen (z.B. 'Altbau-Standorte: 6-8 Wochen Verzug') und Hinweis-Box mit echtem Text oder entfernen."
+      },
+      {
+       "nr": 8,
+       "muster": "statement",
+       "score": 3,
+       "schwaechen": [
+        "Rohdaten-Fehler sichtbar: 'None' erscheint dreimal (Kartentitel, Fliesstext, Hinweis) statt konkreter Inhalte",
+        "Inhaltskarte zu 80% leer - grosse ungenutzte Flaeche wirkt kaputt",
+        "Hinweis-Box enthaelt nur 'None', kein echter Hinweis",
+        "Kein Inhaltsbezug zum Action Title (Stellenzahl, Kompensationsmechanik fehlen)"
+       ],
+       "fix": "Platzhalter-'None' durch echte Inhalte ersetzen: Karte mit Personalzahlen (24 Mitarbeitende, 6 Dienstleister, 2 unbesetzte Stellen) und Kennzahlen befuellen, Hinweis-Box nur bei bedarfstext anzeigen oder entfernen."
+      },
+      {
+       "nr": 9,
+       "muster": "statement",
+       "score": 3,
+       "schwaechen": [
+        "Literal 'None' als Karten-Headline und Textzeile - Datenbindung fehlgeschlagen",
+        "Untertitel endet unvollstaendig ('gekn' statt 'gekennzeichnet')",
+        "Karte fast komplett leer, keine Kennzahl oder Aussage trotz vorhandener 600.000-Euro-Botschaft",
+        "Hinweisbox dupliziert nur den Kicker ohne Substanz"
+       ],
+       "fix": "None-Platzhalter durch echte Werte ersetzen: Kennzahl '600.000 Euro (Hochrechnung)' gross in die Karte, Untertitel zu '...als nicht final gekennzeichnet' vervollstaendigen, Hinweisbox weglassen oder inhaltlich ergaenzen."
+      },
+      {
+       "nr": 10,
+       "muster": "statement",
+       "score": 5,
+       "schwaechen": [
+        "Template-Artefakte sichtbar: Sidebar-Titel 'None' statt Untertitel",
+        "Hinweisbox zeigt 'Hinweis: None' - unrenderter Platzhalter",
+        "Kernkarte grosszuegig aber unterleuchtet: obere Haelfte Text, untere Haelfte leer",
+        "Fusszeile 'ITK-Bremen' widerspricht der Dataport-Vorlage"
+       ],
+       "fix": "Platzhalter 'None' in Sidebar und Hinweisbox durch echte Inhalte ersetzen (bzw. Hinweisbox entfernen), Karte vertikal zentrieren oder mit einer Schlusswirkung/Naechsten-Schritt-Zeile fuellen."
+      }
+     ]
+    },
+    {
+     "runde": 3,
+     "scores": [
+      {
+       "nr": 1,
+       "muster": "statement",
+       "score": 8,
+       "schwaechen": [
+        "Titel und Untertitel wählen identische Schriftgroesse-Naehe, Hierarchie des Untertitels zu schwach ausgepraegt",
+        "Untertitel-Zeile beginnt mit Minuszeichen '- drei Entscheidungen...', typografisch unschoen",
+        "Grosser leerer Zwischenraum zwischen Titel und Untertitel unbalanciert"
+       ],
+       "fix": "Untertitel groessenmaessig klar vom Action-Title absetzen und das fuehrende '-' streichen ('Drei Entscheidungen sichern den Abschluss')."
+      },
+      {
+       "nr": 2,
+       "muster": "statement",
+       "score": 8,
+       "schwaechen": [
+        "Mehrere Inhalts-Eintraege mit Ellipsen abgeschnitten ('Altbau...', 'M1 en...', '2 Stellen u...', 'noch nicht bel...', 'sichern 2...') - unvollstaendige ToC-Wirkt unprofessionell",
+        "Typos in der Sidebar ('Meilensteinplan haelst'-Stil: 'haelt' ohne korrektes ae/ue-Bild, 'Budget ... gehalten' ok, aber 'Potenzial 2027' unklar)",
+        "Untere Haelfte der Sidebar leer, vertikale Balance der ToC-Liste irritiert",
+        "Subline-Abstand zur grossen Leerraumflaeche zwischen Titel und Keyline unruhig"
+       ],
+       "fix": "Sidebar-Eintraege vollstaendig in einem Satz formulieren (keine Ellipsen, z.B. '93 Prozent migriert - Altbaufunktion eingestellt') und Liste vertikal in der Sidebar zentrieren."
+      },
+      {
+       "nr": 3,
+       "muster": "statement",
+       "score": 0,
+       "schwaechen": [
+        "Critic-Antwort unbrauchbar"
+       ],
+       "fix": ""
+      },
+      {
+       "nr": 4,
+       "muster": "statement",
+       "score": 3,
+       "schwaechen": [
+        "Python-Literale 'None' dreimal gerendert (Karten-Titel, Subzeile, Hinweis) statt echter Inhalte",
+        "Hinweis-Karte wirkt wie eine Fehlerausgabe, un professionelle Kernbotschaft",
+        "Riesige leere Karte mit unnuanciertem Rot-Balken trotz falscher Botschaft (SLA NICHT vollstaendig eingehalten)",
+        "Action-Title widerspricht dem Subline-Inhalt (99,4 % < Ziel 99,5 %)",
+        "Untere Haelfte der Karte leer, keine visuelle Aufbereitung der Kennzahl"
+       ],
+       "fix": "Action-Title auf 'SLA knapp verfehlt: 99,4 statt 99,5 Prozent Verfuegbarkeit' korrigieren, alle 'None'-Platzhalter durch echte Kennzahl, Zielwert und einen konkreten Hinweis zur Ursache ersetzen und die Karte mit einer Vergleichsdarstellung Soll/Ist fuellen."
+      },
+      {
+       "nr": 5,
+       "muster": "statement",
+       "score": 2,
+       "schwaechen": [
+        "Platzhalter 'None' erscheint dreifach (Kartentitel, Subzeile, Hinweis) statt echter Inhalte",
+        "Hauptkarte fast komplett leer - riesige ungenutzte Flaeche",
+        "Hinweis-Box ohne reale Mitteilung",
+        "Keine visualisierten Budget-Zahlen trotz konkreter Daten im Untertitel"
+       ],
+       "fix": "Karte mit echtem Statement-Inhalt fuellen: Budgetaufschluesselung (4,8 Mio gesamt / 2,49 Mio Personal) als kompakte Kennzahlen-Kacheln, 'None'-Platzhalter durch konkreten Hinweis ersetzen, Untertitelzeile entfernen"
+      },
+      {
+       "nr": 6,
+       "muster": "zeitstrahl",
+       "score": 5,
+       "schwaechen": [
+        "Hinweis-Box zeigt buchstaeblich 'None' – unformatierter Platzhalter in einer Vorstandsvorlage",
+        "Label 'HEUTE' und 'M1 Migration' ueberlappen sich am linken Rand mit dem Endpunkt-Marker",
+        "Unterschriften Q2 26 bis Q4 26 haengen unverbunden unter der Achse, Q2-Label kollidiert optisch mit 'M1 Migration'",
+        "M2-Label (30.04.26) liegt unterhalb des Verlaufs waehrend M3/M4 darueber stehen – inkonsistente Beschriftungslogik",
+        "Kurve endet vor M5-Abschluss ohne klare Verbindung zum rechten Endpunkt"
+       ],
+       "fix": "Hinweis-Box mit echtem Hinweistext fuellen oder entfernen; Meilensteinbeschriftungen einheitlich positionieren und Ueberlappung am Startpunkt (HEUTE/M1 Migration) aufloesen."
+      },
+      {
+       "nr": 7,
+       "muster": "tabelle",
+       "score": 5,
+       "schwaechen": [
+        "Beschreibungstexte unvollstaendig/abgehackt ('6-8 Woche', 'Router 4 Woch', '2 Stellen o', 'Vorberei')",
+        "Hinweisfeld zeigt Literal 'None' statt eines Textes",
+        "Titel sagt 'zwei gelbe' - daneben Statusfarbe fuer 'gelb' ist orange, inkonsistent zur Ampellogik",
+        "Viertes Risiko (gruen) widerspricht Aussage 'Alle drei auffaelligen Risiken' - Tabelle enthaelt vier Zeilen",
+        "Grosse leere Flaeche zwischen Tabelle und Hinweisblock"
+       ],
+       "fix": "Basisdaten-Kolonnen vervollstaendigen: Einheiten ausschreiben, Beschreibungen nicht kappen, 'None'-Hinweis durch echten Hinweis ersetzen oder Feld entfernen, Titel an Ampelfarben und Zeilenzahl der Tabelle angleichen."
+      },
+      {
+       "nr": 8,
+       "muster": "statement",
+       "score": 3,
+       "schwaechen": [
+        "Unrendernte Platzhalter: 'None' als Karten-Headline, als Legende und im Hinweis-Widget - klare Datenfehler",
+        "Riesige leere Karte mit nur einem Textelement - extreme Unbalance/leere Flaeche",
+        "Hinweis-Box ohne echten Inhalt ('Hinweis: None')"
+       ],
+       "fix": "Platzhalterdaten (None-Werte) in der Vorlage durch echte Inhalte ersetzen: Kartenheadline, Legende und Hinweistext befuellen bzw. leere Elemente ausblenden und Kartenhoehe an den tatsaechlichen Inhalt anpassen."
+      },
+      {
+       "nr": 9,
+       "muster": "statement",
+       "score": 4,
+       "schwaechen": [
+        "Zweimal wortwoertlich 'None' als Inhalt gerendert (Kartenheadline und Textzeile) - unformatierter Platzhalter statt Inhalt",
+        "Karte ist mit leerem treadigem Weißraum ueberfuellt-leer, kein Content, keine Struktur",
+        "Untertitel am Wortende abgeschnitten ('gekenn' statt 'gekennzeichnet')",
+        "Action-Title-Statement wird durch leere Karte nicht getragen, keine Zahl oder Kernaussage sichtbar"
+       ],
+       "fix": "Platzhalter 'None' entfernen und die Karte mit der Kernaussage befuellen (z.B. 600.000 Euro Hochrechnung 2027 als grosse Zahl mit Kennzeichnung 'nicht belegt/belegt 0%') und Untertitel auf '…als nicht final gekennzeichnet' vervollstaendigen."
+      },
+      {
+       "nr": 10,
+       "muster": "statement",
+       "score": 5,
+       "schwaechen": [
+        "Technische Platzhalter sichtbar: Sidebar-Titel und Hinweis-Feld zeigen 'None'",
+        "Kernkarte grossflaechig leer – Statement fuellt nur oberes Drittel",
+        "Fussnote endet unverstaendlich mit 'Taskforce fuer 11 AI' (abgeschnittener/ungenauer Text)"
+       ],
+       "fix": "Platzhalter 'None' entfernen, Statement vertikal in der Karte zentrieren und Fusszeile zu vollstaendigem Taskforce-Mandat ergaenzen."
+      }
+     ]
+    },
+    {
+     "runde": 4,
+     "scores": [
+      {
+       "nr": 1,
+       "muster": "statement",
+       "score": 8,
+       "schwaechen": [
+        "Titel und Untertitel wählen identische Schriftgroesse-Naehe, Hierarchie des Untertitels zu schwach ausgepraegt",
+        "Untertitel-Zeile beginnt mit Minuszeichen '- drei Entscheidungen...', typografisch unschoen",
+        "Grosser leerer Zwischenraum zwischen Titel und Untertitel unbalanciert"
+       ],
+       "fix": "Untertitel groessenmaessig klar vom Action-Title absetzen und das fuehrende '-' streichen ('Drei Entscheidungen sichern den Abschluss')."
+      },
+      {
+       "nr": 2,
+       "muster": "statement",
+       "score": 8,
+       "schwaechen": [
+        "Mehrere Inhalts-Eintraege mit Ellipsen abgeschnitten ('Altbau...', 'M1 en...', '2 Stellen u...', 'noch nicht bel...', 'sichern 2...') - unvollstaendige ToC-Wirkt unprofessionell",
+        "Typos in der Sidebar ('Meilensteinplan haelst'-Stil: 'haelt' ohne korrektes ae/ue-Bild, 'Budget ... gehalten' ok, aber 'Potenzial 2027' unklar)",
+        "Untere Haelfte der Sidebar leer, vertikale Balance der ToC-Liste irritiert",
+        "Subline-Abstand zur grossen Leerraumflaeche zwischen Titel und Keyline unruhig"
+       ],
+       "fix": "Sidebar-Eintraege vollstaendig in einem Satz formulieren (keine Ellipsen, z.B. '93 Prozent migriert - Altbaufunktion eingestellt') und Liste vertikal in der Sidebar zentrieren."
+      },
+      {
+       "nr": 3,
+       "muster": "statement",
+       "score": 3,
+       "schwaechen": [
+        "Zweimal wörtlich 'None' gerendert – Karte-Überschrift und Fließtext enthalten Rohdaten-Fehler",
+        "Hauptkarte ist bis auf das fehlerhafte 'None' komplett leer – riesige ungenutzte Fläche",
+        "Subline bricht mitten im Wort ab ('...abgesc') – Text abgeschnitten",
+        "Kernaussage (93 Prozent, Altbau-Risiko) wird nicht visuell umgesetzt, keine Kennzahlen oder Risikomarkierung sichtbar"
+       ],
+       "fix": "Platzhalter-Fehler beheben: 'None' durch echten Inhalt ersetzen, Subline vollständig ausschreiben und die Karte mit Kennzahlen (93%, 479/515, 11 rote Altbaum-Standorte) sowie einer Risikoliste füllen."
+      },
+      {
+       "nr": 4,
+       "muster": "statement",
+       "score": 3,
+       "schwaechen": [
+        "Fehlerhafte Platzhalter 'None' erscheinen dreifach: als Karten-Haupttext, als Text unter der Karte und im Hinweis-Feld",
+        "Inhalt widerspricht dem Action Title: Karte behauptet 'SLA vollstaendig eingehalten', Subline berichtet 99,4% knapp UNTER dem Ziel von 99,5%",
+        "Karte ist fast komplett leer - riesige ungenutzte Flaeche ohne konkrete Kennzahl oder Trend"
+       ],
+       "fix": "Datenfehler klaeren: Handelt es sich um volle Zielerreichung oder 99,4% knapp unter Ziel? Danach Action Title an die realen Kennzahlen anpassen, alle 'None'-Platzhalter durch echte Inhalte (z.B. grosse Kennzahl 99,4% mit Ziellinie und Trend) ersetzen und leeren Hinweis entfernen."
+      },
+      {
+       "nr": 5,
+       "muster": "statement",
+       "score": 3,
+       "schwaechen": [
+        "Rieseninhaltskarte fast leer mit Platzhaltertext 'None' als Titel",
+        "Zweite Karte 'None' ohne Inhalt, Hinweisbox leer ('Hinweis: None') – Rendering-Fehler der Datenbindung",
+        "Inhaltsleere erzeugt riesige ungenutzte Flaechen, keine visuelle Aussage"
+       ],
+       "fix": "Datenbindung reparieren: 'None'-Platzhalter entfernen und die Karte mit echtem Budgetinhalt fuellen (z.B. Kostenaufstellung Personal/Sach/Betrieb als kompakte Kennzahlen- oder Balkendarstellung zu 4,8 Mio Euro) sowie einen konkreten Hinweistext setzen oder die leere Hinweisbox streichen."
+      },
+      {
+       "nr": 6,
+       "muster": "zeitstrahl",
+       "score": 5,
+       "schwaechen": [
+        "Hinweis-Box zeigt Literale 'None' - Platzhalter statt Inhalt",
+        "Labels 'HEUTE', '31.03.26'/'M1 Migration' und 'Q2 26' ueberlappen sich links unleserlich",
+        "31.12.26-Label kollidiert mit Endpunkt-Marker am rechten Pfeiler",
+        "Aufhaengung 'ITK-Bremen' statt Dataport-Kontext inkonsistent zur Vorstandsvorlage",
+        "Erster Meilenstein (M2, 30.04.) ohne hervorgehobenen Marker-Rahmen gegenueber M3/M4 - inkonsistente Markerlogik"
+       ],
+       "fix": "Platzhalter-Logik fixen: Hinweis-Box nur rendern, wenn ein Text existiert, und linkes Label-Cluster (HEUTE/Q2 26/M1) vertikal staffeln."
+      },
+      {
+       "nr": 7,
+       "muster": "tabelle",
+       "score": 5,
+       "schwaechen": [
+        "Kopfzeile behauptet 'Ein rotes, zwei gelbe Felder', die Tabelle zeigt aber vier Zeilen inkl. gruen – Inhalt widerspricht dem Titel",
+        "Risiko-Texte offensichtlich abgeschnitten ('6-8 Woch', 'Router 4 Woch', '2 Stellen o', 'Vorberei')",
+        "Hinweiskarte zeigt literal 'None' statt leer zu bleiben oder relevanten Text",
+        "Keine Spalten-Struktur: Risiken links ohne Verbindung zu Statusfarben rechts, vierte (gruene) Zeile haengt ohne passendes Risiko",
+        "Viel ungenutzter Leerraum unter der Tabelle, Statusspalten visuell unnoetig breit"
+       ],
+       "fix": "Tabelle auf die drei im Titel genannten Risiken reduzieren, Risiko-Beschreibungen vollstaendig ausschreiben und Hinweisfeld nur bei vorhandenem Hinweis rendern."
+      },
+      {
+       "nr": 8,
+       "muster": "statement",
+       "score": 4,
+       "schwaechen": [
+        "Technische Platzhalter 'None' erscheinen dreifach (Kartentitel, Fliesstext, Hinweisfeld) statt konkreter Inhalte",
+        "Riesige graue Karte ist bis auf das Wort 'None' komplett leer - massive Unbalance",
+        "Hinweisfeld ohne echte Aussage ('Hinweis: None')",
+        "Inhaltliche Leerstelle: Kernaussage der Kompensationsluecke wird nirgends visualisiert"
+       ],
+       "fix": "Platzhalter-Daten fuellen: Kartentitel mit Kennzahlen (z.B. Stellenbild, Kompensationsstatus), Leerfeld durch Kennzahlen-Kacheln ersetzen, Hinweisfeld mit echter Botschaft besetzen oder entfernen."
+      },
+      {
+       "nr": 9,
+       "muster": "statement",
+       "score": 4,
+       "schwaechen": [
+        "Zweimal wortwoertlich 'None' als Inhalt gerendert - fehlende Daten werden als Platzhalter angezeigt statt sinnvoll befuellt oder ausgeblendet",
+        "Riesige weitgehend leere Karte mit nur einem 'None'-Text - eklatantes Ungleichgewicht",
+        "Untertitel endet abgebrochen: 'als nicht final gekenn' (unklar/abgeschnitten)",
+        "Inhalt ohne Substanz: keine Zahl, keine Begruendung, nur Hinweis-Karte am Rand"
+       ],
+       "fix": "Fehlende Datenfelder nicht als 'None' rendern: Befuellige Karte mit konkretem Aussagesatz (z.B. Hochrechnung 600.000 Euro, Basis der Schaetzung, offene Praefizierungs- items) oder Karte mit 'Inhalt folgt' ersetzen; Untertitel-Volltext 'als nicht final gekennzeichnet' komplett ausschreiben."
+      },
+      {
+       "nr": 10,
+       "muster": "statement",
+       "score": 5,
+       "schwaechen": [
+        " Platzhalter-Artefakte sichtbar: Sidebar 'None' und Hinweiskasten 'Hinweis: None' zeigen ungueltige Datenwerte statt echtem Inhalt",
+        " Kernaussage-Karte stark unterfuellt: Text nur obere Haelfte, grosse leere Flaeche darunter wirkt unbalanciert",
+        " Untere Zusammenfassung (1/2/3) nur als dichte Textzeile - die drei Entscheidungen verlangen eigene strukturierte Aufzaehlung",
+        " Doppelung: Action Title und Kernaussage-Box sagen faktisch dasselbe"
+       ],
+       "fix": "Sidebar mit echtem Kapitel-/Kontexttext fuellen, Hinweis-Kasten entweder mit pruefbarem Inhalt setzen oder entfernen, und die drei Entscheidungen als eigene nummerierte Punkte/Datenzeilen unter der Kernaussage ausgestalten, um die Leerflaeche zu schliessen."
+      }
+     ]
+    }
+   ]
+  },
+  "report": {
+   "status": "ok",
+   "zeit": "2026-11-18T17:09:40Z",
+   "dauer_s": 0.0,
+   "pfad": "/Users/gemma/gemma-projekte/slideforce/studio/runs/20261118-180448-itk-bremen-vorstand-2026/report.md"
+  }
+ },
+ "letzte_aktivitaet": "2026-11-18T17:09:40Z",
+ "briefing": "ITK-Bremen Vorstand 2026",
+ "quelle": "/Users/gemma/gemma-projekte/slideforce/studio/testquelle-itk.md",
+ "min": 8,
+ "max": 12,
+ "weg": "A",
+ "max_fixrunden": 3
+}
