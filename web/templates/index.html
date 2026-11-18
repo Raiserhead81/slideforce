@@ -3,91 +3,152 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SlideForce - Perfekte Präsentationen aus deinem Folienmaster</title>
+<title>SlideForce - Präsentationen aus deinem Folienmaster</title>
 <style>
-:root{--bg:#1a222a;--card:#222c36;--fg:#eef2f5;--mut:#9aa8b3;--red:#9e292b;--petrol:#39756f}
+:root{--bg:#131a22;--bg2:#1a232d;--card:rgba(255,255,255,.035);--cardb:rgba(255,255,255,.09);
+--fg:#f2f6f9;--mut:#8fa0ad;--red:#c0392f;--red2:#8e2420;--petrol:#3fa396;--line:rgba(255,255,255,.07)}
 *{margin:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--fg);font-family:-apple-system,'Segoe UI',Arial,sans-serif;min-height:100vh}
-.wrap{max-width:860px;margin:0 auto;padding:32px 20px 60px}
-header{display:flex;align-items:baseline;gap:14px;margin-bottom:6px}
-h1{font-size:2rem;letter-spacing:.5px}
-h1 b{color:var(--red)}
-.tag{color:var(--mut);font-size:.95rem}
-.sub{color:var(--mut);margin-bottom:28px;font-size:.95rem}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-@media(max-width:700px){.grid{grid-template-columns:1fr}}
-.card{background:var(--card);border:1px solid #313e4a;border-radius:12px;padding:18px}
-.card h3{font-size:.85rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--petrol);margin-bottom:12px}
-.drop{border:2px dashed #46586a;border-radius:10px;padding:26px 12px;text-align:center;color:var(--mut);cursor:pointer;transition:.2s}
-.drop.over{border-color:var(--red);background:rgba(158,41,43,.08)}
-.drop .big{font-size:1.05rem;color:var(--fg);margin-bottom:4px}
-.drop.ok{border-color:var(--petrol);background:rgba(57,117,111,.1)}
-.fmt{display:flex;gap:10px;margin:18px 0}
-.fmt label{flex:1;background:var(--card);border:1px solid #313e4a;border-radius:10px;padding:12px;text-align:center;cursor:pointer;font-weight:600}
-.fmt input{display:none}
-.fmt label.on{border-color:var(--red);background:rgba(158,41,43,.15);color:#fff}
-textarea{width:100%;min-height:240px;background:#1b242d;border:1px solid #313e4a;border-radius:10px;color:var(--fg);padding:12px;font-family:ui-monospace,monospace;font-size:.9rem;resize:vertical}
-.trow{display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap}
+html{scroll-behavior:smooth}
+body{background:radial-gradient(1200px 600px at 70% -10%,rgba(192,57,47,.13),transparent 60%),
+radial-gradient(900px 500px at 10% 110%,rgba(63,163,150,.10),transparent 55%),var(--bg);
+color:var(--fg);font-family:-apple-system,'Segoe UI',Arial,sans-serif;min-height:100vh}
+body:before{content:"";position:fixed;top:0;left:0;right:0;height:3px;z-index:99;
+background:linear-gradient(90deg,var(--red),var(--petrol))}
+.wrap{max-width:1000px;margin:0 auto;padding:44px 24px 70px}
+header{display:flex;align-items:center;gap:18px;margin-bottom:10px}
+.logo{width:54px;height:54px;border-radius:14px;flex:none;
+background:linear-gradient(135deg,var(--red),var(--red2));
+display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.5rem;color:#fff;
+box-shadow:0 8px 30px rgba(192,57,47,.35)}
+header h1{font-size:2.3rem;font-weight:800;letter-spacing:-.5px}
+header h1 b{color:var(--red);font-weight:900}
+.tagline{color:var(--mut);font-size:1.05rem;margin:4px 0 8px 72px;max-width:640px;line-height:1.5}
+.tagline b{color:var(--fg);font-weight:600}
+.steps{display:flex;gap:10px;margin:20px 0 26px 72px;flex-wrap:wrap}
+.step{display:flex;align-items:center;gap:8px;color:var(--mut);font-size:.85rem}
+.step i{font-style:normal;width:22px;height:22px;border-radius:50%;background:var(--card);
+border:1px solid var(--cardb);display:inline-flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--petrol)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.steps,.tagline{margin-left:0}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;
+backdrop-filter:blur(6px);transition:border-color .2s,transform .2s}
+.card:hover{border-color:var(--cardb)}
+.card h3{display:flex;align-items:center;gap:10px;font-size:.8rem;text-transform:uppercase;
+letter-spacing:2px;color:var(--mut);margin-bottom:16px}
+.card h3 .num{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,rgba(63,163,150,.25),rgba(63,163,150,.08));
+border:1px solid rgba(63,163,150,.4);color:var(--petrol);display:inline-flex;align-items:center;justify-content:center;
+font-size:.78rem;font-weight:800;letter-spacing:0}
+.drop{border:1.5px dashed rgba(255,255,255,.18);border-radius:14px;padding:30px 16px;text-align:center;
+color:var(--mut);cursor:pointer;transition:.2s;background:rgba(0,0,0,.15)}
+.drop .icon{width:46px;height:46px;margin:0 auto 10px;color:var(--petrol);opacity:.9}
+.drop .icon svg{width:100%;height:100%}
+.drop:hover{border-color:var(--petrol);color:var(--fg);background:rgba(63,163,150,.06)}
+.drop.over{border-color:var(--red);background:rgba(192,57,47,.09);transform:scale(1.01)}
+.drop.ok{border-color:var(--petrol);background:rgba(63,163,150,.10)}
+.drop.ok .big{color:var(--petrol)}
+.drop .big{color:var(--fg);font-weight:600;margin-bottom:4px;font-size:.98rem}
+textarea{width:100%;min-height:260px;background:#0e141b;border:1px solid rgba(255,255,255,.22);border-radius:14px;box-shadow:inset 0 1px 8px rgba(0,0,0,.35);
+color:var(--fg);padding:16px;font-family:ui-monospace,'SF Mono',monospace;font-size:.92rem;line-height:1.6;resize:vertical;
+transition:border-color .2s,box-shadow .2s}
+textarea:focus{outline:none;border-color:var(--petrol);box-shadow:0 0 0 3px rgba(63,163,150,.12)}
+.trow{display:flex;align-items:center;gap:12px;margin-top:12px;flex-wrap:wrap}
 .mut{color:var(--mut);font-size:.85rem}
 .spacer{flex:1}
-select{background:#1b242d;border:1px solid #313e4a;border-radius:8px;color:var(--fg);padding:8px;max-width:220px;font-size:.85rem}
-button.mini{padding:8px 14px;border:0;border-radius:8px;background:var(--petrol);color:#fff;font-weight:600;font-size:.85rem;cursor:pointer}
-button.mini:hover{filter:brightness(1.15)}
-button.mini.grey{background:#46586a}
-button.go{width:100%;padding:16px;border:0;border-radius:10px;background:var(--red);color:#fff;font-size:1.15rem;font-weight:700;cursor:pointer;margin-top:18px}
-button.go:hover{filter:brightness(1.15)}
-button.go:disabled{opacity:.5;cursor:wait}
-.status{margin-top:12px;min-height:22px;color:var(--mut);font-size:.95rem}
-.status.err{color:#e07a7a}
-details{margin-top:16px;color:var(--mut);font-size:.88rem}
-details summary{cursor:pointer;color:var(--petrol)}
-#layouts{columns:2;font-size:.85rem;margin-top:10px}
-#layouts div{padding:2px 0}
-footer{margin-top:34px;color:#5c6b78;font-size:.8rem;text-align:center}
+select{background:var(--bg2);border:1px solid var(--cardb);border-radius:10px;color:var(--fg);padding:9px 12px;max-width:260px;font-size:.86rem}
+select:focus{outline:none;border-color:var(--petrol)}
+button.mini{padding:9px 18px;border:0;border-radius:10px;background:linear-gradient(135deg,var(--petrol),#2e7d72);
+color:#fff;font-weight:700;font-size:.86rem;cursor:pointer;transition:.15s}
+button.mini:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(63,163,150,.3)}
+button.mini.grey{background:var(--bg2);border:1px solid var(--cardb);color:var(--mut)}
+button.mini.grey:hover{color:var(--fg);box-shadow:none}
+.fmt{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
+.fmtcard{position:relative;background:rgba(0,0,0,.18);border:1.5px solid var(--line);border-radius:14px;padding:18px;cursor:pointer;transition:.18s}
+.fmtcard:hover{border-color:var(--cardb)}
+.fmtcard.on{border-color:var(--red);background:linear-gradient(160deg,rgba(192,57,47,.14),rgba(192,57,47,.04));
+box-shadow:0 8px 26px rgba(192,57,47,.18)}
+.fmtcard .fi{width:36px;height:36px;margin-bottom:10px;color:var(--red)}
+.fmtcard .fi svg{width:100%;height:100%}
+.fmtcard .ft{font-weight:700;font-size:1rem}
+.fmtcard .fd{color:var(--mut);font-size:.84rem;margin-top:4px;line-height:1.45}
+.fmtcard input{display:none}
+.fmtcard .check{position:absolute;top:14px;right:14px;width:20px;height:20px;border-radius:50%;
+border:1.5px solid var(--cardb);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:#fff;transition:.18s}
+.fmtcard.on .check{background:var(--red);border-color:var(--red)}
+button.go{width:100%;padding:17px;border:0;border-radius:14px;cursor:pointer;
+background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;font-size:1.15rem;font-weight:800;letter-spacing:.3px;
+transition:.18s;box-shadow:0 10px 30px rgba(192,57,47,.30)}
+button.go:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(192,57,47,.42);filter:brightness(1.08)}
+button.go:disabled{opacity:.55;cursor:wait;transform:none}
+.status{margin-top:14px;min-height:24px;color:var(--mut);font-size:.95rem}
+.status.err{color:#e28585}
+.status.ok{color:var(--petrol);font-weight:600}
+details{margin-top:18px;color:var(--mut);font-size:.86rem}
+details summary{cursor:pointer;color:var(--petrol);font-weight:600}
+#layouts{columns:2;font-size:.84rem;margin-top:12px;gap:24px}
+#layouts div{padding:3px 0;border-bottom:1px dotted var(--line)}
+footer{margin-top:40px;color:#4d5c69;font-size:.8rem;text-align:center}
 </style>
 </head>
 <body>
 <div class="wrap">
-<header><h1><b>Slide</b>Force</h1><span class="tag">deck forge</span></header>
-<p class="sub">Folienmaster rein, Inhalt rein (Transcript, Word, Text, Excel) - fertige Präsentation raus, exakt im Master-Design.</p>
+<header>
+<div class="logo">SF</div>
+<h1><b>Slide</b>Force</h1>
+</header>
+<p class="tagline">Folienmaster rein, Inhalt rein - <b>fertiges Deck raus</b>, exakt im Design deines Masters. Als PowerPoint oder moderne HTML-Präsentation.</p>
+<div class="steps">
+<span class="step"><i>1</i> Master wählen</span>
+<span class="step"><i>2</i> Inhalt-Datei</span>
+<span class="step"><i>3</i> Transkript</span>
+<span class="step"><i>4</i> Export &amp; Download</span>
+</div>
 <div class="grid">
 <div class="card">
-<h3>1. Folienmaster (.pptx)</h3>
+<h3><span class="num">01</span> Folienmaster</h3>
 <div class="drop" id="dropMaster">
-<div class="big" id="masterName">Standard: BRIDGE28-Folienmaster</div>
-<div>oder eigenen Master hierher ziehen / klicken</div>
+<div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M3 9h18"/><path d="M8 21h8"/></svg></div>
+<div class="big" id="masterName">Standard: BRIDGE28</div>
+<div>oder eigenen Master (.pptx) ziehen / klicken</div>
 </div>
 <input type="file" id="fileMaster" accept=".pptx" hidden>
 </div>
 <div class="card">
-<h3>2. Inhalt-Datei</h3>
+<h3><span class="num">02</span> Inhalt-Datei</h3>
 <div class="drop" id="dropContent">
-<div class="big" id="contentName">Datei hierher ziehen / klicken</div>
-<div>.md .txt .docx .xlsx .csv</div>
+<div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v6h6"/></svg></div>
+<div class="big" id="contentName">Datei ziehen / klicken</div>
+<div>Transcript · Word · Text · Markdown · Excel</div>
 </div>
 <input type="file" id="fileContent" accept=".md,.markdown,.txt,.docx,.xlsx,.xlsm,.csv" hidden>
 </div>
 </div>
-<div class="card" style="margin-top:18px">
-<h3>3. Transkript - schreiben oder reinkopieren</h3>
-<textarea id="text" placeholder="Transkript, Notizen oder Text hier rein - bleibt gespeichert (Autosave)."></textarea>
+<div class="card" style="margin-top:20px">
+<h3><span class="num">03</span> Transkript - schreiben oder reinkopieren</h3>
+<textarea id="text" placeholder="Transkript, Notizen oder Text hier rein. Bleibt automatisch gespeichert und kann mit 'Merken' ins Gedächtnis."></textarea>
 <div class="trow">
 <span id="zcount" class="mut">0 Zeichen</span>
 <span id="savedstate" class="mut"></span>
 <span class="spacer"></span>
-<select id="savedSel"><option value="">Gedaechtnis laden...</option></select>
+<select id="savedSel"><option value="">Gedächtnis laden ...</option></select>
 <button class="mini" id="btnSave">Merken</button>
 <button class="mini grey" id="btnClear">Leeren</button>
 </div>
 </div>
+<div class="card" style="margin-top:20px">
+<h3><span class="num">04</span> Export</h3>
 <div class="fmt">
-<label class="on" id="fmtPptx"><input type="radio" name="fmt" value="pptx" checked>PowerPoint (.pptx)</label>
-<label id="fmtHtml"><input type="radio" name="fmt" value="html">HTML-Präsentation</label>
+<label class="fmtcard on" id="fmtPptx"><input type="radio" name="fmt" value="pptx" checked>
+<span class="check">✓</span><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M10 8l4 2-4 2z" fill="currentColor" stroke="none"/><path d="M12 16v4M8 20h8"/></svg></div><div class="ft">PowerPoint (.pptx)</div>
+<div class="fd">Decks mit den echten Master-Layouts, Platzhaltern und Fonts - direkt weiterbearbeitbar.</div></label>
+<label class="fmtcard" id="fmtHtml"><input type="radio" name="fmt" value="html">
+<span class="check">✓</span><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3.2 3.8 3.2 14.2 0 18M12 3c-3.2 3.8-3.2 14.2 0 18"/></svg></div><div class="ft">HTML-Präsentation</div>
+<div class="fd">Moderne Web-Slides im Master-Look: Pfeiltasten, Swipe, Vollbild - eine Datei, überall lauffähig.</div></label>
 </div>
 <button class="go" id="go">Deck erstellen</button>
 <div class="status" id="status"></div>
-<details><summary>Layouts im aktuellen Master (per "layout:" im Text waehlbar)</summary><div id="layouts">...</div></details>
-<footer>SlideForce - Master + Inhalt = fertiges Deck. Design: 100% dein Folienmaster.</footer>
+<details><summary>Layouts im aktuellen Master (per "layout:" im Text wählbar)</summary><div id="layouts">...</div></details>
+</div>
+<footer>SlideForce · Design 100% aus deinem Folienmaster · läuft auf deinem Server</footer>
 </div>
 <script>
 const $=id=>document.getElementById(id);let master=null,content=null;
@@ -97,10 +158,10 @@ d.onclick=()=>i.click();i.onchange=()=>setter(i.files[0]||null);
 ['dragleave','drop'].forEach(e=>d.addEventListener(e,ev=>{ev.preventDefault();d.classList.remove('over');
 if(e=='drop'&&ev.dataTransfer.files.length)setter(ev.dataTransfer.files[0])}))}
 wire('dropMaster','fileMaster','masterName',f=>{master=f;
-$('masterName').textContent=f?('Eigener Master: '+f.name):'Standard: BRIDGE28-Folienmaster';
+$('masterName').textContent=f?('Eigener Master: '+f.name):'Standard: BRIDGE28';
 $('dropMaster').classList.toggle('ok',!!f)});
 wire('dropContent','fileContent','contentName',f=>{content=f;
-$('contentName').textContent=f?f.name:'Datei hierher ziehen / klicken';
+$('contentName').textContent=f?f.name:'Datei ziehen / klicken';
 $('dropContent').classList.toggle('ok',!!f)});
 const ta=$('text');
 ta.value=localStorage.getItem('sf-text')||'';
@@ -109,7 +170,7 @@ z();
 ta.addEventListener('input',()=>{localStorage.setItem('sf-text',ta.value);z();$('savedstate').textContent='autosave ok'});
 $('btnClear').onclick=()=>{ta.value='';localStorage.removeItem('sf-text');z();$('savedstate').textContent='geleert'};
 function loadHist(){fetch('/api/saved').then(r=>r.json()).then(l=>{
-$('savedSel').innerHTML='<option value="">Gedaechtnis laden...</option>'+l.map(x=>'<option value="'+x.id+'">'+x.label+'</option>').join('')}).catch(()=>{})}
+$('savedSel').innerHTML='<option value="">Gedächtnis laden ...</option>'+l.map(x=>'<option value="'+x.id+'">'+x.label+'</option>').join('')}).catch(()=>{})}
 $('btnSave').onclick=()=>{const t=ta.value.trim();
 if(!t){$('savedstate').textContent='nichts zu merken';return}
 fetch('/api/save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:t})})
@@ -119,24 +180,23 @@ $('savedSel').onchange=()=>{const v=$('savedSel').value;if(!v)return;
 fetch('/api/saved/'+encodeURIComponent(v)).then(r=>r.text()).then(t=>{
 ta.value=t;localStorage.setItem('sf-text',t);z();$('savedstate').textContent='geladen'})};
 loadHist();
-document.querySelectorAll('.fmt input').forEach(r=>r.onchange=()=>{
+document.querySelectorAll('.fmtcard input').forEach(r=>r.onchange=()=>{
 $('fmtPptx').classList.toggle('on',r.value=='pptx'&&r.checked);
 $('fmtHtml').classList.toggle('on',r.value=='html'&&r.checked)});
 fetch('/api/layouts').then(r=>r.json()).then(l=>{
 $('layouts').innerHTML=l.map(x=>'<div>'+x.i+' &nbsp; '+x.name+'</div>').join('')}).catch(()=>{});
 $('go').onclick=()=>{const st=$('status');st.className='status';
-const text=$('text').value.trim();
-if(!content&&!text){st.textContent='Bitte Inhalts-Datei oder Text angeben.';st.className='status err';return}
+const text=ta.value.trim();
+if(!content&&!text){st.textContent='Bitte Inhalt-Datei oder Transkript angeben.';st.className='status err';return}
 const fd=new FormData();const fmt=document.querySelector('input[name=fmt]:checked').value;
 if(master)fd.append('master',master);if(content)fd.append('content',content);if(text)fd.append('text',text);
-fd.append('fmt',fmt);$('go').disabled=true;st.textContent='Deck wird gebaut...';
+fd.append('fmt',fmt);$('go').disabled=true;st.textContent='Deck wird gebaut ...';
 fetch('/api/build',{method:'POST',body:fd}).then(r=>{
 if(!r.ok)return r.text().then(t=>{throw new Error(r.status+': '+t)});
 const folien=r.headers.get('X-Deck-Folien')||'?';
-st.textContent='Fertig: '+folien+' Folien. Download startet...';
 return r.blob().then(b=>{const u=URL.createObjectURL(b);const a=document.createElement('a');
 a.href=u;a.download='slideforce-deck.'+fmt;a.click();setTimeout(()=>URL.revokeObjectURL(u),4000);
-st.textContent='Fertig: '+folien+' Folien im '+fmt.toUpperCase()+'-Format.'})})
+st.textContent='Fertig: '+folien+' Folien als '+fmt.toUpperCase()+'.';st.className='status ok'})})
 .catch(e=>{st.textContent='Fehler: '+e.message;st.className='status err'})
 .finally(()=>{$('go').disabled=false})};
 </script>

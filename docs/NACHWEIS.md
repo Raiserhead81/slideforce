@@ -55,3 +55,10 @@ Live (slideforce.gemivo.de): save/liste identisch getestet, HTTP 200
 glm-sicht: SCORE 9/10 - Struktur klar, keine Layout-Probleme
 Autosave: localStorage 'sf-text' bleibt ueber Reload
 ```
+
+## Redesign 18.11. - UI v2 (nach Kays Abnahme-Kritik)
+
+4x gerendert + Vision-geprueft: 4/10 (Login-Fehltest) -> 7/10 -> 8/10 -> 8/10 live ohne echte Bugs.
+Neu: Gradient/Glass-Design, SF-Logo, Schritte 01-04, einheitliche SVG-Icons (0 Emoji),
+Textarea mit klarer Abgrenzung, Export-Karten mit Check-Status, Glow-Button.
+Live e2e: POST text -> HTTP 200, X-Deck-Folien: 8.
