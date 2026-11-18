@@ -640,3 +640,9 @@ Run 20261118-203927 (Resume nach 429-Pause, Weg B Visual HTML):
 - html_export.py: Dataport-Logo (assets/vorlage_dataport.png) Base64 auf JEDER HTML-Folie oben rechts (.dplogo, 150px / Titel 230px). Beweis: deck.html 11 dplogo-Elemente.
 - studio/roles.py: DIRECTOR_SCHEMA + Vorstands-Gattungen (Exec-Summary ... Managemententscheidungen, min 3 Gattungen), TITEL-REGEL (Aussage statt Themenlabel), FARB-REGEL (Rot nur Eskalation). Quelle: Skill infrastructure-executive-reporting.
 - LIVE-Beweis 19.11.: Build handbuch -> HTTP 200, x-deck-score: 98, x-deck-blockierend: 0, 6 Folien, dplogo 8x im HTML. pytest 5 passed.
+
+## 19.11. Epic-Stufe: Score-getriebene Pipeline + Hero-Folien
+- ai_design.py: LINT-REPAIR in _build_ai_deck_intern (vor design_folien): statischer Linter, bei Blockade art_repair auf die 3 schlimmsten Folien, danach erneuter Lint. Final-Lint nach dem Bau: stats[linter_score]/[linter_blockierend] + Log.
+- web/app.py: X-Deck-Score jetzt aus den FINALEN Deck-Stats (aipptx), sonst eigener Lint-Lauf. Vorher mass der Header die unplanen Reader-Folien (falsche 64) - jetzt konsistent.
+- roles.py: HERO-PFLICHT im director (min 1 Statement-Folie mit riesiger Kernbotschaft) + HERO-FOLIEN-Regel im ART_SYSTEM (96-140px, asymmetrisch, 10-Meter-Lesbarkeit).
+- LIVE 19.11.: Vorstandsdeck (Migration/Budget/Risiken/Entscheidung, /tmp/vorstand_text.txt) -> 200, 7 Folien, x-deck-score 95, blockierend 0; interne Kette 95 -> 95 konsistent im Log. Rendering: 7 PNGs (LibreOffice+pdftoppm), glm-sicht-Flash: 8/10 mit 2 brauchbaren Punkten (Titellaenge, Button-Breiten). Folien: ~/Desktop/slideforce-epic/.

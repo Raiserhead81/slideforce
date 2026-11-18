@@ -939,6 +939,30 @@ def _build_ai_deck_intern(slides, out_path, config, on_progress,
         if plan:
             slides = plan
         # plan=None -> Reader-Folien (normaler Pfad), Log kam aus struktur_slide_plan
+    # LINT-REPAIR: statischer Linter; bei Blockade eine Reparatur-Runde auf den 3 schlimmsten Folien
+    try:
+        from slideforce.linter import pruefe_deck
+        rpt = pruefe_deck(slides)
+        if rpt.get("blockierend"):
+            import re as _re
+            from studio.roles import art_repair
+            ziele = {}
+            for z in (rpt.get("warnungen") or []) + (rpt.get("kritisch") or []):
+                m = _re.match(r"Folie (\d+)", str(z))
+                if m:
+                    n = int(m.group(1))
+                    if 1 <= n <= len(slides):
+                        ziele.setdefault(n, []).append(str(z))
+            score_vor = rpt.get("score", 0)
+            for n in sorted(ziele)[:3]:
+                neu = art_repair(content_text or "", slides[n - 1],
+                                 {"score": 3, "schwaechen": ziele[n], "fix": ziele[n][0]}, n)
+                if isinstance(neu, dict) and neu.get("title"):
+                    slides[n - 1] = neu
+            nach = pruefe_deck(slides)
+            print(f"[linter] Repair: Score {score_vor} -> {nach.get('score')}/100, Folien repariert: {sorted(ziele)[:3]}", flush=True)
+    except Exception as e:
+        print(f"[linter] Repair uebersprungen: {e}", flush=True)
     gesamt = max(1, len(slides))
     designs = design_folien(slides, config, on_progress, system=sp, zo=zo)
     ki = sum(1 for d in designs if d)
@@ -980,4 +1004,12 @@ def _build_ai_deck_intern(slides, out_path, config, on_progress,
     prs.save(str(out_path))
     stats = {"folien": len(slides), "ki": ki, "fallback": len(slides) - ki,
              "dauer_s": round(time.time() - t0, 1)}
+    try:
+        from slideforce.linter import pruefe_deck as _pd
+        final_rpt = _pd(slides)
+        stats = dict(stats, linter_score=final_rpt.get("score"),
+                     linter_blockierend=1 if final_rpt.get("blockierend") else 0)
+        print(f"[linter] Final: Score {final_rpt.get('score')}/100 (blockierend: {final_rpt.get('blockierend')})", flush=True)
+    except Exception as e:
+        print(f"[linter] Final-Pruefung uebersprungen: {e}", flush=True)
     return out_path, stats

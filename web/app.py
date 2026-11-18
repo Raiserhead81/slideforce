@@ -367,7 +367,11 @@ def build_deck():
         mime = "text/html" if fmt == "html" else "application/vnd.openxmlformats-officedocument.presentationml.presentation"
         ext = "pptx" if fmt != "html" else "html"
         resp = send_file(out, as_attachment=True, download_name=f"slideforce-deck-{uid}.{ext}", mimetype=mime)
-        linter_report = pruefe_deck(slides)
+        if fmt == "aipptx" and ai_stats.get("linter_score") is not None:
+            linter_report = {"score": ai_stats["linter_score"],
+                             "blockierend": bool(ai_stats.get("linter_blockierend"))}
+        else:
+            linter_report = pruefe_deck(slides)
         print('[linter] Score %s/100 blockierend=%s' % (linter_report['score'], linter_report['blockierend']))
         resp.headers["X-Deck-Folien"] = str(n_final)
         resp.headers["X-Deck-Score"] = str(linter_report["score"])

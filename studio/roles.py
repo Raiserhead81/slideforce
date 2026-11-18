@@ -26,7 +26,8 @@ Regeln:
 - focusthemen gewichtet nach Relevanz fuer DIESEN Vorstand; nichts erfinden, nur aus Briefing/Quelle.
 - VORSTANDS-GATTUNGEN für Infrastruktur-/Projekt-Decks: (1) Executive Summary am Anfang (Gesamtstatus, Fortschritt, Termin, Kosten, Top-Risiken, Entscheidungsbedarf). (2) Projektfortschritt mit Soll-Ist-Vergleich. (3) Architektur/Infrastruktur. (4) Rollout/Migration. (5) Ressourcen. (6) Risiken und Maßnahmen mit Eskalationsbedarf. (7) Terminplan/Meilensteine. (8) Budget mit Abweichungen. (9) Managemententscheidungen am Ende, wenn Entscheidungsbedarf erkennbar. Wähle passend zum Inhalt - nicht alle Pflicht, aber MINDESTENS 3 verschiedene Gattungen.
 - TITEL-REGEL: Jeder Folientitel muss eine AUSSAGE sein (schlecht: "Projektfortschritt"; gut: "Der Migrationsfortschritt liegt hinter dem Zielpfad"), nie nur ein Themenlabel.
-- FARB-REGEL: Rot nur für echte Eskalationen, Amber für Kritisches, Blau/Türkis für Positives."""
+- FARB-REGEL: Rot nur für echte Eskalationen, Amber für Kritisches, Blau/Türkis für Positives.
+- HERO-PFLICHT: Mindestens EINE Statement-Folie (kind "statement") mit EINER riesigen Kernbotschaft oder Kernzahl - sie trägt das Deck und ist die unauslöschliche Erinnerung für den Vorstand."""
 
 
 def director(briefing, quelle_text, ziel_min, ziel_max):
@@ -299,6 +300,7 @@ Harte Anforderungen:
   (gleiche Strichstaerke, gleiche Groesse) und ALLE in EINER Farbe
   (Petrol); Rot bleibt ausschliesslich dem einzelnen Spaetzenakzent
 - Farbdisziplin: ein Farbsystem, keine Mischung beliebig bunter Boxen
+- HERO-FOLIEN (kind statement): die Kernbotschaft ALS RIESE (96-140px, Petrol auf Weiss oder Weiss auf Petrol), max 20 Woerter Resttext, asymmetrisch, viel Weissraum - die Folie muss vom Vorstand auf 10 Meter gelesen werden koennen
 - DEUTSCH MIT ECHTEN UMLAUTEN: alle Texte mit ä ö ü ß schreiben, NIE ae/oe/ue-Ausweichschreibweise"""
 
 _HTML_SCHEMA = """Gib AUSSCHLIESSLICH dieses JSON aus:
