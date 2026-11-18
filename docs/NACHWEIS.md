@@ -242,3 +242,54 @@ Neu: Profil vorlage (fmt=vorpptx, 5. Export-Karte) + SMART-Reader: kurze Zeilen
 ohne Satz-Ende werden automatisch Kapitel (Transcript-Modus).
 Test: rohes Transkript -> 8 Folien (Titel + 3 Kapitel), unzip OK, smoke OK,
 Live-Build HTTP 200, PDF 200 mit Token. glm-sicht 7/10.
+
+---
+
+# NACHWEIS 3: Min/Max-Folien-Regler (minfolien/maxfolien)
+
+Datum: 18.11.2026 · Status: NICHT committet (Auftrag) · Test: `tests/test_folienregler.py`
+
+## 1. Umsetzung (Dateien)
+
+- **web/templates/index.html**: Export-Karte um Regler-Zeile erweitert: zwei
+  Zahl-Inputs `minfolien`/`maxfolien` (1..200, leer = keine Grenze, Tooltip
+  "KI fasst zusammen oder teilt auf dein Ziel auf"), Werte gehen per FormData
+  mit an /api/build; Status zeigt neue `X-Warnung`-Header an.
+- **web/app.py**: `_int_grenze()` (Form -> int 1..200 oder None, min>max -> 400),
+  `_verteile_folien()` (statische Kompression: Bullets poolen, pro Folie =
+  ceil(gesamt/platz) clamp 2..10, Sections liefern neue Folientitel,
+  Tabellen-/Bildfolien bleiben; Überhang-Bullets verfallen mit Log).
+  b28pptx/vorpptx komprimieren bei maxfolien; minfolien unerreichbar ->
+  Header `X-Warnung: min N Folien nicht erreichbar ohne KI (Premium nutzen)`.
+  aipptx reicht ziel_min/ziel_max + rohen Content-Text (txt/md = Dateiinhalt,
+  sonst Folien-Dicts als Text) an build_ai_deck. `X-Deck-Folien` zeigt jetzt
+  die FINALE Zahl (Plan nach KI).
+- **slideforce/ai_design.py**: `struktur_slide_plan(content_text, ziel_min,
+  ziel_max, config)` — EIN GLM-5.3-Call VOR dem Design-Loop: roher Content +
+  Ziel-Vorgabe + Slide-Dict-Schema (kind/bullets/kv-Keys zahl/einheit/ring/
+  botschaft/erklaerung/meilensteine) -> `{"folien":[...]}`; robustes Parsen
+  (`_extract_json`, 2 Versuche), Normalisierung ins Reader-Schema, Folie 1
+  wird Cover, Clamp: zu viele -> abschneiden, zu wenige (< ziel_min) -> None
+  -> normaler Reader-Pfad. `_slides_as_text()` fuer docx/xlsx-Input.
+  `build_ai_deck(..., ziel_min, ziel_max, content_text)`: bei Grenzen erst
+  Plan, dann gewohnter Design-Loop ueber den Plan; ohne Grenzen unverändert.
+  Log: `[ai] Folienplan: N Folien (Ziel min X/max Y)`.
+- **tests/test_folienregler.py**: 4 Beweisfaelle (s.u.), --quick = ohne KI.
+
+## 2. Beweise (Lauf vom 18.11.2026, GLM-5.3 via bridge28)
+
+a) Premium, 12x Transkript (74 Reader-Folien!), maxfolien=10:
+   `[ai] Folienplan: 4 Folien (Ziel min -/max 10)` (KI hat die 12-fache
+   Wiederholung erkannt und auf 4 Folien verdichtet), build 15s, 4/4 KI,
+   unzip -t "No errors", reopen = 4 Folien == X-Deck-Folien. ASSERT <=10 GRUEN.
+b) Premium, kurzes Transkript (8 Reader-Folien), minfolien=6/maxfolien=10:
+   `[ai] Folienplan: 7 Folien (Ziel min 6/max 10)`, 7 Folien >= 6, reopen ok.
+c) vorpptx, 12x Text, maxfolien=5: `[statik] Folien verteilt: 74 -> 5
+   (max 5, 10 Bullets/Folie)` (7 Duplikat-Bullets verfallen), 5 Folien,
+   unzip+reopen sauber. ASSERT <=5 GRUEN.
+d) Flask test_client: vorpptx maxfolien=5 -> X-Deck-Folien=5; b28pptx
+   minfolien=20 -> X-Warnung "... nicht erreichbar ohne KI (nur 8 statisch -
+   Premium nutzen)"; ungueltige Werte (0/abc) ignoriert; min>max -> 400;
+   aipptx min=6/max=10 -> X-Deck-Folien=7, X-AI-Folien=7 (7/7 KI designt).
+
+Regression: test_smoke.py + test_vorlage.py gruen (ohne Grenzen alles wie bisher).

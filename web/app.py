@@ -1,4 +1,5 @@
 """SlideForce Web: pptx.gemivo.de/slideforce.gemivo.de - Master + Content -> Deck."""
+import math
 import sys
 import time
 import uuid
@@ -138,9 +139,84 @@ def _save_upload(fileobj, prefix):
     return p
 
 
+def _int_grenze(name):
+    """Form-Feld minfolien/maxfolien -> int in 1..200 oder None (leer/ungueltig)."""
+    raw = (request.form.get(name) or "").strip()
+    if not raw:
+        return None
+    try:
+        v = int(float(raw))
+    except ValueError:
+        return None
+    return v if 1 <= v <= 200 else None
+
+
+def _verteile_folien(slides, maxfolien):
+    """Statische Min/Max-Kompression: Content-Bullets poolen + neu verteilen.
+
+    bullets_pro_folie = ceil(gesamt_bullets / platz), clamp 2..10. Sections
+    geben die neuen Folientitel, Tabellen-/Bildfolien bleiben unangetastet.
+    Bullets, die nicht mehr passen, fallen weg (Log) - zusammenfassen statt
+    splitten, damit die Folienzahl sinkt.
+    """
+    rest = list(slides)
+    titel = None
+    if rest and rest[0].get("kind") == "title":
+        titel, rest = rest[0], rest[1:]
+    fest, segs, cur_t, cur_b = [], [], "", []
+    for s in rest:
+        if s.get("table") or s.get("image"):
+            fest.append(s)
+            continue
+        if s.get("kind") == "section":
+            if cur_b:
+                segs.append((cur_t, cur_b))
+                cur_b = []
+            cur_t = (s.get("title") or "").strip() or cur_t
+            cur_b.extend((lvl, txt) for lvl, txt in (s.get("bullets") or []))
+            continue
+        if not cur_t:
+            cur_t = (s.get("title") or "").strip()
+        cur_b.extend((lvl, txt) for lvl, txt in (s.get("bullets") or []))
+    if cur_b:
+        segs.append((cur_t, cur_b))
+    flat = []                                    # (segment_titel, level, text)
+    for t, bl in segs:
+        for i, (lvl, txt) in enumerate(bl):
+            flat.append((t if i == 0 else None, lvl, txt))
+    platz = maxfolien - (1 if titel else 0) - len(fest)
+    out = ([titel] if titel else []) + fest
+    if platz <= 0:                               # nur Titelfolie + fest-Platz
+        limit = maxfolien - (1 if titel else 0)
+        weg = len(flat) + max(0, len(fest) - max(0, limit))
+        out = out[:maxfolien]
+        print(f"[statik] Folien hart gekappt auf {len(out)} (max {maxfolien}), {weg} Bullets weg",
+              flush=True)
+        return out
+    pro = min(10, max(2, math.ceil(len(flat) / platz)))
+    cur = None
+    for idx, (marker, lvl, txt) in enumerate(flat):
+        if cur is None or len(cur["bullets"]) >= pro:
+            if len(out) >= maxfolien:
+                print(f"[statik] {len(flat) - idx} Bullets ueber maxfolien-Grenze verworfen",
+                      flush=True)
+                break
+            cur = {"kind": "content", "layout": "content",
+                   "title": (marker or "").strip()[:100] or "Inhalt", "bullets": []}
+            out.append(cur)
+        cur["bullets"].append([int(lvl), str(txt)])
+    print(f"[statik] Folien verteilt: {len(slides)} -> {len(out)} "
+          f"(max {maxfolien}, {pro} Bullets/Folie)", flush=True)
+    return out
+
+
 @app.route("/api/build", methods=["POST"])
 def build_deck():
     fmt = request.form.get("fmt", "pptx").lower()
+    minfolien = _int_grenze("minfolien")
+    maxfolien = _int_grenze("maxfolien")
+    if minfolien and maxfolien and minfolien > maxfolien:
+        abort(400, "min. Folien darf nicht groesser als max. Folien sein")
     master = request.files.get("master")
     content = request.files.get("content")
     text = request.form.get("text", "").strip()
@@ -165,16 +241,30 @@ def build_deck():
         else:
             abort(400, "Kein Inhalt uebergeben (Datei oder Text)")
         slides = read_content(cp, source_title=cp.stem)
+        if cp.suffix.lower() in (".md", ".markdown", ".txt"):
+            content_text = cp.read_text(encoding="utf-8", errors="replace")
+        else:                                     # docx/xlsx/csv: Folien als Text
+            from slideforce.ai_design import _slides_as_text
+            content_text = _slides_as_text(slides)
+        warnung = None
+        n_final = len(slides)
         uid = uuid.uuid4().hex[:10]
         if fmt == "html":
             out = OUT / f"deck-{uid}.html"
             build_html(slides, slides[0].get("title", "Deck"), out, mp)
         else:
             out = OUT / f"deck-{uid}.pptx"
-            if fmt == "b28pptx":
-                build_profile(slides, out)
-            elif fmt == "vorpptx":
-                build_vorlage(slides, out)
+            if fmt in ("b28pptx", "vorpptx"):
+                if maxfolien and len(slides) > maxfolien:
+                    slides = _verteile_folien(slides, maxfolien)
+                    n_final = len(slides)
+                if minfolien and len(slides) < minfolien:
+                    warnung = (f"min {minfolien} Folien nicht erreichbar ohne KI "
+                               f"(nur {len(slides)} statisch - Premium nutzen)")
+                if fmt == "b28pptx":
+                    build_profile(slides, out)
+                else:
+                    build_vorlage(slides, out)
             elif fmt == "aipptx":
                 # Premium: GLM 5.3 designt JEDE Folie einzeln (1 Call pro Folie,
                 # max 4 parallel). KI gar nicht erreichbar -> alle Folien im
@@ -183,13 +273,18 @@ def build_deck():
                     print(f"[ai] Folie {fertig}/{gesamt} designt", flush=True)
 
                 _, ai_stats = build_ai_deck(slides, out, config=load_ai_config(),
-                                             on_progress=_prog)
+                                             on_progress=_prog,
+                                             ziel_min=minfolien, ziel_max=maxfolien,
+                                             content_text=content_text)
+                n_final = ai_stats.get("folien", len(slides))
             else:
                 build(mp, slides, out)
         mime = "text/html" if fmt == "html" else "application/vnd.openxmlformats-officedocument.presentationml.presentation"
         ext = "pptx" if fmt != "html" else "html"
         resp = send_file(out, as_attachment=True, download_name=f"slideforce-deck-{uid}.{ext}", mimetype=mime)
-        resp.headers["X-Deck-Folien"] = str(len(slides))
+        resp.headers["X-Deck-Folien"] = str(n_final)
+        if warnung:
+            resp.headers["X-Warnung"] = warnung
         if fmt == "aipptx":
             resp.headers["X-AI-Folien"] = str(ai_stats.get("ki", 0))
             if ai_stats.get("ki", 0) == 0:

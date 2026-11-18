@@ -470,7 +470,159 @@ def _render_elemente(sl, elemente, dunkel=False):
 
 
 # ---------------------------------------------------------------- Deck-Bau
-def build_ai_deck(slides, out_path, config=None, on_progress=None):
+# ------------------------------------------------ Folienplan (Min/Max-Regler)
+PLAN_SYSTEM_PROMPT = """Du bist Slide-Architekt bei BRIDGE28: Aus rohem Inhalt (Transkript, Notizen, Zahlen) erstellst du einen praegnanten, logisch gegliederten FOLIENPLAN - nur Struktur, kein Design. Du triffst die perfekte Folienzahl: zusammenfassen, wo zu viel Stoff fuer eine Folie da ist, aufteilen, wo eine Folie ueberladen waere. Niemals Informationen erfinden - jeder Punkt muss aus dem Input belegt sein."""
+
+PLAN_SCHEMA = """FOLIEN-SCHEMA (reines JSON, dein kompletter Output):
+{"folien":[
+ {"kind":"title","title":"Deck-Titel","subtitle":"Untertitel"},
+ {"kind":"section","title":"Kapitel-Titel"},
+ {"kind":"content","title":"Folien-Titel","kicker":"KURZLABEL","bullets":[[0,"Kernaussage"],[1,"Unterpunkt"]],"zahl":"93 %","einheit":"Migrationsstand","botschaft":"Kernbotschaft der Folie"}
+]}
+Feld-Erklaerung:
+- kind: "title" (NUR Folie 1, Deck-Cover), "section" (Kapitel-Trenner), "content" (alle anderen).
+- title: kurzer, praegnanter Folientitel. bullets: [[level,text],...], level 0 = Punkt, 1 = Unterpunkt, MAX 6 pro Folie, auf das Wesentliche verdichtet.
+- Optionale kv-Keys je Folie: "kicker" (Kurzlabel ueberm Titel, UPPERCASE), "zahl"+"einheit" (KPI-Wert + Label, z.B. "84.000" + "Euro Jahreskosten"), "erklaerung" (Kontextsatz), "ring" (Fortschritt in %, 0-100), "botschaft" (die eine Kernaussage), "meilensteine" ([["JJJJ-MM-TT","Name","fertig|kritisch"],...] fuer Fahrplaene).
+Gib AUSSCHLIESSLICH das JSON aus, kein Markdown/Prosa drumherum."""
+
+PLAN_KV_KEYS = {"kicker", "zahl", "einheit", "erklaerung", "ring", "botschaft",
+                "meilensteine", "notes"}
+
+
+def _plan_call(user_prompt, cfg):
+    """Ein GLM-Call fuer den Folienplan (2 Versuche). dict oder None."""
+    body = json.dumps({
+        "model": cfg.get("model", "glm-5.3"),
+        "max_tokens": int(cfg.get("max_tokens", 3500)),
+        "messages": [
+            {"role": "system", "content": PLAN_SYSTEM_PROMPT},
+            {"role": "user", "content": user_prompt},
+        ],
+    }).encode("utf-8")
+    for _versuch in range(2):
+        try:
+            req = urllib.request.Request(
+                cfg["url"], data=body,
+                headers={"Content-Type": "application/json", "User-Agent": "slideforce-ai"})
+            raw = urllib.request.urlopen(req, timeout=int(cfg.get("timeout", 90))).read()
+            msg = (json.loads(raw).get("choices") or [{}])[0].get("message") or {}
+            d = _extract_json(msg.get("content") or "")
+            if d is None:
+                d = _extract_json(msg.get("reasoning_content") or "")
+            if isinstance(d, dict) and isinstance(d.get("folien"), list):
+                return d
+        except (urllib.error.URLError, TimeoutError, OSError, ValueError, KeyError,
+                json.JSONDecodeError):
+            time.sleep(1.5)
+    return None
+
+
+def _norm_plan_folie(f):
+    """KI-Folien-Dict -> Reader-Schema (layout+kind+bullets) oder None."""
+    if not isinstance(f, dict):
+        return None
+    kind = str(f.get("kind") or f.get("layout") or "content").lower()
+    if kind not in ("title", "section", "content"):
+        kind = "content"
+    out = {"kind": kind, "layout": kind,
+           "title": str(f.get("title") or f.get("titel") or "").strip()[:120],
+           "bullets": []}
+    sub = f.get("subtitle") or f.get("untertitel")
+    if sub:
+        out["subtitle"] = str(sub).strip()[:200]
+    if kind == "content" and not out["title"]:
+        out["title"] = "Inhalt"
+    bl = f.get("bullets")
+    if isinstance(bl, list):
+        for b in bl[:8]:
+            if isinstance(b, (list, tuple)) and len(b) >= 2:
+                try:
+                    lvl = 1 if int(float(b[0])) > 0 else 0
+                except (TypeError, ValueError):
+                    lvl = 0
+                out["bullets"].append([lvl, str(b[1]).strip()])
+            elif isinstance(b, str) and b.strip():
+                out["bullets"].append([0, b.strip()])
+    for k in PLAN_KV_KEYS:
+        v = f.get(k)
+        if v is None or v == "":
+            continue
+        if isinstance(v, (str, int, float)):
+            out[k] = v
+        elif isinstance(v, list):
+            out[k] = ["|".join(str(t) for t in x) if isinstance(x, (list, tuple))
+                      else str(x) for x in v]
+    hat_inhalt = out["bullets"] or kind in ("title", "section") \
+        or any(k in out for k in PLAN_KV_KEYS)
+    return out if hat_inhalt else None
+
+
+def _slides_as_text(slides):
+    """Folien-Dicts kompakt als Text abbilden (Plan-Input fuer docx/xlsx/csv)."""
+    zeilen = []
+    for s in slides or []:
+        zeilen.append(f"[{s.get('kind', 'content')}] {s.get('title', '')}")
+        if s.get("subtitle"):
+            zeilen.append("  untertitel: " + str(s["subtitle"]))
+        for lvl, t in (s.get("bullets") or []):
+            zeilen.append("  " * (int(lvl) + 1) + "- " + str(t))
+        if s.get("table"):
+            zeilen.append("  tabelle:")
+            for row in s["table"]:
+                zeilen.append("    | " + " | ".join(str(c) for c in row) + " |")
+        for k, v in s.items():
+            if k in ("kind", "layout", "title", "subtitle", "bullets", "table", "image"):
+                continue
+            zeilen.append(f"  {k}: {v}")
+    return "\n".join(zeilen)
+
+
+def struktur_slide_plan(content_text, ziel_min, ziel_max, config=None):
+    """EIN GLM-Call: ROHER Content-Text -> Folienplan im Zielbereich (Reader-Schema).
+
+    Clamp: zu viele Folien -> abschneiden (ok); zu wenige (< ziel_min) -> None,
+    dann baut der Aufrufer den normalen Reader-Pfad weiter.
+    -> list[slide-dicts] oder None.
+    """
+    config = config or load_ai_config()
+    if not config or not (ziel_min or ziel_max):
+        return None
+    text = (content_text or "").strip()
+    if not text:
+        return None
+    if len(text) > 60000:                      # Prompt-Schutz bei Riesen-Inputs
+        text = text[:60000] + "\n[... Content gekuerzt ...]"
+    ziele = []
+    if ziel_min:
+        ziele.append(f"MINIMAL {ziel_min} Folien")
+    if ziel_max:
+        ziele.append(f"MAXIMAL {ziel_max} Folien")
+    user = ("ERSTELLE EINEN FOLIENPLAN mit " + " und ".join(ziele) + ".\n\n"
+            "INHALT (roh):\n<<<\n" + text + "\n>>>\n\n" + PLAN_SCHEMA +
+            "\n\nWICHTIG: Die Folienzahl muss IM Zielbereich liegen - die Titelfolie "
+            "zaehlt mit. Fasse dicht zusammen, aber erhalte ALLE wichtigen Zahlen, "
+            "Namen und Fakten aus dem Input.")
+    daten = _plan_call(user, config)
+    if daten is None:
+        print("[ai] Folienplan: KI-Call gescheitert -> Reader-Pfad", flush=True)
+        return None
+    plan = [f for f in (_norm_plan_folie(x) for x in daten["folien"]) if f]
+    if not plan:
+        print("[ai] Folienplan: keine gueltigen Folien -> Reader-Pfad", flush=True)
+        return None
+    plan[0]["kind"] = plan[0]["layout"] = "title"      # Folie 1 = Cover erzwingen
+    if ziel_max and len(plan) > ziel_max:
+        plan = plan[:ziel_max]                         # zu viele -> abschneiden ok
+    print(f"[ai] Folienplan: {len(plan)} Folien (Ziel min {ziel_min or '-'}/max {ziel_max or '-'})",
+          flush=True)
+    if ziel_min and len(plan) < ziel_min:
+        print(f"[ai] Folienplan: {len(plan)} < Ziel min {ziel_min} -> Reader-Pfad", flush=True)
+        return None
+    return plan
+
+
+def build_ai_deck(slides, out_path, config=None, on_progress=None,
+                  ziel_min=None, ziel_max=None, content_text=None):
     """Premium-Deck: je Folie KI-Design, sonst statischer profiles-Fallback.
 
     Engine rendert Header (kopf), Footer (fuss) und Logo selbst und fuehrt
@@ -479,6 +631,13 @@ def build_ai_deck(slides, out_path, config=None, on_progress=None):
     """
     t0 = time.time()
     config = config or load_ai_config()
+    if ziel_min or ziel_max:                # Min/Max-Regler: ERST Plan, DANN Design-Loop
+        plan = struktur_slide_plan(
+            content_text if content_text is not None else _slides_as_text(slides),
+            ziel_min, ziel_max, config)
+        if plan:
+            slides = plan
+        # plan=None -> Reader-Folien (normaler Pfad), Log kam aus struktur_slide_plan
     gesamt = max(1, len(slides))
     designs = design_folien(slides, config, on_progress)
     ki = sum(1 for d in designs if d)

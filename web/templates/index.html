@@ -75,6 +75,12 @@ box-shadow:0 8px 26px rgba(192,57,47,.18)}
 .fmtcard .check{position:absolute;top:14px;right:14px;width:20px;height:20px;border-radius:50%;
 border:1.5px solid var(--cardb);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:#fff;transition:.18s}
 .fmtcard.on .check{background:var(--red);border-color:var(--red)}
+.grenzen{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:16px;padding:14px 16px;
+background:rgba(0,0,0,.18);border:1px solid var(--line);border-radius:14px}
+.gfeld{display:flex;align-items:center;gap:8px;color:var(--mut);font-size:.86rem}
+.gfeld input{width:86px;background:#0e141b;border:1px solid var(--cardb);border-radius:10px;color:var(--fg);
+padding:8px 10px;font-size:.92rem}
+.gfeld input:focus{outline:none;border-color:var(--petrol)}
 button.go{width:100%;padding:17px;border:0;border-radius:14px;cursor:pointer;
 background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;font-size:1.15rem;font-weight:800;letter-spacing:.3px;
 transition:.18s;box-shadow:0 10px 30px rgba(192,57,47,.30)}
@@ -154,6 +160,13 @@ footer{margin-top:40px;color:#4d5c69;font-size:.8rem;text-align:center}
 <span class="check">✓</span><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="3" width="7" height="18" rx="1.5"/><path d="M13 6h8M13 10h8M13 14h5"/></svg></div><div class="ft">Vorstandsvorlage</div>
 <div class="fd">Helle Vorstands-Optik mit Inhalts-Sidebar wie deine Vorstandsvorlagen - Teile-Verzeichnis, KPI-Karten, petrol Akzente, deterministisch.</div></label>
 </div>
+<div class="grenzen">
+<div class="gfeld"><label for="minfolien">min. Folien</label>
+<input type="number" id="minfolien" name="minfolien" min="1" max="200" step="1" inputmode="numeric" placeholder="&ndash;" title="KI fasst zusammen oder teilt auf dein Ziel auf"></div>
+<div class="gfeld"><label for="maxfolien">max. Folien</label>
+<input type="number" id="maxfolien" name="maxfolien" min="1" max="200" step="1" inputmode="numeric" placeholder="&ndash;" title="KI fasst zusammen oder teilt auf dein Ziel auf"></div>
+<span class="mut">Leer = keine Grenze &middot; KI fasst zusammen oder teilt auf dein Ziel auf (Premium-Plan); statische Formate komprimieren per Bullet-Verteilung.</span>
+</div>
 <button class="go" id="go">Deck erstellen</button>
 <div class="status" id="status"></div>
 <details><summary>Layouts im aktuellen Master (per "layout:" im Text wählbar)</summary><div id="layouts">...</div></details>
@@ -199,16 +212,21 @@ const text=ta.value.trim();
 if(!content&&!text){st.textContent='Bitte Inhalt-Datei oder Transkript angeben.';st.className='status err';return}
 const fd=new FormData();const fmt=document.querySelector('input[name=fmt]:checked').value;
 if(master)fd.append('master',master);if(content)fd.append('content',content);if(text)fd.append('text',text);
-fd.append('fmt',fmt);$('go').disabled=true;
+fd.append('fmt',fmt);
+const gz=id=>{const v=$(id).value.trim();return(v&&+v>=1&&+v<=200)?Math.round(+v):''};
+if(gz('minfolien'))fd.append('minfolien',gz('minfolien'));
+if(gz('maxfolien'))fd.append('maxfolien',gz('maxfolien'));
+$('go').disabled=true;
 st.textContent = fmt==='aipptx' ? 'GLM 5.3 designt jede Folie einzeln - ca. 1-3 Minuten, Seite bitte offen lassen ...' : 'Deck wird gebaut ...';
 fetch('/api/build',{method:'POST',body:fd}).then(r=>{
 if(!r.ok)return r.text().then(t=>{throw new Error(r.status+': '+t)});
 const folien=r.headers.get('X-Deck-Folien')||'?';
 const ki=r.headers.get('X-AI-Folien');
 const fb=r.headers.get('X-AI-Fallback')?' (KI nicht erreichbar - statisches BRIDGE28-Design genutzt)':'';
+const warn=r.headers.get('X-Warnung')?' ⚠ '+r.headers.get('X-Warnung'):'';
 return r.blob().then(b=>{const u=URL.createObjectURL(b);const a=document.createElement('a');
 a.href=u;a.download='slideforce-deck.'+(fmt=='html'?'html':'pptx');a.click();setTimeout(()=>URL.revokeObjectURL(u),4000);
-st.textContent='Fertig: '+folien+' Folien als '+fmt.toUpperCase()+'.'+(ki!==null?' Davon '+ki+' von der KI designed.':'')+fb;st.className='status ok'})})
+st.textContent='Fertig: '+folien+' Folien als '+fmt.toUpperCase()+'.'+(ki!==null?' Davon '+ki+' von der KI designed.':'')+fb+warn;st.className='status ok'})})
 .catch(e=>{st.textContent='Fehler: '+e.message;st.className='status err'})
 .finally(()=>{$('go').disabled=false})};
 </script>
