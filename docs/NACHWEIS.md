@@ -458,3 +458,12 @@ from pathlib import Path - Zeile 4 und 7). Kein neuer Import noetig.
 - Deploy: rsync + restart -> active; https://slideforce.gemivo.de 302-Gate ok
 - Screenshot /tmp/sf-neu.png (891KB), glm-sicht: SCORE 8/10, Studio-Karte
   "starkes, funktional durchdachtes Feature" (Rest-Issues Kleinigkeiten)
+
+## NACHTRAG: Briefing optional (Kays Feedback)
+- /api/studio/start ohne Briefing leitet es ab: erste aussagekraeftige Zeile
+  der Quelle (max 80), sonst Dateiname (_briefing_aus_quelle)
+- UI: "Briefing optional - sonst aus deinen Fakten abgeleitet"
+- Beweis lokal + Server: 'ITK-Bremen Vorstand 2026' aus Zeile 1 abgeleitet;
+  md5 app.py lokal==server (eda9adb4...), service active, live 302-Gate ok
+- rsync --relative-Fehlschuss korrigiert (web/web verschoben nach
+  _web-falsch-kopie-18nov-2026, nicht geloescht)

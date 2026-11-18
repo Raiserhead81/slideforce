@@ -339,11 +339,23 @@ def _studio_status(run_id):
             "report": (o / "report.md").is_file()}
 
 
+def _briefing_aus_quelle(p):
+    """Briefing-Default wenn leer: erste aussagekraeftige Zeile (max 80),
+    sonst Dateiname."""
+    try:
+        for zeile in Path(p).read_text(encoding="utf-8",
+                                       errors="replace").splitlines()[:20]:
+            zeile = zeile.lstrip("# -* ").strip()
+            if len(zeile) >= 8:
+                return zeile[:80]
+    except Exception:
+        pass
+    return (Path(p).stem.replace("_", " ")[:80] or "Studio Run").strip()
+
+
 @app.route("/api/studio/start", methods=["POST"])
 def studio_start():
     briefing = (request.form.get("briefing") or "").strip()
-    if not briefing:
-        return jsonify({"error": "briefing fehlt"}), 400
     quelle = request.files.get("quelle")
     text = (request.form.get("text") or "").strip()
     if not quelle and not text:
@@ -352,17 +364,19 @@ def studio_start():
     if weg not in ("A", "B", "C"):
         weg = "A"
     stamp = uuid.uuid4().hex[:8]
-    try:
-        lo = int(request.form.get("min") or 8)
-        hi = int(request.form.get("max") or 12)
-    except ValueError:
-        lo, hi = 8, 12
     if quelle:
         qpath = UPLOAD / f"studio_{stamp}_{Path(quelle.filename).name}"
         quelle.save(str(qpath))
     else:
         qpath = UPLOAD / f"studio_{stamp}.md"
         qpath.write_text(text, encoding="utf-8")
+    if not briefing:
+        briefing = _briefing_aus_quelle(qpath)
+    try:
+        lo = int(request.form.get("min") or 8)
+        hi = int(request.form.get("max") or 12)
+    except ValueError:
+        lo, hi = 8, 12
     from studio.state import RunState
     st = RunState.create(str(STUDIO_RUNS), briefing, str(qpath), lo, hi, weg)
     th = threading.Thread(target=_studio_laeufer, args=(st.data["id"],), daemon=True)

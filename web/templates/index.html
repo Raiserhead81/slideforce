@@ -254,9 +254,9 @@ textarea#studioText{min-height:110px;width:100%;margin-top:10px}
 </div>
 </div>
 <textarea id="studioText" placeholder="... oder Fakten/Transkript direkt hier reinkopieren (Zeilen ohne Satz-Ende werden automatisch Kapitel)"></textarea>
-<div class="slabel">2 &middot; Auftrag &amp; Umfang</div>
+<div class="slabel">2 &middot; Auftrag (optional) &amp; Umfang</div>
 <div class="trow">
-<input id="studioBriefing" placeholder="Briefing (z.B. ITK-Bremen Vorstand 2026)" style="flex:1">
+<input id="studioBriefing" placeholder="Briefing optional - sonst aus deinen Fakten abgeleitet" style="flex:1">
 <select id="studioWeg"><option value="A">Weg A - native PPTX</option><option value="B">Weg B - Visual HTML</option><option value="C">Weg C - Hybrid + Infografiken</option></select>
 <input type="number" id="studioMin" min="1" max="200" placeholder="min" style="width:70px" title="min. Folien">
 <input type="number" id="studioMax" min="1" max="200" placeholder="max" style="width:70px" title="max. Folien">
@@ -339,7 +339,7 @@ return '<div class="trow" style="margin-top:6px"><span style="min-width:210px"><
 function studioResume(id){fetch('/api/studio/resume/'+id,{method:'POST'}).then(()=>setTimeout(studioRuns,1500)).catch(()=>{})}
 $('studioGo').onclick=()=>{const st=$('studioStatus');const text=$('studioText').value.trim();
 if(!studioFile&&!text){st.textContent='Bitte Fakten geben: Datei reinziehen oder Transkript eintippen.';st.className='status err';return}
-const fd=new FormData();fd.append('briefing',$('studioBriefing').value.trim()||'Studio Run');
+const fd=new FormData();fd.append('briefing',$('studioBriefing').value.trim());
 fd.append('weg',$('studioWeg').value);if(studioFile)fd.append('quelle',studioFile);if(text)fd.append('text',text);
 const gz=id=>{const v=$(id).value.trim();return(v&&+v>=1&&+v<=200)?Math.round(+v):''};
 if(gz('studioMin'))fd.append('min',gz('studioMin'));if(gz('studioMax'))fd.append('max',gz('studioMax'));
