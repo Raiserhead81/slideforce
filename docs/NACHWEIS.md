@@ -549,3 +549,16 @@ Run 20261118-203927 (Resume nach 429-Pause, Weg B Visual HTML):
   40-56px) + Editorial-Regeln (Hairlines, grosse Zahlen, letter-spacing,
   min 60px Aussenrand) + echte Umlaute (nie ae/oe/ue)
 - deck.html live: /api/studio/file/<id>/deck.html mit Token
+
+## NACHTRAG: Weg B NEU - handgebautes Editorial-Design-System (Kays Urteil "scheisse" umgesetzt)
+- Analyse: GLM-Frei-HTML-Design produziert Mittelmass, kein Agentur-Niveau
+- NEU: studio/dssystem.py - handgebaute Folien-Templates (Basis-CSS, 12er
+  Stroke-Icon-Bibliothek, Logo, Fuss; Layouts: titel/teil/kpi/karten/
+  zeitstrahl/statement). GLM liefert nur INHALTE (Storyboard/Art-Dicts),
+  das Design ist KONSTANT edel
+- pipeline.schritt_html nutzt jetzt dssystem.folie_html statt roles.html_folie
+- Logo-CSS-Fix: height 52px proportional (keine Verzerrung)
+- Beweis: Kays Rolloutplan-XLSX als Weg B mit Templates (Run 20261118-211918,
+  alle Schritte ok, deck.html), 6 PNGs gerendert + auf Kays Desktop gelegt;
+  glm-sicht Folie 1: "GEIL: Sehr klares und praegnantes Messaging" - kein
+  Doppel-Logo mehr

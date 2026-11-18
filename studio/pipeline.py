@@ -12,7 +12,7 @@ from pathlib import Path
 from slideforce import ai_design as AI
 from slideforce.readers import read_content
 
-from . import glm, render, roles
+from . import dssystem, glm, render, roles
 from . import webop as OP
 
 ZIEL_SCORE = 8
@@ -504,12 +504,7 @@ def schritt_html(state, log):
         if p.is_file() and p.stat().st_size > 300:      # Resume: weiterverwenden
             pass
         else:
-            html = roles.html_folie(state.data["briefing"], f, design, nr)
-            if not html:
-                _log(log, f"[html] Folie {nr}: keine Antwort - Fallback-Seite")
-                html = ("<html><body style='font-family:Arial;background:#fff'>"
-                        f"<h1 style='color:#39756F'>{f.get('title') or 'Folie ' + str(nr)}"
-                        "</h1><p>(Fallback - GLM-Antwort unbrauchbar)</p></body></html>")
+            html = dssystem.folie_html(f, nr, len(folien))   # handgebautes Editorial-Layout
             p.write_text(html, encoding="utf-8")
         dateien.append(str(p))
         png = render.html_screenshot(p, state.dir / "render" / f"html-{nr:02d}.png")
