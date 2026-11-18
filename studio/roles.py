@@ -8,6 +8,7 @@ Alle Prompts erzwingen reines JSON; Validierung + 1 Feedback-Retry.
 import time
 
 from . import glm
+from slideforce import ai_design as AI
 
 HEUTE = time.strftime("%d.%m.%Y")
 
@@ -208,3 +209,50 @@ tabelle/zeitstrahl) oder Kicker/Lead schaerfen."""
             + f"\nFix-Anweisung: {critic_ergebnis.get('fix') or '-'}")
     d = glm.chat_json(system, user, max_tokens=3000)
     return d if isinstance(d, dict) else None
+
+
+# ---------------------------------------------------------------- Hybrid SVG (Weg C)
+HYBRID_SYSTEM = """Du bist Dataviz-Infografiker einer Praesentations-Agentur. Du baust EINE
+Infografik als reines SVG (viewBox="0 0 1200 900", font-family Arial) im Brand der
+hellen Dataport-Vorstandsvorlage: Grund #FFFFFF, Karten #F4F5F6, Petrol #39756F,
+Grau #39424A, Rot #9E292B (nur Akzent), Tints #F8E8E8/#FBF0DC.
+Regeln: keine externen Bilder/Fonts/Scripts, kein CSS-<style>-Import, Text NICHT
+abschneiden (textLength nur mit lengthAdjust), Kernzahl mindestens 160px im
+1200er viewBox, Beschriftungen mindestens 40px, Zahlen exakt uebernehmen, max 5
+Datenelemente, ruhig und vorstandstauglich. gib nur das SVG-Element selbst aus."""
+
+_HYBRID_SCHEMA = """Gib AUSSCHLIESSLICH dieses JSON aus:
+{"svg":"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 900'> ... </svg>"}"""
+
+
+def hybrid_svg(briefing, folie_slide_dict, design, nr):
+    """GLM-SVG-Infografik fuer eine Folie (Weg C Hybrid). SVG-String oder None.
+
+    Robust gegen GLMs schwankendes Antwortformat: JSON-Wrapper nur Erstversuch,
+    sonst <svg>...</svg> direkt per Regex aus dem Roh-Text ziehen. 3 Call-Versuche.
+    """
+    import json as _json
+    import re as _re
+    user = (f"BRIEFING: {briefing}\n\nDESIGNSYSTEM (Leitidee): "
+            + _json.dumps((design or {}).get("designsystem") or {}, ensure_ascii=False)
+            + f"\n\nFOLIE {nr} (Inhalte verbindlich, Zahlen exakt):\n"
+            + _json.dumps(folie_slide_dict, ensure_ascii=False)
+            + "\n\n" + _HYBRID_SCHEMA)
+    system = HYBRID_SYSTEM
+    for _versuch in range(3):
+        txt = glm.chat(system, user, max_tokens=8000, timeout=300)
+        if txt:
+            d = AI._extract_json(txt)            # sauberer JSON-Weg
+            svg = d.get("svg") if isinstance(d, dict) else None
+            if not (isinstance(svg, str) and svg.strip().startswith("<svg")):
+                m = _re.search(r"<svg[\s\S]*?</svg>", txt)   # roher SVG-Weg
+                svg = m.group(0) if m else None
+            if isinstance(svg, str) and svg.strip().startswith("<svg"):
+                return svg
+            user2 = user + "\n\nWICHTIG: Antworte NUR mit dem JSON {\"svg\": \"...\"}."
+        else:
+            user2 = user
+        if _versuch == 1:
+            system = HYBRID_SYSTEM + "\nDu gibst NUR das JSON-Objekt aus, ohne Prosa."
+            user = user2
+    return None

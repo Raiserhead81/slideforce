@@ -95,6 +95,46 @@ def schritt_art(state, log):
               f"{str(ds.get('leitidee'))[:70]}")
 
 
+def schritt_hybrid(state, log):
+    """Weg C: GLM-SVG-Infografiken fuer datengetriebene Folien (kpi/zeitstrahl)
+    via cairosvg -> PNG, als 'image' ins Art-Design (nativ + Infografik)."""
+    t0 = time.time()
+    design = state.schritt("art").get("design") or {}
+    folien = list(design.get("folien") or [])
+    briefing = state.data["briefing"]
+    kandidaten = []
+    for i, f in enumerate(folien):
+        if not isinstance(f, dict):
+            continue
+        kind = str(f.get("kind") or f.get("rolle") or "").lower()
+        daten = bool(f.get("zeitstrahl")) or any(
+            str(k).startswith("zahl") for k in f)
+        if daten and kind not in ("title", "titel", "section", "teil"):
+            kandidaten.append(i)
+    if not kandidaten:
+        _log(log, "[hybrid] keine Datenfolien - nativ ohne SVG")
+        return
+    svg_dir = state.dir / "svg"
+    gemacht = []
+    for idx in kandidaten:
+        nr = idx + 1
+        svg = roles.hybrid_svg(briefing, folien[idx], design, nr)
+        if not svg:
+            _log(log, f"[hybrid] Folie {nr}: keine SVG-Antwort, nativ belassen")
+            continue
+        png = render.svg_zu_png(svg, svg_dir / f"infografik-{nr:02d}.png")
+        if png:
+            folien[idx] = dict(folien[idx])
+            folien[idx]["image"] = png
+            gemacht.append(nr)
+            _log(log, f"[hybrid] Folie {nr}: Infografik-PNG ok")
+        else:
+            _log(log, f"[hybrid] Folie {nr}: SVG-Render fehlgeschlagen, nativ")
+    design["folien"] = folien
+    state.set_schritt("art", "ok", {"design": design, "hybrid_svgs": gemacht})
+    _log(log, f"[hybrid] ok: {len(gemacht)} Infografiken (Folie {gemacht})")
+
+
 def schritt_build(state, log):
     t0 = time.time()
     sb = state.schritt("story").get("storyboard")
@@ -188,7 +228,10 @@ def _repair_folien(state, log, schwach):
         idx = nr - 1
         neu = roles.art_repair(state.data["briefing"], slides[idx],
                                schwach_dict[nr], nr)
-        return nr, OP._norm_slide(neu) if neu is not None else None
+        neu = OP._norm_slide(neu) if neu is not None else None
+        if neu is not None and not neu.get("image") and slides[idx].get("image"):
+            neu["image"] = slides[idx]["image"]   # Infografik (Weg C) erhalten
+        return nr, neu
 
     schwach_dict = {s["nr"]: s for s in schwach}
     geaendert = []
@@ -202,7 +245,9 @@ def _repair_folien(state, log, schwach):
                 folien[nr - 1] = neu
             geaendert.append(nr)
     design["folien"] = folien
-    state.set_schritt("art", "ok", {"design": design})
+    art_alt = state.schritt("art")                 # hybrid_svgs u.a. bewahren
+    state.set_schritt("art", "ok", {"design": design,
+                                    "hybrid_svgs": art_alt.get("hybrid_svgs")})
     if geaendert:
         # Reparaturen muessen in den Build Fliessen: fix_runden baut aus
         # build.slides - ohne Zurueckschreiben waeren Reparaturen wirkungslos.
@@ -375,6 +420,8 @@ def run(state, log=print):
         schritt_story(state, log)
     if not state.fertig("art"):
         schritt_art(state, log)
+    if state.data.get("weg") == "C" and not state.schritt("art").get("hybrid_svgs"):
+        schritt_hybrid(state, log)
     if not state.fertig("build"):
         schritt_build(state, log)
     if not state.fertig("render"):

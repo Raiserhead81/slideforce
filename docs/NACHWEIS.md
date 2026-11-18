@@ -338,3 +338,37 @@ Datum: 18.11.2026 · Projektordner: studio/ (Mini: ~/gemma-projekte/slideforce)
 - deck.pptx: unzip OK · 10 PNGs gerendert · report.md vorhanden
 - Unabhaengige Sichtpruefung Folie 1 (glm-sicht): SCORE 8/10, klare Hierarchie,
   kein Navy/Gold - interner Critic 7 = strenger
+
+---
+
+# NACHWEIS 6: Etappe 2a - Weg C Hybrid (GLM-SVG-Infografiken)
+
+Datum: 18.11.2026 (spaet) · Stand: E2E gruen, Tests 12 passed
+
+## Umsetzung
+- slideforce/profiles.py: _v_content_folie unterstuetzt 'image' (PNG rechts
+  3.6", Bullets links schmaler) - python-pptx-API only, kein XML-Gefummel
+- studio/render.py: svg_zu_png (cairosvg) + _svg_dupe_attrs_raus (Reparatur:
+  GLM-SVGs haben oft doppelte Attribute je Element -> libxml2 lehnt ab,
+  erster Attributtreffer gewinnt, Self-Closing sauber erhalten)
+- studio/roles.py: hybrid_svg - GLM baut SVG im Brand (Petrol/Grau/Rot/Karten-
+  Weiß, viewBox 1200x900, Kernzahl >= 160px). ROBUST: JSON-Wrapper nur
+  Erstversuch, sonst Regex-Fallback <svg>...</svg> aus Roh-Text, 3 Versuche
+  (GLMs Antwortformat schwankt - belegt: gleiches Prompt mal valides, mal
+  kaputtes JSON). Timeout 300s (8000er-SVG-Antworten brauchen >150s)
+- studio/webop.py: 'image' in _KEYS + _norm_slide-Durchreich
+- studio/pipeline.py: schritt_hybrid (Weg C: KPI-/Zeitstrahl-Folien bekommen
+  Infografik), run()-Einbau resume-sicher; _repair_folien bewahrt hybrid_svgs
+  + image-Feld (Fix-Runden hatten Infografiken vorher weggeschmissen)
+- studio/cli.py: --weg C
+
+## Beweise
+- svg_zu_png Reparatur: kaputtes GLM-SVG (/tmp/hybrid-roh.txt, doppelte
+  Attribute) -> PNG gerendert; glm-sicht ueber Infografik: "GEIL: Klare
+  Strukturierung von Kennzahlen in farbigen Chips (100% P1, 61% Auto,
+  99,4% Verfuegbarkeit) mit hoher Lesbarkeit"
+- pytest tests/test_studio_state.py studio/test_state.py = 12 passed
+  (inkl. 3 neue: dupe-attrs, svg-zu-png-repariert, regex-fallback)
+- E2E Weg C Run 20261118-202449: 11 Folien, 4 Critic-Runden,
+  final 10/11 Folien >= 8/10 (Folie 3: 7, Rest-Schwaeche im Report)
+- svg/infografik-03.png + -08.png im Run-Ordner erzeugt (beweisen Weg C)

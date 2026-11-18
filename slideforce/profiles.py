@@ -1066,8 +1066,16 @@ def _v_zeitstrahl_folie(sl, s, kicker):
 
 def _v_content_folie(sl, s, kicker):
     _v_kopf(sl, s, kicker)
-    unten = 6.05 if s.get("hinweis") else 6.75
-    _v_punkt_raster(sl, s.get("bullets") or [], 0.67, 1.95, unten)
+    img = s.get("image")
+    if img and Path(img).is_file():
+        unten = 6.05 if s.get("hinweis") else 6.75
+        w_text = W - 2 * 0.67 - 4.1          # Bullets links, Infografik rechts
+        _v_punkt_raster(sl, s.get("bullets") or [], 0.67, 1.95, unten)
+        sl.shapes.add_picture(str(img), Inches(W - 0.67 - 3.6),
+                              Inches(2.15), width=Inches(3.6))
+    else:
+        unten = 6.05 if s.get("hinweis") else 6.75
+        _v_punkt_raster(sl, s.get("bullets") or [], 0.67, 1.95, unten)
 
 
 def _v_fuss(sl, nr, gesamt, brand):

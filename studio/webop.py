@@ -16,7 +16,7 @@ from slideforce.profiles import build_vorlage
 # Erlaubte Slide-Dict-Keys (genau das, was build_vorlage versteht)
 _KEYS = {"kind", "title", "subtitle", "meta", "kicker", "lead", "bullets",
          "table", "zeitstrahl", "heute", "botschaft", "zusatz", "hinweis",
-         "notes", "teile"}
+         "notes", "teile", "image"}
 _KV = re.compile(r"^(zahl|label|einheit|erklaerung|status)\d*$")
 _CJK = re.compile(r"[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]+")
                                                                  # GLM-Glitches
@@ -179,6 +179,8 @@ def _norm_slide(d, allow_teile=False):
         hd = _s(d.get("heute"), 10)
         if re.match(r"^\d{4}-\d{2}-\d{2}$", hd):
             out["heute"] = hd
+    if isinstance(d.get("image"), str) and d.get("image"):
+        out["image"] = d["image"]          # Weg C: Infografik-PNG (existenz prueft Builder)
     if isinstance(d.get("notes"), (str, int, float)) and _s(d.get("notes")):
         out["notes"] = _s(d.get("notes"), 500)
     if allow_teile and isinstance(d.get("teile"), list):

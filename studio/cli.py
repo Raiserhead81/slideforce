@@ -29,8 +29,9 @@ def main(argv=None):
     ap.add_argument("--quelle", help="Quelldatei (md/txt/docx/xlsx/csv)")
     ap.add_argument("--min", type=int, default=8, help="min. Folienzahl (default 8)")
     ap.add_argument("--max", type=int, default=12, help="max. Folienzahl (default 12)")
-    ap.add_argument("--weg", default="A", choices=["A", "a"],
-                    help="Produktionsweg (Etappe 1: nur A = native PPTX)")
+    ap.add_argument("--weg", default="A", choices=["A", "C"],
+                    help="Produktionsweg (A = native PPTX, C = Hybrid mit "
+                         "GLM-SVG-Infografiken; B = Visual HTML folgt)")
     ap.add_argument("--resume", metavar="RUN-ID", help="abgebrochenen Run fortsetzen")
     ap.add_argument("--runs-dir", default=str(ROOT / "studio" / "runs"))
     ap.add_argument("--max-fixrunden", type=int, default=3)

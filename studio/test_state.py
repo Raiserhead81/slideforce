@@ -54,3 +54,32 @@ def test_glm_429_wirft_runtimeerror(monkeypatch):
     with pytest.raises(RuntimeError, match="429"):
         glm._post([{"role": "user", "content": "x"}], 100)
     assert len(aufrufe) == 2
+
+
+def test_svg_dupe_attrs_raus():
+    from studio.render import _svg_dupe_attrs_raus
+    kaputt = ("<svg xmlns='x' width='10' width='20'>"
+              "<line x1='1' y1='2' x2='3' x1='9'/></svg>")
+    fix = _svg_dupe_attrs_raus(kaputt)
+    assert fix.count("x1=") == 1 and fix.count("width=") == 1
+    assert fix.startswith("<svg") and fix.endswith("</svg>")
+
+
+def test_svg_zu_png_repariert_kaputtes():
+    from studio.render import svg_zu_png
+    kaputt = ("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'"
+              " width='10' width='20'><rect width='100' height='100'"
+              " fill='#39756F' fill='#fff'/></svg>")
+    p = svg_zu_png(kaputt, "/tmp/test-svg-repariert.png")
+    assert p and Path(p).stat().st_size > 500
+
+
+def test_hybrid_svg_regex_fallback(monkeypatch):
+    """chat_json-Pfad kaputt -> Regex-Fallback zieht <svg> aus rohem Text."""
+    from studio import glm, roles
+
+    roh = "Hier ist deine Grafik:\n<svg xmlns='http://www.w3.org/2000/svg'>\
+<rect x='1' y='2' width='3' height='4'/></svg> fertig."
+    monkeypatch.setattr(glm, "chat", lambda *a, **k: roh)
+    svg = roles.hybrid_svg("Test-Briefing", {"title": "Folie"}, {}, 4)
+    assert svg and svg.startswith("<svg") and svg.endswith("</svg>")
