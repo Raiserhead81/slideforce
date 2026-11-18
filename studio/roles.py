@@ -47,7 +47,10 @@ STORY_SYSTEM = """Du bist Story Architect einer Praesentations-Agentur: Du entwi
 - Action Title = vollstaendiger Aussage-Satz mit Subjekt und Richtung (NICHT "Status Migration", SONDERN "Migration erreicht 93 Prozent und liegt im Plan").
 - FAKTEN stehen auf den Folien: jede Zahl, jeder Termin MUSS aus der Quelle stammen - niemals erfinden oder glaetten.
 - ANNAHMEN (Interpretationen, Hochrechnungen, fehlende Belege) kommen NICHT auf die Folie, sondern ins Feld "annahmen" (erscheint nur im Report/Notizen).
-- Jede Folie traegt GENAU EINE Kernbotschaft."""
+- Jede Folie traegt GENAU EINE Kernbotschaft.
+- ARGUMENT-SPINE (Minto): Deck folgt einem Bogen - Situation (was gilt) -> Komplikation (was fehlt/bedroht) -> Aufloesung (was wir tun/tun haben). Kapitel-Trenner markieren die Bogen-Stationen.
+- GHOST-DECK-TEST (PFLICHT vor Ausgabe): Lese nur die Titelle in Reihenfolge. Sie muessen ALLEIN die komplette Geschichte erzaehlen. Tun sie das nicht: Titel schaerfen oder Folien umordnen, bevor du antwortest.
+- TEXT-DISZIPLIN: max 40 Woerter Fliesstext je Inhaltsfolie, 3-5 punkte je Folie (mehr = Folie splitten), telegraphische Sprache ohne Fuellwoerter."""
 
 
 def _STORY_SCHEMA(ziel_min, ziel_max):
@@ -146,6 +149,10 @@ EDITORIALE HART-REGELN (Critic prueft genau das):
 - Jeder Wert/Kennzahl erscheint max. EINMAL pro Folie (keine Redundanz zwischen KPI-Karte und Punkt-Karten).
 - KPI-Reihe (2-3 Zahlen): nur die ERSTE Karte 2 subs (Werte max 12 Zeichen), die folgenden ohne; Sub-Werte nie laenger als 8 Zeichen.
 - lead: eine Zeile, max 80 Zeichen, petrol, keine Aufzaehlungen.
+- RAUM-DISZIPLIN: WEISSRAUM ist Qualitaets-Signal - niemals jede Flaeche fuellen. Lieber 4 Karten grosszuegig als 6 gequetscht. Elemente DUERFEN SICH NIE UEBERLAPPEN (Critic faengt das immer). 
+- KEIN DEKO: Linien/Baender/Felder nur mit Informationszweck (Gruppierung, Betonung, Status). Farbe lenkt Aufmerksamkeit auf den Kernbefund - alles andere bleibt neutral grau/dunkel.
+- ANTI-SLOP: keine erfundenen Farben (nur die Brand-Palette) · keine Deko-Icons/Emojis · keine Deko-Verlaeufe · keine Deko-Kennzahlen ("data slop") · jedes Element verdient seinen Platz - Leere wird mit Komposition geloest, nie mit Fuellinhalt.
+- SELF-SUFFICIENT-TEST: Jede Folie muss ohne Praesentierer verstaendlich sein - Kernbefund steht auf der Folie, nicht nur in der Sprechnotiz.
 - Nicht zutreffende Felder WEGLASSEN - niemals null/None/"-" als Wert eintragen."""
 
 
@@ -168,7 +175,12 @@ Bewerte streng wie ein Art Director im Abnahmemeeting:
 - 9-10: Agenturniveau - Editorial, ruhig, perfekt balanciert, alles lesbar, nichts abgeschnitten.
 - 7-8: solide, aber mit klaren Schwaechen (Unbalance, Textwust, schwache Hierarchie).
 - <7: echte Maengel (abgeschnittener/ueberlappender Text, ueberfuellte oder leere Flaechen, kaputte Optik, inkonsistentes Design).
-Text, der ausserhalb seiner Karte oder ueber den Rand laeuft, ist IMMER ein Makel."""
+Text, der ausserhalb seiner Karte oder ueber den Rand laeuft, ist IMMER ein Makel. Ueberlappende Elemente sind IMMER ein Makel.
+Zusaetzliche harte Checks (jeweils Makel wenn verletzt):
+- ACTION-TITLE-TEST: Titel ist ein vollstaendiger Aussage-Satz mit Subjekt und Richtung? Ein nacktes Themen-Label ("Ergebnisse", "Zeitplan") ist ein Makel.
+- SELBSTTRAGEND-TEST: Versteht man den Kernbefund der Folie ohne Praesentierer? Fehlt die Annotation am Kernelement, ist ein Makel.
+- WEISSRAUM-TEST: Ist die Folie ueberfuellt (>6 Inhaltszellen) oder unbalanciert (eine Ecke leer, Rest voll)?
+- DEKO-TEST: Gibt es Linien/Baender/Farbe ohne Informationszweck?"""
 
 
 def critic(png_path, nr, titel, muster):

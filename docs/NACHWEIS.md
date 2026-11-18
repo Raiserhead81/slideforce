@@ -586,3 +586,21 @@ Run 20261118-203927 (Resume nach 429-Pause, Weg B Visual HTML):
   "alle 6 neu + deck.pptx aktualisiert") + auf Kays Desktop gesynct
 - Sichtpruefung Folie 6 nach Fix: Score laut glm-sicht (folie-6-Pruefung
   /tmp/f6-neu.png), keine Ueberlappungen, Balance ok
+
+## 2026-11-18 Premium+HTML lernen Master (Claude-Niveau-Ziel)
+- master_farben/master_farb_map/master_brand_block (ai_design.py): Premium-Pfad
+  lernt die Marken-Farben + Font aus dem hochgeladenen Master (Slot-Heuristik
+  wie html_export; NGN-Master: lt2=Petrol dominant, accent1=Rot, accent5=Gold
+  - vertauschte Slots realer Masters abgedeckt).
+- setze_master_theme/restore_theme: FARB_MAP + profiles-Modul-Farben zur
+  Build-Zeit auf Master-Marke, _AI_LOCK macht Builds seriell.
+- Neue Engine-Cover: PPTX _cover_engine (Petrol-Band unten, Kicker, Gold-Linie,
+  KI-Meta-Zone y1.7-4.1), HTML s-title brandband (gleiche Logik in CSS).
+- Prompts: SP-Kopf/Brand/Rest-Zerlegung, Master-Brand-Block mit echten Hex-Werten;
+  Text-Diät 550->120 Woerter, max 10 Elemente, Kernbefund-Regel, Anti-Slop-Liste.
+- Story: Minto-Spine + Ghost-Deck-Test; Critic: Action-Title/Selbsttragend/
+  Weissraum/Deko-Tests; ART: RAUM-DISZIPLIN + ANTI-SLOP.
+- Beweis: Live-Runs NGN-Master+Transkript -> PPTX 8/10 (war 6->8, Ausgang 3),
+  HTML 8/10 (war 6, Ausgang 3); Faktencheck Cover: h1 66.5px bold WEISS auf
+  #39756F-Band vs Untertitel 24px (GLM-Behauptung "gleiche Groesse" widerlegt).
+- Tests: 5 passed (test_smoke, test_studio_state).

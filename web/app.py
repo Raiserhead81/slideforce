@@ -287,7 +287,8 @@ def build_deck():
                 _, ai_stats = build_ai_deck(slides, out, config=load_ai_config(),
                                              on_progress=_prog,
                                              ziel_min=minfolien, ziel_max=maxfolien,
-                                             content_text=content_text)
+                                             content_text=content_text,
+                                             master_path=str(mp))
                 n_final = ai_stats.get("folien", len(slides))
             else:
                 build(mp, slides, out)

@@ -95,12 +95,13 @@ def _render_slide(s, profil=None):
     hell = " hell" if profil and rolle not in DUNKEL_ROLLEN else ""
     if kind == "title":
         sub = _md(s.get("subtitle") or "")
+        band = (f'<div class="brandband"><div class="goldlinie"></div>'
+                f'<h1>{title}</h1><p class="subtitle">{sub}</p></div>')
         if lay_idx is not None:
             return (f'<section class="slide s-title{hell}{lkl}"><div class="tbox">'
-                    f'<div class="kicker"></div><h1>{title}</h1>'
-                    f'<p class="subtitle">{sub}</p></div></section>')
-        return f'<section class="slide s-title"><div class="kicker"></div>' \
-               f'<h1>{title}</h1><p class="subtitle">{sub}</p></section>'
+                    f'<div class="kicker"></div></div>{band}</section>')
+        return (f'<section class="slide s-title"><div class="kicker"></div>'
+                f'{band}</section>')
     if kind == "section":
         if lay_idx is not None:
             return (f'<section class="slide s-section{hell}{lkl}">'
@@ -172,10 +173,14 @@ TEMPLATE = """<!DOCTYPE html>
 .slide.hell .kicker{background:var(--a1h)}
 __LAYCSS__
 .s-title h1,.s-section h1{font-family:var(--major),sans-serif;font-size:clamp(2.2rem,6vw,4.5rem);line-height:1.1}
-.s-title .kicker{width:70px;height:8px;background:var(--a1);margin-bottom:3vh}
-.s-title .subtitle{font-size:clamp(1.1rem,2.4vw,1.7rem);opacity:.75;margin-top:2vh}
-.s-section h1{color:var(--a1)}
-.s-content h2,.s-kpi h2{font-family:var(--major),sans-serif;font-size:clamp(1.6rem,3.6vw,2.6rem);color:var(--a1);margin-bottom:3.5vh}
+.s-title{display:flex;flex-direction:column;justify-content:space-between;background:var(--paper)}
+.s-title .kicker{width:110px;height:10px;background:var(--a1);margin:9vh 0 0 6vw}
+.s-title .brandband{background:var(--a2);padding:5.5vh 6vw 6.5vh;margin-top:auto}
+.s-title .brandband .goldlinie{width:130px;height:7px;background:var(--a1);margin-bottom:2.6vh}
+.s-title .brandband h1{color:#fff;font-size:clamp(2.4rem,5.2vw,4.2rem)}
+.s-title .brandband .subtitle{color:rgba(255,255,255,.86);opacity:1;font-size:clamp(1.15rem,2.1vw,1.5rem);margin-top:1.4vh}
+.s-section h1{color:var(--a2)}
+.s-content h2,.s-kpi h2{font-family:var(--major),sans-serif;font-size:clamp(1.6rem,3.6vw,2.6rem);color:var(--a2);margin-bottom:3.5vh}
 .s-content ul{list-style:none;font-size:clamp(1.05rem,2.1vw,1.5rem);line-height:1.55}
 .s-content li{padding-left:1.6em;position:relative;margin-bottom:1.1vh}
 .s-content li:before{content:"";position:absolute;left:0;top:.52em;width:.6em;height:.6em;background:var(--a1)}

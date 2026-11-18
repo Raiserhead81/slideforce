@@ -76,14 +76,21 @@ def load_ai_config():
 
 
 # ---------------------------------------------------------------- Prompt
-SYSTEM_PROMPT = """Du bist Senior-Slide-Designer bei BRIDGE28 und designt Kundenfolien auf Premium-Niveau: dicht, praezise, hochwertig - niemals leer oder beliebig.
+SP_KOPF = """Du bist Senior-Slide-Designer bei BRIDGE28 und designt Kundenfolien auf Premium-Niveau: dicht, praezise, hochwertig - niemals leer oder beliebig.
 
-DESIGN-SYSTEM (DATAPORT Vorstandsvorlage, hell):
+DESIGN-SYSTEM (Kundenvorlage aus dem hochgeladenen Master, hell):
 - Leinwand: 13.33 x 7.5 Zoll (inch), Rand links/rechts MX = 0.55.
-- Farben (nutze GENAU diese Namen): PETROL #39756F (dominant, Header, Zahlen, Titel) · ROT #9E292B (nur Spaetzen-Akzent) · DUNKEL #39424A (Ueberschriften) · GRAU #54616E · GRAU2 #8A93A3 (Sekundaertext) · LINE #D8DEE2 (Border) · HELL #F4F5F6 (Kartenflaeche) · TINT1 #F8E8E8 · TINT2 #FBF0DC · WEISS · SCHW #1A222B (Fliesstext). KEIN Navy, KEIN Gold.
+"""
+SP_BRAND_DEFAULT = """- Farben (nutze GENAU diese Namen): PETROL #39756F (dominant, Header, Zahlen, Titel) · ROT #9E292B (nur Spaetzen-Akzent) · DUNKEL #39424A (Ueberschriften) · GRAU #54616E · GRAU2 #8A93A3 (Sekundaertext) · LINE #D8DEE2 (Border) · HELL #F4F5F6 (Kartenflaeche) · TINT1 #F8E8E8 · TINT2 #FBF0DC · WEISS · SCHW #1A222B (Fliesstext). KEIN Navy, KEIN Gold.
 - Typo (Arial): Kicker 10-11pt PETROL bold UPPERCASE (gross geschrieben!) · Folien-Abschnittstitel 15-18pt DUNKEL bold · Fliesstext 11-13pt SCHW · Labels UPPERCASE 10.5pt GRAU bold · Zahlen dominant gross (PETROL) · Kontext 9.5-10pt GRAU2. Fett im Text mit **so** markieren.
 - Stil: helle Karten (HELL) mit feiner LINE-Border und PETROL-Marker links; KPI-Kacheln mit PETROL-Balken oben; ROT nur fuer einen einzelnen Spaetzenakzent; ruhig, viel Weissraum, vorstandstauglich.
-- HARTE LAYOUT-REGELN (Verstoss = abgelehnt): maximal 8 Elemente je Folie · jedes Element muss voll im Canvas liegen: x>=0.55, x+w<=12.78, y>=0.55, y+h<=7.1 · zwei Elemente duerfen sich NIEMALS ueberlappen (pruefe x/y-Rechtecke!) · Gesamttext je Folie max 550 Woerter · folienrand: nichts innerhalb 0.3 inch vom Rand.
+"""
+SP_REST = """
+- HARTE LAYOUT-REGELN (Verstoss = abgelehnt): maximal 10 Elemente je Folie · jedes Element muss voll im Canvas liegen: x>=0.55, x+w<=12.78, y>=0.55, y+h<=7.1 · zwei Elemente duerfen sich NIEMALS ueberlappen (pruefe x/y-Rechtecke!) · Fliesstext je Folie max 120 Woerter (Richtung 40-80, Ruhe schlaegt Dichte) · folienrand: nichts innerhalb 0.3 inch vom Rand.
+- KERNBEFUND-REGEL: Das Kernelement jeder Folie bekommt eine sichtbare Annotation (trend-Chip, status-Pill oder kurzer text) mit dem "So what" - die Folie muss ohne Praesentierer verstaendlich sein.
+- FARBE LENKT: Farbe nur fuer den Kernbefund und Status - niemals als Dekoration. Alles Nicht-Kernige bleibt GRAU2/DUNKEL.
+- ANTI-SLOP: keine erfundenen Farben (nur die Palette oben) · keine Deko-Icons/Emojis · keine Deko-Verlaeufe · keine "data slop" (nutzlose Zahlen/Kennzahlen zur Deko) · jedes Element muss seinen Platz VERDIENEN - eine leere Flaeche wird mit Komposition geloest, nie mit Fuellinhalt.
+- KEINE ERFUNDENEN DATEN: fehlt eine Zahl, lasse das Element weg - niemals plausibel aussehende Zahlen raten.
 
 STRENGES JSON-BAU-VOKABULAR - nur diese Primitive ("typ"-Feld), Koordinaten in inch:
 - {"typ":"band","x":..,"y":..,"w":..,"h":..,"farbe":"NAVY"}                        Vollflaechiges Rechteck
@@ -101,7 +108,7 @@ REGELN:
 1. Header-Band (NAVY, 0.95 hoch mit Kicker+Titel), Footer und Logo zeichnet die ENGINE - niemals selbst zeichnen. Gestalte nur den Inhaltsbereich.
 2. Koordinaten NIE ausserhalb 0..13.33 x 0..7.5. Inhaltsbereich: x 0.55..12.78, y 1.15..6.85 (ausser anders angegeben).
 3. Nur die genannten Primitive, keine eigenen Feldnamen. Umlaute korrekt schreiben.
-4. PREMIUM-DICHTE wie der b28-Original-Export: Nutze die volle Breite (12.23) und Hoehe (1.15..6.85). 4 KPI-Werte -> 4-spaltige Kachelreihe (w je 2.91, Gap 0.2); 2 Werte -> 2 Kacheln je 6.01. Jede Kennzahl bekommt trend-Chip oder status-Pill, wenn Zahlen dazu da sind. Kartenzeilen: h 0.55, Gap 0.14-0.35. Weniger als 5 Elemente sind fast immer zu leer; mehr als 16 zu viel. Keine einsamen Textblocks.
+4. PREMIUM-DICHTE wie der b28-Original-Export: Nutze die volle Breite (12.23) und Hoehe (1.15..6.85). 4 KPI-Werte -> 4-spaltige Kachelreihe (w je 2.91, Gap 0.2); 2 Werte -> 2 Kacheln je 6.01. Jede Kennzahl bekommt trend-Chip oder status-Pill, wenn Zahlen dazu da sind. Kartenzeilen: h 0.55, Gap 0.14-0.35. Weniger als 5 Elemente sind fast immer zu leer; mehr als 10 fast immer ueberladen. Keine einsamen Textblocks.
 5. Zahlen und Kernaussagen dominant, Meta-Info dezent (GRAU2). Keine ueberlappenden Boxen, konsistentes Raster.
 6. ANTWORTE NUR MIT JSON, genau diesem Format, kein erklaerender Text, keine Markdown-Fences:
 {"folie":<n>,"hintergrund":"WEISS","elemente":[ ... ]}
@@ -117,6 +124,188 @@ BEISPIEL einer fertigen Bauanweisung (KPI-Folie, 2 Kennzahlen + Massnahmen):
  {"typ":"kartenzeile","x":0.55,"y":5.63,"w":12.23,"h":0.55,"text":"Teststart Montag mit Bereich Mitte","level":0},
  {"typ":"linie","x":0.55,"y":6.55,"w":12.23,"h":0.012,"farbe":"LINE"}
 ]}"""
+SYSTEM_PROMPT = SP_KOPF + SP_BRAND_DEFAULT + SP_REST
+
+# ------------------------------------------------ Master-Theme (Premium lernt Master)
+_AI_LOCK = Lock()   # Premium-Builds seriell (Farb-Theming ist prozessglobal)
+
+
+def _hex_rgb(h):
+    return RGBColor.from_string(h.lstrip("#").upper()[:6])
+
+
+def _hell(h):
+    r, g, b = int(h[1:3], 16), int(h[3:5], 16), int(h[5:7], 16)
+    return (0.299 * r + 0.587 * g + 0.114 * b) / 255
+
+
+def _farb_haeufigkeit(master_path):
+    """Alle srgbClr/lastClr-Hexes im Master-Zaehlen (Proxy fuer Marken-Farbe)."""
+    import zipfile
+    from collections import Counter
+    z = Counter()
+    try:
+        with zipfile.ZipFile(str(master_path)) as zf:
+            for name in zf.namelist():
+                if not name.endswith(".xml"):
+                    continue
+                xml = zf.read(name).decode("utf-8", "replace")
+                for m in re.finditer(r'(?:srgbClr val="([0-9A-Fa-f]{6})"|lastClr="([0-9A-Fa-f]{6})")', xml):
+                    z[(m.group(1) or m.group(2)).lower()] += 1
+    except Exception:
+        pass
+    return z
+
+
+def _gesaettigt(h):
+    r, g, b = int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16)
+    return _hell("#" + h) < 0.72 and _hell("#" + h) > 0.12 and (max(r, g, b) - min(r, g, b)) > 36
+
+
+def master_farben(master_path):
+    """Master-Farben nach HAEUFIGKEIT im XML (robust gegen vertauschte
+    Theme-Slots): dominant = haeufigste gesaettigte Farbe usw.
+    -> dict oder None."""
+    from .masterprofil import lade_profil
+    try:
+        prof = lade_profil(master_path) or {}
+        t = prof.get("theme") or {}
+        c = t.get("colors") or {}
+        fonts = t.get("fonts") or {}
+    except Exception:
+        c, fonts = {}, {}
+    if not c:
+        return None
+    zaehler = _farb_haeufigkeit(master_path)
+    ges = [h for h, _ in sorted(zaehler.items(), key=lambda kv: -kv[1]) if _gesaettigt(h)]
+    dom = ges[0] if ges else c.get("accent1", "39756f").lstrip("#")
+    a2 = next((h for h in ges if h != dom), dom)
+    a3 = next((h for h in ges if h not in (dom, a2)), a2)
+    # dunkles Neutral (Ueberschriften): haeufigste neutrale Farbe mit Helligkeit 0.18..0.45
+    dunkel = next((h for h, _ in sorted(zaehler.items(), key=lambda kv: -kv[1])
+                   if 0.18 < _hell("#" + h) < 0.45 and not _gesaettigt(h)), "39424a")
+    # helle Flaeche (Karten/Borders): haeufigste helle Farbe ausser reinem Weiss
+    hell = next((h for h, _ in sorted(zaehler.items(), key=lambda kv: -kv[1])
+                 if _hell("#" + h) > 0.88 and h != "ffffff" and not _gesaettigt(h)),
+                c.get("lt2", "d8dee2").lstrip("#"))
+    return {"dominant": dom, "akzent2": a2, "akzent3": a3, "dunkel": dunkel,
+            "hell": hell, "text": c.get("dk1", "1a222b").lstrip("#"),
+            "font": (fonts.get("major") or "Arial")}
+
+
+def master_farben(master_path):
+    """Master-Farben aus den Theme-Slots (gleiche bewaehrte Heuristik wie
+    html_export: lt2 kann die dominante Marke tragen, accent1 oft nur
+    Spitzen-Akzent - vertauschte Slots sind in realen Masters ueblich).
+    -> dict oder None."""
+    from .masterprofil import lade_profil
+    try:
+        prof = lade_profil(master_path) or {}
+        t = prof.get("theme") or {}
+        c = t.get("colors") or {}
+        fonts = t.get("fonts") or {}
+    except Exception:
+        c, fonts = {}, {}
+    if not c:
+        return None
+
+    def hexs(name, default):
+        v = c.get(name)
+        return v.lstrip("#").lower() if v else default
+
+    dom_kands = [h for h in (hexs("lt2", ""), hexs("accent1", ""),
+                             hexs("accent2", ""), hexs("accent5", ""))
+                 if h and _gesaettigt(h)]
+    dom = dom_kands[0] if dom_kands else hexs("accent1", "39756f")
+    a3 = next((h for h in (hexs("accent1", ""), hexs("accent2", ""),
+                           hexs("accent5", ""), hexs("accent4", ""))
+               if h and _gesaettigt(h) and h != dom), dom)
+    a2 = next((h for h in (hexs("accent5", ""), hexs("accent4", ""),
+                           hexs("accent2", ""), hexs("accent1", ""))
+               if h and _gesaettigt(h) and h != dom and h != a3), a3)
+    dunkel = hexs("accent3", "")
+    if not dunkel or _hell("#" + dunkel) > 0.45:
+        dunkel = hexs("dk2", "39424a")
+    if _hell("#" + dunkel) > 0.45:
+        dunkel = "39424a"
+    hell = hexs("accent6", "")
+    if not hell or hell == "ffffff" or _hell("#" + hell) < 0.88:
+        hell = hexs("dk2", "f4f6f8")
+    if hell == "ffffff" or _hell("#" + hell) < 0.88:
+        hell = "f4f6f8"
+    return {"dominant": dom, "akzent2": a2, "akzent3": a3, "dunkel": dunkel,
+            "hell": hell, "text": hexs("dk1", "1a222b"),
+            "font": (fonts.get("major") or "Arial")}
+
+
+def master_farb_map(master_path):
+    """Master-Farben -> FARB_MAP-Kopie: PETROL/NAVY=dominant, GOLD=akzent2,
+    ROT=akzent3, DUNKEL/GRAU=dunkel, SCHW=text, HELL/LINE=helle Flaeche."""
+    f = master_farben(master_path)
+    if not f:
+        return None
+    fm = dict(FARB_MAP)
+    fm["PETROL"] = fm["NAVY"] = _hex_rgb(f["dominant"])
+    fm["GOLD"] = _hex_rgb(f["akzent2"])
+    fm["ROT"] = _hex_rgb(f["akzent3"])
+    fm["DUNKEL"] = fm["GRAU"] = _hex_rgb(f["dunkel"])
+    fm["SCHW"] = _hex_rgb(f["text"])
+    fm["LINE"] = fm["HELL"] = _hex_rgb(f["hell"])
+    return fm
+
+
+def master_brand_block(master_path):
+    """Prompt-Brand-Block aus den Master-Farben (echte Hex-Werte + Font)."""
+    f = master_farben(master_path)
+    if not f:
+        return None
+    return (
+        f"- Farben (nutze GENAU diese Namen): PETROL #{f['dominant'].upper()} (dominant: Header, Zahlen, Titel) · "
+        f"GOLD #{f['akzent2'].upper()} (zweiter Akzent) · ROT #{f['akzent3'].upper()} (nur Spaetzen-Akzent) · "
+        f"DUNKEL #{f['dunkel'].upper()} (Ueberschriften, dunkle Kapitel-Folien) · GRAU2 Sekundaertext · "
+        f"LINE #{f['hell'].upper()} (Border) · HELL #{f['hell'].upper()} (Kartenflaeche) · WEISS · "
+        f"SCHW #{f['text'].upper()} (Fliesstext).\n"
+        f"- Typo ({f['font']}): Kicker 10-11pt PETROL bold UPPERCASE · Abschnittstitel 15-18pt DUNKEL bold · "
+        f"Fliesstext 11-13pt SCHW · Labels UPPERCASE 10.5pt GRAU bold · Zahlen dominant gross PETROL · "
+        f"Kontext 9.5-10pt GRAU2. Fett im Text mit **so** markieren.\n"
+        "- Stil: helle Karten (HELL) mit feiner LINE-Border und PETROL-Marker links; KPI-Kacheln mit "
+        "PETROL-Balken oben; ROT nur fuer einen einzelnen Spaetzenakzent; ruhig, viel Weissraum, "
+        "vorstandstauglich - die Vorlage ist der MARKEN-MASTER des Kunden, niemals davon abweichen.\n"
+    )
+
+
+def setze_master_theme(master_path):
+    """FARB_MAP + profiles-Modul-Farben auf die Master-Marke umstellen.
+    Rueckgabe: Restore-Snapshot (oder None, wenn kein Theme)."""
+    fm = master_farb_map(master_path)
+    if fm is None:
+        return None
+    felder = {n: getattr(P, n) for n in
+              ("PETROL", "NAVY", "GOLD", "ROT", "DUNKEL", "GRAU", "SCHW",
+               "LINE", "HELL", "V_PETROL", "V_DUNKEL", "V_GRAU", "V_TEXT",
+               "V_LINE", "V_KARTE") if hasattr(P, n)}
+    snap = {"FARB_MAP": dict(FARB_MAP), "P": felder}
+    FARB_MAP.clear()
+    FARB_MAP.update(fm)
+    for k, v in (("PETROL", fm["PETROL"]), ("NAVY", fm["NAVY"]),
+                 ("GOLD", fm["GOLD"]), ("ROT", fm["ROT"]),
+                 ("DUNKEL", fm["DUNKEL"]), ("GRAU", fm["GRAU"]),
+                 ("SCHW", fm["SCHW"]), ("LINE", fm["LINE"]), ("HELL", fm["HELL"]),
+                 ("V_PETROL", fm["PETROL"]), ("V_DUNKEL", fm["DUNKEL"]),
+                 ("V_GRAU", fm["GRAU"]), ("V_TEXT", fm["SCHW"]),
+                 ("V_LINE", fm["LINE"]), ("V_KARTE", fm["HELL"])):
+        if hasattr(P, k):
+            setattr(P, k, v)
+    return snap
+
+
+def restore_theme(snap):
+    if not snap:
+        return
+    FARB_MAP.clear()
+    FARB_MAP.update(snap["FARB_MAP"])
+    for k, v in snap["P"].items():
+        setattr(P, k, v)
 
 
 def _user_prompt(s, n, m):
@@ -148,9 +337,11 @@ def _user_prompt(s, n, m):
         elif isinstance(v, (str, int, float)):
             z.append(f"{k}: {v}")
     if kind == "title":
-        z.append("HINWEIS: Logo, Kicker, Titel, Gold-Linie und Untertitel zeichnet die Engine zentriert. "
-                 "Du gestaltest NUR die Zone y 5.4 bis 6.7, x 0.55..12.78 - z.B. 2-4 dezente Meta-Pillen "
-                 "(Datum, Autor, Version) oder eine Duftlinie mit Kontextzeile. Maximal 5 Elemente, hintergrund WEISS.")
+        z.append("HINWEIS: Kicker, Meta, das Petrol-Band unten (Titel/Untertitel) und das Logo "
+                 "zeichnet die ENGINE. Du gestaltest NUR die Zone y 1.7 bis 4.1 - "
+                 "z.B. 2-3 dezente Meta-Karten oder Pills (Datum, Autor, Version, Kernzahl) "
+                 "oder eine Gold-Linie mit Kontextzeile. Maximal 4 Elemente, KEINE Flaechen "
+                 "unter y 4.3 (dort steht das Band). Hintergrund WEISS.")
     elif kind == "section":
         z.append("HINWEIS: Der dunkle NAVY-Hintergrund wird von der Engine gesetzt (hintergrund: NAVY). "
                  "Gestalte Kicker (GOLD, UPPERCASE, 11pt), Kapiteltitel (WEISS, 34-40pt bold), eine kurze "
@@ -218,13 +409,13 @@ def _validiere(d):
     return {"hintergrund": str(d.get("hintergrund", "WEISS")).upper(), "elemente": gut}
 
 
-def _ki_call(user_prompt, cfg):
+def _ki_call(user_prompt, cfg, system=None):
     """Ein GLM-Call (2 Versuche). Gibt validiertes design-dict oder None."""
     body = json.dumps({
         "model": cfg.get("model", "glm-5.3"),
         "max_tokens": int(cfg.get("max_tokens", 3500)),
         "messages": [
-            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "system", "content": system or SYSTEM_PROMPT},
             {"role": "user", "content": user_prompt},
         ],
     }).encode("utf-8")
@@ -245,7 +436,7 @@ def _ki_call(user_prompt, cfg):
     return None
 
 
-def design_folien(slides, config=None, on_progress=None):
+def design_folien(slides, config=None, on_progress=None, system=None):
     """JEDE Folie EIN GLM-Call, max 4 parallel.
 
     -> Liste (Reihenfolge = slides) mit design-dict oder None (= Fallback).
@@ -259,7 +450,7 @@ def design_folien(slides, config=None, on_progress=None):
     done, lock = 0, Lock()
 
     def arbeit(n, s):
-        return _ki_call(_user_prompt(s, n, m), config)
+        return _ki_call(_user_prompt(s, n, m), config, system)
 
     with ThreadPoolExecutor(max_workers=4) as ex:
         futs = {ex.submit(arbeit, n, s): n for n, s in enumerate(slides, 1)}
@@ -280,6 +471,26 @@ def design_folien(slides, config=None, on_progress=None):
 
 
 # ---------------------------------------------------------------- Renderer
+def _cover_engine(sl, s):
+    """Editorial-Cover der ENGINE: Kicker oben, grosse Tint-Karte Mitte
+    (Platz fuer die KI-Meta-Zone), Petrol-Band unten mit Titel+Untertitel
+    + Gold-Linie. Farben automatisch Master-Marke (Theming ist aktiv)."""
+    from pptx.enum.shapes import MSO_SHAPE
+    from pptx.enum.text import PP_ALIGN
+    P._rect(sl, 0, P.H - 2.55, P.W, 2.55, P.NAVY)
+    P._rect(sl, 0.55, P.H - 2.95, 1.6, 0.05, P.GOLD)
+    P._text(sl, 0.55, P.H - 2.25, 9.5, 1.15, str(s.get("title", "")), 30,
+            P.WEISS, bold=True)
+    if s.get("subtitle"):
+        P._text(sl, 0.55, P.H - 1.02, 10.5, 0.62, str(s.get("subtitle")), 13.5,
+                P.WEISS, bold=False)
+    P._text(sl, 0.55, 0.75, 11.5, 0.4, str(s.get("kicker") or "PREMIUM-DECK").upper(),
+            11, P.NAVY, bold=True)
+    meta = str(s.get("meta") or "")
+    if meta:
+        P._text(sl, 0.55, 1.22, 11.5, 0.36, meta, 10.5, P.GRAU2)
+
+
 def _farbe(v, default=P.NAVY):
     if isinstance(v, str):
         t = v.strip().upper()
@@ -624,13 +835,35 @@ def struktur_slide_plan(content_text, ziel_min, ziel_max, config=None):
 
 
 def build_ai_deck(slides, out_path, config=None, on_progress=None,
-                  ziel_min=None, ziel_max=None, content_text=None):
+                  ziel_min=None, ziel_max=None, content_text=None, master_path=None):
     """Premium-Deck: je Folie KI-Design, sonst statischer profiles-Fallback.
 
     Engine rendert Header (kopf), Footer (fuss) und Logo selbst und fuehrt
     die KI-Bauanweisungen im Inhaltsbereich aus.
+    master_path: wenn gesetzt, lernt das Deck die Master-Marke (Farben+Font
+    aus clrScheme, Prompt-Brand-Block + Renderer-Farb-Mapping).
     -> (out_path, stats) mit stats = {"folien","ki","fallback","dauer_s"}.
     """
+    with _AI_LOCK:
+        snap = None
+        sp = SYSTEM_PROMPT
+        if master_path:
+            try:
+                block = master_brand_block(master_path)
+                if block:
+                    sp = SP_KOPF + block + SP_REST
+                    snap = setze_master_theme(master_path)
+            except Exception:
+                snap = None
+        try:
+            return _build_ai_deck_intern(slides, out_path, config, on_progress,
+                                         ziel_min, ziel_max, content_text, sp)
+        finally:
+            restore_theme(snap)
+
+
+def _build_ai_deck_intern(slides, out_path, config, on_progress,
+                          ziel_min, ziel_max, content_text, sp):
     t0 = time.time()
     config = config or load_ai_config()
     if ziel_min or ziel_max:                # Min/Max-Regler: ERST Plan, DANN Design-Loop
@@ -641,7 +874,7 @@ def build_ai_deck(slides, out_path, config=None, on_progress=None,
             slides = plan
         # plan=None -> Reader-Folien (normaler Pfad), Log kam aus struktur_slide_plan
     gesamt = max(1, len(slides))
-    designs = design_folien(slides, config, on_progress)
+    designs = design_folien(slides, config, on_progress, system=sp)
     ki = sum(1 for d in designs if d)
 
     prs = Presentation()
@@ -663,7 +896,8 @@ def build_ai_deck(slides, out_path, config=None, on_progress=None,
             bg.solid()
             bg.fore_color.rgb = P.NAVY if dunkel else (
                 P.HELL if design.get("hintergrund") == "HELL" else P.WEISS)
-            if kind == "title":                 # Cover: hell, KI designt frei (dataport)
+            if kind == "title":                 # Cover: Engine-Band + KI-Meta-Zone
+                _cover_engine(sl, s)
                 _render_elemente(sl, design["elemente"])
                 P._v_dp_logo(sl)
             elif kind == "section":             # dunkle Flaeche steht, KI designt frei
