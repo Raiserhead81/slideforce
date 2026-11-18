@@ -491,3 +491,12 @@ Run 20261118-203927 (Resume nach 429-Pause, Weg B Visual HTML):
   Farb-Korrektur; Verifikation: #F8E8E8 = 0 Vorkommen, glm-sicht bestaetigt
   "Boxen gleichen hellgrauen Ton", Icons einheitlich Petrol, "GEIL: klare
   Struktur ... sofort verstaendlich"
+
+## NACHTRAG: Export-Karten reduziert (Kays Entscheidung)
+- UI: PowerPoint-Master-Fill + BRIDGE28-Karten entfernt (API /api/build
+  unterstuetzt fmt=pptx/b28pptx WEITERHIN - bewiesen: beide HTTP 200,
+  2 Folien, unzip OK). Vorstandsvorlage ist jetzt Default (checked).
+- Live-Beweis: Session-Cookie-Flow 200, vorpptx-checked=1, alte Werte=0
+- glm-sicht: "Intuitive Step-by-Step-Struktur (01-05) ..."
+- Beide Formate funktionieren technisch (hiermit belegt) - sie waren nur
+  UI-Rauschen fuer Kays Alltag (vorpptx/aipptx sind sein Standard)
