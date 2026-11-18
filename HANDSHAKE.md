@@ -30,7 +30,8 @@ Ziel: Agentur-Niveau-Produktionssytem UM die bestehende SlideForce-App (KEINE zw
   - Etappe 2a (Weg C Hybrid): E2E Run 20261118-202449, 10/11 Folien >= 8/10, GLM-SVG + cairosvg + Reparatur-Pass
   - Etappe 2b (Weg B Visual HTML): Code komplett, Tests 12 passed, E2E OFFEN (GLM 429 Tageslimit, resume: 20261118-203927 oder Web-Resume)
   - Etappe 2c (Web-Karte 05 Studio): LIVE auf slideforce.gemivo.de (200), app.run()-Blocker gefixt (NACHWEIS 8)
-  - ETAPPE 3 OFFEN: Weg-B-E2E (sobald Kontingent), Doku documentation/*.md, glm-sicht der UI (429 des Pruefmodells)
+  - Doku FERTIG: documentation/studio.md + documentation/architektur.md (committed + deployed)
+  - ETAPPE 3 REST (wartet nur auf Limits): (1) Weg-B-E2E via `--resume 20261118-203927-itk-bremen-vorstand-2026` oder Web-Karte Resume, sobald GLM-Kontingent wieder da (18.11. 429-Tageslimit); (2) glm-sicht der UI /tmp/sf-ui.png (Pruefer-429)
 
 ## Gelernte Lektionen (NICHT wiederholen)
 - PPTX-Corruption: KEINE manuellen XML-Attrs in python-pptx (spc/marL/_rPr.set) - PowerPoint öffnet sonst nicht (LibreOffice toleriert!)
