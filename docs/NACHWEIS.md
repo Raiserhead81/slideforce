@@ -44,3 +44,14 @@ Output-Folien: 8
 (gitignore: uploads/). Ersatz im Repo: `examples/basic_master.pptx` (11
 Standard-Layouts), wird von web/app.py als Fallback genutzt. Der Smoke-Test
 braucht einen Master unter web/uploads/ - im Deployment vorhanden.
+
+## Update 18.11. - Transkript-Fenster + Gedaechtnis
+
+```
+POST /api/save -> {"id":"2026-11-18_1519_a098","label":"Meeting Notes KW47"}
+GET /api/saved -> [{"id":"...","label":"Meeting Notes KW47"}]
+GET /api/saved/<id> -> kompletter Text zurueck
+Live (slideforce.gemivo.de): save/liste identisch getestet, HTTP 200
+glm-sicht: SCORE 9/10 - Struktur klar, keine Layout-Probleme
+Autosave: localStorage 'sf-text' bleibt ueber Reload
+```
