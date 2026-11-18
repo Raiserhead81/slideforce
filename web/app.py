@@ -297,3 +297,117 @@ def build_deck():
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8821, debug=False)
+
+
+# ---------------------------------------------------------------- Studio (Etappe 2)
+import json as _json  # noqa: E402
+import threading  # noqa: E402
+
+STUDIO_RUNS = BASE / "studio" / "runs"
+STUDIO_THREADS = {}
+
+
+def _studio_laeufer(run_id):
+    from studio.pipeline import run as _run
+    from studio.state import RunState as _RS
+    try:
+        st = _RS.open(str(STUDIO_RUNS), run_id)
+        _run(st, log=lambda m: None)
+    except Exception as e:
+        try:
+            st = _RS.open(str(STUDIO_RUNS), run_id)
+            st.set_schritt("report", "error", {"fehler": str(e)})
+        except Exception:
+            pass
+    finally:
+        STUDIO_THREADS.pop(run_id, None)
+
+
+def _studio_status(run_id):
+    p = STUDIO_RUNS / run_id / "state.json"
+    if not p.is_file():
+        return None
+    try:
+        d = _json.loads(p.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+    schritte = {k: v.get("status") for k, v in (d.get("schritte") or {}).items()}
+    runden = ((d.get("schritte") or {}).get("critic") or {}).get("runden") or []
+    scores = (runden[-1].get("scores") or []) if runden else []
+    o = STUDIO_RUNS / run_id
+    return {"id": run_id, "weg": d.get("weg"), "briefing": d.get("briefing"),
+            "schritte": schritte, "scores": scores,
+            "laeuft": run_id in STUDIO_THREADS,
+            "pptx": (o / "deck.pptx").is_file(),
+            "deck_html": (o / "deck.html").is_file(),
+            "report": (o / "report.md").is_file()}
+
+
+@app.route("/api/studio/start", methods=["POST"])
+def studio_start():
+    briefing = (request.form.get("briefing") or "").strip()
+    if not briefing:
+        return jsonify({"error": "briefing fehlt"}), 400
+    quelle = request.files.get("quelle")
+    text = (request.form.get("text") or "").strip()
+    if not quelle and not text:
+        return jsonify({"error": "Quelldatei oder Text noetig"}), 400
+    weg = (request.form.get("weg") or "A").upper()
+    if weg not in ("A", "B", "C"):
+        weg = "A"
+    stamp = uuid.uuid4().hex[:8]
+    try:
+        lo = int(request.form.get("min") or 8)
+        hi = int(request.form.get("max") or 12)
+    except ValueError:
+        lo, hi = 8, 12
+    if quelle:
+        qpath = UPLOAD / f"studio_{stamp}_{Path(quelle.filename).name}"
+        quelle.save(str(qpath))
+    else:
+        qpath = UPLOAD / f"studio_{stamp}.md"
+        qpath.write_text(text, encoding="utf-8")
+    from studio.state import RunState
+    st = RunState.create(str(STUDIO_RUNS), briefing, str(qpath), lo, hi, weg)
+    th = threading.Thread(target=_studio_laeufer, args=(st.data["id"],), daemon=True)
+    STUDIO_THREADS[st.data["id"]] = th
+    th.start()
+    return jsonify({"id": st.data["id"]})
+
+
+@app.route("/api/studio/status/<run_id>")
+def studio_status(run_id):
+    s = _studio_status(run_id)
+    return (jsonify(s), 200) if s else (jsonify({"error": "unbekannt"}), 404)
+
+
+@app.route("/api/studio/resume/<run_id>", methods=["POST"])
+def studio_resume(run_id):
+    if _studio_status(run_id) is None:
+        return jsonify({"error": "unbekannt"}), 404
+    if run_id in STUDIO_THREADS:
+        return jsonify({"error": "laeuft schon"}), 409
+    th = threading.Thread(target=_studio_laeufer, args=(run_id,), daemon=True)
+    STUDIO_THREADS[run_id] = th
+    th.start()
+    return jsonify({"ok": True})
+
+
+@app.route("/api/studio/runs")
+def studio_runs():
+    if not STUDIO_RUNS.is_dir():
+        return jsonify([])
+    ids = sorted([p.name for p in STUDIO_RUNS.iterdir() if p.is_dir()],
+                 reverse=True)[:12]
+    out = [s for s in (_studio_status(i) for i in ids) if s]
+    return jsonify(out)
+
+
+@app.route("/api/studio/file/<run_id>/<name>")
+def studio_file(run_id, name):
+    if name not in ("deck.pptx", "deck.html", "report.md"):
+        abort(404)
+    p = STUDIO_RUNS / run_id / name
+    if not p.is_file():
+        abort(404)
+    return send_file(str(p), as_attachment=(name != "deck.html"))

@@ -259,6 +259,8 @@ def _repair_folien(state, log, schwach):
 
 def fix_runden(state, log):
     """Nach Erst-Kritik: max state.max_fixrunden Reparatur-Runden (< 8/10)."""
+    if state.data.get("weg") == "B":
+        return _fix_runden_html(state, log)
     scores = (state.schritt("critic").get("runden") or [{}])[-1].get("scores") or []
     runde = len(state.schritt("critic").get("runden") or [])
     while True:
@@ -420,15 +422,168 @@ def run(state, log=print):
         schritt_story(state, log)
     if not state.fertig("art"):
         schritt_art(state, log)
-    if state.data.get("weg") == "C" and not state.schritt("art").get("hybrid_svgs"):
-        schritt_hybrid(state, log)
-    if not state.fertig("build"):
-        schritt_build(state, log)
-    if not state.fertig("render"):
-        schritt_render(state, log)
+    if state.data.get("weg") == "B":
+        if not state.fertig("html"):
+            schritt_html(state, log)
+    else:
+        if state.data.get("weg") == "C" and not state.schritt("art").get("hybrid_svgs"):
+            schritt_hybrid(state, log)
+        if not state.fertig("build"):
+            schritt_build(state, log)
+        if not state.fertig("render"):
+            schritt_render(state, log)
     if not state.fertig("critic"):
         critic_runde(state, log, runde=1)
     fix_runden(state, log)
     if not state.fertig("report"):
         schritt_report(state, log)
     return state.schritt("report").get("pfad")
+
+
+# ---------------------------------------------------------------- Weg B: Visual HTML
+def schritt_html(state, log):
+    """Weg B: GLM designt JEDE Folie als HTML-Seite -> PNG (headless Chromium)
+    -> Deck-Framework deck.html. pngs landen im render-Schritt fuer den Critic."""
+    t0 = time.time()
+    design = state.schritt("art").get("design") or {}
+    folien = [f for f in (design.get("folien") or []) if isinstance(f, dict)]
+    if not folien:
+        raise RuntimeError("HTML: keine Folien im Design")
+    html_dir = state.dir / "html"
+    html_dir.mkdir(exist_ok=True)
+    pngs = []
+    dateien = []
+    for i, f in enumerate(folien):
+        nr = i + 1
+        p = html_dir / f"{nr:02d}.html"
+        if p.is_file() and p.stat().st_size > 300:      # Resume: weiterverwenden
+            pass
+        else:
+            html = roles.html_folie(state.data["briefing"], f, design, nr)
+            if not html:
+                _log(log, f"[html] Folie {nr}: keine Antwort - Fallback-Seite")
+                html = ("<html><body style='font-family:Arial;background:#fff'>"
+                        f"<h1 style='color:#39756F'>{f.get('title') or 'Folie ' + str(nr)}"
+                        "</h1><p>(Fallback - GLM-Antwort unbrauchbar)</p></body></html>")
+            p.write_text(html, encoding="utf-8")
+        dateien.append(str(p))
+        png = render.html_screenshot(p, state.dir / "render" / f"html-{nr:02d}.png")
+        pngs.append(png or "")
+        _log(log, f"[html] Folie {nr}: {'ok' if png else 'SCREENSHOT FEHLER'}")
+    _deck_framework(state, dateien)
+    state.set_schritt("html", "ok", {"dateien": dateien, "deck": str(state.dir / "deck.html")},
+                      dauer_s=time.time() - t0)
+    state.set_schritt("build", "ok", {"pptx": str(state.dir / "deck.html"),
+                                      "folien": len(folien), "warnungen": [],
+                                      "slides": folien, "weg_b": True})
+    state.set_schritt("render", "ok", {"pdf": None, "pngs": [p for p in pngs if p]})
+    _log(log, f"[html] ok: {len(folien)} Folien -> deck.html")
+
+
+def _deck_framework(state, dateien):
+    """deck.html: Folien-Stapel mit iframes + Pfeiltasten-Navigation."""
+    sektionen = "\n".join(
+        f"<section class='folie'><iframe src='{Path(d).name}'></iframe></section>"
+        for d in dateien)
+    html = ("<!doctype html><html><head><meta charset='utf-8'>"
+            "<title>" + state.data["briefing"] + "</title><style>"
+            "body{margin:0;background:#39424A;font-family:Arial}"
+            ".folie{width:100vw;height:100vh;scroll-snap-align:start}"
+            "iframe{width:100%;height:100%;border:0;display:block}"
+            "html{scroll-snap-type:y mandatory;overflow-y:scroll}"
+            "</style></head><body>" + sektionen + """
+<script>
+document.addEventListener('keydown', e => {
+  const s = document.querySelectorAll('.folie');
+  const y = window.scrollY, h = innerHeight;
+  if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ')
+    window.scrollTo({top: (Math.round(y / h) + 1) * h, behavior: 'smooth'});
+  if (e.key === 'ArrowLeft' || e.key === 'PageUp')
+    window.scrollTo({top: (Math.round(y / h) - 1) * h, behavior: 'smooth'});
+});
+</script></body></html>""")
+    (state.dir / "deck.html").write_text(html, encoding="utf-8")
+
+
+def _html_neubauen_und_rerender(state, log, nr_liste):
+    """Geaenderte Folien neu rendern (Weg B): Screenshot je Folie."""
+    html_dir = state.dir / "html"
+    pngs = []
+    for nr in nr_liste:
+        p = html_dir / f"{nr:02d}.html"
+        png = render.html_screenshot(p, state.dir / "render" / f"html-{nr:02d}.png")
+        pngs.append((nr, png))
+    alt = state.schritt("render").get("pngs") or []
+    neu = list(alt)
+    for nr, png in pngs:
+        if png and nr - 1 < len(neu):
+            neu[nr - 1] = png
+    state.set_schritt("render", "ok", {"pdf": None, "pngs": neu})
+    return neu
+
+
+def _repair_html(state, log, schwach):
+    """Kritik -> GLM repariert die komplette HTML-Seite je schwacher Folie."""
+    design = state.schritt("art").get("design") or {}
+    slides = list(state.schritt("build").get("slides") or [])
+    schwach_dict = {s["nr"]: s for s in schwach}
+    geaendert = []
+    html_dir = state.dir / "html"
+    for s in schwach:
+        nr = s["nr"]
+        idx = nr - 1
+        p = html_dir / f"{nr:02d}.html"
+        if not p.is_file():
+            continue
+        alt = p.read_text(encoding="utf-8")
+        neu = roles.html_repair(state.data["briefing"], slides[idx], alt, s, nr)
+        if not neu:
+            _log(log, f"[html-repair] Folie {nr}: keine Antwort, bleibt")
+            continue
+        p.write_text(neu, encoding="utf-8")
+        geaendert.append(nr)
+        _log(log, f"[html-repair] Folie {nr}: repariert")
+    return geaendert
+
+
+def _fix_runden_html(state, log):
+    """Fix-Runden fuer Weg B (analog fix_runden, aber HTML-Ebene)."""
+    scores = (state.schritt("critic").get("runden") or [{}])[-1].get("scores") or []
+    runde = len(state.schritt("critic").get("runden") or [])
+    while True:
+        schwach = [s for s in scores if s["score"] < ZIEL_SCORE]
+        if not schwach:
+            _log(log, "[fix] alle Folien >= 8/10 - fertig")
+            return
+        if runde >= state.data.get("max_fixrunden", 3) + 1:
+            _log(log, f"[fix] max. Runden erreicht, {len(schwach)} Folie(n) "
+                      f"unter {ZIEL_SCORE}/10 (siehe Report)")
+            return
+        geaendert = _repair_html(state, log, schwach)
+        if not geaendert:
+            _log(log, "[fix] keine Reparatur moeglich - Abbruch der Runden")
+            return
+        runde += 1
+        _log(log, f"[fix] Runde {runde}: repariere Folien "
+                  f"{[s['nr'] for s in schwach]}")
+        neu_pngs = _html_neubauen_und_rerender(state, log, geaendert)
+        neu_slides = state.schritt("build").get("slides") or []
+        items = [(nr, neu_pngs[nr - 1], str(neu_slides[nr - 1].get("title") or ""),
+                  muster(neu_slides[nr - 1])) for nr in geaendert
+                 if nr - 1 < len(neu_pngs)]
+        erg = _kritik_parallel(items)
+        alt = {s["nr"]: s for s in scores}
+        merged = []
+        for nr in sorted(alt):
+            if nr in erg:
+                c = erg[nr]
+                alt[nr] = {"nr": nr, "muster": alt[nr].get("muster"),
+                           "score": c.get("score", 0),
+                           "schwaechen": c.get("schwaechen") or [],
+                           "fix": c.get("fix") or ""}
+            merged.append(alt[nr])
+        kritik = state.schritt("critic")
+        runden = list(kritik.get("runden") or [])
+        runden.append({"runde": runde, "scores": merged})
+        state.set_schritt("critic", "ok", {"runden": runden})
+        scores = merged

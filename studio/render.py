@@ -68,3 +68,50 @@ def svg_zu_png(svg_text, out_png, breite=1200):
             print(f"[render] svg_zu_png: {type(e).__name__}: {e}",
                   file=sys.stderr, flush=True)
     return None
+
+
+# ---------------------------------------------------------------- Weg B: HTML
+_CHROME_KANDIDATEN = [
+    "~/Library/Caches/ms-playwright/chromium_headless_shell-1255/"
+    "chrome-headless-shell-mac-arm64/chrome-headless-shell",
+    "~/Library/Caches/ms-playwright/chromium-1255/chrome-mac-arm64/"
+    "Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing",
+]
+
+
+def _chrome_bin():
+    import glob
+    from pathlib import Path as _P
+    for k in _CHROME_KANDIDATEN:
+        p = _P(k).expanduser()
+        if p.is_file():
+            return str(p)
+    hits = sorted(glob.glob(str(_P("~/Library/Caches/ms-playwright/"
+                                  "chromium-*/chrome-mac*/*/MacOS/*"))))
+    return hits[-1] if hits else None
+
+
+def html_screenshot(html_pfad, out_png, breite=1600, hoehe=900, timeout=60):
+    """Einzelfolien-HTML -> PNG via headless Chromium. Pfad oder None."""
+    import subprocess
+    import sys
+    chrome = _chrome_bin()
+    if not chrome:
+        print("[render] kein Chromium gefunden (ms-playwright)", 
+              file=sys.stderr, flush=True)
+        return None
+    out_png = Path(out_png)
+    out_png.parent.mkdir(parents=True, exist_ok=True)
+    url = Path(html_pfad).resolve().as_uri()
+    try:
+        subprocess.run(
+            [chrome, "--headless=new", "--no-sandbox", "--disable-gpu",
+             f"--screenshot={out_png}", f"--window-size={breite},{hoehe}",
+             "--hide-scrollbars", url],
+            check=True, capture_output=True, timeout=timeout)
+        if out_png.is_file() and out_png.stat().st_size > 500:
+            return str(out_png)
+    except Exception as e:
+        print(f"[render] html_screenshot: {type(e).__name__}: {e}",
+              file=sys.stderr, flush=True)
+    return None

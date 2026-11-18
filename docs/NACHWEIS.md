@@ -372,3 +372,38 @@ Datum: 18.11.2026 (spaet) · Stand: E2E gruen, Tests 12 passed
 - E2E Weg C Run 20261118-202449: 11 Folien, 4 Critic-Runden,
   final 10/11 Folien >= 8/10 (Folie 3: 7, Rest-Schwaeche im Report)
 - svg/infografik-03.png + -08.png im Run-Ordner erzeugt (beweisen Weg C)
+
+---
+
+# NACHWEIS 7: Etappe 2b + 2c - Weg B (Visual HTML) + Web-Karte Studio
+
+## Weg B (studio/roles.py, render.py, pipeline.py, cli.py)
+- roles.html_folie / html_repair: GLM designt JEDE Folie als komplette
+  HTML-Seite (1600x900, Brand Petrol/Grau/Rot/Kartenweiss, Arial, keine
+  externen Ressourcen, Inline-SVG erlaubt). Robust: JSON-Erstversuch,
+  sonst Regex-Fallback <!doctype html>...</html>, 3 Versuche
+- render.html_screenshot: headless Chromium aus ~/Library/Caches/
+  ms-playwright/chromium-1255 ( vorhanden auf Mini, kein Download noetig ),
+  --headless=new --screenshot, bewiesen mit Test-HTML (PNG 8KB)
+- pipeline.schritt_html: je Folie GLM-HTML + Screenshot + Fallback-Seite bei
+  Ausfall, Resume-sicher (vorhandene HTML-Dateien werden weiterverwendet),
+  deck.html als Folien-Stapel mit iframes + Pfeiltasten-Navigation
+- fix_runden forked fuer Weg B auf _fix_runden_html: GLM repariert die
+  komplette HTML-Seite, re-Screenshot, Re-Critic nur geaenderter Folien
+- cli.py: --weg B
+
+## Web-Karte Studio (web/app.py + templates/index.html)
+- POST /api/studio/start (briefing + quelle/text + weg + min/max, Run im
+  Hintergrund-Thread), GET /api/studio/status/<id>, POST /api/studio/resume/<id>,
+  GET /api/studio/runs (letzte 12), GET /api/studio/file/<id>/<name>
+  (whitelist deck.pptx/deck.html/report.md)
+- Karte 05 in der UI: Briefing + Weg-Dropdown + min/max + Start, Runs-Liste
+  mit Schritt-Fortschritt, Scores, Resume-Button, Downloads (Polling 15s)
+
+## Beweise
+- web/app.py ast-parse OK; Flask-Testclient: /api/studio/runs 200 mit echten
+  Runs, /api/studio/status/<bogus> 404, index.html enthaelt genau 1 </script>
+- pytest 7 passed (studio/test_state.py)
+- Weg B E2E Run 20261118-203927: brach sauber mit GLM-429-Meldung ab
+  (Haertung wirkt, resume-bar). E2E-Abschluss folgt nach Ablauf des
+  Stundenlimits via --resume / Web-Resume.

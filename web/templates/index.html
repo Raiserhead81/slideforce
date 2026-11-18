@@ -171,6 +171,18 @@ footer{margin-top:40px;color:#4d5c69;font-size:.8rem;text-align:center}
 <div class="status" id="status"></div>
 <details><summary>Layouts im aktuellen Master (per "layout:" im Text wählbar)</summary><div id="layouts">...</div></details>
 </div>
+<div class="card" style="margin-top:20px">
+<h3><span class="num">05</span> Studio - vollautomatische Produktion (Director / Story / Art / Critic)</h3>
+<div class="trow">
+<input id="studioBriefing" placeholder="Briefing (z.B. ITK-Bremen Vorstand 2026)" style="flex:1">
+<select id="studioWeg"><option value="A">Weg A - native PPTX</option><option value="B">Weg B - Visual HTML</option><option value="C">Weg C - Hybrid + Infografiken</option></select>
+<input type="number" id="studioMin" min="1" max="200" placeholder="min" style="width:70px" title="min. Folien">
+<input type="number" id="studioMax" min="1" max="200" placeholder="max" style="width:70px" title="max. Folien">
+<button class="go" id="studioGo" style="width:auto;padding:10px 18px">Run starten</button>
+</div>
+<div class="status" id="studioStatus">Quelle = Inhalt-Datei oder Transkript oben (Nr. 02/03). GLM produziert im Hintergrund: Plan, Storyboard, Design, Bau, Critic-Schleife bis 8/10 je Folie. Runs hier überwachen, jederzeit fortsetzbar.</div>
+<div id="studioRuns"></div>
+</div>
 <footer>SlideForce · Design 100% aus deinem Folienmaster · läuft auf deinem Server</footer>
 </div>
 <script>
@@ -229,5 +241,23 @@ a.href=u;a.download='slideforce-deck.'+(fmt=='html'?'html':'pptx');a.click();set
 st.textContent='Fertig: '+folien+' Folien als '+fmt.toUpperCase()+'.'+(ki!==null?' Davon '+ki+' von der KI designed.':'')+fb+warn;st.className='status ok'})})
 .catch(e=>{st.textContent='Fehler: '+e.message;st.className='status err'})
 .finally(()=>{$('go').disabled=false})};
+studioRuns();setInterval(studioRuns,15000);
+function studioRuns(){fetch('/api/studio/runs').then(r=>r.json()).then(l=>{
+$('studioRuns').innerHTML=l.map(x=>{
+const ch=x.schritte||{};
+const forts=['director','story','art','hybrid','html','build','render','critic','report'].filter(k=>ch[k]).map(k=>k+':'+(ch[k]=='ok'?'✓':ch[k])).join(' · ');
+const sc=(x.scores||[]).map(s=>s.nr+':'+s.score).join(', ');
+const dl=(x.pptx?'<a href="/api/studio/file/'+x.id+'/deck.pptx">pptx</a> ':'')+(x.deck_html?'<a href="/api/studio/file/'+x.id+'/deck.html">html</a> ':'')+(x.report?'<a href="/api/studio/file/'+x.id+'/report.md">report</a>':'');
+const res=(!x.laeuft&&ch.report!=='ok')?'<button class="mini" onclick="studioResume(\''+x.id+'\')">Resume</button>':'';
+return '<div class="trow" style="margin-top:6px"><span style="min-width:210px"><b>'+x.id+'</b> · Weg '+x.weg+'</span><span class="mut" style="flex:1">'+forts+(sc?' · Scores '+sc:'')+'</span>'+(x.laeuft?'<span class="mut">läuft ...</span>':res)+dl+'</div>'}).join('')}).catch(()=>{})}
+function studioResume(id){fetch('/api/studio/resume/'+id,{method:'POST'}).then(()=>setTimeout(studioRuns,1500)).catch(()=>{})}
+$('studioGo').onclick=()=>{const st=$('studioStatus');const text=ta.value.trim();
+if(!content&&!text){st.textContent='Bitte erst Inhalt-Datei oder Transkript oben angeben.';st.className='status err';return}
+const fd=new FormData();fd.append('briefing',$('studioBriefing').value.trim()||'Studio Run');
+fd.append('weg',$('studioWeg').value);if(content)fd.append('quelle',content);if(text)fd.append('text',text);
+const gz=id=>{const v=$(id).value.trim();return(v&&+v>=1&&+v<=200)?Math.round(+v):''};
+if(gz('studioMin'))fd.append('min',gz('studioMin'));if(gz('studioMax'))fd.append('max',gz('studioMax'));
+st.className='status';st.textContent='Studio-Run gestartet - läuft im Hintergrund (ca. 5-20 Min) ...';$('studioGo').disabled=true;
+fetch('/api/studio/start',{method:'POST',body:fd}).then(r=>r.json()).then(j=>{st.textContent='Run gestartet: '+j.id}).catch(e=>{st.textContent='Fehler: '+e.message;st.className='status err'}).finally(()=>{$('studioGo').disabled=false});setTimeout(studioRuns,3000)};
 </script>
 </body></html>

@@ -256,3 +256,75 @@ def hybrid_svg(briefing, folie_slide_dict, design, nr):
             system = HYBRID_SYSTEM + "\nDu gibst NUR das JSON-Objekt aus, ohne Prosa."
             user = user2
     return None
+
+
+# ---------------------------------------------------------------- Weg B: Visual HTML
+HTML_SYSTEM = """Du bist Art Director UND Frontend-Entwickler einer Praesentations-Agentur.
+Du designt EINE Folie als komplette, selbststaendige HTML-Seite auf Editorial-Niveau:
+ruhig, hell, vorstandstauglich, exakt im Brand der Dataport-Vorstandsvorlage.
+Harte Anforderungen:
+- komplettes Dokument: <!doctype html><html><head><meta charset="utf-8">
+  <style>...</style></head><body>...</body></html>
+- body: width:1600px; height:900px; margin:0; overflow:hidden (Folie, kein Scroll)
+- Farben: Grund #FFFFFF, Karten #F4F5F6, Petrol #39756F, Grau #39424A,
+  Rot #9E292B nur als Akzent, Tints #F8E8E8/#FBF0DC, Text min 20px
+- font-family Arial, KEINE externen Ressourcen (kein CDN, kein Webfont, kein Bild,
+  keine data-URIs), alles CSS inline im <style>-Block
+- Typo-Hierarchie (Kicker klein/Sperrbuchstaben, Titel gross, klare Karten),
+  grosszuegiger Weissraum, Zahlen exakt uebernehmen, NICHTS abschneiden
+- dezente SVG-Infografik inline erlaubt (gleiche Farbwelt)"""
+
+_HTML_SCHEMA = """Gib AUSSCHLIESSLICH dieses JSON aus:
+{"html":"<!doctype html> ... komplette Folien-Seite ... "}
+"""
+
+def _html_aus_text(txt):
+    """Roh-Text -> komplette HTML-Seite (JSON-Erstversuch, sonst Regex)."""
+    import re as _re
+    if not txt:
+        return None
+    d = AI._extract_json(txt)
+    html = d.get("html") if isinstance(d, dict) else None
+    if not (isinstance(html, str) and "<html" in html.lower()):
+        m = _re.search(r"<!doctype html[\s\S]*?</html>", txt, _re.I)
+        html = m.group(0) if m else None
+    return html if html and "</html>" in html.lower() else None
+
+
+def html_folie(briefing, folie_slide_dict, design, nr):
+    """GLM designt EINE Folie als komplette HTML-Seite. String oder None."""
+    import json as _json
+    nl = chr(10)
+    user = ("BRIEFING: " + briefing + nl + nl + "DESIGNSYSTEM (Leitidee): "
+            + _json.dumps((design or {}).get("designsystem") or {}, ensure_ascii=False)
+            + nl + nl + "FOLIE " + str(nr) + " (Inhalte verbindlich, Zahlen exakt):" + nl
+            + _json.dumps(folie_slide_dict, ensure_ascii=False)
+            + nl + nl + _HTML_SCHEMA)
+    for versuch in range(3):
+        txt = glm.chat(HTML_SYSTEM, user, max_tokens=12000, timeout=300)
+        html = _html_aus_text(txt)
+        if html:
+            return html
+        user = user + nl + nl + 'WICHTIG: Antworte NUR mit dem JSON {"html": "<!doctype html> ..."}. Keine Prosa.'
+    return None
+
+
+def html_repair(briefing, folie_slide_dict, altes_html, critic_ergebnis, nr):
+    """Eine schwache HTML-Folie anhand der Kritik reparieren."""
+    import json as _json
+    nl = chr(10)
+    user = ("BRIEFING: " + briefing + nl + nl
+            + "FOLIE " + str(nr) + " (aktueller Stand, zu reparieren):" + nl
+            + str(altes_html) + nl + nl
+            + "CRITIC (score " + str(critic_ergebnis.get('score')) + "/10): "
+            + "; ".join(critic_ergebnis.get("schwaechen") or []) + nl
+            + "Fix-Anweisung: " + (critic_ergebnis.get("fix") or "-") + nl + nl
+            + "Repariere die Folie. Fakten/Zahlen bleiben exakt."
+            + nl + nl + _HTML_SCHEMA)
+    for versuch in range(3):
+        txt = glm.chat(HTML_SYSTEM, user, max_tokens=12000, timeout=300)
+        html = _html_aus_text(txt)
+        if html:
+            return html
+        user = user + nl + nl + 'Antworte NUR mit dem JSON {"html": "..."}.'
+    return None
