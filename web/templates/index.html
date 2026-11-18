@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SlideForce - Perfekte Präsentationen aus deinem Folienmaster</title>
+<style>
+:root{--bg:#1a222a;--card:#222c36;--fg:#eef2f5;--mut:#9aa8b3;--red:#9e292b;--petrol:#39756f}
+*{margin:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:-apple-system,'Segoe UI',Arial,sans-serif;min-height:100vh}
+.wrap{max-width:860px;margin:0 auto;padding:32px 20px 60px}
+header{display:flex;align-items:baseline;gap:14px;margin-bottom:6px}
+h1{font-size:2rem;letter-spacing:.5px}
+h1 b{color:var(--red)}
+.tag{color:var(--mut);font-size:.95rem}
+.sub{color:var(--mut);margin-bottom:28px;font-size:.95rem}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:700px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid #313e4a;border-radius:12px;padding:18px}
+.card h3{font-size:.85rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--petrol);margin-bottom:12px}
+.drop{border:2px dashed #46586a;border-radius:10px;padding:26px 12px;text-align:center;color:var(--mut);cursor:pointer;transition:.2s}
+.drop.over{border-color:var(--red);background:rgba(158,41,43,.08)}
+.drop .big{font-size:1.05rem;color:var(--fg);margin-bottom:4px}
+.drop.ok{border-color:var(--petrol);background:rgba(57,117,111,.1)}
+.fmt{display:flex;gap:10px;margin:18px 0}
+.fmt label{flex:1;background:var(--card);border:1px solid #313e4a;border-radius:10px;padding:12px;text-align:center;cursor:pointer;font-weight:600}
+.fmt input{display:none}
+.fmt label.on{border-color:var(--red);background:rgba(158,41,43,.15);color:#fff}
+textarea{width:100%;min-height:120px;background:#1b242d;border:1px solid #313e4a;border-radius:10px;color:var(--fg);padding:12px;font-family:ui-monospace,monospace;font-size:.9rem;resize:vertical}
+button.go{width:100%;padding:16px;border:0;border-radius:10px;background:var(--red);color:#fff;font-size:1.15rem;font-weight:700;cursor:pointer;margin-top:18px}
+button.go:hover{filter:brightness(1.15)}
+button.go:disabled{opacity:.5;cursor:wait}
+.status{margin-top:12px;min-height:22px;color:var(--mut);font-size:.95rem}
+.status.err{color:#e07a7a}
+details{margin-top:16px;color:var(--mut);font-size:.88rem}
+details summary{cursor:pointer;color:var(--petrol)}
+#layouts{columns:2;font-size:.85rem;margin-top:10px}
+#layouts div{padding:2px 0}
+footer{margin-top:34px;color:#5c6b78;font-size:.8rem;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><h1><b>Slide</b>Force</h1><span class="tag">deck forge</span></header>
+<p class="sub">Folienmaster rein, Inhalt rein (Transcript, Word, Text, Excel) - fertige Präsentation raus, exakt im Master-Design.</p>
+<div class="grid">
+<div class="card">
+<h3>1. Folienmaster (.pptx)</h3>
+<div class="drop" id="dropMaster">
+<div class="big" id="masterName">Standard: BRIDGE28-Folienmaster</div>
+<div>oder eigenen Master hierher ziehen / klicken</div>
+</div>
+<input type="file" id="fileMaster" accept=".pptx" hidden>
+</div>
+<div class="card">
+<h3>2. Inhalt</h3>
+<div class="drop" id="dropContent">
+<div class="big" id="contentName">Datei hierher ziehen / klicken</div>
+<div>.md .txt .docx .xlsx .csv</div>
+</div>
+<input type="file" id="fileContent" accept=".md,.markdown,.txt,.docx,.xlsx,.xlsm,.csv" hidden>
+<details><summary>... oder Text direkt eingeben</summary>
+<textarea id="text" placeholder="# Titelfolie&#10;## Folie mit Bullets&#10;- Punkt eins&#10;..."></textarea>
+</details>
+</div>
+</div>
+<div class="fmt">
+<label class="on" id="fmtPptx"><input type="radio" name="fmt" value="pptx" checked>PowerPoint (.pptx)</label>
+<label id="fmtHtml"><input type="radio" name="fmt" value="html">HTML-Präsentation</label>
+</div>
+<button class="go" id="go">Deck erstellen</button>
+<div class="status" id="status"></div>
+<details><summary>Layouts im aktuellen Master (per "layout:" im Text waehlbar)</summary><div id="layouts">...</div></details>
+<footer>SlideForce - Master + Inhalt = fertiges Deck. Design: 100% dein Folienmaster.</footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);let master=null,content=null;
+function wire(dropId,inputId,nameId,setter){const d=$(dropId),i=$(inputId);
+d.onclick=()=>i.click();i.onchange=()=>setter(i.files[0]||null);
+['dragover','dragenter'].forEach(e=>d.addEventListener(e,ev=>{ev.preventDefault();d.classList.add('over')}));
+['dragleave','drop'].forEach(e=>d.addEventListener(e,ev=>{ev.preventDefault();d.classList.remove('over');
+if(e=='drop'&&ev.dataTransfer.files.length)setter(ev.dataTransfer.files[0])}))}
+wire('dropMaster','fileMaster','masterName',f=>{master=f;
+$('masterName').textContent=f?('Eigener Master: '+f.name):'Standard: BRIDGE28-Folienmaster';
+$('dropMaster').classList.toggle('ok',!!f)});
+wire('dropContent','fileContent','contentName',f=>{content=f;
+$('contentName').textContent=f?f.name:'Datei hierher ziehen / klicken';
+$('dropContent').classList.toggle('ok',!!f)});
+document.querySelectorAll('.fmt input').forEach(r=>r.onchange=()=>{
+$('fmtPptx').classList.toggle('on',r.value=='pptx'&&r.checked);
+$('fmtHtml').classList.toggle('on',r.value=='html'&&r.checked)});
+fetch('/api/layouts').then(r=>r.json()).then(l=>{
+$('layouts').innerHTML=l.map(x=>'<div>'+x.i+' &nbsp; '+x.name+'</div>').join('')}).catch(()=>{});
+$('go').onclick=()=>{const st=$('status');st.className='status';
+const text=$('text').value.trim();
+if(!content&&!text){st.textContent='Bitte Inhalts-Datei oder Text angeben.';st.className='status err';return}
+const fd=new FormData();const fmt=document.querySelector('input[name=fmt]:checked').value;
+if(master)fd.append('master',master);if(content)fd.append('content',content);if(text)fd.append('text',text);
+fd.append('fmt',fmt);$('go').disabled=true;st.textContent='Deck wird gebaut...';
+fetch('/api/build',{method:'POST',body:fd}).then(r=>{
+if(!r.ok)return r.text().then(t=>{throw new Error(r.status+': '+t)});
+const folien=r.headers.get('X-Deck-Folien')||'?';
+st.textContent='Fertig: '+folien+' Folien. Download startet...';
+return r.blob().then(b=>{const u=URL.createObjectURL(b);const a=document.createElement('a');
+a.href=u;a.download='slideforce-deck.'+fmt;a.click();setTimeout(()=>URL.revokeObjectURL(u),4000);
+st.textContent='Fertig: '+folien+' Folien im '+fmt.toUpperCase()+'-Format.'})})
+.catch(e=>{st.textContent='Fehler: '+e.message;st.className='status err'})
+.finally(()=>{$('go').disabled=false})};
+</script>
+</body></html>
