@@ -45,7 +45,8 @@ DEFAULTS = {
     "timeout": 90,
 }
 
-PRIMITIVEN = {"band", "linie", "text", "kachel", "pill", "kartenzeile", "ring", "tabelle"}
+PRIMITIVEN = {"band", "linie", "text", "kachel", "pill", "kartenzeile", "ring",
+              "tabelle", "trend", "zeitstrahl"}
 
 FARB_MAP = {  # Namen -> profiles-RGBColor
     "NAVY": P.NAVY, "GOLD": P.GOLD, "ROT": P.ROT, "GRUEN": P.GRUEN,
@@ -86,17 +87,19 @@ STRENGES JSON-BAU-VOKABULAR - nur diese Primitive ("typ"-Feld), Koordinaten in i
 - {"typ":"band","x":..,"y":..,"w":..,"h":..,"farbe":"NAVY"}                        Vollflaechiges Rechteck
 - {"typ":"linie","x":..,"y":..,"w":..,"h":0.012,"farbe":"LINE"}                    Feine Linie (h sehr klein)
 - {"typ":"text","x":..,"y":..,"w":..,"h":..,"text":"..","size":12,"farbe":"SCHW","bold":false,"align":"left"}
-- {"typ":"kachel","x":..,"y":..,"w":..,"h":..,"label":"LABEL","gross":"4,2","unit":"Mio","unter":"plus 12%","kontext":"seit 2023","farbe":"NAVY"}   KPI-Kachel: weisse Karte, LINE-Border, Farbbalken 0.07 oben, Label UPPERCASE, Zahl 30pt NAVY bold + Unit 12.5pt
-- {"typ":"pill","x":..,"y":..,"w":..,"h":0.32,"text":"Status","farbe":"GRUEN"}     Abgerundete Status-Pille, weisse bold Schrift
+- {"typ":"kachel","x":..,"y":..,"w":..,"h":..,"label":"LABEL","gross":"4,2","unit":"Mio","unter":"plus 12%","kontext":"seit 2023","farbe":"NAVY","status":"Am Limit"}   KPI-Kachel: weisse Karte, Border + Balken oben in Statusfarbe, Label UPPERCASE, Zahl 30pt NAVY bold + Unit 12.5pt; status (optional) = abgerundete Pill unten (Grün/Gelb/Rot/Am Limit/In Arbeit -> automatisch gefärbt)
+- {"typ":"pill","x":..,"y":..,"w":..,"h":0.32,"text":"Status","farbe":"GRUEN"}     Abgerundete Status-Pille mit farbigem Fill + bold Text (WEISS, bei GOLD NAVY). Standard-Statusworte: Grün/rot gefärbt, "Am Limit" = GOLD
+- {"typ":"trend","x":..,"y":..,"w":1.5,"delta":"+12 %","richtung":"up","farbe":"GRUEN"}   Trend-Chip: Pfeil ▲/▼ + Delta in Statusfarbe auf heller Karte - neben Kachel-Zahlen fuer Entwicklung gg. Vorjahr/Woche
 - {"typ":"kartenzeile","x":..,"y":..,"w":..,"h":0.55,"text":"**Migration:** 42 von 60 ...","level":0}   Zeilen-Karte (HELL-Fuellung, LINE-Border, GOLD-Marker links, 13pt); level 1 = Unterpunkt eingerueckt ohne Karte
 - {"typ":"ring","x":..,"y":..,"w":3.0,"wert":75,"farbe":"GOLD"}                    Fortschrittsring (Doughnut) mit Prozentwert im Zentrum
-- {"typ":"tabelle","x":..,"y":..,"w":12.23,"rows":[["Bereich","Status"],["Build","Gelb"]],"status_spalten":[1]}   Tabelle: Kopfzeile NAVY, Zebra WEISS/HELL; status_spalten = Spalten-Indizes (0-basiert) mit Grun/Gelb/Rot-Status-Pillen
+- {"typ":"tabelle","x":..,"y":..,"w":12.23,"rows":[["Bereich","Status"],["Build","Gelb"]],"status_spalten":[1]}   Tabelle: Kopfzeile NAVY, Zebra WEISS/HELL; status_spalten = Spalten-Indizes (0-basiert) mit Grun/Gelb/Rot-Status-Pillen (abgerundet, farbiger Fill, weisse Schrift)
+- {"typ":"zeitstrahl","x":0.55,"y":1.6,"w":12.23,"heute":"2026-11-18","meilensteine":[["2026-11-30","M0 Start","fertig"],["2027-04-30","M3 Go-Live","kritisch"]]}   BRIDGE28-Bruecken-Zeitstrahl: goldener Spannbogen, 2 NAVY-Pylonen, Meilenstein-Punkte auf dem Bogen (farbig nach Status), HEUTE-Marker, Countdown-Chip, Quartals-Achse. Nutze ihn FUER ALLE Fahrplan-/Meilenstein-/Termin-Themen statt kahler Listen
 
 REGELN:
 1. Header-Band (NAVY, 0.95 hoch mit Kicker+Titel), Footer und Logo zeichnet die ENGINE - niemals selbst zeichnen. Gestalte nur den Inhaltsbereich.
 2. Koordinaten NIE ausserhalb 0..13.33 x 0..7.5. Inhaltsbereich: x 0.55..12.78, y 1.15..6.85 (ausser anders angegeben).
 3. Nur die genannten Primitive, keine eigenen Feldnamen. Umlaute korrekt schreiben.
-4. PREMIUM-DICHTE: Nutze die Breite (12.23) und Hoehe aus. Kachelreihen: gleiche y/h, Gap 0.2, Balkenfarben NAVY/GOLD mischen (GOLD = Highlight). Kartenzeilen: h 0.55, Gap 0.14-0.35. Weniger als 5 Elemente sind fast immer zu leer; mehr als 16 zu viel.
+4. PREMIUM-DICHTE wie der b28-Original-Export: Nutze die volle Breite (12.23) und Hoehe (1.15..6.85). 4 KPI-Werte -> 4-spaltige Kachelreihe (w je 2.91, Gap 0.2); 2 Werte -> 2 Kacheln je 6.01. Jede Kennzahl bekommt trend-Chip oder status-Pill, wenn Zahlen dazu da sind. Kartenzeilen: h 0.55, Gap 0.14-0.35. Weniger als 5 Elemente sind fast immer zu leer; mehr als 16 zu viel. Keine einsamen Textblocks.
 5. Zahlen und Kernaussagen dominant, Meta-Info dezent (GRAU2). Keine ueberlappenden Boxen, konsistentes Raster.
 6. ANTWORTE NUR MIT JSON, genau diesem Format, kein erklaerender Text, keine Markdown-Fences:
 {"folie":<n>,"hintergrund":"WEISS","elemente":[ ... ]}
@@ -134,6 +137,12 @@ def _user_prompt(s, n, m):
             z.append("tabelle:")
             for row in (v or []):
                 z.append("| " + " | ".join(str(c) for c in row) + " |")
+        elif isinstance(v, list):
+            z.append(f"{k}:")
+            for eintrag in v:
+                if isinstance(eintrag, (list, tuple)):
+                    eintrag = "|".join(str(t) for t in eintrag)
+                z.append(f"- {eintrag}")
         elif isinstance(v, (str, int, float)):
             z.append(f"{k}: {v}")
     if kind == "title":
@@ -146,10 +155,15 @@ def _user_prompt(s, n, m):
                  "Gold-Akzentlinie und 2-4 helle kartenzeilen als Vorschau. Textfarben WEISS/GOLD/GRAU2, "
                  "y-Bereich 1.2..6.8.")
     else:
+        if s.get("zeitstrahl") or s.get("meilensteine"):
+            z.append("HINWEIS: Baue die primitive {\"typ\":\"zeitstrahl\"} mit ALLEN Meilensteinen "
+                     "(x 0.55, y 1.6, w 12.23, heute = heutiges Datum) - nicht als Liste. "
+                     "Darunter Platz fuer bis zu 2 Kartenzeilen lassen (y ab 5.3).")
         z.append("HINWEIS: Header (kicker + titel als NAVY-Band) und Footer zeichnet die Engine. "
                  "Gestalte nur y 1.15..6.85, x 0.55..12.78. Setze alle Inhalte dieser Folie vollstaendig "
-                 "und dicht um (KPI-Werte als kachel, Listen als kartenzeilen, Tabellen als tabelle mit "
-                 "status_spalten). Erfinde keine Zahlen, nutze die gegebenen.")
+                 "und dicht um (KPI-Werte als kachel mit status/trend, Listen als kartenzeilen, Tabellen "
+                 "als tabelle mit status_spalten, Fahrplaene als zeitstrahl). Erfinde keine Zahlen, "
+                 "nutze die gegebenen.")
     return "\n".join(z)
 
 
@@ -315,35 +329,40 @@ def _p_text(sl, el, dunkel=False):
 def _p_kachel(sl, el):
     x, y, w, h = _clamp_box(el, y_d=1.3, w_d=6.0, h_d=2.3)
     farbe = el.get("farbe")
+    status = el.get("status")
+    sf = P._status_farbe(status) if status else None
     P.kachel(sl, x, y, w, h, str(el.get("label", "")), str(el.get("gross", "")),
              str(el.get("unit") or ""), str(el.get("unter") or ""),
              str(el.get("kontext") or ""),
-             _farbe(farbe) if farbe is not None else None)
+             sf or (_farbe(farbe) if farbe is not None else None),
+             status=status if status else None)
 
 
 def _p_pill(sl, el):
     x, y, w, h = _clamp_box(el, h_d=0.32)
-    sh = sl.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE,
-                             Inches(x), Inches(y), Inches(w), Inches(h))
-    try:
-        sh.adjustments[0] = 0.5
-    except Exception:
-        pass
-    sh.fill.solid()
-    sh.fill.fore_color.rgb = _farbe(el.get("farbe"), P.GRUEN)
-    sh.line.fill.background()
-    sh.shadow.inherit = False
-    tf = sh.text_frame
-    tf.word_wrap = False
-    tf.vertical_anchor = MSO_ANCHOR.MIDDLE
-    p = tf.paragraphs[0]
-    p.alignment = PP_ALIGN.CENTER
-    r = p.add_run()
-    r.text = str(el.get("text", ""))
-    r.font.size = Pt(min(max(_num(el.get("size"), 10.5), 8), 14))
-    r.font.bold = True
-    r.font.color.rgb = P.WEISS
-    r.font.name = P.FONT
+    P._pill(sl, x, y, w, h, str(el.get("text", "")),
+            _farbe(el.get("farbe"), P.GRUEN),
+            size=min(max(_num(el.get("size"), 10.5), 8), 14))
+
+
+def _p_trend(sl, el):
+    """Trend-Chip: Pfeil + Delta in Statusfarbe auf heller Karte."""
+    x, y, w, h = _clamp_box(el, w_d=1.5, h_d=0.34)
+    delta = str(el.get("delta", ""))
+    up = str(el.get("richtung", "up")).strip().lower() not in ("down", "ab", "runter", "minus")
+    farbe = _farbe(el.get("farbe"), P.GRUEN if up else P.ROT)
+    P._rect(sl, x, y, w, h, P.HELL, line=P.LINE)
+    pfeil = "\u25b2" if up else "\u25bc"
+    P._text(sl, x + 0.08, y, w - 0.16, h, f"{pfeil} {delta}",
+            min(max(_num(el.get("size"), 11), 8), 14), farbe, bold=True)
+
+
+def _p_zeitstrahl(sl, el):
+    """BRIDGE28-Bruecken-Zeitstrahl (Bogen/Pylonen/Punkte/HEUTE/Countdown)."""
+    x = min(max(_num(el.get("x"), P.MX), 0), P.W)
+    y = min(max(_num(el.get("y"), 1.6), 1.0), P.H)
+    w = min(max(_num(el.get("w"), P.W - 2 * P.MX), 3.0), P.W - x - 0.1)
+    P._bruecke(sl, x, y, w, el.get("meilensteine") or [], el.get("heute"))
 
 
 def _p_kartenzeile(sl, el):
@@ -432,7 +451,7 @@ def _p_tabelle(sl, el):
 
 _RENDERER = {"band": _p_band, "linie": _p_linie, "text": _p_text, "kachel": _p_kachel,
              "pill": _p_pill, "kartenzeile": _p_kartenzeile, "ring": _p_ring,
-             "tabelle": _p_tabelle}
+             "tabelle": _p_tabelle, "trend": _p_trend, "zeitstrahl": _p_zeitstrahl}
 
 
 def _render_elemente(sl, elemente, dunkel=False):

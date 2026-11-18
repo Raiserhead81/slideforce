@@ -12,7 +12,7 @@ from pptx import Presentation  # noqa: E402
 from slideforce.readers import read_content  # noqa: E402
 from slideforce.builder import build  # noqa: E402
 from slideforce.html_export import build_html  # noqa: E402
-from slideforce.profiles import build_profile  # noqa: E402
+from slideforce.profiles import build_profile, build_vorlage  # noqa: E402
 from slideforce.ai_design import build_ai_deck, load_ai_config  # noqa: E402
 from slideforce.layoutmap import LayoutMap  # noqa: E402
 
@@ -173,6 +173,8 @@ def build_deck():
             out = OUT / f"deck-{uid}.pptx"
             if fmt == "b28pptx":
                 build_profile(slides, out)
+            elif fmt == "vorpptx":
+                build_vorlage(slides, out)
             elif fmt == "aipptx":
                 # Premium: GLM 5.3 designt JEDE Folie einzeln (1 Call pro Folie,
                 # max 4 parallel). KI gar nicht erreichbar -> alle Folien im

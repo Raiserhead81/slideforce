@@ -3,6 +3,7 @@ import re
 
 MAX_BULLETS = 6          # b28-Zeilen-Karten: max 6 pro Folie, Rest -> Fortsetzungsfolie
 MAX_BULLET_CHARS = 220   # laengere Absaetze werden an Saetzen gesplittet
+LIST_KEYS = {"zeitstrahl", "meilensteine", "teile"}   # kv-Keys mit mehrzeiliger '-'-Liste als Wert
 
 
 def _chunk(items, n=MAX_BULLETS):
@@ -42,6 +43,7 @@ def read_text(text, source_title="Präsentation"):
     """
     slides = []
     cur = None
+    list_key = None      # aktiver LIST_KEYS-kv: '- '-Zeilen haengen an diese Liste
     first_h1 = True
     had_heading = False
     for raw in text.splitlines():
@@ -51,10 +53,12 @@ def read_text(text, source_title="Präsentation"):
             continue
         if s in ("---", "***", "___"):
             cur = None
+            list_key = None
             continue
         m = re.match(r"^(#{1,6})\s+(.*)$", s)
         if m:
             had_heading = True
+            list_key = None
             lvl, t = len(m.group(1)), m.group(2).strip()
             if lvl == 1 and first_h1:
                 cur = _new_slide(slides, cur, "title", t)
@@ -68,17 +72,24 @@ def read_text(text, source_title="Präsentation"):
         if bm:
             if cur is None or cur.get("layout") in ("title", "section"):
                 cur = _new_slide(slides, cur, "content", "")
+            if list_key is not None:            # '- 2026-12-31|M0|kritisch' unter kv-Key
+                cur.setdefault(list_key, [])
+                if isinstance(cur[list_key], list):
+                    cur[list_key].append(bm.group(2).strip())
+                continue
             level = 1 if len(bm.group(1)) >= 2 else 0
             for piece in _split_long(bm.group(2).strip()):
                 cur["bullets"].append((level, piece))
             continue
         img = re.match(r"^!\[[^\]]*\]\(([^)]+)\)\s*$", s)
         if img:
+            list_key = None
             if cur is None or cur.get("layout") in ("title", "section"):
                 cur = _new_slide(slides, cur, "content", "")
             cur["image"] = img.group(1)
             continue
         if s.startswith("|") and s.endswith("|"):
+            list_key = None
             cells = [c.strip() for c in s.strip("|").split("|")]
             if cur is None or cur.get("layout") in ("title", "section"):
                 cur = _new_slide(slides, cur, "content", "")
@@ -90,19 +101,30 @@ def read_text(text, source_title="Präsentation"):
             key = kv.group(1).strip().lower()
             if cur is None or cur.get("bullets") or cur.get("table") or cur.get("image"):
                 cur = _new_slide(slides, cur, "content", "")
+            list_key = None
             if key == "title" and not cur.get("title"):
                 cur["title"] = kv.group(2).strip()
             elif key in ("layout", "kind", "subtitle", "notes"):
                 cur[key if key != "kind" else "layout"] = kv.group(2).strip()
+            elif key in LIST_KEYS:
+                cur[key] = [kv.group(2).strip()]      # Erstwert, weitere '- '-Zeilen folgen
+                list_key = key
             else:
                 cur[key] = kv.group(2).strip()
             continue
+        list_key = None                                    # Klartext beendet die Liste
         # nackter Absatztext (Transcript) -> Bullets
         if cur is None or cur.get("layout") in ("title", "section"):
             if cur is not None and cur["layout"] == "title" and not cur.get("subtitle"):
                 cur["subtitle"] = s
                 continue
             cur = _new_slide(slides, cur, "content", "")
+        # SMART: kurze Zeile ohne Satz-Ende = Kapitel-Ueberschrift (Transcript-Modus)
+        if (len(s) <= 48 and not s.endswith((".", "!", "?", ",", ":", ";"))
+                and cur is not None and cur.get("bullets")
+                and sum(len(b[1]) for b in cur["bullets"]) > 30):
+            cur = _new_slide(slides, cur, "section", s)
+            continue
         for piece in _split_long(s):
             cur["bullets"].append((0, piece))
     META = {"layout", "kind", "title", "subtitle", "bullets", "table", "image", "notes"}
