@@ -614,3 +614,9 @@ Run 20261118-203927 (Resume nach 429-Pause, Weg B Visual HTML):
 - Auch drin: master_zonen (Premium-Content-Zone aus Master-Layout, Plausi-Gate),
   Zeitstrahl-HEUTE-Ausweichzonen groesser, HTML-Folienregler (maxfolien).
 - Tests 5 passed. Code von glm-5.3-prime gebaut (glm-bau), Gemma koordiniert.
+
+## 2026-11-18 Gate-Test
+- Live-Run Beweis: Handbuch-Text min6/max8 -> Folienplan 7 Folien, 7/7 designt,
+  x-deck-folien: 7. Screenshots /tmp/hb/folie-1..7.png, Score 8/10 (glm-sicht).
+- Retry-Logik von glm-5.3-prime gebaut (glm-bau), Einsatz verifiziert via
+  python-replace + Import-Check + 5 passed Tests + Deploy (systemctl active).
