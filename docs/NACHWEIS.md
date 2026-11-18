@@ -633,3 +633,10 @@ Run 20261118-203927 (Resume nach 429-Pause, Weg B Visual HTML):
   Kapitelnamen ("Kapitel 2"-Inhalt liegt auf der Kapitel-3-Folie).
 - Neue Referenz-Skills installiert: pzh-image-to-editable-ppt-cross,
   ai-presentation-builder, editable-leadership-pptx (~/.claude/skills).
+
+## 19.11. Statischer Linter + Dataport-Logo-Pflicht + Vorstands-Gattungen
+- slideforce/linter.py (NEU, von GLM-5.3-prime gebaut): pruefe_deck() mit 6 Checks (leere Folien, Textdichte 350/600, >6 Bullets, ACTION-Titel, Layout-Wiederholung, Titelfolie) + gewichtetem Score (visuell 25, Verstaendlichkeit 20, Datenintegritaet 20, Storytelling 15, Layout 10, Editierbarkeit 10), blockierend wenn <90 oder Datenintegritaet verletzt. Beweis: echtes Reader-Deck 100/100, Quetsch-Gegenprobe 80/100 blockierend.
+- web/app.py: Linter in /api/build (X-Deck-Score + X-Deck-Blockierend Header + Log).
+- html_export.py: Dataport-Logo (assets/vorlage_dataport.png) Base64 auf JEDER HTML-Folie oben rechts (.dplogo, 150px / Titel 230px). Beweis: deck.html 11 dplogo-Elemente.
+- studio/roles.py: DIRECTOR_SCHEMA + Vorstands-Gattungen (Exec-Summary ... Managemententscheidungen, min 3 Gattungen), TITEL-REGEL (Aussage statt Themenlabel), FARB-REGEL (Rot nur Eskalation). Quelle: Skill infrastructure-executive-reporting.
+- LIVE-Beweis 19.11.: Build handbuch -> HTTP 200, x-deck-score: 98, x-deck-blockierend: 0, 6 Folien, dplogo 8x im HTML. pytest 5 passed.

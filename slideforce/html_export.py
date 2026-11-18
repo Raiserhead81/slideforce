@@ -36,6 +36,19 @@ KIND_ROLLE = {"title": "titel", "section": "section", "statement": "statement",
 
 DUNKEL_ROLLEN = {"titel", "section", "statement", "closing"}
 
+ASSETS = Path(__file__).resolve().parent / "assets"
+_LOGO_B64 = None
+
+
+def _dp_logo():
+    """Base64-Anteil des Dataport-Logos (lazy gecacht, '' falls Datei fehlt)."""
+    global _LOGO_B64
+    if _LOGO_B64 is None:
+        uri = _b64(ASSETS / "vorlage_dataport.png")
+        _LOGO_B64 = uri.split("base64,", 1)[1] if uri else ""
+    return _LOGO_B64
+
+
 
 def _box(lay, typ, body=False):
     """Größte Box eines Typs aus Layout-Profil -> (x,y,w,h) oder None."""
@@ -86,8 +99,9 @@ def _lay_css(genutzte, profil):
     return "\n".join(teile)
 
 
-def _render_slide(s, profil=None):
+def _render_slide_raw(s, profil=None):
     kind = s.get("kind", "content")
+
     title = _md(s.get("title") or "")
     rolle = KIND_ROLLE.get(kind, "content")
     lay_idx = rolle_zu_layout(profil, rolle) if profil else None
@@ -152,7 +166,19 @@ def _render_slide(s, profil=None):
     return "".join(parts)
 
 
+def _render_slide(s, profil=None):
+    out = _render_slide_raw(s, profil)
+    logo = _dp_logo()
+    if logo:
+        out = out.replace(
+            ">",
+            f"><img src='data:image/png;base64,{logo}' class='dplogo' alt='dataport'>",
+            1)
+    return out
+
+
 def _bullet(level, text):
+
     inner = _md(text)
     if level:
         return f"<li class='l2'>{inner}</li>"
@@ -198,6 +224,8 @@ img.pic{max-width:46%;max-height:58vh;position:absolute;right:5vw;top:22vh;borde
 .s-kpi .unit{font-size:clamp(1.6rem,4vw,3rem);opacity:.8}
 .s-kpi .erk{font-size:clamp(1.2rem,2.6vw,1.9rem)}
 .s-kpi .einord{opacity:.6;font-size:clamp(1rem,2vw,1.3rem)}
+.dplogo{position:absolute;top:14px;right:22px;width:150px;z-index:5;pointer-events:none}
+.s-title .dplogo{width:230px}
 #bar{position:fixed;left:0;bottom:0;height:5px;background:var(--a1);width:0;transition:width .25s;z-index:9}
 #cnt{position:fixed;right:16px;bottom:12px;color:#888;font-size:13px;z-index:9;font-family:monospace}
 #dots{position:fixed;left:50%;transform:translateX(-50%);bottom:12px;display:flex;gap:6px;z-index:9}

@@ -23,7 +23,10 @@ Regeln:
 - folienzahl N liegt ZWISCHEN den genannten min/max-Grenzen (inklusive Titel- und Teilfolien).
 - teile: 2-3 inhaltliche Teile fuer die INHALT-Sidebar.
 - kernbotschaft: die eine Aussage, die der Vorstand mitnehmen soll.
-- focusthemen gewichtet nach Relevanz fuer DIESEN Vorstand; nichts erfinden, nur aus Briefing/Quelle."""
+- focusthemen gewichtet nach Relevanz fuer DIESEN Vorstand; nichts erfinden, nur aus Briefing/Quelle.
+- VORSTANDS-GATTUNGEN für Infrastruktur-/Projekt-Decks: (1) Executive Summary am Anfang (Gesamtstatus, Fortschritt, Termin, Kosten, Top-Risiken, Entscheidungsbedarf). (2) Projektfortschritt mit Soll-Ist-Vergleich. (3) Architektur/Infrastruktur. (4) Rollout/Migration. (5) Ressourcen. (6) Risiken und Maßnahmen mit Eskalationsbedarf. (7) Terminplan/Meilensteine. (8) Budget mit Abweichungen. (9) Managemententscheidungen am Ende, wenn Entscheidungsbedarf erkennbar. Wähle passend zum Inhalt - nicht alle Pflicht, aber MINDESTENS 3 verschiedene Gattungen.
+- TITEL-REGEL: Jeder Folientitel muss eine AUSSAGE sein (schlecht: "Projektfortschritt"; gut: "Der Migrationsfortschritt liegt hinter dem Zielpfad"), nie nur ein Themenlabel.
+- FARB-REGEL: Rot nur für echte Eskalationen, Amber für Kritisches, Blau/Türkis für Positives."""
 
 
 def director(briefing, quelle_text, ziel_min, ziel_max):

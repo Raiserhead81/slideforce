@@ -18,6 +18,8 @@ from slideforce.masterprofil import lade_profil, speichere_profil  # noqa: E402
 from slideforce.profiles import build_profile, build_vorlage  # noqa: E402
 from slideforce.ai_design import build_ai_deck, load_ai_config  # noqa: E402
 from slideforce.layoutmap import LayoutMap  # noqa: E402
+from slideforce.linter import pruefe_deck  # noqa: E402
+
 
 UPLOAD = Path(__file__).resolve().parent / "uploads"
 OUT = Path(__file__).resolve().parent / "output"
@@ -365,7 +367,11 @@ def build_deck():
         mime = "text/html" if fmt == "html" else "application/vnd.openxmlformats-officedocument.presentationml.presentation"
         ext = "pptx" if fmt != "html" else "html"
         resp = send_file(out, as_attachment=True, download_name=f"slideforce-deck-{uid}.{ext}", mimetype=mime)
+        linter_report = pruefe_deck(slides)
+        print('[linter] Score %s/100 blockierend=%s' % (linter_report['score'], linter_report['blockierend']))
         resp.headers["X-Deck-Folien"] = str(n_final)
+        resp.headers["X-Deck-Score"] = str(linter_report["score"])
+        resp.headers["X-Deck-Blockierend"] = "1" if linter_report["blockierend"] else "0"
         if warnung:
             resp.headers["X-Warnung"] = warnung
         if fmt == "aipptx":
