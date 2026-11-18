@@ -61,7 +61,7 @@ color:#fff;font-weight:700;font-size:.86rem;cursor:pointer;transition:.15s}
 button.mini:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(63,163,150,.3)}
 button.mini.grey{background:var(--bg2);border:1px solid var(--cardb);color:var(--mut)}
 button.mini.grey:hover{color:var(--fg);box-shadow:none}
-.fmt{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:18px}
+.fmt{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
 @media(max-width:760px){.fmt{grid-template-columns:1fr}}
 .fmtcard{position:relative;background:rgba(0,0,0,.18);border:1.5px solid var(--line);border-radius:14px;padding:18px;cursor:pointer;transition:.18s}
 .fmtcard:hover{border-color:var(--cardb)}
@@ -147,6 +147,9 @@ footer{margin-top:40px;color:#4d5c69;font-size:.8rem;text-align:center}
 <label class="fmtcard" id="fmtB28"><input type="radio" name="fmt" value="b28pptx">
 <span class="check">✓</span><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 21h18M4 17h16M6 17v-5h3v5M10 17V8h4v9M16 17v-7h3v7"/></svg></div><div class="ft">BRIDGE28-Design</div>
 <div class="fd">Handdesignte Folien im BRIDGE28-Look: navy Header, gold Kicker, Kacheln, KW-Footer - dein Export-Standard.</div></label>
+<label class="fmtcard" id="fmtAi"><input type="radio" name="fmt" value="aipptx">
+<span class="check">✓</span><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.5 13.5H11L9.5 22 19 10h-6.5L13 2z"/></svg></div><div class="ft">Premium · KI-Design</div>
+<div class="fd"><b>GLM 5.3 designt jede Folie einzeln</b> - individuelle Layouts statt Vorlage. Hoehere Dichte und Qualitaet, ca. 1-3 Min Bauzeit.</div></label>
 </div>
 <button class="go" id="go">Deck erstellen</button>
 <div class="status" id="status"></div>
@@ -193,13 +196,16 @@ const text=ta.value.trim();
 if(!content&&!text){st.textContent='Bitte Inhalt-Datei oder Transkript angeben.';st.className='status err';return}
 const fd=new FormData();const fmt=document.querySelector('input[name=fmt]:checked').value;
 if(master)fd.append('master',master);if(content)fd.append('content',content);if(text)fd.append('text',text);
-fd.append('fmt',fmt);$('go').disabled=true;st.textContent='Deck wird gebaut ...';
+fd.append('fmt',fmt);$('go').disabled=true;
+st.textContent = fmt==='aipptx' ? 'GLM 5.3 designt jede Folie einzeln - ca. 1-3 Minuten, Seite bitte offen lassen ...' : 'Deck wird gebaut ...';
 fetch('/api/build',{method:'POST',body:fd}).then(r=>{
 if(!r.ok)return r.text().then(t=>{throw new Error(r.status+': '+t)});
 const folien=r.headers.get('X-Deck-Folien')||'?';
+const ki=r.headers.get('X-AI-Folien');
+const fb=r.headers.get('X-AI-Fallback')?' (KI nicht erreichbar - statisches BRIDGE28-Design genutzt)':'';
 return r.blob().then(b=>{const u=URL.createObjectURL(b);const a=document.createElement('a');
 a.href=u;a.download='slideforce-deck.'+(fmt=='html'?'html':'pptx');a.click();setTimeout(()=>URL.revokeObjectURL(u),4000);
-st.textContent='Fertig: '+folien+' Folien als '+fmt.toUpperCase()+'.';st.className='status ok'})})
+st.textContent='Fertig: '+folien+' Folien als '+fmt.toUpperCase()+'.'+(ki!==null?' Davon '+ki+' von der KI designed.':'')+fb;st.className='status ok'})})
 .catch(e=>{st.textContent='Fehler: '+e.message;st.className='status err'})
 .finally(()=>{$('go').disabled=false})};
 </script>

@@ -13,6 +13,7 @@ from slideforce.readers import read_content  # noqa: E402
 from slideforce.builder import build  # noqa: E402
 from slideforce.html_export import build_html  # noqa: E402
 from slideforce.profiles import build_profile  # noqa: E402
+from slideforce.ai_design import build_ai_deck, load_ai_config  # noqa: E402
 from slideforce.layoutmap import LayoutMap  # noqa: E402
 
 UPLOAD = Path(__file__).resolve().parent / "uploads"
@@ -170,12 +171,25 @@ def build_deck():
             out = OUT / f"deck-{uid}.pptx"
             if fmt == "b28pptx":
                 build_profile(slides, out)
+            elif fmt == "aipptx":
+                # Premium: GLM 5.3 designt JEDE Folie einzeln (1 Call pro Folie,
+                # max 4 parallel). KI gar nicht erreichbar -> alle Folien im
+                # statischen b28-Fallback (== b28pptx), Hinweis via Header.
+                def _prog(fertig, gesamt):
+                    print(f"[ai] Folie {fertig}/{gesamt} designt", flush=True)
+
+                _, ai_stats = build_ai_deck(slides, out, config=load_ai_config(),
+                                             on_progress=_prog)
             else:
                 build(mp, slides, out)
         mime = "text/html" if fmt == "html" else "application/vnd.openxmlformats-officedocument.presentationml.presentation"
         ext = "pptx" if fmt != "html" else "html"
         resp = send_file(out, as_attachment=True, download_name=f"slideforce-deck-{uid}.{ext}", mimetype=mime)
         resp.headers["X-Deck-Folien"] = str(len(slides))
+        if fmt == "aipptx":
+            resp.headers["X-AI-Folien"] = str(ai_stats.get("ki", 0))
+            if ai_stats.get("ki", 0) == 0:
+                resp.headers["X-AI-Fallback"] = "1"
         return resp
     finally:
         for p in tmp:

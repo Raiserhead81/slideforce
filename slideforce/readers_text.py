@@ -1,7 +1,7 @@
 """SlideForce: Text/Markdown-Reader. Wandelt Transcript, Text oder MD in Folien."""
 import re
 
-MAX_BULLETS = 7          # mehr pro Folie wirkt unruhig
+MAX_BULLETS = 6          # b28-Zeilen-Karten: max 6 pro Folie, Rest -> Fortsetzungsfolie
 MAX_BULLET_CHARS = 220   # laengere Absaetze werden an Saetzen gesplittet
 
 

@@ -6,3 +6,4 @@ output/
 *.bak*
 .DS_Store
 token.txt
+web/ai-config.json
