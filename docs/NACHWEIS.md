@@ -539,3 +539,13 @@ Run 20261118-203927 (Resume nach 429-Pause, Weg B Visual HTML):
   x+w<=12.78/y+h<=7.1, Ueberlappung verboten, max 550 Woerter)
 - Kays Folie 4 live repariert: Score 4 -> 8 (bewiesen, Deck+State aktualisiert,
   Rollback-Schutz haette bei Verschlechterung gegriffen)
+
+## NACHTRAG: Kays Rolloutplan als Weg B (Agentur-HTML) - 2 Reparatur-Wellen
+- Run 20261118-210012 (Weg B, gleiche XLSX): Runde 1: 8 8 8 5 9 8 ->
+  gezielte Reparaturen (Runde 2: alle 5 schwachen mit konkreten Befunden,
+  Runde 3: Folie 4 mit EXAKTEM Bau-Raster 6x230px-Karten, Runde 4: Umlaute+Breiten)
+- FINAL: 1:8 2:8 3:9 4:8 5:9 6:9 (Folie 4: 5->8)
+- HTML_SYSTEM ergaenzt: ICON-Anforderungen (stroke-SVG einheitlich Petrol,
+  40-56px) + Editorial-Regeln (Hairlines, grosse Zahlen, letter-spacing,
+  min 60px Aussenrand) + echte Umlaute (nie ae/oe/ue)
+- deck.html live: /api/studio/file/<id>/deck.html mit Token

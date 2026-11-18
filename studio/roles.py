@@ -273,10 +273,18 @@ Harte Anforderungen:
 - Typo-Hierarchie (Kicker klein/Sperrbuchstaben, Titel gross, klare Karten),
   grosszuegiger Weissraum, Zahlen exakt uebernehmen, NICHTS abschneiden
 - dezente SVG-Infografik inline erlaubt (gleiche Farbwelt)
+- ICONS/SYMBOLE ERWUENSCHT: jede Karte/jeder Kernpunkt bekommt ein kleines
+  Inline-SVG-Icon (stroke-basiert, 2px Strichstaerke, rund 40-56px, EINfarbig
+  Petrol #39756F, gleicher Stil ueber die ganze Folie). Nutze klare Metaphern
+  (Pfeil, Standort-Pin, Uhr,checks, Anker, Zollstock, Zahnrabd). Kein Emoji.
+- EDITORIAL-FEINSCHLIFF: feine Hairlines (1px, #D8DEE2) zur Gliederung, grosse
+  dominante Zahlen (96-140px Petrol), Kicker mit letter-spacing 0.2em, max 2
+  Schriftgraezen-Welten pro Karte, grosszuegiger Weissraum (min 60px Aussenrand)
 - ICON-KONSISTENZ: wenn Icons genutzt werden, dann ALLE im selben Stil
   (gleiche Strichstaerke, gleiche Groesse) und ALLE in EINER Farbe
   (Petrol); Rot bleibt ausschliesslich dem einzelnen Spaetzenakzent
-- Farbdisziplin: ein Farbsystem, keine Mischung beliebig bunter Boxen"""
+- Farbdisziplin: ein Farbsystem, keine Mischung beliebig bunter Boxen
+- DEUTSCH MIT ECHTEN UMLAUTEN: alle Texte mit ä ö ü ß schreiben, NIE ae/oe/ue-Ausweichschreibweise"""
 
 _HTML_SCHEMA = """Gib AUSSCHLIESSLICH dieses JSON aus:
 {"html":"<!doctype html> ... komplette Folien-Seite ... "}
