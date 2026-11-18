@@ -1,5 +1,6 @@
 """SlideForce Web: pptx.gemivo.de/slideforce.gemivo.de - Master + Content -> Deck."""
 import math
+import re
 import sys
 import time
 import uuid
@@ -415,6 +416,24 @@ def studio_resume(run_id):
     th = threading.Thread(target=_studio_laeufer, args=(run_id,), daemon=True)
     STUDIO_THREADS[run_id] = th
     th.start()
+    return jsonify({"ok": True})
+
+
+@app.route("/api/studio/run/<run_id>", methods=["DELETE"])
+def studio_run_delete(run_id):
+    """Studio-Run loeschen (Ordner unter studio/runs). Laufende Runs: 409."""
+    if not re.fullmatch(r"[A-Za-z0-9_\-]+", run_id):
+        abort(400, "ungueltige Run-ID")
+    p = STUDIO_RUNS / run_id
+    # Wasserdichter Traversal-Schutz: aufgeloester Pfad MUSS direkt in STUDIO_RUNS liegen
+    if p.resolve().parent != STUDIO_RUNS.resolve() or p.resolve() == STUDIO_RUNS.resolve():
+        abort(400, "ungueltige Run-ID")
+    if not p.is_dir():
+        return jsonify({"error": "unbekannt"}), 404
+    if run_id in STUDIO_THREADS:
+        return jsonify({"error": "laeuft schon - erst abwarten"}), 409
+    import shutil
+    shutil.rmtree(p)
     return jsonify({"ok": True})
 
 

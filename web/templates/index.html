@@ -162,6 +162,30 @@ padding-top:18px;border-top:1px solid rgba(255,255,255,.05)}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 .slabel{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:#6ea89f;margin:14px 0 8px;font-weight:600}
 textarea#studioText{min-height:110px;width:100%;margin-top:10px}
+/* Studio-Runs: Karten statt Textbrei */
+.runcard{display:flex;align-items:center;gap:14px;margin-top:10px;padding:12px 16px;
+background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.09);
+border-radius:14px;flex-wrap:wrap}
+.runcard .rid{font-family:ui-monospace,monospace;font-size:.82rem;color:var(--fg);
+min-width:150px;max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.runcard .meta{flex:1;min-width:220px;display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.chip{display:inline-block;padding:2px 9px;border-radius:99px;font-size:.7rem;font-weight:600;
+letter-spacing:.03em;background:rgba(110,168,159,.14);color:#8fc7bd;border:1px solid rgba(110,168,159,.25)}
+.chip.ok{background:rgba(110,168,159,.2);color:#9fd6cb}
+.chip.err{background:rgba(227,164,166,.12);color:#e3a4a6;border-color:rgba(227,164,166,.3)}
+.chip.weg{background:transparent;color:var(--mut);border-color:rgba(255,255,255,.16)}
+.chip.score{background:rgba(255,255,255,.06);color:var(--mut);border-color:rgba(255,255,255,.1)}
+.runcard .dl{display:flex;gap:6px;align-items:center}
+.runcard a.dlink{font-size:.74rem;font-weight:600;padding:5px 12px;border-radius:9px;
+background:rgba(110,168,159,.12);color:#9fd6cb;text-decoration:none;border:1px solid rgba(110,168,159,.22)}
+.runcard a.dlink:hover{background:rgba(110,168,159,.25)}
+button.trash{background:rgba(227,164,166,.08);border:1px solid rgba(227,164,166,.4);color:#f0b9bb;border-radius:10px;
+padding:7px 12px;cursor:pointer;font-size:1.05rem;line-height:1}
+button.trash:hover{background:rgba(227,164,166,.22)}
+.runcard .status-lauf{font-size:.72rem;color:#8fc7bd;letter-spacing:.05em;
+animation:lauf 1.2s ease-in-out infinite}
+@keyframes lauf{50%{opacity:.45}}
+@media(prefers-reduced-motion:reduce){.runcard .status-lauf{animation:none}}
 </style>
 </head>
 <body>
@@ -323,13 +347,24 @@ wire('dropStudioFile','studioFile','studioFileName',f=>{studioFile=f;
 $('studioFileName').textContent=f?f.name:'Fakten-Datei ziehen / klicken';
 $('dropStudioFile').classList.toggle('ok',!!f)});
 function studioRuns(){fetch('/api/studio/runs').then(r=>r.json()).then(l=>{
+if(!l.length){$('studioRuns').innerHTML='<p class="mut" style="margin-top:10px">Noch keine Runs.</p>';return}
 $('studioRuns').innerHTML=l.map(x=>{
 const ch=x.schritte||{};
-const forts=['director','story','art','hybrid','html','build','render','critic','report'].filter(k=>ch[k]).map(k=>k+':'+(ch[k]=='ok'?'✓':ch[k])).join(' · ');
-const sc=(x.scores||[]).map(s=>s.nr+':'+s.score).join(', ');
-const dl=(x.pptx?'<a href="/api/studio/file/'+x.id+'/deck.pptx">pptx</a> ':'')+(x.deck_html?'<a href="/api/studio/file/'+x.id+'/deck.html">html</a> ':'')+(x.report?'<a href="/api/studio/file/'+x.id+'/report.md">report</a>':'');
-const res=(!x.laeuft&&ch.report!=='ok')?'<button class="mini" onclick="studioResume(\''+x.id+'\')">Resume</button>':'';
-return '<div class="trow" style="margin-top:6px"><span style="min-width:210px"><b>'+x.id+'</b> · Weg '+x.weg+'</span><span class="mut" style="flex:1">'+forts+(sc?' · Scores '+sc:'')+'</span>'+(x.laeuft?'<span class="mut">läuft ...</span>':res)+dl+'</div>'}).join('')}).catch(()=>{})}
+const chips=['director','story','art','hybrid','html','build','render','critic','report']
+.filter(k=>ch[k]).map(k=>'<span class="chip '+(ch[k]=='ok'?'ok':(String(ch[k]).startsWith('err')?'err':''))+'">'+k+':'+(ch[k]=='ok'?'✓':ch[k])+'</span>').join('');
+const sc=(x.scores||[]).map(s=>'<span class="chip score">F'+s.nr+': '+s.score+'</span>').join('');
+const dl=(x.pptx?'<a class="dlink" href="/api/studio/file/'+x.id+'/deck.pptx">pptx</a> ':'')+(x.deck_html?'<a class="dlink" href="/api/studio/file/'+x.id+'/deck.html">html</a> ':'')+(x.report?'<a class="dlink" href="/api/studio/file/'+x.id+'/report.md">report</a>':'');
+const res=(!x.laeuft&&ch.report!=='ok')?'<button class="mini grey" style="padding:5px 12px;font-size:.74rem" onclick="studioResume(\''+x.id+'\')">Resume</button>':'';
+const trash=x.laeuft?'':'<button class="trash" title="Run loeschen" onclick="studioDelete(\''+x.id+'\')">🗑</button>';
+return '<div class="runcard"><span class="rid" title="'+x.id+'">'+x.id+'</span>'+
+'<span class="chip weg">Weg '+x.weg+'</span>'+
+'<span class="meta">'+chips+sc+'</span>'+
+(x.laeuft?'<span class="status-lauf">läuft ...</span>':res)+
+'<span class="dl">'+dl+trash+'</span></div>'}).join('')}).catch(()=>{})}
+function studioDelete(id){if(!confirm('Run '+id+' wirklich loeschen? Deck und Bericht gehen verloren.'))return;
+fetch('/api/studio/run/'+encodeURIComponent(id),{method:'DELETE'})
+.then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);setTimeout(studioRuns,300)})
+.catch(e=>alert('Loeschen fehlgeschlagen: '+e.message))}
 function studioResume(id){fetch('/api/studio/resume/'+id,{method:'POST'}).then(()=>setTimeout(studioRuns,1500)).catch(()=>{})}
 $('studioGo').onclick=()=>{const st=$('studioStatus');const text=$('studioText').value.trim();
 if(!studioFile&&!text){st.textContent='Bitte Fakten geben: Datei reinziehen oder Transkript eintippen.';st.className='status err';return}
