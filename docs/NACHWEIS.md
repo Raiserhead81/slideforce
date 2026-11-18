@@ -620,3 +620,16 @@ Run 20261118-203927 (Resume nach 429-Pause, Weg B Visual HTML):
   x-deck-folien: 7. Screenshots /tmp/hb/folie-1..7.png, Score 8/10 (glm-sicht).
 - Retry-Logik von glm-5.3-prime gebaut (glm-bau), Einsatz verifiziert via
   python-replace + Import-Check + 5 passed Tests + Deploy (systemctl active).
+
+## 2026-11-18 HTML-Folienteilung neu gebaut (glm-5.3-prime via glm-bau ZIEL-Modus)
+- _verteile_folien komplett neu: jede section = eigene Folie + bullets der
+  folgenden title-losen content-Folien; leere Sections bleiben erhalten;
+  Kompression + Splitting wie gehabt. Aufruf jetzt auch bei len < maxfolien
+  (vorher nur bei Ueberschreiten -> Quetschung blieb).
+- Beweis Live (handbuch_text, max 5): x-deck-folien: 5, Folien
+  206/335/278/195/140 Zeichen (vorher 3 Folien, eine mit 1496).
+  Unit-Test mit echten Reader-Daten: 5 passed + Folien alle < 350 Zeichen.
+- Bekannter Feinschliff: verschmolzene Folientitel tragen nur den letzten
+  Kapitelnamen ("Kapitel 2"-Inhalt liegt auf der Kapitel-3-Folie).
+- Neue Referenz-Skills installiert: pzh-image-to-editable-ppt-cross,
+  ai-presentation-builder, editable-leadership-pptx (~/.claude/skills).

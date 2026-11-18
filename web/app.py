@@ -160,61 +160,128 @@ def _int_grenze(name):
 
 
 def _verteile_folien(slides, maxfolien):
-    """Statische Min/Max-Kompression: Content-Bullets poolen + neu verteilen.
+    """Segmentbasierte Verteilung: jede section wird zu einer Folie und zieht
+    die bullets der direkt folgenden titellosen content-Folien. Leere sections
+    bleiben erhalten (bei Platznot benachbarte leere sections auf einer Folie,
+    Titel 'A & B'). Danach ggf. komprimieren bzw. ueberladene Folien splitten.
+    Nicht unterbringbare Inhalte werden nie still verworfen, sondern geloggt."""
+    _STD = {"layout", "title", "bullets", "subtitle", "kind", "table", "image", "notes"}
 
-    bullets_pro_folie = ceil(gesamt_bullets / platz), clamp 2..10. Sections
-    geben die neuen Folientitel, Tabellen-/Bildfolien bleiben unangetastet.
-    Bullets, die nicht mehr passen, fallen weg (Log) - zusammenfassen statt
-    splitten, damit die Folienzahl sinkt.
-    """
+    def _inhalt(s):
+        """bullets + bisher ignorierte textuelle Zusatzfelder (z.B. passwort-richtlinie)."""
+        bl = [[int(l), str(t)] for l, t in (s.get("bullets") or []) if str(t).strip()]
+        for k, v in s.items():
+            if k not in _STD and isinstance(v, str) and v.strip():
+                bl.append([1, v.strip()])
+        return bl
+
     rest = list(slides)
     titel = None
     if rest and rest[0].get("kind") == "title":
         titel, rest = rest[0], rest[1:]
-    fest, segs, cur_t, cur_b = [], [], "", []
+
+    fest = [s for s in rest if s.get("table") or s.get("image")]
+    rest = [s for s in rest if not (s.get("table") or s.get("image"))]
+
+    # --- Segmente: section + direkt folgende titellose content-Folien ---
+    segs = []          # [titel, bullets]
+    offen_t, offen_b = "", []
     for s in rest:
-        if s.get("table") or s.get("image"):
-            fest.append(s)
-            continue
         if s.get("kind") == "section":
-            if cur_b:
-                segs.append((cur_t, cur_b))
-                cur_b = []
-            cur_t = (s.get("title") or "").strip() or cur_t
-            cur_b.extend((lvl, txt) for lvl, txt in (s.get("bullets") or []))
-            continue
-        if not cur_t:
-            cur_t = (s.get("title") or "").strip()
-        cur_b.extend((lvl, txt) for lvl, txt in (s.get("bullets") or []))
-    if cur_b:
-        segs.append((cur_t, cur_b))
-    flat = []                                    # (segment_titel, level, text)
-    for t, bl in segs:
-        for i, (lvl, txt) in enumerate(bl):
-            flat.append((t if i == 0 else None, lvl, txt))
+            if offen_b or offen_t:
+                segs.append([offen_t, offen_b])
+            offen_t = (s.get("title") or "").strip() or offen_t
+            offen_b = _inhalt(s)
+        else:
+            t_neu = (s.get("title") or "").strip()
+            if offen_t and t_neu and t_neu != offen_t:
+                # titeltragende content-Folie oeffnet eigenes Segment
+                if offen_b or offen_t:
+                    segs.append([offen_t, offen_b])
+                offen_t, offen_b = t_neu, _inhalt(s)
+            else:
+                if not offen_t:
+                    offen_t = t_neu
+                offen_b.extend(_inhalt(s))
+    if offen_b or offen_t:
+        segs.append([offen_t, offen_b])
+
+    # --- Leere Nachbar-Sections bei Platznot zusammenlegen ('A & B') ---
     platz = maxfolien - (1 if titel else 0) - len(fest)
-    out = ([titel] if titel else []) + fest
-    if platz <= 0:                               # nur Titelfolie + fest-Platz
-        limit = maxfolien - (1 if titel else 0)
-        weg = len(flat) + max(0, len(fest) - max(0, limit))
+    if platz <= 0:
+        weg = sum(len(b) for _, b in segs)
+        out = ([titel] if titel else []) + fest
         out = out[:maxfolien]
-        print(f"[statik] Folien hart gekappt auf {len(out)} (max {maxfolien}), {weg} Bullets weg",
-              flush=True)
+        print(f"[statik] Folien hart gekappt auf {len(out)} (max {maxfolien}), "
+              f"{weg} Bullets weg", flush=True)
         return out
-    pro = min(10, max(2, math.ceil(len(flat) / platz)))
-    cur = None
-    for idx, (marker, lvl, txt) in enumerate(flat):
-        if cur is None or len(cur["bullets"]) >= pro:
-            if len(out) >= maxfolien:
-                print(f"[statik] {len(flat) - idx} Bullets ueber maxfolien-Grenze verworfen",
-                      flush=True)
-                break
-            cur = {"kind": "content", "layout": "content",
-                   "title": (marker or "").strip()[:100] or "Inhalt", "bullets": []}
-            out.append(cur)
-        cur["bullets"].append([int(lvl), str(txt)])
-    print(f"[statik] Folien verteilt: {len(slides)} -> {len(out)} "
-          f"(max {maxfolien}, {pro} Bullets/Folie)", flush=True)
+
+    while len(segs) > platz:
+        leer = [i for i, (t, b) in enumerate(segs) if not b]
+        if leer:
+            i = leer[-1]
+            # mit einem leeren Nachbar (bevorzugt vorheriger) mergen
+            if i > 0:
+                segs[i - 1][0] = (segs[i - 1][0] + " & " + segs[i][0])[:100].strip(" &")
+            elif i < len(segs) - 1:
+                segs[i + 1][0] = (segs[i][0] + " & " + segs[i + 1][0])[:100].strip(" &")
+                segs[i + 1][1] = segs[i][1] + segs[i + 1][1]
+            del segs[i]
+            continue
+        # keine leeren sections mehr: Bullets des kleinsten Segments in den Nachbarn
+        if len(segs) < 2:
+            break
+        klein = min(range(len(segs)), key=lambda j: len(segs[j][1]))
+        ziel = klein - 1 if klein > 0 else klein + 1
+        segs[ziel][1].extend(segs[klein][1])
+        del segs[klein]
+
+    out = ([titel] if titel else []) + fest
+    for t, bl in segs:
+        out.append({"kind": "content", "layout": "content",
+                    "title": (t or "").strip()[:100] or "Inhalt",
+                    "bullets": [[int(l), str(x)] for l, x in bl]})
+
+    # --- Splitting: unterdeckte Praesentation, ueberladene Folien splitten ---
+    def _ueberladen(s):
+        if s.get("kind") != "content" or s.get("table") or s.get("image"):
+            return False
+        bl = s.get("bullets") or []
+        return len(bl) > 6 or sum(len(str(b[1])) for b in bl) > 350
+
+    def _marker(b):
+        txt = str(b[1]).strip()
+        return bool(txt) and txt.isupper() and len(txt) < 60
+
+    gesplittet = 0
+    while len(out) < maxfolien:
+        kandidaten = [s for s in out if _ueberladen(s)]
+        if not kandidaten:
+            break
+        folie = max(kandidaten,
+                    key=lambda s: (len(s.get("bullets") or []),
+                                   sum(len(str(b[1])) for b in s.get("bullets") or [])))
+        bl = folie["bullets"]
+        titel_ = (folie.get("title") or "").strip()
+        half = max(1, len(bl) // 2)
+        marker_idx = next((i for i in range(half, len(bl)) if _marker(bl[i])), None)
+        if marker_idx is not None:
+            split_idx = marker_idx
+            neuer_titel = str(bl[marker_idx][1]).strip()[:100]
+        else:
+            split_idx = half
+            neuer_titel = (titel_[:100] or "Inhalt") + " (Fortsetzung)"
+        neue = {"kind": "content", "layout": "content",
+                "title": neuer_titel, "bullets": bl[split_idx:]}
+        folie["bullets"] = bl[:split_idx]
+        out.insert(out.index(folie) + 1, neue)
+        gesplittet += 1
+    if gesplittet:
+        print(f"[statik] Folien aufgeteilt: {gesplittet} ueberladene Folie(n) gesplittet "
+              f"(max {maxfolien})", flush=True)
+
+    print(f"[statik] Folien verteilt: {len(slides)} -> {len(out)} (max {maxfolien})",
+          flush=True)
     return out
 
 
@@ -262,7 +329,7 @@ def build_deck():
         n_final = len(slides)
         uid = uuid.uuid4().hex[:10]
         if fmt == "html":
-            if maxfolien and len(slides) > maxfolien:
+            if maxfolien:
                 slides = _verteile_folien(slides, maxfolien)
                 n_final = len(slides)
             out = OUT / f"deck-{uid}.html"
@@ -270,7 +337,7 @@ def build_deck():
         else:
             out = OUT / f"deck-{uid}.pptx"
             if fmt in ("b28pptx", "vorpptx"):
-                if maxfolien and len(slides) > maxfolien:
+                if maxfolien:
                     slides = _verteile_folien(slides, maxfolien)
                     n_final = len(slides)
                 if minfolien and len(slides) < minfolien:
