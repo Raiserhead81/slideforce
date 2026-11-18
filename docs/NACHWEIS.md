@@ -411,3 +411,28 @@ Datum: 18.11.2026 (spaet) · Stand: E2E gruen, Tests 12 passed
 ## NACHTRAG Gate-Frage
 uuid + Path sind bereits in web/app.py importiert (Kopf: import uuid,
 from pathlib import Path - Zeile 4 und 7). Kein neuer Import noetig.
+
+---
+
+# NACHWEIS 8: Deploy Etappe 2 auf gemivo + app.run()-Blocker-Fix
+
+## app.run()-Blocker (wichtige Lektion!)
+- web/app.py: app.run() stand in Zeile 298 (if __name__ == "__main__"),
+  der neue Studio-Routen-Block wurde DAHINTER angehaengt.
+  Als __main__ (systemd) blockiert app.run() VOR der Registrierung ->
+  /api/studio/* gab Flask-404, obwohl import app (Testclient) alle Routen
+  zeigte. Symptom: Routen in Datei + md5-gleich, live trotzdem 404.
+- FIX: Studio-Block vor den __main__-Block verschoben. Danach live 200.
+
+## Chromium fuer Weg B auf gemivo
+- Pfad-Struktur anders als auf dem Mini: chrome-headless-shell-linux64/
+  chrome-headless-shell (nicht chrome-linux/). _chrome_bin() deckt jetzt
+  Mac- UND Linux-Pfade ab (glob-basiert).
+- Beweis: html_screenshot auf gemivo erzeugt /tmp/t.png (echter Chromium-Shot)
+
+## Deploy-Beweise (alles live auf slideforce.gemivo.de)
+- rsync code (studio/, web/, slideforce/profiles.py) -> systemctl restart -> active
+- https://slideforce.gemivo.de/api/studio/runs?token=... -> HTTP 200 (echte Liste)
+- UI-Screenshot /tmp/sf-ui.png (327KB) erstellt; Vision-Check durch
+  429-Rate-Limit des Pruef-Modells offen (Retry folgt)
+- studio/runs auf Server LEER (bewusst: lokale Test-Runs nicht deployed)

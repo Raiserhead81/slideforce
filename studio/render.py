@@ -82,10 +82,19 @@ _CHROME_KANDIDATEN = [
 def _chrome_bin():
     import glob
     from pathlib import Path as _P
-    for k in _CHROME_KANDIDATEN:
-        p = _P(k).expanduser()
-        if p.is_file():
-            return str(p)
+    kandidaten = list(_CHROME_KANDIDATEN) + [
+        "~/.cache/ms-playwright/chromium_headless_shell-*/"
+        "chrome-headless-shell-linux64/chrome-headless-shell",
+        "~/.cache/ms-playwright/chromium-*/chrome-linux*/chrome"]
+    for k in kandidaten:
+        if "*" in k:
+            hits = sorted(glob.glob(str(_P(k).expanduser())))
+            if hits:
+                return hits[-1]
+        else:
+            p = _P(k).expanduser()
+            if p.is_file():
+                return str(p)
     hits = sorted(glob.glob(str(_P("~/Library/Caches/ms-playwright/"
                                   "chromium-*/chrome-mac*/*/MacOS/*"))))
     return hits[-1] if hits else None

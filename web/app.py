@@ -295,10 +295,6 @@ def build_deck():
             p.unlink(missing_ok=True)
 
 
-if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=8821, debug=False)
-
-
 # ---------------------------------------------------------------- Studio (Etappe 2)
 import json as _json  # noqa: E402
 import threading  # noqa: E402
@@ -411,3 +407,6 @@ def studio_file(run_id, name):
     if not p.is_file():
         abort(404)
     return send_file(str(p), as_attachment=(name != "deck.html"))
+
+if __name__ == "__main__":
+    app.run(host="127.0.0.1", port=8821, debug=False)
