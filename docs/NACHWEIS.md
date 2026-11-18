@@ -178,3 +178,12 @@ web/app.py Import OK
 Render: rsync -> gemivo, soffice --headless --convert-to pdf, pdftoppm -r 70
 -> output/render/b28f-1..7.png (glm-sicht-Scores siehe Tabelle Runde 4)
 ```
+
+## Gate-Fix: ?token= gilt jetzt fuer alle Pfade (18.11.)
+
+Vorher: token nur bei "/" -> /files-Links mit Token lieferten 401 (Beweis-Wache-Fail).
+Jetzt: token-Query setzt Session auf JEDEM Pfad, Dateien werden direkt ausgeliefert.
+gemma-proof-Ausgaben (echter Live-Check):
+BEWEIS OK: 200 https://slideforce.gemivo.de/files/premium-demo.pdf?token=...
+BEWEIS OK: 200 https://slideforce.gemivo.de/files/premium-demo.pptx?token=...
+Ohne Token: 401 (Schutz aktiv).

@@ -56,9 +56,11 @@ def token_gate():
     if request.path == "/robots.txt":
         return app.response_class(
             "User-agent: *\nDisallow: /\n", mimetype="text/plain")
-    if request.args.get("token") == TOKEN and request.path in ("/", "/login"):
+    if request.args.get("token") == TOKEN:
         session["ok"] = True
-        return redirect("/", code=302)
+        if request.path == "/":
+            return redirect("/", code=302)
+        return None  # Datei-/API-Links mit ?token= direkt ausliefern
     if not session.get("ok"):
         return Response(LOGIN_HTML, status=401, mimetype="text/html",
                         headers={"X-Robots-Tag": "noindex, nofollow"})
