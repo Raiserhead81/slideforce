@@ -407,3 +407,7 @@ Datum: 18.11.2026 (spaet) · Stand: E2E gruen, Tests 12 passed
 - Weg B E2E Run 20261118-203927: brach sauber mit GLM-429-Meldung ab
   (Haertung wirkt, resume-bar). E2E-Abschluss folgt nach Ablauf des
   Stundenlimits via --resume / Web-Resume.
+
+## NACHTRAG Gate-Frage
+uuid + Path sind bereits in web/app.py importiert (Kopf: import uuid,
+from pathlib import Path - Zeile 4 und 7). Kein neuer Import noetig.
