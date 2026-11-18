@@ -467,3 +467,17 @@ from pathlib import Path - Zeile 4 und 7). Kein neuer Import noetig.
   md5 app.py lokal==server (eda9adb4...), service active, live 302-Gate ok
 - rsync --relative-Fehlschuss korrigiert (web/web verschoben nach
   _web-falsch-kopie-18nov-2026, nicht geloescht)
+
+---
+
+# NACHWEIS 10: Weg B E2E ABGENOMMEN - alle 3 Wege bewiesen
+
+Run 20261118-203927 (Resume nach 429-Pause, Weg B Visual HTML):
+- 11 Folien als komplette HTML-Seiten von GLM designt, 11 Chromium-PNGs
+- 4 Critic-Runden mit echten html-repair-Reparaturen (Folie 2 in Runden 2-4)
+- FINAL: 10/11 Folien >= 8/10 (Folie 2: 6, Rest-Schwaeche im report.md)
+- deck.html (iframe-Folienstapel, Pfeiltasten-Navigation) erzeugt
+- glm-sicht Folie 1: "Klare Hierarchie ... konsequente Verwendung der
+  Brandfarben (Petrol/Rot/Weiss)" - Rest: Kleinigkeiten (Icon-Konsistenz)
+- Status: WEG A + B + C ALLE E2E-BEWIESEN. Projekt rund (Rest: Loesch-Erlaubnis
+  _web-falsch-kopie, optional Icon-Konsistenz-Feinschliff)
