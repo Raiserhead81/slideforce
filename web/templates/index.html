@@ -198,7 +198,7 @@ fetch('/api/build',{method:'POST',body:fd}).then(r=>{
 if(!r.ok)return r.text().then(t=>{throw new Error(r.status+': '+t)});
 const folien=r.headers.get('X-Deck-Folien')||'?';
 return r.blob().then(b=>{const u=URL.createObjectURL(b);const a=document.createElement('a');
-a.href=u;a.download='slideforce-deck.'+fmt;a.click();setTimeout(()=>URL.revokeObjectURL(u),4000);
+a.href=u;a.download='slideforce-deck.'+(fmt=='html'?'html':'pptx');a.click();setTimeout(()=>URL.revokeObjectURL(u),4000);
 st.textContent='Fertig: '+folien+' Folien als '+fmt.toUpperCase()+'.';st.className='status ok'})})
 .catch(e=>{st.textContent='Fehler: '+e.message;st.className='status err'})
 .finally(()=>{$('go').disabled=false})};

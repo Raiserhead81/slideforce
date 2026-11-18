@@ -76,3 +76,11 @@ Neues fmt: b28pptx (dritte Export-Karte in der UI).
 Ursache: manuelle XML-Attrs (spc via _rPr.set, marL via pPr.set, _pPr-Truth-Test).
 stark entfernt alle 3 Low-Level-Zugriffe -> reine python-pptx-API.
 Beweise: Build ohne FutureWarning, unzip -t OK, reopen 8 Folien, smoke gruen.
+
+## Download-Endungs-Fix (18.11.)
+
+Bug: a.download='slideforce-deck.'+fmt -> bei fmt=b28pptx hiess die Datei *.b28pptx,
+PowerPoint oeffnet unbekannte Endung nicht (Kays Meldung: "datei die keiner oeffnen kann").
+Fix: a.download='slideforce-deck.'+(fmt=='html'?'html':'pptx')
+Beweis: grep im Deploy bestätigt neue Zeile, UI live HTTP 200, /files/b28demo.pptx liefert
+korrekte .pptx-Endung (unzip -t "No errors detected", siehe oben).
