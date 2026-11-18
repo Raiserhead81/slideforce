@@ -528,3 +528,14 @@ Run 20261118-203927 (Resume nach 429-Pause, Weg B Visual HTML):
 - nginx/Flask erlauben ohnehin 64MB; UI-Hinweise aktualisiert
 - Beweis: 191.999-Zeichen-Quelle ungekuerzt; 100.000-Zeichen-Text live via
   /api/build -> HTTP 200, Deck gebaut, unzip OK
+
+## NACHTRAG: Kays XLSX-Run analysiert - 3 Fixes
+- Briefing-Ableitung: Office-Dateien (docx/xlsx) -> DATEINAME statt ZIP-Binaer
+  ("PK\x03..."-Muell-Briefing behoben); Binär-Erkennung (Steuerzeichen) generell
+- Verschlechterungs-ROLLBACK in fix_runden: Reparatur schlechter als vorher ->
+  alte Version + alter Score automatisch zurueck (Kay-Lektion: Folie 4 fiel
+  6->4 durch eine Reparatur - jetzt unmoeglich)
+- Premium-Prompt: HARTE LAYOUT-REGELN (max 8 Elemente, Canvas-Grenzen
+  x+w<=12.78/y+h<=7.1, Ueberlappung verboten, max 550 Woerter)
+- Kays Folie 4 live repariert: Score 4 -> 8 (bewiesen, Deck+State aktualisiert,
+  Rollback-Schutz haette bei Verschlechterung gegriffen)

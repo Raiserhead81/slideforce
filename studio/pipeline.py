@@ -219,11 +219,17 @@ def critic_runde(state, log, runde):
 
 
 def _repair_folien(state, log, schwach):
-    """Art-Repairs parallel je schwacher Folie; design+slides aktualisieren."""
+    """Art-Repairs parallel je schwacher Folie; design+slides aktualisieren.
+    Gibt (geaendert, alt_slides, alt_folien) fuer den Verschlechterungs-Rollback
+    zurueck: eine Reparatur, die die Folie schlechter macht, wird verworfen."""
     design = state.schritt("art").get("design") or {}
     slides = list(state.schritt("build").get("slides") or [])
     folien = list(design.get("folien") or [])
     nr_liste = [s["nr"] for s in schwach]
+    alt_slides = {s["nr"]: slides[s["nr"] - 1] for s in schwach
+                  if s["nr"] - 1 < len(slides)}
+    alt_folien = {s["nr"]: folien[s["nr"] - 1] for s in schwach
+                  if s["nr"] - 1 < len(folien)}
 
     def rep(nr):
         idx = nr - 1
@@ -255,7 +261,7 @@ def _repair_folien(state, log, schwach):
         state.data.setdefault("schritte", {}).setdefault(
             "build", {})["slides"] = slides
         state.save()
-    return geaendert
+    return geaendert, alt_slides, alt_folien
 
 
 def fix_runden(state, log):
@@ -276,7 +282,7 @@ def fix_runden(state, log):
         runde += 1
         _log(log, f"[fix] Runde {runde}: repariere Folien "
                   f"{[s['nr'] for s in schwach]}")
-        geaendert = _repair_folien(state, log, schwach)
+        geaendert, alt_slides, alt_folien = _repair_folien(state, log, schwach)
         if not geaendert:
             _log(log, "[fix] keine Reparatur moeglich - Abbruch der Runden")
             return
@@ -309,6 +315,44 @@ def fix_runden(state, log):
         kritik = state.schritt("critic")
         runden = list(kritik.get("runden") or [])
         runden.append({"runde": runde, "scores": merged})
+        # Verschlechterungs-Rollback: Reparatur schlechter als vorher -> zurueck
+        rollback = []
+        design_rb = state.schritt("art").get("design") or {}
+        folien_rb = list(design_rb.get("folien") or [])
+        slides_rb = list(state.schritt("build").get("slides") or [])
+        for nr in geaendert:
+            alt_s = alt.get(nr) or {}
+            neu_s = next((m for m in merged if m["nr"] == nr), {})
+            if (alt_s.get("score") or 0) > (neu_s.get("score") or 0) and nr in alt_slides:
+                idx = nr - 1
+                if idx < len(slides_rb):
+                    slides_rb[idx] = alt_slides[nr]
+                if idx < len(folien_rb) and nr in alt_folien:
+                    folien_rb[idx] = alt_folien[nr]
+                for m in merged:
+                    if m["nr"] == nr:
+                        m.update({"score": alt_s["score"],
+                                  "schwaechen": alt_s.get("schwaechen") or [],
+                                  "fix": "ROLLBACK: Reparatur verschlechterte die Folie - alte Version wiederhergestellt"})
+                rollback.append(nr)
+        if rollback:
+            _log(log, f"[fix] ROLLBACK Folien {rollback}: Reparatur war schlechter - "
+                      f"alte Version zurueck (Scores bleiben)")
+            design_rb["folien"] = folien_rb
+            art_rb = state.schritt("art")
+            state.set_schritt("art", "ok", {"design": design_rb,
+                                            "hybrid_svgs": art_rb.get("hybrid_svgs")})
+            state.data.setdefault("schritte", {}).setdefault(
+                "build", {})["slides"] = slides_rb
+            state.save()
+            pptx = state.artefakt("deck.pptx")
+            OP.build_pptx(slides_rb, pptx)
+            pdf, pngs = render.render_folien(pptx, state.dir / "render")
+            state.set_schritt("build", "ok", {"pptx": str(pptx),
+                                              "folien": len(slides_rb),
+                                              "warnungen": state.schritt("build").get("warnungen") or [],
+                                              "slides": slides_rb})
+            state.set_schritt("render", "ok", {"pdf": pdf, "pngs": pngs})
         state.set_schritt("critic", "ok", {"runden": runden})
         scores = merged
         _log(log, "[critic] " + ", ".join(f"{s['nr']}:{s['score']}" for s in scores))

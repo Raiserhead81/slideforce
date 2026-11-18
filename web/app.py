@@ -341,16 +341,20 @@ def _studio_status(run_id):
 
 def _briefing_aus_quelle(p):
     """Briefing-Default wenn leer: erste aussagekraeftige Zeile (max 80),
-    sonst Dateiname."""
+    sonst Dateiname. Office-Dateien (docx/xlsx = ZIP-Binaer): IMMER Dateiname."""
+    p = Path(p)
+    if p.suffix.lower() in (".docx", ".xlsx", ".xlsm", ".pptx"):
+        return (p.stem.replace("_", " ")[:80] or "Studio Run").strip()
     try:
-        for zeile in Path(p).read_text(encoding="utf-8",
-                                       errors="replace").splitlines()[:20]:
+        for zeile in p.read_text(encoding="utf-8",
+                                 errors="replace").splitlines()[:20]:
             zeile = zeile.lstrip("# -* ").strip()
-            if len(zeile) >= 8:
+            if len(zeile) >= 8 and not any(
+                    ord(c) < 9 or ord(c) == 127 for c in zeile[:40]):
                 return zeile[:80]
     except Exception:
         pass
-    return (Path(p).stem.replace("_", " ")[:80] or "Studio Run").strip()
+    return (p.stem.replace("_", " ")[:80] or "Studio Run").strip()
 
 
 @app.route("/api/studio/start", methods=["POST"])

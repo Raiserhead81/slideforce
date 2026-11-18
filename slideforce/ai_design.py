@@ -83,6 +83,7 @@ DESIGN-SYSTEM (DATAPORT Vorstandsvorlage, hell):
 - Farben (nutze GENAU diese Namen): PETROL #39756F (dominant, Header, Zahlen, Titel) · ROT #9E292B (nur Spaetzen-Akzent) · DUNKEL #39424A (Ueberschriften) · GRAU #54616E · GRAU2 #8A93A3 (Sekundaertext) · LINE #D8DEE2 (Border) · HELL #F4F5F6 (Kartenflaeche) · TINT1 #F8E8E8 · TINT2 #FBF0DC · WEISS · SCHW #1A222B (Fliesstext). KEIN Navy, KEIN Gold.
 - Typo (Arial): Kicker 10-11pt PETROL bold UPPERCASE (gross geschrieben!) · Folien-Abschnittstitel 15-18pt DUNKEL bold · Fliesstext 11-13pt SCHW · Labels UPPERCASE 10.5pt GRAU bold · Zahlen dominant gross (PETROL) · Kontext 9.5-10pt GRAU2. Fett im Text mit **so** markieren.
 - Stil: helle Karten (HELL) mit feiner LINE-Border und PETROL-Marker links; KPI-Kacheln mit PETROL-Balken oben; ROT nur fuer einen einzelnen Spaetzenakzent; ruhig, viel Weissraum, vorstandstauglich.
+- HARTE LAYOUT-REGELN (Verstoss = abgelehnt): maximal 8 Elemente je Folie · jedes Element muss voll im Canvas liegen: x>=0.55, x+w<=12.78, y>=0.55, y+h<=7.1 · zwei Elemente duerfen sich NIEMALS ueberlappen (pruefe x/y-Rechtecke!) · Gesamttext je Folie max 550 Woerter · folienrand: nichts innerhalb 0.3 inch vom Rand.
 
 STRENGES JSON-BAU-VOKABULAR - nur diese Primitive ("typ"-Feld), Koordinaten in inch:
 - {"typ":"band","x":..,"y":..,"w":..,"h":..,"farbe":"NAVY"}                        Vollflaechiges Rechteck
