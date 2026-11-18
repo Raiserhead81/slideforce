@@ -517,6 +517,19 @@ def schritt_html(state, log):
                                       "folien": len(folien), "warnungen": [],
                                       "slides": folien, "weg_b": True})
     state.set_schritt("render", "ok", {"pdf": None, "pngs": [p for p in pngs if p]})
+    # PPTX-Variante: Folien-PNGs als Vollbild-Folien (exakte Optik, oeffnet ueberall)
+    from pptx import Presentation as _Prs
+    from pptx.util import Inches as _In
+    prs = _Prs()
+    prs.slide_width = _In(13.333)
+    prs.slide_height = _In(7.5)
+    blank = prs.slide_layouts[6]
+    for png in [p for p in pngs if p]:
+        slp = prs.slides.add_slide(blank)
+        slp.shapes.add_picture(png, 0, 0, width=_In(13.333), height=_In(7.5))
+    pptx_out = st.artefakt("deck.pptx")
+    prs.save(str(pptx_out))
+    _log(log, f"[html] PPTX-Variante: {pptx_out.name} ({len(pngs)} Folien)")
     _log(log, f"[html] ok: {len(folien)} Folien -> deck.html")
 
 

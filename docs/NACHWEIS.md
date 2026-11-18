@@ -562,3 +562,10 @@ Run 20261118-203927 (Resume nach 429-Pause, Weg B Visual HTML):
   alle Schritte ok, deck.html), 6 PNGs gerendert + auf Kays Desktop gelegt;
   glm-sicht Folie 1: "GEIL: Sehr klares und praegnantes Messaging" - kein
   Doppel-Logo mehr
+
+## NACHTRAG: Weg B endet mit deck.pptx (Kays Anforderung)
+- pipeline.schritt_html: nach den Folien-PNGs wird automatisch ein deck.pptx
+  gebaut (Folien-PNGs als Vollbild-Folien 16:9, python-pptx, saubere API)
+- Kays Rolloutplan-Run 20261118-211918: deck.pptx (6 Folien, 406 KB) live,
+  Download /api/studio/file/<id>/deck.pptx -> HTTP 200, UI-Status pptx: true
+- KPI-Template-Kompakt-Fix (Zahl 76px, bottom-220px-Begrenzung gegen Abschnitt)

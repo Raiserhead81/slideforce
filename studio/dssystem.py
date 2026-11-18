@@ -116,15 +116,15 @@ def f_kpi(sl, nr, gesamt):
     cards = ""
     for i, f in enumerate(felder):
         ic = ICONS[icons[i % len(icons)]]
-        cards += f"""<div class="karte" style="flex:1;display:flex;flex-direction:column">
-<div style="display:flex;align-items:center;gap:18px;margin-bottom:26px">
-<div class="icon">{ic}</div><div class="kicker" style="margin:0">{_s(f['label'], 34)}</div></div>
-<div class="zahl" style="font-size:96px">{_s(f['zahl'], 8)}</div>
-<div class="sub" style="margin-top:16px;font-size:20px">{f['erklaerung']}</div></div>"""
-    body = f"""<div style="position:absolute;left:90px;top:80px;right:300px">
+        cards += f"""<div class="karte" style="flex:1;display:flex;flex-direction:column;overflow:hidden">
+<div style="display:flex;align-items:center;gap:18px;margin-bottom:20px">
+<div class="icon">{ic}</div><div class="kicker" style="margin:0">{_s(f['label'], 30)}</div></div>
+<div class="zahl" style="font-size:76px">{_s(f['zahl'], 8)}</div>
+<div class="sub" style="margin-top:14px;font-size:19px">{f['erklaerung']}</div></div>"""
+    body = f"""<div style="position:absolute;left:90px;top:110px;right:320px">
 <div class="kicker">{_s(sl.get('kicker'), 40)}</div>
 <div class="h2">{_s(sl.get('title'), 110)}</div></div>
-<div style="position:absolute;left:90px;right:90px;top:300px;display:flex;gap:28px;align-items:stretch">{cards}</div>"""
+<div style="position:absolute;left:90px;right:90px;top:300px;bottom:110px;display:flex;gap:28px;align-items:stretch">{cards}</div>"""
     return seite(body, nr, gesamt)
 
 
