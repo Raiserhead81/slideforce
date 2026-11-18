@@ -262,6 +262,9 @@ def build_deck():
         n_final = len(slides)
         uid = uuid.uuid4().hex[:10]
         if fmt == "html":
+            if maxfolien and len(slides) > maxfolien:
+                slides = _verteile_folien(slides, maxfolien)
+                n_final = len(slides)
             out = OUT / f"deck-{uid}.html"
             build_html(slides, slides[0].get("title", "Deck"), out, mp)
         else:

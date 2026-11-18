@@ -238,6 +238,40 @@ def master_farben(master_path):
             "font": (fonts.get("major") or "Arial")}
 
 
+def master_zonen(master_path):
+    """Plausible Content-Zone (inch) aus dem Master-Content-Layout.
+    Mit Plausibilitaets-Gate: kaputte Master-Platzhalter -> None (Fallback)."""
+    from .masterprofil import lade_profil, rolle_zu_layout
+    try:
+        prof = lade_profil(master_path) or {}
+        lay = rolle_zu_layout(prof, "content")
+        if lay is None:
+            return None
+        l = (prof.get("layouts") or [])[lay]
+        phs = l.get("phs") or []
+        title = next((p for p in phs if p.get("type") == "title"), None)
+        if not title:
+            return None
+        H, W = 7.5, 13.333
+        ty = title["y"] / 100.0 * H
+        th = title["h"] / 100.0 * H
+        bodies = [p for p in phs if p.get("type") != "title"
+                  and p["y"] / 100.0 * H >= ty + th]
+        if not bodies:
+            return None
+        best = max(bodies, key=lambda p: p["w"] * p["h"])
+        x = best["x"] / 100.0 * W
+        y = best["y"] / 100.0 * H
+        w = best["w"] / 100.0 * W
+        h = best["h"] / 100.0 * H
+        if not (0.4 <= x <= 2.0 and 1.1 <= y <= 6.3
+                and w >= 6.0 and 2.5 <= h <= 6.2):
+            return None
+        return {"x": round(x, 2), "y": round(y, 2), "w": round(w, 2), "h": round(h, 2)}
+    except Exception:
+        return None
+
+
 def master_farb_map(master_path):
     """Master-Farben -> FARB_MAP-Kopie: PETROL/NAVY=dominant, GOLD=akzent2,
     ROT=akzent3, DUNKEL/GRAU=dunkel, SCHW=text, HELL/LINE=helle Flaeche."""
@@ -308,7 +342,7 @@ def restore_theme(snap):
         setattr(P, k, v)
 
 
-def _user_prompt(s, n, m):
+def _user_prompt(s, n, m, zo=None):
     """Inhalts-Prompt fuer EINE Folie."""
     kind = s.get("kind", "content")
     typ = {"title": "TITELFOLIE (Deck-Cover)", "section": "KAPITELFOLIE (dunkel)"}.get(kind, "INHALTSFOLIE")
@@ -352,8 +386,10 @@ def _user_prompt(s, n, m):
             z.append("HINWEIS: Baue die primitive {\"typ\":\"zeitstrahl\"} mit ALLEN Meilensteinen "
                      "(x 0.55, y 1.6, w 12.23, heute = heutiges Datum) - nicht als Liste. "
                      "Darunter Platz fuer bis zu 2 Kartenzeilen lassen (y ab 5.3).")
-        z.append("HINWEIS: Header (kicker + titel als NAVY-Band) und Footer zeichnet die Engine. "
-                 "Gestalte nur y 1.15..6.85, x 0.55..12.78. Setze alle Inhalte dieser Folie vollstaendig "
+        zone = (f"x {zo['x']}..{zo['x'] + zo['w']}, y {zo['y']}..{zo['y'] + zo['h']}"
+                if zo else "x 0.55..12.78, y 1.15..6.85")
+        z.append("HINWEIS: Header (kicker + titel als Band) und Footer zeichnet die Engine. "
+                 f"Gestalte nur {zone}. Setze alle Inhalte dieser Folie vollstaendig "
                  "und dicht um (KPI-Werte als kachel mit status/trend, Listen als kartenzeilen, Tabellen "
                  "als tabelle mit status_spalten, Fahrplaene als zeitstrahl). Erfinde keine Zahlen, "
                  "nutze die gegebenen.")
@@ -436,7 +472,7 @@ def _ki_call(user_prompt, cfg, system=None):
     return None
 
 
-def design_folien(slides, config=None, on_progress=None, system=None):
+def design_folien(slides, config=None, on_progress=None, system=None, zo=None):
     """JEDE Folie EIN GLM-Call, max 4 parallel.
 
     -> Liste (Reihenfolge = slides) mit design-dict oder None (= Fallback).
@@ -450,7 +486,7 @@ def design_folien(slides, config=None, on_progress=None, system=None):
     done, lock = 0, Lock()
 
     def arbeit(n, s):
-        return _ki_call(_user_prompt(s, n, m), config, system)
+        return _ki_call(_user_prompt(s, n, m, zo), config, system)
 
     with ThreadPoolExecutor(max_workers=4) as ex:
         futs = {ex.submit(arbeit, n, s): n for n, s in enumerate(slides, 1)}
@@ -793,8 +829,8 @@ def _slides_as_text(slides):
 def struktur_slide_plan(content_text, ziel_min, ziel_max, config=None):
     """EIN GLM-Call: ROHER Content-Text -> Folienplan im Zielbereich (Reader-Schema).
 
-    Clamp: zu viele Folien -> abschneiden (ok); zu wenige (< ziel_min) -> None,
-    dann baut der Aufrufer den normalen Reader-Pfad weiter.
+    Clamp: zu viele Folien -> abschneiden (ok); zu wenige (< ziel_min) -> EIN Retry,
+    danach: >= ziel_min-2 -> akzeptieren, sonst None -> Reader-Pfad.
     -> list[slide-dicts] oder None.
     """
     config = config or load_ai_config()
@@ -823,14 +859,42 @@ def struktur_slide_plan(content_text, ziel_min, ziel_max, config=None):
     if not plan:
         print("[ai] Folienplan: keine gueltigen Folien -> Reader-Pfad", flush=True)
         return None
+
+    # --- (1) zu wenige Folien -> EIN Retry mit schaerferem Hinweis ---
+    if ziel_min and len(plan) < ziel_min:
+        print(f"[ai] Folienplan: {len(plan)} < Ziel min {ziel_min} -> EIN Retry", flush=True)
+        retry_user = (user + f"\n\nLETZTER VERSUCH lieferte nur {len(plan)} Folien. "
+                      f"Liefere GENAU {ziel_min}-{ziel_max or ziel_min} Folien (Titelfolie zaehlt).")
+        daten2 = _plan_call(retry_user, config)
+        if daten2 is not None:
+            plan2 = [f for f in (_norm_plan_folie(x) for x in daten2["folien"]) if f]
+            # --- (2) besserer Plan (mehr Folien) gewinnt ---
+            if len(plan2) > len(plan):
+                print(f"[ai] Folienplan: Retry besser ({len(plan2)} > {len(plan)}) -> uebernommen",
+                      flush=True)
+                plan = plan2
+            else:
+                print(f"[ai] Folienplan: Retry nicht besser ({len(plan2)} <= {len(plan)}) -> "
+                      "erster Plan bleibt", flush=True)
+        else:
+            print("[ai] Folienplan: Retry-Call gescheitert", flush=True)
+
+    if not plan:
+        print("[ai] Folienplan: keine gueltigen Folien -> Reader-Pfad", flush=True)
+        return None
     plan[0]["kind"] = plan[0]["layout"] = "title"      # Folie 1 = Cover erzwingen
     if ziel_max and len(plan) > ziel_max:
         plan = plan[:ziel_max]                         # zu viele -> abschneiden ok
     print(f"[ai] Folienplan: {len(plan)} Folien (Ziel min {ziel_min or '-'}/max {ziel_max or '-'})",
           flush=True)
     if ziel_min and len(plan) < ziel_min:
-        print(f"[ai] Folienplan: {len(plan)} < Ziel min {ziel_min} -> Reader-Pfad", flush=True)
-        return None
+        # --- (3) knapp drunter -> akzeptieren; deutlich drunter -> None ---
+        if len(plan) >= ziel_min - 2:
+            print(f"[ai] Folienplan: {len(plan)} Folien, unter Ziel "
+                  f"({ziel_min}) aber akzeptiert", flush=True)
+        else:
+            print(f"[ai] Folienplan: {len(plan)} < Ziel min {ziel_min} -> Reader-Pfad", flush=True)
+            return None
     return plan
 
 
@@ -847,9 +911,11 @@ def build_ai_deck(slides, out_path, config=None, on_progress=None,
     with _AI_LOCK:
         snap = None
         sp = SYSTEM_PROMPT
+        zo = None
         if master_path:
             try:
                 block = master_brand_block(master_path)
+                zo = master_zonen(master_path)
                 if block:
                     sp = SP_KOPF + block + SP_REST
                     snap = setze_master_theme(master_path)
@@ -857,13 +923,13 @@ def build_ai_deck(slides, out_path, config=None, on_progress=None,
                 snap = None
         try:
             return _build_ai_deck_intern(slides, out_path, config, on_progress,
-                                         ziel_min, ziel_max, content_text, sp)
+                                         ziel_min, ziel_max, content_text, sp, zo)
         finally:
             restore_theme(snap)
 
 
 def _build_ai_deck_intern(slides, out_path, config, on_progress,
-                          ziel_min, ziel_max, content_text, sp):
+                          ziel_min, ziel_max, content_text, sp, zo=None):
     t0 = time.time()
     config = config or load_ai_config()
     if ziel_min or ziel_max:                # Min/Max-Regler: ERST Plan, DANN Design-Loop
@@ -874,7 +940,7 @@ def _build_ai_deck_intern(slides, out_path, config, on_progress,
             slides = plan
         # plan=None -> Reader-Folien (normaler Pfad), Log kam aus struktur_slide_plan
     gesamt = max(1, len(slides))
-    designs = design_folien(slides, config, on_progress, system=sp)
+    designs = design_folien(slides, config, on_progress, system=sp, zo=zo)
     ki = sum(1 for d in designs if d)
 
     prs = Presentation()

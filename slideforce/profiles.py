@@ -568,11 +568,11 @@ def _bruecke(sl, x, y, w, meilensteine, heute=None, farben=None):
         lx = min(max(hx - 0.55, x0 - 0.10), x1 - 1.0)
         ly = hy - 0.38
         for _versuch in range(4):
-            kollision = any(abs(lx - fx) < 1.2 and abs(ly - fy) < 0.75
+            kollision = any(abs(lx - fx) < 1.45 and abs(ly - fy) < 0.9
                             for fx, fy in flaggen)
             if not kollision:
                 break
-            ly = hy - 0.38 - 0.40 * (_versuch + 1)     # hoeher ueber den Bogen
+            ly = hy - 0.38 - 0.42 * (_versuch + 1)     # hoeher ueber den Bogen
         _text(sl, lx, ly, 1.1, 0.26, "HEUTE", 9.5, ROT, bold=True,
               align=PP_ALIGN.CENTER)
 

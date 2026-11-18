@@ -604,3 +604,13 @@ Run 20261118-203927 (Resume nach 429-Pause, Weg B Visual HTML):
   HTML 8/10 (war 6, Ausgang 3); Faktencheck Cover: h1 66.5px bold WEISS auf
   #39756F-Band vs Untertitel 24px (GLM-Behauptung "gleiche Groesse" widerlegt).
 - Tests: 5 passed (test_smoke, test_studio_state).
+
+## 2026-11-18 Premium-Folienplan-Fix (gebaut von GLM 5.3-prime)
+- struktur_slide_plan: Plan < ziel_min => EIN Retry mit schaerferem Hinweis,
+  besserer Plan gewinnt; immer noch drunter aber >= ziel_min-2 => akzeptiert
+  statt kompletter Verwerfung (vorher: Reader-Pfad mit 3 gequetschten Folien).
+- Beweis: Live-Run Handbuch-Text min6/max8 -> Log "Folienplan: 7 Folien",
+  7/7 KI-designt, x-deck-folien: 7 (vorher 3). Score 8/10.
+- Auch drin: master_zonen (Premium-Content-Zone aus Master-Layout, Plausi-Gate),
+  Zeitstrahl-HEUTE-Ausweichzonen groesser, HTML-Folienregler (maxfolien).
+- Tests 5 passed. Code von glm-5.3-prime gebaut (glm-bau), Gemma koordiniert.
