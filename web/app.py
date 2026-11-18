@@ -13,6 +13,7 @@ from pptx import Presentation  # noqa: E402
 from slideforce.readers import read_content  # noqa: E402
 from slideforce.builder import build  # noqa: E402
 from slideforce.html_export import build_html  # noqa: E402
+from slideforce.masterprofil import lade_profil, speichere_profil  # noqa: E402
 from slideforce.profiles import build_profile, build_vorlage  # noqa: E402
 from slideforce.ai_design import build_ai_deck, load_ai_config  # noqa: E402
 from slideforce.layoutmap import LayoutMap  # noqa: E402
@@ -89,8 +90,14 @@ def index():
 
 @app.route("/api/layouts")
 def layouts():
-    prs = Presentation(str(_default_master()))
-    return jsonify([{"i": i, "name": lay.name} for i, lay in enumerate(prs.slide_layouts)])
+    mp = _default_master()
+    try:
+        profil = lade_profil(mp)
+        return jsonify([{"i": l["i"], "name": l["name"], "role": l["role"]}
+                        for l in profil["layouts"]])
+    except Exception:
+        prs = Presentation(str(mp))
+        return jsonify([{"i": i, "name": lay.name} for i, lay in enumerate(prs.slide_layouts)])
 
 
 SAVED = Path(__file__).resolve().parent / "uploads" / "saved"
@@ -227,6 +234,10 @@ def build_deck():
             if mp.suffix.lower() != ".pptx":
                 abort(400, "Master muss eine .pptx-Datei sein")
             tmp.append(mp)
+            try:
+                speichere_profil(mp)          # Template-Profil cachen
+            except Exception:
+                pass
         else:
             mp = _default_master()
         if content and content.filename:

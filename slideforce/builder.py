@@ -6,6 +6,7 @@ from pptx.util import Emu, Pt
 from pptx.oxml.ns import qn
 from pptx.enum.text import PP_ALIGN
 from .layoutmap import LayoutMap, norm
+from .masterprofil import lade_profil, rolle_zu_layout
 
 RESERVED = {"layout", "title", "subtitle", "bullets", "table", "image", "notes", "kind"}
 
@@ -187,19 +188,29 @@ def build(master_path, slides, out_path, remove_examples=True):
     if remove_examples and len(prs.slides):
         _strip_example_slides(prs)
     lm = LayoutMap(prs)
+    profil = lade_profil(master_path)
+    kind_rolle = {"title": "titel", "section": "section", "statement": "statement",
+                  "botschaft": "statement", "zahl": "kpi", "kpi": "kpi",
+                  "agenda": "agenda", "summary": "agenda", "zusammenfassung": "agenda",
+                  "table": "table", "picture": "picture", "two": "two",
+                  "three": "three", "roadmap": "roadmap", "risiko": "risiko",
+                  "closing": "closing", "vier": "three", "content": "content"}
     warn = []
     size = (prs.slide_width, prs.slide_height)
     for data in slides:
         explicit = data.get("layout")
         kind = data.get("kind") or "content"
-        AUTO = {"title", "content", "section", "closing", "picture", "table", "two", "three"}
+        AUTO = {"title", "content", "section", "closing", "picture", "table",
+                "two", "three", "statement", "botschaft", "zahl", "kpi",
+                "agenda", "summary", "zusammenfassung", "roadmap", "risiko", "vier"}
         if explicit and str(explicit).lower() not in AUTO:
             lay = lm.by_number_or_name(explicit)
             if lay is None:
                 warn.append(f"Layout '{explicit}' nicht gefunden - Standard genutzt")
                 lay = lm.pick(kind)
         else:
-            lay = lm.pick(kind)
+            idx = rolle_zu_layout(profil, kind_rolle.get(kind, "content"))
+            lay = prs.slide_layouts[idx] if idx is not None else lm.pick(kind)
         slide = prs.slides.add_slide(lay)
         _fill_slide(slide, lay, data, warn, size)
     Path(out_path).parent.mkdir(parents=True, exist_ok=True)

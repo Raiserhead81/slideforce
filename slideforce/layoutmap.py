@@ -57,6 +57,28 @@ class LayoutMap:
         if kind == "section":
             lay = self._first_with("kapiteltrenner", None)
             return lay or self.pick("content")
+        if kind in ("statement", "botschaft"):
+            lay = self._first_with("statement", None)
+            return lay or self.pick("content")
+        if kind in ("zahl", "kpi"):
+            lay = self._first_with("grossezahl", None) or self._first_with("kennzahl", None)
+            return lay or self.pick("content")
+        if kind == "agenda":
+            lay = self._first_with("agenda", None)
+            return lay or self.pick("content")
+        if kind in ("summary", "zusammenfassung"):
+            lay = self._first_with("zusammenfassung", None) or self._first_with("summary", None)
+            return lay or self.pick("content")
+        if kind == "roadmap":
+            lay = self._first_with("roadmap", None) or self._first_with("phasen", None) \
+                or self._first_with("meilenstein", None)
+            return lay or self.pick("content")
+        if kind == "risiko":
+            lay = self._first_with("risiko", None)
+            return lay or self.pick("content")
+        if kind == "vier":
+            lay = self._first_with("vier", None)
+            return lay or self.pick("three")
         if kind == "closing":
             lay = self._first_with("abschluss", None)
             return lay or self.pick("content")

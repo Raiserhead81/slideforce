@@ -1,8 +1,10 @@
 """SlideForce: HTML-Export. Folien-Dicts -> standalone HTML-Praesentation."""
 import base64
 import html
+import re
 from pathlib import Path
 from .html_theme import extract_theme
+from .masterprofil import lade_profil, rolle_zu_layout, layout_profil
 
 
 def _md(text):
@@ -23,27 +25,108 @@ def _b64(path):
     return f"data:{m};base64," + base64.b64encode(p.read_bytes()).decode()
 
 
-def _render_slide(s):
+from .masterprofil import lade_profil, rolle_zu_layout, layout_profil
+
+KIND_ROLLE = {"title": "titel", "section": "section", "statement": "statement",
+              "botschaft": "statement", "zahl": "kpi", "kpi": "kpi",
+              "agenda": "agenda", "summary": "agenda", "zusammenfassung": "agenda",
+              "table": "table", "picture": "picture", "two": "two",
+              "three": "three", "roadmap": "roadmap", "risiko": "risiko",
+              "closing": "closing", "vier": "three", "content": "content"}
+
+DUNKEL_ROLLEN = {"titel", "section", "statement", "closing"}
+
+
+def _box(lay, typ, body=False):
+    """Größte Box eines Typs aus Layout-Profil -> (x,y,w,h) oder None."""
+    if not lay:
+        return None
+    kands = [p for p in lay["phs"] if p["type"] == typ]
+    if body:
+        kands = [p for p in kands if p["y"] < 90 and p["h"] > 2]
+    if not kands:
+        return None
+    if typ == "title" and not body:
+        return kands[0]
+    return max(kands, key=lambda p: p["w"] * p["h"])
+
+
+def _content_box(lay, t):
+    """Groesste Nicht-Titel-Box unterhalb der Titelzone (Fusszeile ausgeschlossen)."""
+    if not lay:
+        return None
+    grenze = (t["y"] + t["h"] * 0.6) if t else 10.0
+    kands = [p for p in lay["phs"]
+             if p["type"] != "title" and p["y"] >= grenze
+             and p["h"] > 3 and p["y"] < 90]
+    if not kands:
+        return None
+    return max(kands, key=lambda p: p["w"] * p["h"])
+
+
+def _lay_css(genutzte, profil):
+    """Positionier-CSS fuer alle genutzten Layout-Klassen."""
+    teile = []
+    for idx in sorted(genutzte):
+        lay = layout_profil(profil, idx)
+        if not lay:
+            continue
+        t = _box(lay, "title")
+        b = _content_box(lay, t)
+        teile.append(f".lay-{idx}{{padding:0}}")
+        if t:
+            teile.append(f".lay-{idx} .tbox{{position:absolute;left:{t['x']}%;top:{t['y']}%;"
+                         f"width:{t['w']}%;display:flex;flex-direction:column;justify-content:center}}")
+            teile.append(f".lay-{idx} h2{{left:{t['x']}%;top:{t['y']}%;"
+                         f"width:{t['w']}%;position:absolute;margin:0;text-align:left}}")
+        if b:
+            teile.append(f".lay-{idx} .bwrap{{position:absolute;left:{b['x']}%;top:{b['y']}%;"
+                         f"width:{b['w']}%;height:{b['h']}%;display:flex;flex-direction:column;"
+                         f"justify-content:center}}")
+    return "\n".join(teile)
+
+
+def _render_slide(s, profil=None):
     kind = s.get("kind", "content")
     title = _md(s.get("title") or "")
+    rolle = KIND_ROLLE.get(kind, "content")
+    lay_idx = rolle_zu_layout(profil, rolle) if profil else None
+    lkl = f" lay-{lay_idx}" if lay_idx is not None else ""
+    hell = " hell" if profil and rolle not in DUNKEL_ROLLEN else ""
     if kind == "title":
         sub = _md(s.get("subtitle") or "")
+        if lay_idx is not None:
+            return (f'<section class="slide s-title{hell}{lkl}"><div class="tbox">'
+                    f'<div class="kicker"></div><h1>{title}</h1>'
+                    f'<p class="subtitle">{sub}</p></div></section>')
         return f'<section class="slide s-title"><div class="kicker"></div>' \
                f'<h1>{title}</h1><p class="subtitle">{sub}</p></section>'
     if kind == "section":
+        if lay_idx is not None:
+            return (f'<section class="slide s-section{hell}{lkl}">'
+                    f'<div class="tbox"><h1>{title}</h1></div></section>')
         return f'<section class="slide s-section"><h1>{title}</h1></section>'
     if s.get("botschaft"):
         zusatz = _md(s.get("zusatz") or "")
-        return f'<section class="slide s-statement"><p class="msg">{_md(s["botschaft"])}</p>' \
-               f'<p class="zside">{zusatz}</p></section>'
+        kern = (f'<p class="msg">{_md(s["botschaft"])}</p>'
+                f'<p class="zside">{zusatz}</p>')
+        if lay_idx is not None:
+            return (f'<section class="slide s-statement{hell}{lkl}">'
+                    f'<div class="bwrap">{kern}</div></section>')
+        return f'<section class="slide s-statement">{kern}</section>'
     if s.get("zahl"):
         einheit = _md(s.get("einheit") or "")
         erk = _md(s.get("erklaerung") or "")
         einord = _md(s.get("einordnung") or "")
-        return f'<section class="slide s-kpi"><h2>{title}</h2><div class="kpi">' \
-               f'<span class="num">{_md(s["zahl"])}</span><span class="unit">{einheit}</span></div>' \
-               f'<p class="erk">{erk}</p><p class="einord">{einord}</p></section>'
-    parts = [f'<section class="slide s-content">']
+        kern = (f'<h2>{title}</h2><div class="kpi">'
+                f'<span class="num">{_md(s["zahl"])}</span>'
+                f'<span class="unit">{einheit}</span></div>'
+                f'<p class="erk">{erk}</p><p class="einord">{einord}</p>')
+        if lay_idx is not None:
+            return (f'<section class="slide s-kpi{hell}{lkl}">'
+                    f'<div class="bwrap">{kern}</div></section>')
+        return f'<section class="slide s-kpi">{kern}</section>'
+    parts = [f'<section class="slide s-content{hell}{lkl}">']
     if title:
         parts.append(f"<h2>{title}</h2>")
     if s.get("table"):
@@ -61,6 +144,9 @@ def _render_slide(s):
         parts.append(f"<ul>{items}</ul>")
     if s.get("notes"):
         parts.append(f"<!-- notes: {html.escape(str(s['notes']))} -->")
+    if lay_idx is not None and len(parts) > 1:
+        koerper = parts[1:]
+        parts = [parts[0]] + ['<div class="bwrap">'] + koerper + ["</div>"]
     parts.append("</section>")
     return "".join(parts)
 
@@ -75,10 +161,16 @@ def _bullet(level, text):
 TEMPLATE = """<!DOCTYPE html>
 <html lang=de><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
 <title>__TITLE__</title><style>
-:root{--bg:__BG__;--fg:__FG__;--a1:__A1__;--a2:__A2__;--major:__MAJOR__;--minor:__MINOR__;}
+:root{--bg:__BG__;--fg:__FG__;--paper:__PAPER__;--a1:__A1__;--a1h:__A1H__;--a2:__A2__;--major:__MAJOR__;--minor:__MINOR__;}
 *{margin:0;box-sizing:border-box}body{background:#111;font-family:var(--minor),sans-serif;overflow:hidden}
 .slide{position:absolute;inset:0;background:var(--bg);color:var(--fg);display:none;flex-direction:column;justify-content:center;padding:7vh 9vw}
 .slide.active{display:flex}
+.slide.hell{background:var(--paper);color:#232b34}
+.slide.hell h2{color:var(--a1h)}
+.slide.hell li:before{background:var(--a1h)}
+.slide.hell table.data th{background:var(--a1h)}
+.slide.hell .kicker{background:var(--a1h)}
+__LAYCSS__
 .s-title h1,.s-section h1{font-family:var(--major),sans-serif;font-size:clamp(2.2rem,6vw,4.5rem);line-height:1.1}
 .s-title .kicker{width:70px;height:8px;background:var(--a1);margin-bottom:3vh}
 .s-title .subtitle{font-size:clamp(1.1rem,2.4vw,1.7rem);opacity:.75;margin-top:2vh}
@@ -135,7 +227,10 @@ def _luma(hexcol):
 
 
 def build_html(slides, title, out_path, master_path=None):
-    theme = extract_theme(master_path) if master_path else None
+    profil = lade_profil(master_path) if master_path else None
+    theme = (profil or {}).get("theme")
+    if theme is None and master_path:
+        theme = extract_theme(master_path)
     c = (theme or {}).get("colors", {})
     f = (theme or {}).get("fonts", {})
     cands = [x for x in (c.get("accent3"), c.get("lt2"), c.get("dk2")) if x]
@@ -143,11 +238,25 @@ def build_html(slides, title, out_path, master_path=None):
     if _luma(bg) > 100:
         bg = "#1c2733"
     fg = c.get("lt1", "#ffffff") if _luma(bg) <= 100 else c.get("dk1", "#222222")
-    body = "\n".join(_render_slide(s) for s in slides)
+    # Papierfarbe + kräftiger Akzent fuer helle Folien aus dem Theme lernen
+    paper_cands = [x for x in (c.get("dk2"), c.get("lt1"), c.get("accent3")) if x]
+    paper = min(paper_cands, key=_luma) if paper_cands else "#f4f6f8"
+    if _luma(paper) < 150:
+        paper = "#f4f6f8"
+    akzent_cands = [x for x in (c.get("lt2"), c.get("accent1"), c.get("accent2"),
+                                c.get("dk2")) if x and _luma(x) < 170]
+    a1h = akzent_cands[0] if akzent_cands else c.get("accent1", "#2e74b5")
+    body = "\n".join(_render_slide(s, profil) for s in slides)
+    laycss = ""
+    if profil:
+        genutzt = {int(m) for m in re.findall(r"lay-(\d+)", body)}
+        laycss = _lay_css(genutzt, profil)
     doc = (TEMPLATE.replace("__TITLE__", html.escape(str(title)))
            .replace("__SLIDES__", body)
+           .replace("__LAYCSS__", laycss)
            .replace("__BG__", bg).replace("__FG__", fg)
-           .replace("__A1__", c.get("accent1", "#2e74b5"))
+           .replace("__PAPER__", paper).replace("__A1H__", a1h)
+           .replace("__A1__", c.get("accent1", a1h))
            .replace("__A2__", c.get("accent2", "#ed7d31"))
            .replace("__MAJOR__", f.get("major", "Georgia"))
            .replace("__MINOR__", f.get("minor", "Arial")))
