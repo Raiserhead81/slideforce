@@ -328,3 +328,13 @@ Datum: 18.11.2026 · Projektordner: studio/ (Mini: ~/gemma-projekte/slideforce)
   (feste Beispiel-URL statt glm.config())
 - Testlauf BEIDE Dateien: `.venv/bin/pytest tests/test_studio_state.py
   studio/test_state.py -q` = 9 passed (stark-Tests + meine)
+
+## NACHWEIS 5: E2E-Lauf Weg A (Etappe 1 ABGENOMMEN)
+- Run: studio/runs/20261118-200324-itk-bremen-vorstand-2026 (CLI-Weg A, 10 Folien)
+- Alle Schritte ok: director/story/art/build/render/critic/report
+- Fix-Schleife GREIFT: 4 Critic-Runden, Scores 6-7er stiegen auf final
+  1:7, 2:8, 3:8, 4:8, 5:8, 6:8, 7:8, 8:8, 9:8, 10:8
+- Abbruch bei max 3 Fix-Runden mit transparenter Rest-Schwaechen-Doku im Report (Spec)
+- deck.pptx: unzip OK · 10 PNGs gerendert · report.md vorhanden
+- Unabhaengige Sichtpruefung Folie 1 (glm-sicht): SCORE 8/10, klare Hierarchie,
+  kein Navy/Gold - interner Critic 7 = strenger
