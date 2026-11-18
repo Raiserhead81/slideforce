@@ -70,3 +70,9 @@ Header-Band + gold Kicker + weisser Titel, Kacheln mit Farbbalken, KW/Folien-Foo
 Render-Check via LibreOffice->PNG + Vision: Titelfolie 8/10, Tabelle 7/10, KPI 7/10,
 keine Layout-Bugs. Live: https://slideforce.gemivo.de/files/b28demo.pdf (HTTP 200).
 Neues fmt: b28pptx (dritte Export-Karte in der UI).
+
+## PowerPoint-Corruption-Fix (18.11., stark/GLM-5.3)
+
+Ursache: manuelle XML-Attrs (spc via _rPr.set, marL via pPr.set, _pPr-Truth-Test).
+stark entfernt alle 3 Low-Level-Zugriffe -> reine python-pptx-API.
+Beweise: Build ohne FutureWarning, unzip -t OK, reopen 8 Folien, smoke gruen.

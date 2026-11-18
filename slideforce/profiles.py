@@ -40,6 +40,7 @@ def _rect(sl, x, y, w, h, color, line=None):
 
 def _text(sl, x, y, w, h, text, size, color, bold=False, align=PP_ALIGN.LEFT,
           spacing=None, italic=False):
+    """spacing (CharSpacing) wird ignoriert: python-pptx bietet dafuer keine API."""
     tb = sl.shapes.add_textbox(Inches(x), Inches(y), Inches(w), Inches(h))
     tf = tb.text_frame
     tf.word_wrap = True
@@ -52,9 +53,6 @@ def _text(sl, x, y, w, h, text, size, color, bold=False, align=PP_ALIGN.LEFT,
     r.font.italic = italic
     r.font.color.rgb = color
     r.font.name = FONT
-    if spacing:
-        from pptx.oxml.ns import qn
-        r.font._rPr.set("spc", str(int(spacing * 100)))
     return tb
 
 
@@ -85,8 +83,6 @@ def _bullets(sl, items, x=MX, y=1.55, w=W - 2 * MX, size=14):
         p.space_after = Pt(10)
         if level:
             p.level = 1
-            pPr = p._pPr or p.get_or_add_pPr()
-            pPr.set("marL", str(int(Inches(0.55))))
         m = p.add_run()
         m.text = "\u2014  " if not level else "\u2013  "
         m.font.size = Pt(size if not level else size - 1)
