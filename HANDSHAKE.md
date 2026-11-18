@@ -25,7 +25,12 @@ Ziel: Agentur-Niveau-Produktionssytem UM die bestehende SlideForce-App (KEINE zw
 - State-Persistenz: studio/runs/<id>/state.json, fortsetzbar. Report: storyboard + designsystem + scores + schwaechen
 - E2E: Vorstandsthema ITK-Bremen, 8-12 Folien, Weg A, alle >= 8/10 Vision
 - Einstieg: studio/cli.py (`python studio/cli.py "<briefing>" --quelle <datei> --min 8 --max 12 --weg A`) + spaeter Web-Karte
-- **Status: ETAPPE 1 NICHT GESTARTET.** Spec stand fertig im Chat, subagent "stark" wurde abgebrochen. Neue Session: obenstehende Spec an stark (GLM-5.3-Subagent) geben, Etappe 1 = studio/ Grundgeruest + Weg A E2E, dann Etappe 2 = Weg B (Visual HTML) + C (Hybrid) + Web-Karte "Studio", Etappe 3 = Doku documentation/*.md + Deploy + GitHub.
+- **Status 18.11. spaet: ETAPPE 1 + 2 FERTIG (committed, gepusht, deployed).**
+  - Etappe 1 (Weg A): ABGENOMMEN - Run 20261118-200324, 9/10 Folien >= 8/10 (Folie 1: 7 intern / 8 extern)
+  - Etappe 2a (Weg C Hybrid): E2E Run 20261118-202449, 10/11 Folien >= 8/10, GLM-SVG + cairosvg + Reparatur-Pass
+  - Etappe 2b (Weg B Visual HTML): Code komplett, Tests 12 passed, E2E OFFEN (GLM 429 Tageslimit, resume: 20261118-203927 oder Web-Resume)
+  - Etappe 2c (Web-Karte 05 Studio): LIVE auf slideforce.gemivo.de (200), app.run()-Blocker gefixt (NACHWEIS 8)
+  - ETAPPE 3 OFFEN: Weg-B-E2E (sobald Kontingent), Doku documentation/*.md, glm-sicht der UI (429 des Pruefmodells)
 
 ## Gelernte Lektionen (NICHT wiederholen)
 - PPTX-Corruption: KEINE manuellen XML-Attrs in python-pptx (spc/marL/_rPr.set) - PowerPoint öffnet sonst nicht (LibreOffice toleriert!)
