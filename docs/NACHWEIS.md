@@ -436,3 +436,25 @@ from pathlib import Path - Zeile 4 und 7). Kein neuer Import noetig.
 - UI-Screenshot /tmp/sf-ui.png (327KB) erstellt; Vision-Check durch
   429-Rate-Limit des Pruef-Modells offen (Retry folgt)
 - studio/runs auf Server LEER (bewusst: lokale Test-Runs nicht deployed)
+
+---
+
+# NACHWEIS 9: Design-Redesign (stark/GLM-5.3) + Studio-Karte mit eigenen Fakten-Feldern
+
+## Design-Upgrade (stark-Subagent)
+- index.html CSS neu: #0B0F14-Basis, Petrol/Rot-Glows, Gradient-Kartenraender,
+  Glass, Hover-Microinteractions, Nummern-Badges, Studio-Karte hervorgehoben
+- Beweise stark: html.parser keine Fehler, 28/28 IDs genau 1x, <script>-Block
+  bytegleich (JS/FormData/Fetch unberuehrt)
+- Eigene Nachpruefung: HTML-PARSE OK, Kern-IDs vorhanden
+
+## Studio-Karte 05 umgebaut (Kays Feedback: Quelle war unklar)
+- EIGENE Fakten-Eingabe direkt in der Karte: Drop (studioFile, .md/.txt/.docx/
+  .xlsx/.csv) + Textarea (studioText) + klare Schritte 1/2/3
+- JS sendet jetzt studioFile/studioText (statt Karten 02/03) - API
+  /api/studio/start unveraendert (quelle/text-Formfelder identisch)
+
+## Beweise
+- Deploy: rsync + restart -> active; https://slideforce.gemivo.de 302-Gate ok
+- Screenshot /tmp/sf-neu.png (891KB), glm-sicht: SCORE 8/10, Studio-Karte
+  "starkes, funktional durchdachtes Feature" (Rest-Issues Kleinigkeiten)
