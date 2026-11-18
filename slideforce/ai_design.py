@@ -48,10 +48,11 @@ DEFAULTS = {
 PRIMITIVEN = {"band", "linie", "text", "kachel", "pill", "kartenzeile", "ring",
               "tabelle", "trend", "zeitstrahl"}
 
-FARB_MAP = {  # Namen -> profiles-RGBColor
-    "NAVY": P.NAVY, "GOLD": P.GOLD, "ROT": P.ROT, "GRUEN": P.GRUEN,
+FARB_MAP = {  # Namen -> profiles-RGBColor (dataport-Brand: navy/gold-Aliase landen SAFE auf Petrol)
+    "PETROL": P.V_PETROL, "DUNKEL": P.V_DUNKEL,
+    "NAVY": P.V_PETROL, "GOLD": P.V_DUNKEL, "ROT": P.ROT, "GRUEN": P.GRUEN,
     "GRÜN": P.GRUEN, "GREEN": P.GRUEN, "GELB": P.AMB, "AMB": P.AMB, "AMBER": P.AMB,
-    "GRAU": P.GRAU, "GRAU2": P.GRAU2, "LINE": P.LINE, "HELL": P.HELL,
+    "GRAU": P.V_DUNKEL, "GRAU2": P.GRAU2, "LINE": P.LINE, "HELL": P.HELL,
     "WEISS": P.WEISS, "WEIß": P.WEISS, "SCHW": P.SCHW, "SCHWARZ": P.SCHW,
 }
 ALIGN_MAP = {
@@ -77,11 +78,11 @@ def load_ai_config():
 # ---------------------------------------------------------------- Prompt
 SYSTEM_PROMPT = """Du bist Senior-Slide-Designer bei BRIDGE28 und designt Kundenfolien auf Premium-Niveau: dicht, praezise, hochwertig - niemals leer oder beliebig.
 
-DESIGN-SYSTEM (BRIDGE28):
+DESIGN-SYSTEM (DATAPORT Vorstandsvorlage, hell):
 - Leinwand: 13.33 x 7.5 Zoll (inch), Rand links/rechts MX = 0.55.
-- Farben (nutze GENAU diese Namen): NAVY #002846 (dominant, Header, Zahlen, Titel) · GOLD #C9A961 (Akzent: Marker, Linien, Kicker, Ring) · ROT #9E292B · GRUEN #3E7C4F · GELB #B45309 · GRAU #54616E · GRAU2 #8A93A3 (Sekundaertext) · LINE #D0D7E2 (Border) · HELL #F7F9FC (Kartenflaeche) · WEISS · SCHW #1A222B (Fliesstext).
-- Typo (Arial): Kicker 10-11pt GOLD bold UPPERCASE (gross geschrieben!) · Folien-Abschnittstitel 15-18pt NAVY bold · Fliesstext 11-13pt SCHW · Labels UPPERCASE 10.5pt GRAU bold · Zahlen dominant gross · Kontext 9.5-10pt GRAU2. Fett im Text mit **so** markieren.
-- Stil: weisse/helle Karten mit feiner LINE-Border und GOLD-Marker links; KPI-Kacheln mit farbigem Balken oben; deutliche Zahl-Hierarchie; GOLD sparsam; NAVY tragend.
+- Farben (nutze GENAU diese Namen): PETROL #39756F (dominant, Header, Zahlen, Titel) · ROT #9E292B (nur Spaetzen-Akzent) · DUNKEL #39424A (Ueberschriften) · GRAU #54616E · GRAU2 #8A93A3 (Sekundaertext) · LINE #D8DEE2 (Border) · HELL #F4F5F6 (Kartenflaeche) · TINT1 #F8E8E8 · TINT2 #FBF0DC · WEISS · SCHW #1A222B (Fliesstext). KEIN Navy, KEIN Gold.
+- Typo (Arial): Kicker 10-11pt PETROL bold UPPERCASE (gross geschrieben!) · Folien-Abschnittstitel 15-18pt DUNKEL bold · Fliesstext 11-13pt SCHW · Labels UPPERCASE 10.5pt GRAU bold · Zahlen dominant gross (PETROL) · Kontext 9.5-10pt GRAU2. Fett im Text mit **so** markieren.
+- Stil: helle Karten (HELL) mit feiner LINE-Border und PETROL-Marker links; KPI-Kacheln mit PETROL-Balken oben; ROT nur fuer einen einzelnen Spaetzenakzent; ruhig, viel Weissraum, vorstandstauglich.
 
 STRENGES JSON-BAU-VOKABULAR - nur diese Primitive ("typ"-Feld), Koordinaten in inch:
 - {"typ":"band","x":..,"y":..,"w":..,"h":..,"farbe":"NAVY"}                        Vollflaechiges Rechteck
@@ -661,10 +662,9 @@ def build_ai_deck(slides, out_path, config=None, on_progress=None,
             bg.solid()
             bg.fore_color.rgb = P.NAVY if dunkel else (
                 P.HELL if design.get("hintergrund") == "HELL" else P.WEISS)
-            if kind == "title":                 # Cover-Geruest zeichnet die Engine
-                P._titel_folie(sl, s)
+            if kind == "title":                 # Cover: hell, KI designt frei (dataport)
                 _render_elemente(sl, design["elemente"])
-                P._fuss_titel(sl, nr, gesamt)
+                P._v_dp_logo(sl)
             elif kind == "section":             # dunkle Flaeche steht, KI designt frei
                 _render_elemente(sl, design["elemente"], dunkel=dunkel)
                 P.fuss(sl, nr, gesamt, dunkel=dunkel)
@@ -672,6 +672,7 @@ def build_ai_deck(slides, out_path, config=None, on_progress=None,
                 P.kopf(sl, s.get("kicker"), s.get("title"))
                 _render_elemente(sl, design["elemente"], dunkel=dunkel)
                 P.fuss(sl, nr, gesamt, dunkel=dunkel)
+        P._v_dp_logo(sl, klein=(kind != "title"))   # dataport-Logo auf jeder Premium-Folie
         if s.get("notes"):
             sl.notes_slide.notes_text_frame.text = str(s["notes"])
     Path(out_path).parent.mkdir(parents=True, exist_ok=True)

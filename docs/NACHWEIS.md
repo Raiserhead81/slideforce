@@ -500,3 +500,31 @@ Run 20261118-203927 (Resume nach 429-Pause, Weg B Visual HTML):
 - glm-sicht: "Intuitive Step-by-Step-Struktur (01-05) ..."
 - Beide Formate funktionieren technisch (hiermit belegt) - sie waren nur
   UI-Rauschen fuer Kays Alltag (vorpptx/aipptx sind sein Standard)
+
+---
+
+# NACHWEIS 11: dataport-Brand ueberall + 1h-Transkripte (Kays Anforderungen)
+
+## Premium (aipptx) auf dataport umgestellt
+- SYSTEM_PROMPT: navy/gold-Designsystem ersetzt durch dataport (PETROL dominant,
+  ROT nur Spaetzenakzent, HELL #F4F5F6 Karten, KEIN Navy/Gold)
+- FARB_MAP: NAVY->V_PETROL, GOLD->V_DUNKEL (Fallback-Falle: alte Namen liefern
+  dataport-Farben), PETROL/DUNKEL ergaenzt
+- Logo: _v_dp_logo auf jeder Premium-Folie (Cover gross)
+- Titelfolie: navy/gold-Cover-Geruest (_titel_folie) entfernt, KI designt
+  Cover frei auf hellem Grund
+- Beweise: /api/build fmt=aipptx live HTTP 200 + unzip OK; glm-sicht Folie 2
+  "Petrol/Grau/Weiss ... GEIL klare Struktur"; Cover-Folie hell + Logo
+  (keine navy/gold-Meldung mehr)
+
+## Studio Weg B (HTML): dataport-Logo
+- roles._html_logo_injizieren: Logo als data-URI fix oben rechts in jede
+  HTML-Folie injiziert (keine Prompt-Tokens, doppelt-sicher)
+- Beweis: Injektion-Test (Logo drin, 1x data-uri, idempotent)
+
+## 1-Stunden-Meeting-Transkripte (Kays Anforderung)
+- studio/pipeline.quelle_lesen: Grenze 14.000 -> 200.000 Zeichen
+  (60-100k-Zeichen-Transkripte laufen KOMPLETT in die Rollen, kein Faktenverlust)
+- nginx/Flask erlauben ohnehin 64MB; UI-Hinweise aktualisiert
+- Beweis: 191.999-Zeichen-Quelle ungekuerzt; 100.000-Zeichen-Text live via
+  /api/build -> HTTP 200, Deck gebaut, unzip OK

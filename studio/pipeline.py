@@ -26,8 +26,9 @@ def _log(log, msg):
 
 
 # ---------------------------------------------------------------- Quelle
-def quelle_lesen(quelle, grenze=14000):
-    """Quelldatei als Text fuer die Rollen (md/txt roh, Office via Reader)."""
+def quelle_lesen(quelle, grenze=200000):
+    """Quelldatei als Text fuer die Rollen (md/txt roh, Office via Reader).
+    1h-Meeting-Transkripte (~60-100k Zeichen) passen komplett rein."""
     p = Path(quelle)
     suf = p.suffix.lower()
     if suf in (".md", ".markdown", ".txt"):

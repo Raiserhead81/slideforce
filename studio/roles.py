@@ -295,6 +295,32 @@ def _html_aus_text(txt):
     return html if html and "</html>" in html.lower() else None
 
 
+
+
+# ---------------------------------------------------------------- Logo-Injektion (Weg B)
+_LOGO_URI = None
+
+
+def _logo_data_uri():
+    global _LOGO_URI
+    if _LOGO_URI is None:
+        import base64
+        from pathlib import Path
+        p = Path(__file__).resolve().parent.parent / "slideforce" / "assets" / "vorlage_dataport.png"
+        _LOGO_URI = "data:image/png;base64," + base64.b64encode(p.read_bytes()).decode()
+    return _LOGO_URI
+
+
+def _html_logo_injizieren(html):
+    """dataport-Logo fix oben rechts injizieren (GLM baut es nicht selbst)."""
+    import re as _re
+    if "dp-logo-img" in html:
+        return html
+    img = ("<img class='dp-logo-img' src='" + _logo_data_uri() +
+           "' style='position:fixed;top:26px;right:40px;width:150px;z-index:9'>")
+    return _re.sub(r"</body>", img + "</body>", html, count=1, flags=_re.I)
+
+
 def html_folie(briefing, folie_slide_dict, design, nr):
     """GLM designt EINE Folie als komplette HTML-Seite. String oder None."""
     import json as _json
@@ -308,7 +334,7 @@ def html_folie(briefing, folie_slide_dict, design, nr):
         txt = glm.chat(HTML_SYSTEM, user, max_tokens=12000, timeout=300)
         html = _html_aus_text(txt)
         if html:
-            return html
+            return _html_logo_injizieren(html)
         user = user + nl + nl + 'WICHTIG: Antworte NUR mit dem JSON {"html": "<!doctype html> ..."}. Keine Prosa.'
     return None
 
@@ -329,6 +355,6 @@ def html_repair(briefing, folie_slide_dict, altes_html, critic_ergebnis, nr):
         txt = glm.chat(HTML_SYSTEM, user, max_tokens=12000, timeout=300)
         html = _html_aus_text(txt)
         if html:
-            return html
+            return _html_logo_injizieren(html)
         user = user + nl + nl + 'Antworte NUR mit dem JSON {"html": "..."}.'
     return None
