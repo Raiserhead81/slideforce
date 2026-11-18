@@ -14,14 +14,14 @@ body{width:1600px;height:900px;overflow:hidden;position:relative;
 .h1{font-size:52px;line-height:1.15;font-weight:700;color:#243038;letter-spacing:-.01em}
 .h2{font-size:34px;line-height:1.2;font-weight:700;color:#243038}
 .sub{font-size:24px;color:#54616E;line-height:1.4}
-.karte{background:#F4F5F6;border-radius:16px;padding:34px 38px}
+.karte{background:#F4F5F6;border-radius:16px;padding:32px 36px}
 .hairline{height:1px;background:#D8DEE2}
 .zahl{font-weight:700;color:#39756F;letter-spacing:-.02em;line-height:1}
 .accent{width:64px;height:6px;background:#9E292B;border-radius:3px}
 .petaline{width:64px;height:6px;background:#39756F;border-radius:3px}
 .foot{position:absolute;bottom:34px;left:90px;right:90px;display:flex;
   justify-content:space-between;font-size:17px;color:#8A93A3}
-.logo{position:absolute;top:36px;right:90px;height:52px;width:auto}
+.logo{position:absolute;top:44px;right:90px;height:52px;width:auto}
 .icon{width:52px;height:52px;flex:0 0 52px}
 .icon svg{width:100%;height:100%;stroke:#39756F;fill:none;
   stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
@@ -86,7 +86,7 @@ def _zahlfelder(sl):
 
 def f_titel(sl, nr, gesamt):
     body = f"""<div style="position:absolute;left:110px;top:200px;width:1080px">
-<div class="kicker">{_s(sl.get('kicker'), 40) or 'VORSTANDSPRAESENTATION'}</div>
+<div class="kicker">{_s(sl.get('kicker'), 40) or 'VORSTANDS-PRÄSENTATION'}</div>
 <div class="h1">{_s(sl.get('title'), 120)}</div>
 <div style="margin:34px 0 0"><div class="accent"></div></div>
 <div class="sub" style="margin-top:34px;max-width:900px">{_s(sl.get('subtitle'), 160)}</div>

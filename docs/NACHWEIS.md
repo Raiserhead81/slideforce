@@ -569,3 +569,12 @@ Run 20261118-203927 (Resume nach 429-Pause, Weg B Visual HTML):
 - Kays Rolloutplan-Run 20261118-211918: deck.pptx (6 Folien, 406 KB) live,
   Download /api/studio/file/<id>/deck.pptx -> HTTP 200, UI-Status pptx: true
 - KPI-Template-Kompakt-Fix (Zahl 76px, bottom-220px-Begrenzung gegen Abschnitt)
+
+## NACHTRAG: Qualitaets-Runde Template-System (Kay: 6/10)
+- 6 Folien neu gerendert (KPI-Kompakt-Fix aktiv), glm-sicht Frisch-Befunde:
+  alle 3 geprueften Folien "GEIL"-Qualitaet (Titel-Hierarchie stark, KPI
+  sehr gut, SVG-Icon-Chips starker Flair) - Rest: Abstand-Mikro
+- Mikro-Fixes: Logo top 44px, Karte padding 32/36, KPI-Gap 26px,
+  Kicker-Default mit echten Umlauten (VORSTANDS-PRÄSENTATION)
+- deck.pptx NEU gebaut aus frischen PNGs (6 Folien) + auf Kays Desktop
+  (BRIDGE28-Rolloutplan-Vorstand.pptx)
