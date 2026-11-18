@@ -12,6 +12,7 @@ from pptx import Presentation  # noqa: E402
 from slideforce.readers import read_content  # noqa: E402
 from slideforce.builder import build  # noqa: E402
 from slideforce.html_export import build_html  # noqa: E402
+from slideforce.profiles import build_profile  # noqa: E402
 from slideforce.layoutmap import LayoutMap  # noqa: E402
 
 UPLOAD = Path(__file__).resolve().parent / "uploads"
@@ -61,6 +62,12 @@ def token_gate():
         return Response(LOGIN_HTML, status=401, mimetype="text/html",
                         headers={"X-Robots-Tag": "noindex, nofollow"})
     return None
+
+
+@app.route("/files/<name>")
+def files(name):
+    from flask import send_from_directory
+    return send_from_directory(OUT, Path(name).name)
 
 
 @app.route("/login", methods=["POST"])
@@ -161,9 +168,13 @@ def build_deck():
             build_html(slides, slides[0].get("title", "Deck"), out, mp)
         else:
             out = OUT / f"deck-{uid}.pptx"
-            build(mp, slides, out)
+            if fmt == "b28pptx":
+                build_profile(slides, out)
+            else:
+                build(mp, slides, out)
         mime = "text/html" if fmt == "html" else "application/vnd.openxmlformats-officedocument.presentationml.presentation"
-        resp = send_file(out, as_attachment=True, download_name=f"slideforce-deck-{uid}.{fmt}", mimetype=mime)
+        ext = "pptx" if fmt != "html" else "html"
+        resp = send_file(out, as_attachment=True, download_name=f"slideforce-deck-{uid}.{ext}", mimetype=mime)
         resp.headers["X-Deck-Folien"] = str(len(slides))
         return resp
     finally:

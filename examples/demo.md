@@ -19,9 +19,9 @@ layout: 14 Tabelle
 title: Projektstatus
 
 | Bereich | Status | Kommentar |
-| Planung | Gruen | Abgeschlossen |
+| Planung | Grün | Abgeschlossen |
 | Build | Gelb | 2 Tage im Verzug |
-| Test | Rot | Start naechste Woche |
+| Test | Rot | Start nächste Woche |
 
 ---
 
@@ -30,7 +30,7 @@ title: Umsatz Q4
 
 zahl: 4,2 Mio
 einheit: EUR
-erklaerung: plus 12% ggü. Vorjahr
+erklaerung: plus 12% gegenüber Vorjahr
 einordnung: bestes Quartal seit 2023
 
 ---
@@ -39,7 +39,7 @@ layout: 05 Statement (Bühne)
 title: Statement
 
 botschaft: Wir liefern Phoenix bis Dezember.
-zusatz: Vorstand gibt Gruen fuer Go-Live.
+zusatz: Vorstand gibt Grün fuer Go-Live.
 
 ---
 

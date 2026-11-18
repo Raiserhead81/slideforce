@@ -61,7 +61,8 @@ color:#fff;font-weight:700;font-size:.86rem;cursor:pointer;transition:.15s}
 button.mini:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(63,163,150,.3)}
 button.mini.grey{background:var(--bg2);border:1px solid var(--cardb);color:var(--mut)}
 button.mini.grey:hover{color:var(--fg);box-shadow:none}
-.fmt{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
+.fmt{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:18px}
+@media(max-width:760px){.fmt{grid-template-columns:1fr}}
 .fmtcard{position:relative;background:rgba(0,0,0,.18);border:1.5px solid var(--line);border-radius:14px;padding:18px;cursor:pointer;transition:.18s}
 .fmtcard:hover{border-color:var(--cardb)}
 .fmtcard.on{border-color:var(--red);background:linear-gradient(160deg,rgba(192,57,47,.14),rgba(192,57,47,.04));
@@ -143,6 +144,9 @@ footer{margin-top:40px;color:#4d5c69;font-size:.8rem;text-align:center}
 <label class="fmtcard" id="fmtHtml"><input type="radio" name="fmt" value="html">
 <span class="check">✓</span><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3.2 3.8 3.2 14.2 0 18M12 3c-3.2 3.8-3.2 14.2 0 18"/></svg></div><div class="ft">HTML-Präsentation</div>
 <div class="fd">Moderne Web-Slides im Master-Look: Pfeiltasten, Swipe, Vollbild - eine Datei, überall lauffähig.</div></label>
+<label class="fmtcard" id="fmtB28"><input type="radio" name="fmt" value="b28pptx">
+<span class="check">✓</span><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 21h18M4 17h16M6 17v-5h3v5M10 17V8h4v9M16 17v-7h3v7"/></svg></div><div class="ft">BRIDGE28-Design</div>
+<div class="fd">Handdesignte Folien im BRIDGE28-Look: navy Header, gold Kicker, Kacheln, KW-Footer - dein Export-Standard.</div></label>
 </div>
 <button class="go" id="go">Deck erstellen</button>
 <div class="status" id="status"></div>
@@ -181,8 +185,7 @@ fetch('/api/saved/'+encodeURIComponent(v)).then(r=>r.text()).then(t=>{
 ta.value=t;localStorage.setItem('sf-text',t);z();$('savedstate').textContent='geladen'})};
 loadHist();
 document.querySelectorAll('.fmtcard input').forEach(r=>r.onchange=()=>{
-$('fmtPptx').classList.toggle('on',r.value=='pptx'&&r.checked);
-$('fmtHtml').classList.toggle('on',r.value=='html'&&r.checked)});
+document.querySelectorAll('.fmtcard').forEach(c=>c.classList.toggle('on',c.querySelector('input').checked))});
 fetch('/api/layouts').then(r=>r.json()).then(l=>{
 $('layouts').innerHTML=l.map(x=>'<div>'+x.i+' &nbsp; '+x.name+'</div>').join('')}).catch(()=>{});
 $('go').onclick=()=>{const st=$('status');st.className='status';

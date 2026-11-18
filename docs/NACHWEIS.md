@@ -62,3 +62,11 @@ Autosave: localStorage 'sf-text' bleibt ueber Reload
 Neu: Gradient/Glass-Design, SF-Logo, Schritte 01-04, einheitliche SVG-Icons (0 Emoji),
 Textarea mit klarer Abgrenzung, Export-Karten mit Check-Status, Glow-Button.
 Live e2e: POST text -> HTTP 200, X-Deck-Folien: 8.
+
+## BRIDGE28-Design-Profil (18.11., nach Kay-Feedback "b28-Export ist 1000x geiler")
+
+Design-DNA aus bridge28-handbuch/b28-pptx-edit.js uebernommen (NAVY 002846, GOLD C9A961,
+Header-Band + gold Kicker + weisser Titel, Kacheln mit Farbbalken, KW/Folien-Footer).
+Render-Check via LibreOffice->PNG + Vision: Titelfolie 8/10, Tabelle 7/10, KPI 7/10,
+keine Layout-Bugs. Live: https://slideforce.gemivo.de/files/b28demo.pdf (HTTP 200).
+Neues fmt: b28pptx (dritte Export-Karte in der UI).
