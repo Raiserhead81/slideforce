@@ -177,7 +177,7 @@ def f_zeitstrahl(sl, nr, gesamt):
 
 
 def f_statement(sl, nr, gesamt):
-    body = f"""<div style="position:absolute;left:110px;top:250px;width:1280px">
+    body = f"""<div style="position:absolute;left:110px;top:300px;width:1200px">
 <div class="kicker">{_s(sl.get('kicker'), 40) or 'ENTSCHEDIUNG'}</div>
 <div style="font-size:56px;line-height:1.25;font-weight:700;color:#243038">{_s(sl.get('title'), 160)}</div>
 <div style="margin:40px 0 0"><div class="accent"></div></div>

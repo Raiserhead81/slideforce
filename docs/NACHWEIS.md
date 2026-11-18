@@ -578,3 +578,11 @@ Run 20261118-203927 (Resume nach 429-Pause, Weg B Visual HTML):
   Kicker-Default mit echten Umlauten (VORSTANDS-PRÄSENTATION)
 - deck.pptx NEU gebaut aus frischen PNGs (6 Folien) + auf Kays Desktop
   (BRIDGE28-Rolloutplan-Vorstand.pptx)
+
+## NACHTRAG: Statement-Vertikal-Fix mit Sichtpruefung
+- dssystem f_statement: top 250->300, Breite 1280->1200 (Leerraum unten behoben,
+  glm-sicht-Befund aus Kays Qualitaets-Runde)
+- Alle 6 Folien NEU gerendert + deck.pptx neu gebaut (Server-Proof:
+  "alle 6 neu + deck.pptx aktualisiert") + auf Kays Desktop gesynct
+- Sichtpruefung Folie 6 nach Fix: Score laut glm-sicht (folie-6-Pruefung
+  /tmp/f6-neu.png), keine Ueberlappungen, Balance ok
