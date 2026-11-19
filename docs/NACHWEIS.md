@@ -646,3 +646,10 @@ Run 20261118-203927 (Resume nach 429-Pause, Weg B Visual HTML):
 - web/app.py: X-Deck-Score jetzt aus den FINALEN Deck-Stats (aipptx), sonst eigener Lint-Lauf. Vorher mass der Header die unplanen Reader-Folien (falsche 64) - jetzt konsistent.
 - roles.py: HERO-PFLICHT im director (min 1 Statement-Folie mit riesiger Kernbotschaft) + HERO-FOLIEN-Regel im ART_SYSTEM (96-140px, asymmetrisch, 10-Meter-Lesbarkeit).
 - LIVE 19.11.: Vorstandsdeck (Migration/Budget/Risiken/Entscheidung, /tmp/vorstand_text.txt) -> 200, 7 Folien, x-deck-score 95, blockierend 0; interne Kette 95 -> 95 konsistent im Log. Rendering: 7 PNGs (LibreOffice+pdftoppm), glm-sicht-Flash: 8/10 mit 2 brauchbaren Punkten (Titellaenge, Button-Breiten). Folien: ~/Desktop/slideforce-epic/.
+
+## 19.11. Hero-Folie final (nach Kays "sicher?"-Pruefung)
+- Kays Nachfrage loeste die echte Analyse aus: HERO fehlte im Web-Deck trotz roles.py-Regeln - Root-Cause-Kette bewiesen und gefixt: (1) PLAN_SCHEMA kannte kein kind "statement" -> erweitert; (2) _norm_plan_folie warf statement zu content -> freigeschaltet; (3) Renderer cappte Text auf 60pt -> Hero jetzt ENGINE-gebaut (deterministisch, _hero_engine: NAVY-Flaeche, Kicker GOLD, Kernbotschaft 90/72/54pt nach Laenge, word_wrap).
+- Plan-Prompt: VORSTANDS-GATTUNGEN + HERO-PFLICHT (max 60 Zeichen) jetzt im WEB-Build (struktur_slide_plan), nicht nur Studio.
+- Linter-Details im Log (Warnungen+Kritisch sichtbar). LINT-REPAIR live bewiesen: 82->85 und 83->94 (Folien 1,3,4).
+- FINALER LIVE-Beweis: 8 Folien, x-deck-score 95, blockierend 0; Folie 2 = 90pt-Hero ("Ohne Freigabe bis 5.12. verschiebt sich der Endtermin um 3 Monate"), Gattungen EXECUTIVE SUMMARY/ROLLOUT/BUDGET/RISIKEN/TERMINE/MANAGEMENTENTSCHEIDUNG, Logo 2x je Folie. Renderings: ~/Desktop/slideforce-epic/f-*.png.
+- Bekannt: Score-Varianz zwischen GLM-Pfaenen (85-94 bei identischem Text) - Repair hebt den Boden, Idealwert schwankt. Dokumentiert, akzeptiert.

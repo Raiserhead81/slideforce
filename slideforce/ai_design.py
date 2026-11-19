@@ -91,6 +91,7 @@ SP_REST = """
 - FARBE LENKT: Farbe nur fuer den Kernbefund und Status - niemals als Dekoration. Alles Nicht-Kernige bleibt GRAU2/DUNKEL.
 - ANTI-SLOP: keine erfundenen Farben (nur die Palette oben) · keine Deko-Icons/Emojis · keine Deko-Verlaeufe · keine "data slop" (nutzlose Zahlen/Kennzahlen zur Deko) · jedes Element muss seinen Platz VERDIENEN - eine leere Flaeche wird mit Komposition geloest, nie mit Fuellinhalt.
 - KEINE ERFUNDENEN DATEN: fehlt eine Zahl, lasse das Element weg - niemals plausibel aussehende Zahlen raten.
+- HERO-FOLIEN (kind "statement"): Die Kernbotschaft kommt ALS RIESIGES text-Element (size 96-140, Farbe NAVY auf WEISS oder WEISS/GOLD auf NAVY-Hintergrund), dazu max 20 Woerter Resttext. Asymmetrisch, viel Weissraum - die Folie muss auf 10 Meter lesbar sein.
 
 STRENGES JSON-BAU-VOKABULAR - nur diese Primitive ("typ"-Feld), Koordinaten in inch:
 - {"typ":"band","x":..,"y":..,"w":..,"h":..,"farbe":"NAVY"}                        Vollflaechiges Rechteck
@@ -527,6 +528,25 @@ def _cover_engine(sl, s):
         P._text(sl, 0.55, 1.22, 11.5, 0.36, meta, 10.5, P.GRAU2)
 
 
+def _hero_engine(sl, s):
+    """HERO-Folie (kind statement): DIE Kernbotschaft als Riesentext.
+    Engine-gebaut (deterministisch, kein KI-Call), analog Cover: NAVY-Flaeche,
+    Kicker GOLD oben, Kernbotschaft 90pt WEISS (word_wrap teilt Zeilen),
+    Ergaenzungssatz klein GOLD unten."""
+    bg = sl.background.fill
+    bg.solid()
+    bg.fore_color.rgb = P.NAVY
+    P._rect(sl, 0.55, 0.62, 1.6, 0.05, P.GOLD)
+    P._text(sl, 0.55, 0.78, 11.5, 0.4, str(s.get("kicker") or "HERO").upper(),
+            11, P.GOLD, bold=True)
+    txt = str(s.get("title") or "")
+    groesse = 90 if len(txt) <= 65 else (72 if len(txt) <= 100 else 54)
+    P._text(sl, 0.9, 1.45, 11.5, 5.2, txt, groesse, P.WEISS, bold=True)
+    botschaft = str(s.get("botschaft") or "")
+    if botschaft and groesse < 90:
+        P._text(sl, 0.9, 6.6, 11.0, 0.55, botschaft, 15, P.GOLD)
+
+
 def _farbe(v, default=P.NAVY):
     if isinstance(v, str):
         t = v.strip().upper()
@@ -726,10 +746,11 @@ PLAN_SCHEMA = """FOLIEN-SCHEMA (reines JSON, dein kompletter Output):
 {"folien":[
  {"kind":"title","title":"Deck-Titel","subtitle":"Untertitel"},
  {"kind":"section","title":"Kapitel-Titel"},
+ {"kind":"statement","title":"Die eine Kernbotschaft des Decks als Aussage-Satz","kicker":"HERO"},
  {"kind":"content","title":"Folien-Titel","kicker":"KURZLABEL","bullets":[[0,"Kernaussage"],[1,"Unterpunkt"]],"zahl":"93 %","einheit":"Migrationsstand","botschaft":"Kernbotschaft der Folie"}
 ]}
 Feld-Erklaerung:
-- kind: "title" (NUR Folie 1, Deck-Cover), "section" (Kapitel-Trenner), "content" (alle anderen).
+- kind: "title" (NUR Folie 1, Deck-Cover), "section" (Kapitel-Trenner), "statement" (GENAU EINE Hero-Folie im Deck: ihre title ist DIE Kernbotschaft des Decks als kurzer Aussage-Satz), "content" (alle anderen).
 - title: kurzer, praegnanter Folientitel. bullets: [[level,text],...], level 0 = Punkt, 1 = Unterpunkt, MAX 6 pro Folie, auf das Wesentliche verdichtet.
 - Optionale kv-Keys je Folie: "kicker" (Kurzlabel ueberm Titel, UPPERCASE), "zahl"+"einheit" (KPI-Wert + Label, z.B. "84.000" + "Euro Jahreskosten"), "erklaerung" (Kontextsatz), "ring" (Fortschritt in %, 0-100), "botschaft" (die eine Kernaussage), "meilensteine" ([["JJJJ-MM-TT","Name","fertig|kritisch"],...] fuer Fahrplaene).
 Gib AUSSCHLIESSLICH das JSON aus, kein Markdown/Prosa drumherum."""
@@ -771,7 +792,7 @@ def _norm_plan_folie(f):
     if not isinstance(f, dict):
         return None
     kind = str(f.get("kind") or f.get("layout") or "content").lower()
-    if kind not in ("title", "section", "content"):
+    if kind not in ("title", "section", "content", "statement"):
         kind = "content"
     out = {"kind": kind, "layout": kind,
            "title": str(f.get("title") or f.get("titel") or "").strip()[:120],
@@ -850,7 +871,16 @@ def struktur_slide_plan(content_text, ziel_min, ziel_max, config=None):
             "INHALT (roh):\n<<<\n" + text + "\n>>>\n\n" + PLAN_SCHEMA +
             "\n\nWICHTIG: Die Folienzahl muss IM Zielbereich liegen - die Titelfolie "
             "zaehlt mit. Fasse dicht zusammen, aber erhalte ALLE wichtigen Zahlen, "
-            "Namen und Fakten aus dem Input.")
+            "Namen und Fakten aus dem Input. VORSTANDS-GATTUNGEN: nutze passend zum "
+            "Inhalt mindestens 3 verschiedene Gattungen: Executive Summary (Gesamtstatus, "
+            "Fortschritt, Termin, Kosten, Top-Risiken, Entscheidungsbedarf), "
+            "Projektfortschritt mit Soll-Ist, Architektur, Rollout/Migration, Ressourcen, "
+            "Risiken und Massnahmen, Terminplan/Meilensteine, Budget mit Abweichungen, "
+            "Managemententscheidungen (am Ende, wenn Entscheidungsbedarf erkennbar). "
+            "HERO-PFLICHT: genau EINE Folie mit kind \"statement\" traegt die Kernbotschaft "
+            "des Decks. Ihr title ist MAXIMAL 60 ZEICHEN (kurzer Aussage-Satz oder Kernzahl, "
+            "z.B. 'Ohne Freigabe bis 5.12. verschiebt sich der Endtermin um 3 Monate') - "
+            "Details gehoeren in den Rest des Decks.")
     daten = _plan_call(user, config)
     if daten is None:
         print("[ai] Folienplan: KI-Call gescheitert -> Reader-Pfad", flush=True)
@@ -990,6 +1020,9 @@ def _build_ai_deck_intern(slides, out_path, config, on_progress,
                 _cover_engine(sl, s)
                 _render_elemente(sl, design["elemente"])
                 P._v_dp_logo(sl)
+            elif kind == "statement":           # HERO: Engine-gebaut, kein KI-Call
+                _hero_engine(sl, s)
+                P.fuss(sl, nr, gesamt, dunkel=True)
             elif kind == "section":             # dunkle Flaeche steht, KI designt frei
                 _render_elemente(sl, design["elemente"], dunkel=dunkel)
                 P.fuss(sl, nr, gesamt, dunkel=dunkel)
@@ -1009,7 +1042,8 @@ def _build_ai_deck_intern(slides, out_path, config, on_progress,
         final_rpt = _pd(slides)
         stats = dict(stats, linter_score=final_rpt.get("score"),
                      linter_blockierend=1 if final_rpt.get("blockierend") else 0)
-        print(f"[linter] Final: Score {final_rpt.get('score')}/100 (blockierend: {final_rpt.get('blockierend')})", flush=True)
+        print(f"[linter] Final: Score {final_rpt.get('score')}/100 (blockierend: {final_rpt.get('blockierend')})"
+              f" Warnungen: {final_rpt.get('warnungen')} Kritisch: {final_rpt.get('kritisch')}", flush=True)
     except Exception as e:
         print(f"[linter] Final-Pruefung uebersprungen: {e}", flush=True)
     return out_path, stats
